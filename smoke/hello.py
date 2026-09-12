@@ -1,6 +1,6 @@
 """Step 0: the smallest possible task, used to prove the toolchain works end to end.
 
-    inspect eval smoke/hello.py --model <provider/model>
+inspect eval smoke/hello.py --model <provider/model>
 """
 
 from inspect_ai import Task, task
