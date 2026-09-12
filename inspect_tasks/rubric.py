@@ -20,14 +20,13 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
+# `[\s*]*` absorbs the markdown bold markers models like to sprinkle around tokens.
 VERDICT_RE = re.compile(
-    r"^\s*\**\s*C(?P<idx>\d+)\s*\**\s*:\s*\**\s*(?P<verdict>PASS|FAIL)\b\**"
-    r"(?:\s*[-:–—]\s*(?P<why>.*))?$",
+    r"^[\s*]*C(?P<idx>\d+)[\s*]*:[\s*]*(?P<verdict>PASS|FAIL)\b[\s*]*"
+    r"(?:[-:–—][\s*]*(?P<why>.*))?$",
     re.IGNORECASE | re.MULTILINE,
 )
-SUMMARY_RE = re.compile(
-    r"^\s*\**\s*SUMMARY\s*\**\s*:\s*(?P<text>.+)$", re.IGNORECASE | re.MULTILINE
-)
+SUMMARY_RE = re.compile(r"^[\s*]*SUMMARY[\s*]*:[\s*]*(?P<text>.+)$", re.IGNORECASE | re.MULTILINE)
 
 
 @dataclass
