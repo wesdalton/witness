@@ -1,0 +1,26 @@
+[project]
+name = "inspect-tasks"
+version = "0.1.0"
+description = "Two Inspect AI evaluation tasks: a rubric-graded reasoning set and a sandboxed agentic coding task."
+requires-python = ">=3.12"
+dependencies = [
+    "inspect-ai==0.3.263",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+    "anthropic",
+    "openai",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["sandbox/workspace", "sandbox/hidden_tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
