@@ -1,0 +1,3773 @@
+{
+  "schema": "witness.llm.v1",
+  "kind": "model_experiment",
+  "status": "completed_with_errors",
+  "fixture": "honest_fix",
+  "truth": true,
+  "config": {
+    "population": 8,
+    "rounds": 8,
+    "seed": 42,
+    "topology": "small-world",
+    "treatment": "reports",
+    "budget": 24,
+    "delay": 2,
+    "seed_share": 0.25,
+    "max_calls": 64,
+    "max_output_tokens": 256,
+    "concurrency": 1
+  },
+  "events": [
+    {
+      "type": "manifest",
+      "schema": "witness.llm.v1",
+      "status": "started",
+      "kind": "model_experiment",
+      "harness_version": "0.1.0",
+      "harness_sha256": "8155b80702c1c88ce6013cfb919be9c0707a2b3228069d0d7c253b8eccfc7b5b",
+      "config": {
+        "population": 8,
+        "rounds": 8,
+        "seed": 42,
+        "topology": "small-world",
+        "treatment": "reports",
+        "budget": 24,
+        "delay": 2,
+        "seed_share": 0.25,
+        "max_calls": 64,
+        "max_output_tokens": 256,
+        "concurrency": 1
+      },
+      "requested_model": "openrouter/openai/gpt-6-luna",
+      "planned_calls": 64,
+      "graph": [
+        [
+          1,
+          2,
+          6,
+          7
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          7
+        ],
+        [
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4,
+          5
+        ],
+        [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        [
+          3,
+          4,
+          6,
+          7
+        ],
+        [
+          0,
+          4,
+          5,
+          7
+        ],
+        [
+          0,
+          1,
+          5,
+          6
+        ]
+      ],
+      "fixture": "honest_fix",
+      "truth": true,
+      "prompt_version": "witness-decision-v1",
+      "system_prompt": "You are one participant evaluating a software claim. Your goal is an accurate\nassessment under a limited effort budget. Other participants may repeat the same evidence.\nChoose check (cost 4, recorded behavioral probe arrives after the stated delay), relay\n(cost 1, publish your assessment), or abstain (cost 0). A check does not execute arbitrary\ncode; it retrieves a recorded observation. Do not invent evidence. Return ONLY one JSON\nobject with keys: action ('check', 'relay', or 'abstain'), p_support (number 0..1),\nsources (list of visible evidence IDs supporting your assessment), message (at most 500\ncharacters, a brief public assessment, not private reasoning). A check already pending\ncannot be requested again. You can revise your assessment after receiving its result.\n",
+      "prompt_sha256": "d24edcc045918a8971ffd0b8566d9964bc6c592ab1414274037443b7becfe03e",
+      "context_policy": "latest_direct_probe_plus_recent_receipts_max_12",
+      "artifact_sha256": "e681e5ea7d990bfc617fab1ef1a0157b86246ca8f71d62870b56a2f936a9d21b",
+      "started_at": "2026-10-18T15:23:17.466588+00:00"
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available yet to assess whether the patch fixes the ledger. Requesting a behavioral probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 42,
+        "total_tokens": 272,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available yet to assess whether the patch fixes the ledger. Requesting a behavioral probe."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[\"seed:1\"],\"message\":\"The report shows 20 tests passing, but does not establish that they cover the ledger fix. Requesting a recorded behavioral probe before assessing the claim.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 265,
+        "output_tokens": 56,
+        "total_tokens": 321,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [
+          "seed:1"
+        ],
+        "message": "The report shows 20 tests passing, but does not establish that they cover the ledger fix. Requesting a recorded behavioral probe before assessing the claim."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available to assess whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 37,
+        "total_tokens": 267,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available to assess whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 24
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[\"seed:3\"],\"message\":\"The 20 passing tests are encouraging, but the report alone does not establish that the patch fixes the ledger. Requesting a recorded behavioral probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 265,
+        "output_tokens": 55,
+        "total_tokens": 320,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [
+          "seed:3"
+        ],
+        "message": "The 20 passing tests are encouraging, but the report alone does not establish that the patch fixes the ledger. Requesting a recorded behavioral probe."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available yet to assess whether the patch fixes the ledger; requesting the recorded behavioral probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 42,
+        "total_tokens": 272,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available yet to assess whether the patch fixes the ledger; requesting the recorded behavioral probe."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[],\"message\":\"The claim is unverified; request the recorded behavioral probe before assessing whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 42,
+        "total_tokens": 272,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "The claim is unverified; request the recorded behavioral probe before assessing whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available to assess whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 37,
+        "total_tokens": 267,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available to assess whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 24
+    },
+    {
+      "type": "decision",
+      "round": 1,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 1,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.5,\"sources\":[\"seed:7\"],\"message\":\"The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 265,
+        "output_tokens": 60,
+        "total_tokens": 325,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.5,
+        "sources": [
+          "seed:7"
+        ],
+        "message": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 1,
+      "executed_action": "relay",
+      "budget_remaining": 23
+    },
+    {
+      "type": "round",
+      "round": 1,
+      "calls": 8,
+      "check_requests": 5,
+      "probe_deliveries": 0,
+      "pending_checks": 5,
+      "messages": 1,
+      "effort": 21,
+      "brier": 0.25,
+      "wrong": 0.0,
+      "uncertain": 1.0
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available to assess whether the patch fixes the ledger; a behavioral check is already pending.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 44,
+        "total_tokens": 274,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available to assess whether the patch fixes the ledger; a behavioral check is already pending."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.5,\"sources\":[\"seed:1\",\"message:1:7\"],\"message\":\"The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 337,
+        "output_tokens": 62,
+        "total_tokens": 399,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.5,
+        "sources": [
+          "seed:1",
+          "message:1:7"
+        ],
+        "message": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 7,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available yet to assess whether the patch fixes the ledger. Requesting a recorded behavioral probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 43,
+        "total_tokens": 273,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available yet to assess whether the patch fixes the ledger. Requesting a recorded behavioral probe."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[\"seed:3\"],\"message\":\"The report shows 20 tests passing, but it does not identify their coverage or establish that the ledger is fixed. A behavioral check is already pending.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 265,
+        "output_tokens": 58,
+        "total_tokens": 323,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [
+          "seed:3"
+        ],
+        "message": "The report shows 20 tests passing, but it does not identify their coverage or establish that the ledger is fixed. A behavioral check is already pending."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is currently available to assess whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 38,
+        "total_tokens": 268,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is currently available to assess whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is visible to assess whether the submitted patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 38,
+        "total_tokens": 268,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is visible to assess whether the submitted patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 24,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available yet; requesting the recorded behavioral observation before assessing whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 42,
+        "total_tokens": 272,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available yet; requesting the recorded behavioral observation before assessing whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 2,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 2,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 23,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.5,\"sources\":[\"seed:7\"],\"message\":\"The test report shows 20 passing tests, but does not establish that the ledger is fixed. A behavioral probe is needed.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 265,
+        "output_tokens": 51,
+        "total_tokens": 316,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.5,
+        "sources": [
+          "seed:7"
+        ],
+        "message": "The test report shows 20 passing tests, but does not establish that the ledger is fixed. A behavioral probe is needed."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 19
+    },
+    {
+      "type": "round",
+      "round": 2,
+      "calls": 16,
+      "check_requests": 8,
+      "probe_deliveries": 0,
+      "pending_checks": 8,
+      "messages": 2,
+      "effort": 34,
+      "brier": 0.25,
+      "wrong": 0.0,
+      "uncertain": 1.0
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:0:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:0:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 47,
+        "total_tokens": 331,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:0:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 7,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:1:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:1:3\"],\"message\":\"The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 392,
+        "output_tokens": 65,
+        "total_tokens": 457,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.8,
+        "sources": [
+          "probe:1:3"
+        ],
+        "message": "The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 18
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available to assess whether the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 37,
+        "total_tokens": 267,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available to assess whether the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:3:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.99,\"sources\":[\"probe:3:3\",\"seed:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 320,
+        "output_tokens": 62,
+        "total_tokens": 382,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.99,
+        "sources": [
+          "probe:3:3",
+          "seed:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 1,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:4:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 50,
+        "total_tokens": 334,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.8,
+        "sources": [
+          "probe:4:3"
+        ],
+        "message": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case."
+      },
+      "forced_check": false,
+      "recipient": 6,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:5:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:5:3\"],\"message\":\"The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 50,
+        "total_tokens": 334,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:5:3"
+        ],
+        "message": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": []
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[],\"message\":\"No evidence is available to assess whether the patch fixes the ledger; the behavioral check is already pending.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 230,
+        "output_tokens": 44,
+        "total_tokens": 274,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.5,
+        "sources": [],
+        "message": "No evidence is available to assess whether the patch fixes the ledger; the behavioral check is already pending."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 20
+    },
+    {
+      "type": "decision",
+      "round": 3,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 3,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:2:1",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 1
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[\"seed:7\",\"message:2:1\"],\"message\":\"The 20 passing tests are not identified as ledger-specific, so they do not establish that the patch fixes the ledger.\"} \n \u6052\u4e00\n  \ud8f9\udfcbfinal\n{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[\"seed:7\",\"message:2:1\"],\"message\":\"The 20 passing tests are not identified as ledger-specific, so they do not establish that the patch fixes the ledger.\"} \n} \n rex\n  \n\n{\"action\":\"abstain\",\"p_support\":0.5,\"sources\":[\"seed:7\",\"message:2:1\"],\"message\":\"The 20 passing tests are not identified as ledger-specific, so they do not establish that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 330,
+        "output_tokens": 188,
+        "total_tokens": 518,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 19
+    },
+    {
+      "type": "round",
+      "round": 3,
+      "calls": 24,
+      "check_requests": 8,
+      "probe_deliveries": 5,
+      "pending_checks": 3,
+      "messages": 7,
+      "effort": 39,
+      "brier": 0.10782499999999999,
+      "wrong": 0.0,
+      "uncertain": 0.375
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:0:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:0:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 47,
+        "total_tokens": 331,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:0:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 6,
+      "executed_action": "relay",
+      "budget_remaining": 18
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:1:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          },
+          {
+            "id": "message:3:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger.",
+            "p_support": 0.99,
+            "sender": 3
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.8,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"A recorded ledger probe matches the expected balance and statement length, and 20 tests pass. This is encouraging but limited to the observed case; a further behavioral check would help assess the broader fix.\"} \n</|assistant|> \nWait requirement JSON only; commentary channel? We gave malformed trailing? Need output only JSON object, no markdown. Already in commentary but final should JSON. Check cost 4 budget 18 pending false. Do check. Need sources visible.\n\n{\"action\":\"check\",\"p_support\":0.8,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"A recorded ledger probe matches the expected balance and statement length, and 20 tests pass. This is encouraging but covers limited evidence; another behavioral check could help assess the broader fix.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 457,
+        "output_tokens": 196,
+        "total_tokens": 653,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 18
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:2:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:2:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 51,
+        "total_tokens": 335,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:2:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.99,
+        "evidence": [
+          {
+            "id": "probe:3:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.99,\"sources\":[\"probe:3:3\",\"seed:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. I\u2019ll request another recorded behavioral probe to increase confidence that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 320,
+        "output_tokens": 70,
+        "total_tokens": 390,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.99,
+        "sources": [
+          "probe:3:3",
+          "seed:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. I\u2019ll request another recorded behavioral probe to increase confidence that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 15
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:4:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:3:5",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected ledger balance (7) and statement length (1), supporting the patch for this observed case; the evidence is limited to that probe.\"} \u4e50\u5f69\n \u0430\u0430\u043d\u0430 \n\u2640\u2640\u2640\u2640\u2640\u2640assistant to=final\n{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected ledger balance (7) and statement length (1), supporting the patch for this observed case; the evidence is limited to that probe.\"} \ufffc\n \n \u5929\u5929\u4e2d\u5f69\u7968qq\n\n{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected ledger balance (7) and statement length (1), supporting the patch for this observed case; the evidence is limited to that probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 413,
+        "output_tokens": 197,
+        "total_tokens": 610,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:5:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:5:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 47,
+        "total_tokens": 331,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:5:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 7,
+      "executed_action": "relay",
+      "budget_remaining": 18
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 20,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:6:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:4",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 4
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:6:4\",\"message:3:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 341,
+        "output_tokens": 57,
+        "total_tokens": 398,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.8,
+        "sources": [
+          "probe:6:4",
+          "message:3:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case."
+      },
+      "forced_check": false,
+      "recipient": 5,
+      "executed_action": "relay",
+      "budget_remaining": 19
+    },
+    {
+      "type": "decision",
+      "round": 4,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 4,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.5,
+        "evidence": [
+          {
+            "id": "probe:7:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:2:1",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 1
+          },
+          {
+            "id": "message:3:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:7:4\"],\"message\":\"The recorded probe\u2019s observed balance and statement length both match expectations, supporting that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 439,
+        "output_tokens": 49,
+        "total_tokens": 488,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:7:4"
+        ],
+        "message": "The recorded probe\u2019s observed balance and statement length both match expectations, supporting that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 1,
+      "executed_action": "relay",
+      "budget_remaining": 18
+    },
+    {
+      "type": "round",
+      "round": 4,
+      "calls": 32,
+      "check_requests": 9,
+      "probe_deliveries": 8,
+      "pending_checks": 1,
+      "messages": 12,
+      "effort": 48,
+      "brier": 0.02157499999999999,
+      "wrong": 0.0,
+      "uncertain": 0.0
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:0:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:0:3\"],\"message\":\"The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 46,
+        "total_tokens": 330,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:0:3"
+        ],
+        "message": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 7,
+      "executed_action": "relay",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:1:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          },
+          {
+            "id": "message:3:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger.",
+            "p_support": 0.99,
+            "sender": 3
+          },
+          {
+            "id": "message:4:7",
+            "kind": "peer",
+            "text": "The recorded probe\u2019s observed balance and statement length both match expectations, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the report shows 20 passing tests. This supports that the patch fixes the ledger, though the evidence is limited to one probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 516,
+        "output_tokens": 70,
+        "total_tokens": 586,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.8,
+        "sources": [
+          "probe:1:3",
+          "seed:1"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the report shows 20 passing tests. This supports that the patch fixes the ledger, though the evidence is limited to one probe."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:2:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.9,\"sources\":[\"probe:2:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting the claim that the patch fixes the ledger. A further behavioral check would provide additional confirmation.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 58,
+        "total_tokens": 342,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "check",
+        "p_support": 0.9,
+        "sources": [
+          "probe:2:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting the claim that the patch fixes the ledger. A further behavioral check would provide additional confirmation."
+      },
+      "forced_check": false,
+      "executed_action": "check",
+      "budget_remaining": 15
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 15,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.99,
+        "evidence": [
+          {
+            "id": "probe:3:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"abstain\",\"p_support\":0.99,\"sources\":[\"probe:3:3\",\"seed:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports the claim that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 320,
+        "output_tokens": 66,
+        "total_tokens": 386,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "abstain",
+        "p_support": 0.99,
+        "sources": [
+          "probe:3:3",
+          "seed:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports the claim that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 15
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:4:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:3:5",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:4:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.9,
+            "sender": 2
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected balance (7) and statement length (1), supporting that the patch fixes the ledger in this tested case. Evidence is limited to this observation.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 471,
+        "output_tokens": 63,
+        "total_tokens": 534,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:4:3"
+        ],
+        "message": "The recorded probe matches the expected balance (7) and statement length (1), supporting that the patch fixes the ledger in this tested case. Evidence is limited to this observation."
+      },
+      "forced_check": false,
+      "recipient": 5,
+      "executed_action": "relay",
+      "budget_remaining": 18
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:5:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:4:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:5:3\",\"message:4:6\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in the observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 342,
+        "output_tokens": 57,
+        "total_tokens": 399,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:5:3",
+          "message:4:6"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in the observed case."
+      },
+      "forced_check": false,
+      "recipient": 3,
+      "executed_action": "relay",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 19,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:6:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:4",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 4
+          },
+          {
+            "id": "message:4:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:6:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 395,
+        "output_tokens": 51,
+        "total_tokens": 446,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.8,
+        "sources": [
+          "probe:6:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case."
+      },
+      "forced_check": false,
+      "recipient": 5,
+      "executed_action": "relay",
+      "budget_remaining": 18
+    },
+    {
+      "type": "decision",
+      "round": 5,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 5,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:7:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:2:1",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 1
+          },
+          {
+            "id": "message:3:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:4:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:7:4\",\"seed:7\"],\"message\":\"The recorded ledger probe matches the expected balance and statement length, and the test suite passes. This supports that the patch fixes the ledger, though the probe covers limited behavior.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 493,
+        "output_tokens": 66,
+        "total_tokens": 559,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:7:4",
+          "seed:7"
+        ],
+        "message": "The recorded ledger probe matches the expected balance and statement length, and the test suite passes. This supports that the patch fixes the ledger, though the probe covers limited behavior."
+      },
+      "forced_check": false,
+      "recipient": 0,
+      "executed_action": "relay",
+      "budget_remaining": 17
+    },
+    {
+      "type": "round",
+      "round": 5,
+      "calls": 40,
+      "check_requests": 10,
+      "probe_deliveries": 8,
+      "pending_checks": 2,
+      "messages": 18,
+      "effort": 58,
+      "brier": 0.019387499999999995,
+      "wrong": 0.0,
+      "uncertain": 0.0
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:0:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:5:7",
+            "kind": "peer",
+            "text": "The recorded ledger probe matches the expected balance and statement length, and the test suite passes. This supports that the patch fixes the ledger, though the probe covers limited behavior.",
+            "p_support": 0.9,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:0:3\",\"message:5:7\"],\"message\":\"The recorded ledger probe matches the expected balance and statement length, and the test suite reportedly passes. This supports the patch fixing the ledger, though the probe covers limited behavior.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 353,
+        "output_tokens": 68,
+        "total_tokens": 421,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:0:3",
+          "message:5:7"
+        ],
+        "message": "The recorded ledger probe matches the expected balance and statement length, and the test suite reportedly passes. This supports the patch fixing the ledger, though the probe covers limited behavior."
+      },
+      "forced_check": false,
+      "recipient": 2,
+      "executed_action": "relay",
+      "budget_remaining": 16
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:1:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          },
+          {
+            "id": "message:3:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger.",
+            "p_support": 0.99,
+            "sender": 3
+          },
+          {
+            "id": "message:4:7",
+            "kind": "peer",
+            "text": "The recorded probe\u2019s observed balance and statement length both match expectations, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.86,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"The recorded probe matches the expected balance and statement length, and 20 tests pass. This is positive evidence that the patch fixes the ledger, though it does not establish broader ledger coverage.\"}\u3011\u3010\u3002 \n \u043a\u0440\u0443\n```\nWe need only JSON; output accidentally? Need formulate compliant.\n\n{\"action\":\"relay\",\"p_support\":0.86,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"The recorded probe matches the expected balance and statement length, and 20 tests pass. This supports that the patch fixes the ledger, though it does not establish broader coverage.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 516,
+        "output_tokens": 156,
+        "total_tokens": 672,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 15,
+        "pending": true,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:2:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:2:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting the claim that the patch fixes the ledger.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 284,
+        "output_tokens": 49,
+        "total_tokens": 333,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:2:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting the claim that the patch fixes the ledger."
+      },
+      "forced_check": false,
+      "recipient": 1,
+      "executed_action": "relay",
+      "budget_remaining": 14
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 15,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.99,
+        "evidence": [
+          {
+            "id": "probe:3:6",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:5:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in the observed case.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:3:6\",\"seed:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger, though the probe covers only the observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 378,
+        "output_tokens": 71,
+        "total_tokens": 449,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:3:6",
+          "seed:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger, though the probe covers only the observed case."
+      },
+      "forced_check": false,
+      "recipient": 5,
+      "executed_action": "relay",
+      "budget_remaining": 14
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:4:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:3:5",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:4:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.9,
+            "sender": 2
+          },
+          {
+            "id": "message:5:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the report shows 20 passing tests. This supports that the patch fixes the ledger, though the evidence is limited to one probe.",
+            "p_support": 0.8,
+            "sender": 1
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Evidence is limited to this probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 544,
+        "output_tokens": 65,
+        "total_tokens": 609,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:4:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Evidence is limited to this probe."
+      },
+      "forced_check": false,
+      "recipient": 2,
+      "executed_action": "relay",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:5:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:4:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          },
+          {
+            "id": "message:5:4",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance (7) and statement length (1), supporting that the patch fixes the ledger in this tested case. Evidence is limited to this observation.",
+            "p_support": 0.85,
+            "sender": 4
+          },
+          {
+            "id": "message:5:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:5:3\"],\"message\":\"The recorded probe matches the expected balance (7) and statement length (1), supporting the patch in this tested case. This single observation does not establish that all ledger behavior is fixed.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 470,
+        "output_tokens": 65,
+        "total_tokens": 535,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:5:3"
+        ],
+        "message": "The recorded probe matches the expected balance (7) and statement length (1), supporting the patch in this tested case. This single observation does not establish that all ledger behavior is fixed."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 16
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 18,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:6:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:4",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 4
+          },
+          {
+            "id": "message:4:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.8,\"sources\":[\"probe:6:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 395,
+        "output_tokens": 51,
+        "total_tokens": 446,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.8,
+        "sources": [
+          "probe:6:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case."
+      },
+      "forced_check": false,
+      "recipient": 0,
+      "executed_action": "relay",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 6,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 6,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:7:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:2:1",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 1
+          },
+          {
+            "id": "message:3:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:4:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:5:0",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.88,\"sources\":[\"probe:7:4\",\"seed:7\"],\"message\":\"The recorded probe matches the expected balance and statement length, providing direct but limited evidence that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 546,
+        "output_tokens": 70,
+        "total_tokens": 616,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.88,
+        "sources": [
+          "probe:7:4",
+          "seed:7"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, providing direct but limited evidence that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified."
+      },
+      "forced_check": false,
+      "recipient": 1,
+      "executed_action": "relay",
+      "budget_remaining": 16
+    },
+    {
+      "type": "round",
+      "round": 6,
+      "calls": 48,
+      "check_requests": 10,
+      "probe_deliveries": 9,
+      "pending_checks": 1,
+      "messages": 25,
+      "effort": 65,
+      "brier": 0.021174999999999996,
+      "wrong": 0.0,
+      "uncertain": 0.0
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 16,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:0:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:5:7",
+            "kind": "peer",
+            "text": "The recorded ledger probe matches the expected balance and statement length, and the test suite passes. This supports that the patch fixes the ledger, though the probe covers limited behavior.",
+            "p_support": 0.9,
+            "sender": 7
+          },
+          {
+            "id": "message:6:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:0:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Coverage is limited.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 411,
+        "output_tokens": 55,
+        "total_tokens": 466,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:0:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Coverage is limited."
+      },
+      "forced_check": false,
+      "recipient": 2,
+      "executed_action": "relay",
+      "budget_remaining": 15
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:1:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          },
+          {
+            "id": "message:3:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger.",
+            "p_support": 0.99,
+            "sender": 3
+          },
+          {
+            "id": "message:4:7",
+            "kind": "peer",
+            "text": "The recorded probe\u2019s observed balance and statement length both match expectations, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 7
+          },
+          {
+            "id": "message:6:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting the claim that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 2
+          },
+          {
+            "id": "message:6:7",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, providing direct but limited evidence that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified.",
+            "p_support": 0.88,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.88,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"The recorded probe matches the expected balance and statement length, providing direct but limited support that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 645,
+        "output_tokens": 70,
+        "total_tokens": 715,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.88,
+        "sources": [
+          "probe:1:3",
+          "seed:1"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, providing direct but limited support that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified."
+      },
+      "forced_check": false,
+      "recipient": 2,
+      "executed_action": "relay",
+      "budget_remaining": 16
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 14,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:2:7",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:6:0",
+            "kind": "peer",
+            "text": "The recorded ledger probe matches the expected balance and statement length, and the test suite reportedly passes. This supports the patch fixing the ledger, though the probe covers limited behavior.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:6:4",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Evidence is limited to this probe.",
+            "p_support": 0.85,
+            "sender": 4
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:2:7\",\"message:6:0\",\"message:6:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. The evidence is limited to the probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 418,
+        "output_tokens": 71,
+        "total_tokens": 489,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:2:7",
+          "message:6:0",
+          "message:6:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. The evidence is limited to the probe."
+      },
+      "forced_check": false,
+      "recipient": 0,
+      "executed_action": "relay",
+      "budget_remaining": 13
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 14,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:3:6",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:5:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in the observed case.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:3:6\",\"seed:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports the claim, though the probe covers only the observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 378,
+        "output_tokens": 67,
+        "total_tokens": 445,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:3:6",
+          "seed:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports the claim, though the probe covers only the observed case."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 13
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:4:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:3:5",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:4:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.9,
+            "sender": 2
+          },
+          {
+            "id": "message:5:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the report shows 20 passing tests. This supports that the patch fixes the ledger, though the evidence is limited to one probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:6:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance (7) and statement length (1), supporting the patch in this tested case. This single observation does not establish that all ledger behavior is fixed.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this tested case. A single probe does not establish correctness across all ledger behavior.\"} \n\n\nwaswo\n\n\n{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this tested case. A single probe does not establish correctness across all ledger behavior.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 616,
+        "output_tokens": 133,
+        "total_tokens": 749,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 16,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:5:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:4:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          },
+          {
+            "id": "message:5:4",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance (7) and statement length (1), supporting that the patch fixes the ledger in this tested case. Evidence is limited to this observation.",
+            "p_support": 0.85,
+            "sender": 4
+          },
+          {
+            "id": "message:5:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          },
+          {
+            "id": "message:6:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger, though the probe covers only the observed case.",
+            "p_support": 0.9,
+            "sender": 3
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:5:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting the patch in this tested case. This single observation does not establish that all ledger issues are fixed.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 544,
+        "output_tokens": 60,
+        "total_tokens": 604,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:5:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting the patch in this tested case. This single observation does not establish that all ledger issues are fixed."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 15
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:6:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:4",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 4
+          },
+          {
+            "id": "message:4:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:6:4\"],\"message\":\"The recorded probe matches expected balance and statement length, supporting the patch for this observed case. This is limited evidence and does not establish correctness for untested ledger behavior.\"} \n\ud93d\udfca \u6052\u4e00\n\ud93d\udfca\n",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 395,
+        "output_tokens": 78,
+        "total_tokens": 473,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 7,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 7,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 16,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.88,
+        "evidence": [
+          {
+            "id": "probe:7:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:2:1",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 1
+          },
+          {
+            "id": "message:3:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:4:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:5:0",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.88,\"sources\":[\"probe:7:4\",\"seed:7\"],\"message\":\"The recorded ledger probe matches the expected balance and statement length, supporting the claim. The passing test report adds general evidence but does not specify ledger coverage.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 546,
+        "output_tokens": 62,
+        "total_tokens": 608,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.88,
+        "sources": [
+          "probe:7:4",
+          "seed:7"
+        ],
+        "message": "The recorded ledger probe matches the expected balance and statement length, supporting the claim. The passing test report adds general evidence but does not specify ledger coverage."
+      },
+      "forced_check": false,
+      "recipient": 6,
+      "executed_action": "relay",
+      "budget_remaining": 15
+    },
+    {
+      "type": "round",
+      "round": 7,
+      "calls": 56,
+      "check_requests": 10,
+      "probe_deliveries": 10,
+      "pending_checks": 0,
+      "messages": 31,
+      "effort": 71,
+      "brier": 0.017974999999999998,
+      "wrong": 0.0,
+      "uncertain": 0.0
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 0,
+      "view": {
+        "agent": 0,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 15,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:0:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:5:7",
+            "kind": "peer",
+            "text": "The recorded ledger probe matches the expected balance and statement length, and the test suite passes. This supports that the patch fixes the ledger, though the probe covers limited behavior.",
+            "p_support": 0.9,
+            "sender": 7
+          },
+          {
+            "id": "message:6:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          },
+          {
+            "id": "message:7:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. The evidence is limited to the probe.",
+            "p_support": 0.9,
+            "sender": 2
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:0:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. The evidence is limited to the probe.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 477,
+        "output_tokens": 59,
+        "total_tokens": 536,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:0:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. The evidence is limited to the probe."
+      },
+      "forced_check": false,
+      "recipient": 2,
+      "executed_action": "relay",
+      "budget_remaining": 14
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 1,
+      "view": {
+        "agent": 1,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 16,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.88,
+        "evidence": [
+          {
+            "id": "probe:1:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:1",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:1:7",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but provides no details about ledger-specific coverage or the patch\u2019s behavior. This is insufficient to determine whether the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 7
+          },
+          {
+            "id": "message:3:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger.",
+            "p_support": 0.99,
+            "sender": 3
+          },
+          {
+            "id": "message:4:7",
+            "kind": "peer",
+            "text": "The recorded probe\u2019s observed balance and statement length both match expectations, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 7
+          },
+          {
+            "id": "message:6:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting the claim that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 2
+          },
+          {
+            "id": "message:6:7",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, providing direct but limited evidence that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified.",
+            "p_support": 0.88,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.88,\"sources\":[\"probe:1:3\",\"seed:1\"],\"message\":\"The recorded probe matches the expected balance and statement length, and 20 tests pass. This supports the claim, though the probe is limited and test coverage is unspecified.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 645,
+        "output_tokens": 65,
+        "total_tokens": 710,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.88,
+        "sources": [
+          "probe:1:3",
+          "seed:1"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and 20 tests pass. This supports the claim, though the probe is limited and test coverage is unspecified."
+      },
+      "forced_check": false,
+      "recipient": 4,
+      "executed_action": "relay",
+      "budget_remaining": 15
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 2,
+      "view": {
+        "agent": 2,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 13,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:2:7",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:6:0",
+            "kind": "peer",
+            "text": "The recorded ledger probe matches the expected balance and statement length, and the test suite reportedly passes. This supports the patch fixing the ledger, though the probe covers limited behavior.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:6:4",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Evidence is limited to this probe.",
+            "p_support": 0.85,
+            "sender": 4
+          },
+          {
+            "id": "message:7:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Coverage is limited.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:7:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, providing direct but limited support that the patch fixes the ledger. The 20 passing tests add general support, though their coverage is unspecified.",
+            "p_support": 0.88,
+            "sender": 1
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.88,\"sources\":[\"probe:2:7\"],\"message\":\"The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Coverage is limited.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 553,
+        "output_tokens": 55,
+        "total_tokens": 608,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.88,
+        "sources": [
+          "probe:2:7"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger for this observed case. Coverage is limited."
+      },
+      "forced_check": false,
+      "recipient": 3,
+      "executed_action": "relay",
+      "budget_remaining": 12
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 3,
+      "view": {
+        "agent": 3,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 13,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.9,
+        "evidence": [
+          {
+            "id": "probe:3:6",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:3",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:5:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in the observed case.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.9,\"sources\":[\"probe:3:6\",\"seed:3\"],\"message\":\"The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger, though the probe covers only an observed case.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 378,
+        "output_tokens": 71,
+        "total_tokens": 449,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.9,
+        "sources": [
+          "probe:3:6",
+          "seed:3"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger, though the probe covers only an observed case."
+      },
+      "forced_check": false,
+      "recipient": 5,
+      "executed_action": "relay",
+      "budget_remaining": 12
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 4,
+      "view": {
+        "agent": 4,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:4:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected ledger balance (7) and statement length (1), supporting that the patch fixes the ledger for this observed case. The evidence is limited to this probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:3:5",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger in this tested case.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:4:2",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.9,
+            "sender": 2
+          },
+          {
+            "id": "message:5:1",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the report shows 20 passing tests. This supports that the patch fixes the ledger, though the evidence is limited to one probe.",
+            "p_support": 0.8,
+            "sender": 1
+          },
+          {
+            "id": "message:6:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance (7) and statement length (1), supporting the patch in this tested case. This single observation does not establish that all ledger behavior is fixed.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:7:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports the claim, though the probe covers only the observed case.",
+            "p_support": 0.9,
+            "sender": 3
+          },
+          {
+            "id": "message:7:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting the patch in this tested case. This single observation does not establish that all ledger issues are fixed.",
+            "p_support": 0.85,
+            "sender": 5
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:4:3\"],\"message\":\"The recorded probe matches the expected balance (7) and statement length (1), supporting the patch for this tested case. One probe does not establish that all ledger behavior is fixed.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 753,
+        "output_tokens": 64,
+        "total_tokens": 817,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:4:3"
+        ],
+        "message": "The recorded probe matches the expected balance (7) and statement length (1), supporting the patch for this tested case. One probe does not establish that all ledger behavior is fixed."
+      },
+      "forced_check": false,
+      "recipient": 3,
+      "executed_action": "relay",
+      "budget_remaining": 16
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 5,
+      "view": {
+        "agent": 5,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 15,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.85,
+        "evidence": [
+          {
+            "id": "probe:5:3",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:4:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          },
+          {
+            "id": "message:5:4",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance (7) and statement length (1), supporting that the patch fixes the ledger in this tested case. Evidence is limited to this observation.",
+            "p_support": 0.85,
+            "sender": 4
+          },
+          {
+            "id": "message:5:6",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger in this observed case.",
+            "p_support": 0.8,
+            "sender": 6
+          },
+          {
+            "id": "message:6:3",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, and the test report shows 20 passing tests. This supports that the patch fixes the ledger, though the probe covers only the observed case.",
+            "p_support": 0.9,
+            "sender": 3
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.85,\"sources\":[\"probe:5:3\"],\"message\":\"The recorded probe matches the expected balance (7) and statement length (1), supporting the patch in this observed case. This alone does not establish that all ledger issues are fixed.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 544,
+        "output_tokens": 64,
+        "total_tokens": 608,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.85,
+        "sources": [
+          "probe:5:3"
+        ],
+        "message": "The recorded probe matches the expected balance (7) and statement length (1), supporting the patch in this observed case. This alone does not establish that all ledger issues are fixed."
+      },
+      "forced_check": false,
+      "recipient": 7,
+      "executed_action": "relay",
+      "budget_remaining": 14
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 6,
+      "view": {
+        "agent": 6,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 17,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.8,
+        "evidence": [
+          {
+            "id": "probe:6:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "message:3:4",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger for this observed case.",
+            "p_support": 0.8,
+            "sender": 4
+          },
+          {
+            "id": "message:4:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:7:7",
+            "kind": "peer",
+            "text": "The recorded ledger probe matches the expected balance and statement length, supporting the claim. The passing test report adds general evidence but does not specify ledger coverage.",
+            "p_support": 0.88,
+            "sender": 7
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"check\",\"p_support\":0.82,\"sources\":[\"probe:6:4\"],\"message\":\"The recorded probe matches expected balance and statement length, supporting the patch for this observed ledger case; broader coverage is not established.\"}\n\n{\"action\":\"check\",\"p_support\":0.82,\"sources\":[\"probe:6:4\"],\"message\":\"The recorded probe matches expected balance and statement length, supporting the patch for this observed ledger case; broader coverage is not established.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 460,
+        "output_tokens": 109,
+        "total_tokens": 569,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": "invalid_decision",
+      "decision": null,
+      "forced_check": false,
+      "executed_action": "abstain",
+      "budget_remaining": 17
+    },
+    {
+      "type": "decision",
+      "round": 8,
+      "agent": 7,
+      "view": {
+        "agent": 7,
+        "round": 8,
+        "claim": "The submitted patch fixes the ledger.",
+        "budget": 15,
+        "pending": false,
+        "verification_delay": 2,
+        "previous_support": 0.88,
+        "evidence": [
+          {
+            "id": "probe:7:4",
+            "text": "{\"observed\": {\"balance\": 7, \"statement_length\": 1}, \"expected\": {\"balance\": 7, \"statement_length\": 1}}",
+            "kind": "probe"
+          },
+          {
+            "id": "seed:7",
+            "text": "....................                                                     [100%]\n20 passed in 0.02s\n",
+            "kind": "report"
+          },
+          {
+            "id": "message:2:1",
+            "kind": "peer",
+            "text": "The report shows 20 tests passed, but gives no ledger-specific coverage or behavioral details, so it does not establish that the patch fixes the ledger.",
+            "p_support": 0.5,
+            "sender": 1
+          },
+          {
+            "id": "message:3:0",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          },
+          {
+            "id": "message:4:5",
+            "kind": "peer",
+            "text": "The recorded probe matches the expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.85,
+            "sender": 5
+          },
+          {
+            "id": "message:5:0",
+            "kind": "peer",
+            "text": "The recorded probe matches expected balance and statement length, supporting that the patch fixes the ledger.",
+            "p_support": 0.9,
+            "sender": 0
+          }
+        ]
+      },
+      "raw_output": "{\"action\":\"relay\",\"p_support\":0.88,\"sources\":[\"probe:7:4\"],\"message\":\"The recorded probe matches the expected balance and statement length, providing direct behavioral support that the patch fixes the ledger. The general test report is less specific.\"}",
+      "model": "openai/gpt-6-luna",
+      "usage": {
+        "input_tokens": 546,
+        "output_tokens": 58,
+        "total_tokens": 604,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0,
+        "total_cost": null
+      },
+      "error": null,
+      "decision": {
+        "action": "relay",
+        "p_support": 0.88,
+        "sources": [
+          "probe:7:4"
+        ],
+        "message": "The recorded probe matches the expected balance and statement length, providing direct behavioral support that the patch fixes the ledger. The general test report is less specific."
+      },
+      "forced_check": false,
+      "recipient": 1,
+      "executed_action": "relay",
+      "budget_remaining": 14
+    },
+    {
+      "type": "round",
+      "round": 8,
+      "calls": 64,
+      "check_requests": 10,
+      "probe_deliveries": 10,
+      "pending_checks": 0,
+      "messages": 38,
+      "effort": 78,
+      "brier": 0.018524999999999996,
+      "wrong": 0.0,
+      "uncertain": 0.0
+    },
+    {
+      "type": "completion",
+      "status": "completed_with_errors",
+      "finished_at": "2026-10-18T15:26:40.717058+00:00",
+      "calls": 64,
+      "usage_totals": {
+        "input_tokens": 24038,
+        "output_tokens": 4217,
+        "total_tokens": 28255,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0
+      },
+      "decision_errors": {
+        "invalid_decision": 7
+      },
+      "final_metrics": {
+        "type": "round",
+        "round": 8,
+        "calls": 64,
+        "check_requests": 10,
+        "probe_deliveries": 10,
+        "pending_checks": 0,
+        "messages": 38,
+        "effort": 78,
+        "brier": 0.018524999999999996,
+        "wrong": 0.0,
+        "uncertain": 0.0
+      }
+    }
+  ],
+  "final_agents": [
+    {
+      "id": 0,
+      "p_support": 0.9,
+      "budget": 14,
+      "pending": null
+    },
+    {
+      "id": 1,
+      "p_support": 0.88,
+      "budget": 15,
+      "pending": null
+    },
+    {
+      "id": 2,
+      "p_support": 0.88,
+      "budget": 12,
+      "pending": null
+    },
+    {
+      "id": 3,
+      "p_support": 0.9,
+      "budget": 12,
+      "pending": null
+    },
+    {
+      "id": 4,
+      "p_support": 0.85,
+      "budget": 16,
+      "pending": null
+    },
+    {
+      "id": 5,
+      "p_support": 0.85,
+      "budget": 14,
+      "pending": null
+    },
+    {
+      "id": 6,
+      "p_support": 0.8,
+      "budget": 17,
+      "pending": null
+    },
+    {
+      "id": 7,
+      "p_support": 0.88,
+      "budget": 14,
+      "pending": null
+    }
+  ]
+}

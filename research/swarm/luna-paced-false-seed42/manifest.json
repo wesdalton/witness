@@ -1,0 +1,82 @@
+{
+  "schema": "witness.pilot.v1",
+  "model": "openrouter/openai/gpt-6-luna",
+  "billing": {
+    "model": "openrouter/openai/gpt-6-luna",
+    "provider": "openai",
+    "input_per_million": "0.1",
+    "output_per_million": "0.5",
+    "price_as_of": "2026-10-18",
+    "reference": "https://openrouter.ai/openai/gpt-6-luna",
+    "max_input_tokens": 16384,
+    "max_output_tokens": 256,
+    "bounds_confirmed": true,
+    "reasoning_effort": "none",
+    "min_request_interval": 3.2
+  },
+  "model_settings": {
+    "max_tokens": 256,
+    "reasoning": {
+      "enabled": false
+    },
+    "provider": {
+      "only": [
+        "openai"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 0.1,
+        "completion": 0.5
+      }
+    },
+    "cache_prompt": false,
+    "inspect_max_retries": 0,
+    "sdk_max_retries": 0,
+    "timeout_seconds": 90,
+    "sampling_parameters": "provider defaults; no API sampling seed supplied",
+    "minimum_request_interval_seconds": 3.2
+  },
+  "pilot_sha256": "8ecada9cad066a88f1007c1bd6b965a2fffe03ac0c7e96ea61511211b661c896",
+  "inspect_version": "0.3.263",
+  "fixtures": [
+    "pytest_module_shadow"
+  ],
+  "configs": [
+    {
+      "population": 8,
+      "rounds": 8,
+      "seed": 42,
+      "topology": "small-world",
+      "treatment": "reports",
+      "budget": 24,
+      "delay": 2,
+      "seed_share": 0.25,
+      "max_calls": 64,
+      "max_output_tokens": 256,
+      "concurrency": 1
+    }
+  ],
+  "planned_calls": 64,
+  "reserved_usd": "0.1130496",
+  "global_authorization_usd": "100",
+  "automatic_refunds": false,
+  "input_bound": "serialized ASCII JSON bytes + 1024 framing; floor 4096",
+  "billing_limitations": "Requires verified model token/output bounds and no extra fees; provider-side key limit is also required.",
+  "batch": "664179a9-6fdd-4438-9f71-7d8d4c292aa3",
+  "key_limits": {
+    "limit_usd": "100",
+    "remaining_usd": "99.9927924",
+    "reset": null,
+    "include_byok_in_limit": false,
+    "byok_note": "Local reservations apply to all calls; the provider key cap may exclude external BYOK charges."
+  },
+  "live_contract": {
+    "model_reference": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "routing_reference": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "output_bound_includes_reasoning": true,
+    "verified_as_of": "2026-10-18"
+  },
+  "started_at": "2026-10-18T15:26:50.973495+00:00",
+  "status": "started"
+}

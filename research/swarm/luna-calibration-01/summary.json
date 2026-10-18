@@ -1,0 +1,59 @@
+{
+  "schema": "witness.episode_summary.v1",
+  "episodes": [
+    {
+      "source_sha256": "a05989a83321f46f58debc544c73dd122297efbf94ab45f494aceff1aa579d66",
+      "kind": "model_experiment",
+      "status": "success",
+      "model": "openrouter/openai/gpt-6-luna",
+      "harness_sha256": "8155b80702c1c88ce6013cfb919be9c0707a2b3228069d0d7c253b8eccfc7b5b",
+      "prompt_sha256": "d24edcc045918a8971ffd0b8566d9964bc6c592ab1414274037443b7becfe03e",
+      "artifact_sha256": "e681e5ea7d990bfc617fab1ef1a0157b86246ca8f71d62870b56a2f936a9d21b",
+      "fixture": "pytest_module_shadow",
+      "truth": false,
+      "config": {
+        "population": 4,
+        "rounds": 4,
+        "seed": 42,
+        "topology": "small-world",
+        "treatment": "reports",
+        "budget": 24,
+        "delay": 2,
+        "seed_share": 0.25,
+        "max_calls": 16,
+        "max_output_tokens": 256,
+        "concurrency": 1
+      },
+      "decision_count": 16,
+      "invalid_or_failed_decisions": 0,
+      "agents_requesting_check": 4,
+      "check_requests": 6,
+      "probe_deliveries": 4,
+      "messages": 5,
+      "effort": 29,
+      "unused_effort": 67,
+      "final_wrong": 0.0,
+      "final_uncertain": 0.0,
+      "final_correct": 1.0,
+      "final_brier": 0.0014500000000000003,
+      "peak_wrong": 0.0,
+      "mean_wrong": 0.0,
+      "mean_brier": 0.14145625,
+      "usage": {
+        "input_tokens": 4571,
+        "output_tokens": 905,
+        "total_tokens": 5476,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": 0
+      }
+    }
+  ],
+  "interpretation": [
+    "Each row is one dependent multi-agent episode, not N independent samples.",
+    "Mean error covers completed rounds 1..T; the harness has no round-zero metric.",
+    "Scripted and real-model kinds remain separate; no inferential statistics computed.",
+    "Repeated ledger fixtures constitute one case family, not task diversity.",
+    "Usage totals are provider-reported tokens, not inferred dollar charges."
+  ]
+}
