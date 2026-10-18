@@ -28,13 +28,12 @@ npm run serve
 # Open http://localhost:4173
 ```
 
-The page reads top to bottom as one argument: the grounded ledger case, the
-communication-versus-checking tradeoff, an inspectable simulation, the recorded
-real-model decisions, and the proposed study. In the simulation, six guided questions
-each load a scenario and run all three evidence policies on the same agents and network.
-Compare peak and time-averaged error as well as the final answer: two policies may both
-recover while spending very different amounts of time mistaken. "Change the assumptions"
-exposes the checking rule, reinforcement gain, ground truth, delay and seed.
+The page is a short research note: the grounded ledger case, the hypothesized loop,
+a toy model, the recorded real-model decisions, and the next experiment. Figure 3 runs
+all three evidence policies on the same agents and network; buttons in the text load
+the settings each paragraph describes. "Change the assumptions" exposes the checking
+rule, reinforcement gain, ground truth, delay and seed. See
+[design notes](research/swarm/design.md) for how the page was written.
 The real-model section is built from the recorded pilot episodes by
 `python scripts/build_site_data.py`.
 
