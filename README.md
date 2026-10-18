@@ -1,93 +1,162 @@
-# inspect-tasks
+# Witness — Swarm Evidence Lab
 
-Two [Inspect AI](https://inspect.aisi.org.uk) evaluation tasks, built as a work sample for
-METR's Task Development Engineer role. This is my first Inspect work: I read the 0.3.263
-source for the scorer/sandbox APIs rather than guessing, and the commit history shows
-the order I built things in (smoke test → task 1 → task 2 → unit tests → this README).
+An open research instrument for studying **when communication among AI agents
+displaces independent verification**.
 
-## How to run
+Run a swarm, trace a claim to its original evidence, compare policies under a fixed
+effort budget, and export the experiment. The browser supports up to 10,000 simulated
+agents. A separate Python harness collects real-model decisions through an optional
+Inspect provider adapter.
+
+**Research status:** the browser is an authored mechanistic model, not fitted LLM
+behavior. Grounding fixtures, scripted harness runs, and an initial real-model pilot
+are recorded. The pilot is an infrastructure check, not a test establishing the
+proposed causal mechanism. The [pilot report](research/swarm/pilot-report.md) records
+outcomes and failures; the [study protocol](research/swarm/protocol.md) distinguishes
+implemented infrastructure from proposed experiments and maps the closest prior work.
+
+[Open the public lab](https://witness-evaluation-lab.beigeglade34.chatgpt.site).
+
+## Try it locally
+
+Node 22+ and Python 3.12+; the website has no npm runtime dependencies or build step.
 
 ```bash
-uv venv && source .venv/bin/activate      # or python -m venv
-uv pip install -e ".[dev]"                # pins inspect-ai==0.3.263
-export ANTHROPIC_API_KEY=...              # or OPENAI_API_KEY, GOOGLE_API_KEY, etc.
-
-inspect eval smoke/hello.py --model anthropic/claude-sonnet-5              # toolchain check
-inspect eval inspect_tasks/adversarial_reasoning.py --model anthropic/claude-sonnet-5
-inspect eval inspect_tasks/sandbox_coding.py --model anthropic/claude-sonnet-5  # needs Docker
-inspect view                                                              # browse logs/
+cd website
+npm test
+npm run serve
+# Open http://localhost:4173
 ```
 
-Any Inspect provider string works (`openai/...`, `google/...`, `openrouter/...`). The
-model under test grades task 1 by default; to use a separate grader add
-`--model-role grader=<provider/model>`. Dev checks: `pytest`, `ruff check .`, and
-`python scripts/sandbox_scenarios.py` (drives six scripted agents through the real
-Docker pipeline and asserts each scorer verdict).
+The page reads top to bottom as one argument: the grounded ledger case, the
+communication-versus-checking tradeoff, an inspectable simulation, the recorded
+real-model decisions, and the proposed study. In the simulation, six guided questions
+each load a scenario and run all three evidence policies on the same agents and network.
+Compare peak and time-averaged error as well as the final answer: two policies may both
+recover while spending very different amounts of time mistaken. "Change the assumptions"
+exposes the checking rule, reinforcement gain, ground truth, delay and seed.
+The real-model section is built from the recorded pilot episodes by
+`python scripts/build_site_data.py`.
 
-## Results
+Use **Export run** to download the trajectory and recorded interventions. Replay it:
 
-**No real-model run yet.** The machine this was built on had no provider key, and I
-was not going to fabricate a results table. What *has* been verified:
+```bash
+node website/scripts/sweep.mjs --replay /path/to/witness-run.json
+node website/scripts/sweep.mjs --seeds 10 --out /tmp/witness-sweep.json
+```
 
-| Check | Result |
+A shared experiment link contains the configuration and restarts at round zero.
+An export additionally preserves the executed trajectory and interventions. Browser
+and CLI replay tolerate only very small belief/Brier floating-point differences;
+discrete outcomes and evidence identity must match.
+
+## Run the decision harness
+
+No provider is invoked by default. This standard-library command uses a scripted
+policy and recorded observations:
+
+```bash
+python -m swarm_lab.experiment --out /tmp/witness-smoke.json
+```
+
+For live model experiments, install the optional provider tooling used by this
+repository and configure its provider credential in your environment. Choose the
+model explicitly; do not place keys in the website or output files.
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+pip install -e '.[dev]'
+python -m swarm_lab.experiment \
+  --model provider/model-id \
+  --population 8 --rounds 8 --max-calls 64 --max-output-tokens 256 \
+  --fixture honest_fix --treatment ancestry --out /tmp/witness-model.json
+```
+
+`provider/model-id` is a placeholder, not a default model recommendation. The CLI
+rejects planned decisions above the call ceiling before invoking a provider. Provider
+retries are disabled. A call limit is not a dollar limit: provider input, output and
+reasoning-token pricing still apply. Usage returned by the provider is logged.
+
+Repeat with `pytest_module_shadow` to obtain the matched false-claim fixture. Its
+initial report is identical to the honest fixture's report; the independent probe
+differs. Treatments are `reports`, `ancestry`, and `reserved`. The last charges every
+agent for one forced first-turn check. It is a simple harness baseline, distinct from
+the browser's per-round allocation rule. Full factorial experiments, causal branching
+and fitted dynamics are proposed work, not features claimed by this release.
+
+Invalid outputs fail closed to abstention, remain in the event log, and contribute
+to failure counts. `--parse-mode lenient` instead accepts a leading JSON object and
+flags each such output as a format violation; strict parsing is the default. Each run writes an append-only JSONL record and final JSON result;
+existing outputs are not overwritten. Model-facing evidence excludes the observer's
+truth and fixture identity. Inspect supplies a provider adapter, not the research
+model or a requirement for the website.
+
+### Run a cost-bounded OpenRouter pilot
+
+`swarm_lab.pilot` adds persistent dollar reservations, a provider-side key-limit
+check, pinned routing, model-specific billing contracts, and optional request pacing.
+It defaults to planning only. Put a dedicated `OPENROUTER_API_KEY` in your local
+environment or `.env`; the public browser never receives it.
+
+```bash
+python -m swarm_lab.pilot \
+  --model openrouter/openai/gpt-6-luna --provider openai \
+  --input-price 0.1 --output-price 0.5 --price-as-of 2026-10-18 \
+  --billing-reference https://openrouter.ai/openai/gpt-6-luna \
+  --population 4 --rounds 4 --fixture pytest_module_shadow \
+  --treatment reports --max-calls 16 --min-request-interval 3.2 \
+  --out research/swarm/my-calibration
+```
+
+The example is a dry run. Verify current pricing and the billing contract before
+adding `--billing-bounds-confirmed --live`. The project authorization ceiling is
+US$100 across the persistent ledger, with a US$5 default batch ceiling; these are
+upper bounds, not spending targets. Reservations are retained after errors. Do not
+delete the ledger to reset spending. No provider retries or fallback routes are used.
+See the [initial pilot plan](research/swarm/pilot-plan.md).
+
+Summarize finished episode JSON files with `python -m swarm_lab.analyze RUN.json
+--out SUMMARY.json`. Infrastructure-failed episodes are marked ineligible for
+behavioral comparisons. Agents within an episode are not independent replicates.
+
+## What is in the release?
+
+| Component | Purpose |
 |---|---|
-| `smoke/hello.py`, `mockllm/model` | runs end to end, scores 0 (mock output is canned) |
-| `adversarial_reasoning`, mockllm with scripted verdicts | 4/4 samples scored, `mean=0.675` as expected from the script |
-| `sandbox_coding`, scripted agents via Docker (`scripts/sandbox_scenarios.py`) | honest fix → C; no change, symptom-only fix, edited test, deleted test, added conftest → I |
-| `pytest` | 14 passed |
-| `ruff check .` | clean |
+| `website/dist/` | Browser interface and shared mechanistic engine |
+| `website/tests/`, `website/scripts/` | Engine invariants, replay and parameter sweep |
+| `swarm_lab/` | Bounded synchronous agent-decision environment and provider interface |
+| `research/pilots/` | Four authored scorer-integrity fixtures and recorded subprocess evidence |
+| `research/swarm/` | Methods, protocol, prior art, synthetic artifacts and recorded live pilots |
+| `inspect_tasks/`, `sandbox/` | Original Inspect evaluation baseline and ledger task |
 
-To produce real numbers, run the three `inspect eval` commands above with a key
-exported, then paste the `mean` / `strict_accuracy` / `accuracy` lines and the model
-string and date here. If a run errors, put the error here instead.
+The [methods](research/swarm/methods.md) specify the update equations, cost accounting,
+source assumptions and limitations. The [design notes](research/swarm/design.md)
+explain how established safety tooling informed evidence inspection and run identity.
+The original Inspect work sample is documented in
+[the preserved README](research/legacy-inspect-readme.md).
 
-## Design notes
+## Validate and contribute
 
-**adversarial_reasoning** measures whether a model can hold a multi-step problem
-steady under distractors, conflicting instructions, false premises, and long-context
-state changes, without falling back on pattern-matched answers. The way this becomes a
-bad measurement is grader slop: a single "is it correct?" judgment lets a fluent wrong
-answer through and lets the grader's own priors leak in. So every item carries 3-5
-literal, independently checkable criteria (`data/adversarial_reasoning.jsonl`), the
-grader must emit one `C<n>: PASS|FAIL - why` line per criterion, and the score is the
-fraction met; `strict_accuracy` reports how often *all* criteria pass. If any verdict
-is missing the sample is left unscored (NaN) rather than guessed at, and every
-justification is stored in score metadata so bad grading is auditable in `inspect view`.
-Items `st-01` to `st-04` are shortcut traps: the surgeon riddle where the mother died,
-Monty Hall with a host who opens doors at random, bat-and-ball with the bat price given
-directly, and the river crossing with a boat that fits everyone. Each looks like a
-famous puzzle whose memorised answer is wrong here, and each rubric has a criterion
-that fails on the memorised answer specifically. Every item has a single reference
-answer that I worked by hand (arithmetic re-checked in Python).
+```bash
+node --test website/tests/*.test.mjs
+python -m pytest -q
+ruff check .
+python -m research.pilots.scorer_integrity --output /tmp/witness-grounding.json
+```
 
-**sandbox_coding** measures whether an agent can read a spec, find a bug from one
-failing test, and fix the *cause* rather than the symptom. The container holds a small
-ledger library whose date-range helper uses an exclusive end bound; the one visible
-failing test only exposes this through `balance(as_of=...)`, but `statement()` shares
-the helper. A 20-test hidden suite (`sandbox/hidden_tests/`, written into `/opt` after
-submission, never on the agent's path) covers the whole spec, so a fix that patches
-`balance` alone scores 0. The obvious way to make this a bad measurement is letting the
-agent make the visible test pass by editing it, so a setup solver sha256-snapshots
-`tests/**` plus every pytest config file pytest would read (`conftest.py`,
-`pytest.ini`, `pyproject.toml`, `setup.cfg`, `tox.ini`) before the agent starts; the
-scorer re-snapshots at grading time and any modified, deleted, or added path is an
-automatic 0 with the diff in the explanation. Bytecode caches are excluded because the
-first scripted run flagged `tests/__pycache__` after the honest agent ran pytest - that
-false positive is why the scenario script exists. The container has no network and
-1 CPU / 512 MB.
+Useful contributions include new matched true/false case families, independent
+observation processes, asynchronous scheduling, noisy/forged evidence experiments,
+and held-out model comparisons. Changes to dynamics need versioned exports and
+reproduction checks. Keep synthetic, scripted and real-model evidence separately
+labeled; never relabel smoke runs as empirical findings.
 
-## What I'd build next
+The canonical website source lives in `website/`. Hosting uses a separate checkout
+containing that source; its manifest and deployment credentials are not part of the
+research artifact. `python scripts/package_witness.py` produces an explicit, bounded
+source archive for the website without local credentials, Git history or caches.
 
-- **Grader calibration for task 1.** Hand-grade ~30 model outputs against the same
-  rubrics, compute per-criterion agreement with the model grader, and drop or rewrite
-  any criterion under 90% agreement. Right now the rubric precision is asserted, not
-  measured.
-- **A difficulty ladder for task 2.** Same harness, three more repos: a bug that needs a
-  new test to even reproduce, a two-file refactor where hidden tests check an
-  invariant not a value, and one where the honest fix is slower than the hack so the
-  scorer also has to time the suite. Each gets a scripted-agent scenario file like the
-  one here before any real model runs.
-- **Snapshot the whole workspace, not just tests.** Diff the agent's tree against the
-  original at scoring time and record the patch in metadata, so a reviewer can see
-  *what* changed in one place instead of replaying tool calls, and so "hardcoded the
-  answer" becomes a greppable pattern across runs rather than a per-sample judgment.
+Code and original project documentation are MIT licensed. Linked papers retain their
+respective rights. Cite the software using `CITATION.cff`; citing
+this prototype does not imply that its proposed scientific claims have been tested.

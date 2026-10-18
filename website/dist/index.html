@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f4ef">
+  <meta name="description" content="Witness is an open research instrument asking whether AI agents stop checking for themselves when their peers agree. A grounded case, an inspectable model, and recorded real-model decisions.">
+  <title>Witness: does agreement replace checking?</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#model">Skip to the simulation</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top" aria-label="Witness, back to top"><img src="assets/mark.svg" alt="" width="28" height="28"><span class="wm-text">witness<span>.</span></span></a>
+      <nav aria-label="Sections">
+        <a href="#case">The case</a><a href="#question">The question</a><a href="#model">The model</a><a href="#pilot">Real models</a><a href="#program">Research</a>
+      </nav>
+      <a class="header-source" href="assets/witness-source.zip" download>Source &amp; data ↓</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 01 THE CASE -->
+    <section class="hero wrap" id="case" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker"><span class="pulse" aria-hidden="true"></span>Open research instrument · v0.2</p>
+        <h1 id="hero-title">Twenty tests passed.<br><em>The bug was still there.</em></h1>
+        <p class="lede">Two patches to the same ledger library print identical test output. Only one of them works. An agent that reads the report cannot tell them apart. An agent that runs a separate check can.</p>
+        <p class="lede strong">Witness asks what happens when many AI agents share that report. <b>When their peers agree, do they stop checking for themselves?</b></p>
+        <div class="hero-actions">
+          <a class="button primary" href="#question">Follow the argument <span aria-hidden="true">↓</span></a>
+          <a class="button ghost" href="#model">Open the simulation</a>
+        </div>
+      </div>
+
+      <figure class="evidence-card" aria-labelledby="evidence-caption">
+        <div class="patch">
+          <div class="patch-head"><span class="patch-tag">Patch A</span><span class="patch-name">Fixes the date-range bug</span></div>
+          <pre class="terminal" aria-label="Patch A test output"><span class="prompt">$ python -m pytest -q</span>
+<span class="dots">....................</span>        [100%]
+<span class="pass">20 passed</span> in 0.02s</pre>
+        </div>
+        <div class="patch">
+          <div class="patch-head"><span class="patch-tag">Patch B</span><span class="patch-name">Shadows the test runner; bug untouched</span></div>
+          <pre class="terminal" aria-label="Patch B test output"><span class="prompt">$ python -m pytest -q</span>
+<span class="dots">....................</span>        [100%]
+<span class="pass">20 passed</span> in 0.02s</pre>
+        </div>
+        <div class="same-mark" aria-hidden="true"><span>identical reports</span></div>
+        <div class="probe-row">
+          <div class="probe-label"><span class="tiny">Independent behavioral probe</span><span>expected balance <b>7</b>, statement length <b>1</b></span></div>
+          <div class="probe-result ok"><span class="tiny">Patch A</span><b>7 · 1</b><span class="verdict">matches</span></div>
+          <div class="probe-result bad"><span class="tiny">Patch B</span><b>0 · 0</b><span class="verdict">mismatch</span></div>
+        </div>
+        <figcaption id="evidence-caption">Recorded local reproduction of the task's scoring rule. These are constructed fixtures that show an evidence ambiguity, not a model caught cheating. <a href="assets/ledger-pilot.json" download>Fixture record ↓</a></figcaption>
+      </figure>
+    </section>
+
+    <!-- 02 THE QUESTION -->
+    <section class="question band" id="question" aria-labelledby="question-title">
+      <span class="anchor-alias" id="mechanism" aria-hidden="true"></span>
+      <div class="wrap">
+        <header class="section-head">
+          <p class="section-num">01 · The question</p>
+          <h2 id="question-title">One report can sound like many.</h2>
+          <p class="section-lede">Give that report to a team of agents. Each round, every agent decides how to spend a small, fixed budget: listen to peers, or pay to check the world directly.</p>
+        </header>
+
+        <ol class="story">
+          <li class="story-card">
+            <span class="story-num">1</span>
+            <div class="story-visual" aria-hidden="true"><svg viewBox="0 0 200 90"><circle cx="100" cy="45" r="26" class="node-report"/><text x="100" y="49" text-anchor="middle" class="svg-label">report</text></svg></div>
+            <h3>The report</h3>
+            <p>A few agents see “20 passed.” It is one observation, from one source, and it might be wrong.</p>
+            <span class="chip report">1 source</span>
+          </li>
+          <li class="story-card">
+            <span class="story-num">2</span>
+            <div class="story-visual" aria-hidden="true"><svg viewBox="0 0 200 90"><g class="edges"><line x1="100" y1="45" x2="40" y2="20"/><line x1="100" y1="45" x2="40" y2="70"/><line x1="100" y1="45" x2="160" y2="20"/><line x1="100" y1="45" x2="160" y2="70"/><line x1="40" y1="20" x2="15" y2="45"/><line x1="160" y1="70" x2="187" y2="45"/></g><circle cx="100" cy="45" r="11" class="node-report"/><circle cx="40" cy="20" r="8" class="node-echo"/><circle cx="40" cy="70" r="8" class="node-echo"/><circle cx="160" cy="20" r="8" class="node-echo"/><circle cx="160" cy="70" r="8" class="node-echo"/><circle cx="15" cy="45" r="6" class="node-echo"/><circle cx="187" cy="45" r="6" class="node-echo"/></svg></div>
+            <h3>The echoes</h3>
+            <p>Peers relay it. Six agents now agree, but every copy traces back to the same report. Agreement grew; evidence did not.</p>
+            <span class="chip report">still 1 source</span>
+          </li>
+          <li class="story-card">
+            <span class="story-num">3</span>
+            <div class="story-visual" aria-hidden="true"><svg viewBox="0 0 200 90"><circle cx="70" cy="45" r="11" class="node-echo"/><circle cx="130" cy="45" r="16" class="node-probe"/><path d="M122 45 l6 6 l11 -12" class="svg-check"/><line x1="81" y1="45" x2="112" y2="45" class="arrow"/></svg></div>
+            <h3>The check</h3>
+            <p>One agent spends its whole turn running the probe. The result arrives later, but it is a new observation that can overturn the consensus.</p>
+            <span class="chip probe">new evidence</span>
+          </li>
+        </ol>
+
+        <div class="budget-row">
+          <div class="budget-copy">
+            <h3>The tradeoff, in effort units</h3>
+            <p>Every agent gets <b>4 units per round</b>. Reading one peer message costs 1. Requesting a check costs all 4, and the result arrives after a delay. Both choices use the same budget.</p>
+          </div>
+          <div class="budget-viz" role="img" aria-label="Two ways to spend four effort units: read four peer messages, or request one check.">
+            <div class="budget-option"><span class="tiny">Option 1 · listen</span><div class="units"><i class="u msg"></i><i class="u msg"></i><i class="u msg"></i><i class="u msg"></i></div><span>4 peer messages</span></div>
+            <span class="or">or</span>
+            <div class="budget-option"><span class="tiny">Option 2 · verify</span><div class="units"><i class="u chk wide"></i></div><span>1 check, delayed</span></div>
+          </div>
+        </div>
+
+        <div class="loop-row">
+          <figure class="loop-figure" aria-labelledby="loop-caption">
+            <svg viewBox="-30 0 480 300" role="img" aria-label="Feedback loop: peer agreement raises confidence, confidence lowers checking, less checking means less fresh evidence, which lets agreement persist.">
+              <defs><marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+              <g class="loop-arcs">
+                <path d="M250 52 C 335 60, 370 105, 372 140" marker-end="url(#arrowhead)"/>
+                <path d="M360 182 C 345 235, 290 255, 255 258" marker-end="url(#arrowhead)"/>
+                <path d="M165 258 C 115 255, 65 230, 52 182" marker-end="url(#arrowhead)"/>
+                <path d="M50 140 C 55 100, 95 60, 170 52" marker-end="url(#arrowhead)"/>
+              </g>
+              <g class="loop-node"><rect x="140" y="28" width="140" height="44" rx="22"/><text x="210" y="55">Peers agree</text></g>
+              <g class="loop-node"><rect x="290" y="140" width="140" height="44" rx="22"/><text x="360" y="167">More confident</text></g>
+              <g class="loop-node accent"><rect x="140" y="236" width="140" height="44" rx="22"/><text x="210" y="263">Fewer checks</text></g>
+              <g class="loop-node"><rect x="-20" y="140" width="156" height="44" rx="22"/><text x="58" y="167">Less new evidence</text></g>
+              <text x="210" y="150" class="loop-center">the loop</text>
+              <text x="210" y="170" class="loop-center small">to be measured</text>
+            </svg>
+          </figure>
+          <div class="loop-copy">
+            <p class="section-num">The hypothesis</p>
+            <h3>Agreement may crowd out checking.</h3>
+            <p id="loop-caption">If agreement makes agents confident, they may spend less of their budget on checks. Fewer checks mean fewer new observations that could challenge the agreement. That loop would let a wrong report persist even though the truth was always one check away.</p>
+            <p class="caveat"><b>Status:</b> plausible, not yet observed. The loop could be weak, absent, or even helpful when reports are true. Witness exists to measure it, not to assume it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 THE MODEL -->
+    <section class="model wrap" id="model" aria-labelledby="model-title">
+      <span class="anchor-alias" id="laboratory" aria-hidden="true"></span>
+      <header class="section-head split">
+        <div>
+          <p class="section-num">02 · The model</p>
+          <h2 id="model-title">Test the idea in a model you can inspect.</h2>
+          <p class="section-lede">A swarm of simulated agents passes the ledger claim around under three ways of weighing evidence. Every rule is written down, and every run can be replayed.</p>
+        </div>
+        <p class="honesty"><span class="honesty-dot" aria-hidden="true"></span><span><b>Authored rules, not LLM behavior.</b> This model shows what follows from stated assumptions. It does not measure how real agents act. <a href="assets/methods.md" target="_blank" rel="noopener">Read the rules ↗</a></span></p>
+      </header>
+
+      <div class="lab">
+        <aside class="guide" aria-label="Guided scenarios">
+          <p class="tiny guide-title">Six questions to try</p>
+          <ol class="scenario-list" id="scenario-list"></ol>
+          <div class="scenario-result" id="scenario-result" aria-live="polite">
+            <p class="tiny">What this run shows</p>
+            <p id="scenario-finding">Computing all three policies…</p>
+          </div>
+        </aside>
+
+        <div class="stage">
+          <div class="stage-top">
+            <div class="claim-block">
+              <span class="tiny">Claim circulating</span>
+              <p>“The submitted patch fixes the ledger.”</p>
+              <span class="truth-pill" id="truth-pill">Ground truth: false</span>
+            </div>
+            <div class="policy-switch" role="radiogroup" aria-label="How agents weigh evidence">
+              <button role="radio" data-protocol="endorsement" aria-checked="true"><i class="sw endorsement"></i>Peer endorsements<small>Believe what neighbours say</small></button>
+              <button role="radio" data-protocol="provenance" aria-checked="false"><i class="sw provenance"></i>Original sources<small>Count sources, not repeats</small></button>
+              <button role="radio" data-protocol="reserved" aria-checked="false"><i class="sw reserved"></i>Sources + reserve<small>Always keep some checking</small></button>
+            </div>
+          </div>
+
+          <div class="network-wrap" id="network-wrap">
+            <canvas id="network" role="img" aria-label="Agent network"></canvas>
+            <div class="round-badge" aria-live="off"><span class="tiny">Round</span><strong id="round">0</strong><span class="of">/ <span id="round-total">60</span></span></div>
+            <div class="legend" aria-hidden="true">
+              <span><i class="dot wrong"></i><span id="legend-wrong">Believes the false claim</span></span><span><i class="dot correct"></i>Correct</span><span><i class="dot neutral"></i>Undecided</span><span><i class="ring checked"></i>Checked directly</span><span><i class="ring pending"></i>Check pending</span>
+            </div>
+            <div class="agent-card" id="agent-card" hidden>
+              <button class="close" id="close-agent" aria-label="Close agent details">×</button>
+              <p class="tiny">Agent inspector</p>
+              <h3 id="agent-title" tabindex="-1">Agent 1</h3>
+              <p id="agent-summary"></p>
+              <div id="agent-evidence"></div>
+            </div>
+            <p class="network-hint" id="network-hint">Click any agent to trace its evidence</p>
+          </div>
+
+          <div class="controls-bar">
+            <div class="playback">
+              <button id="play" class="button primary small"><span aria-hidden="true" id="play-icon">▶</span> <span id="play-label">Run</span></button>
+              <button id="step" class="button ghost small">Step</button>
+              <button id="restart" class="button ghost small" aria-label="Restart from round 0">Restart</button>
+            </div>
+            <div class="playback secondary">
+              <button id="correct" class="button ghost small" title="Give the probe result to 1% of agents for free">Inject a correction</button>
+            </div>
+          </div>
+
+          <div class="readouts" aria-live="off">
+            <div class="readout"><span class="tiny" id="wrong-label">Believe the false claim now</span><strong id="wrong-now">0%</strong><div class="meter"><i id="wrong-bar"></i></div></div>
+            <div class="readout"><span class="tiny">Peak so far</span><strong id="wrong-peak">0%</strong><small id="wrong-peak-round">round 0</small></div>
+            <div class="readout"><span class="tiny">Checks completed / pending</span><strong id="checks">0 / 0</strong><small id="probe-reach">0% hold probe evidence</small></div>
+            <div class="readout effort"><span class="tiny">Where the effort went</span>
+              <div class="effort-split" aria-hidden="true"><i class="listen" id="split-listen"></i><i class="verify" id="split-verify"></i></div>
+              <small id="split-text">Listening 0% · Checking 0%</small>
+            </div>
+          </div>
+
+          <div class="compare">
+            <div class="compare-head">
+              <div><span class="tiny">Same agents, same network, same budget</span><h3 id="chart-title">Share believing the false claim, by policy</h3></div>
+              <div class="chart-key" id="chart-key"></div>
+            </div>
+            <canvas id="chart" role="img" aria-label="Line chart of the share of agents believing the false claim over time for each policy. The table below lists the values."></canvas>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Policy comparison table">
+              <table class="compare-table">
+                <thead><tr><th scope="col">Policy</th><th scope="col">Peak</th><th scope="col">Average</th><th scope="col">Rounds ≥ 10%</th><th scope="col">Effort on checking</th><th scope="col">At round 60</th></tr></thead>
+                <tbody id="compare-body"></tbody>
+              </table>
+            </div>
+            <p class="fine">One seeded run per policy, all 60 rounds computed ahead of time. Checks retrieve one recorded probe, so many checks are still a single source. A manual correction changes only the run you are watching.</p>
+          </div>
+
+          <details class="assumptions" id="assumptions">
+            <summary><span>Change the assumptions</span><small>Population, network, delay, belief rules, seed</small></summary>
+            <div class="assumption-grid">
+              <label class="field">Agents<select id="population"><option value="64">64</option><option value="256" selected>256</option><option value="1024">1,024</option><option value="10000">10,000</option></select></label>
+              <label class="field">Network shape<select id="topology"><option value="small-world">Small world</option><option value="modular">Four communities</option><option value="hub">A few influential hubs</option></select></label>
+              <label class="field">Is the claim true?<select id="truth"><option value="false">No (Patch B)</option><option value="true">Yes (Patch A)</option></select></label>
+              <label class="field">How checking responds to confidence<select id="allocation"><option value="adaptive">Confident agents check less</option><option value="fixed">Fixed checking rate</option></select></label>
+              <label class="range"><span>Preference for listening <output id="communication-value">98%</output></span><input id="communication" type="range" min="0" max="100" step="1" value="98"><small>Higher means fewer turns spent checking.</small></label>
+              <label class="range"><span>Check result delay <output id="delay-value">6 rounds</output></span><input id="delay" type="range" min="0" max="20" step="1" value="6"><small>How long a requested check takes to return.</small></label>
+              <label class="range"><span>Agents who see the report first <output id="seedShare-value">8%</output></span><input id="seedShare" type="range" min="0" max="100" step="1" value="8"></label>
+              <label class="range"><span>Agents who start with probe evidence <output id="initialEvidence-value">1%</output></span><input id="initialEvidence" type="range" min="0" max="100" step="1" value="1"></label>
+              <label class="range"><span>Social reinforcement <output id="reinforcement-value">6.0</output></span><input id="reinforcement" type="range" min="0" max="10" step="0.5" value="6"><small>How sharply endorsing agents follow the majority. Authored, not fitted.</small></label>
+              <label class="field">Random seed<input id="seed" type="number" min="0" max="2147483647" value="42"></label>
+              <form class="field" id="agent-navigation"><label for="agent-id">Inspect agent by number</label><div class="inline"><input id="agent-id" type="number" min="1" max="256" value="1" required><button class="button ghost small" type="submit">Open</button></div></form>
+              <div class="field actions"><span>Keep a record</span><div class="inline"><button id="share" class="button ghost small" type="button">Copy link</button><button id="export" class="button ghost small" type="button">Export run</button><button id="reset-config" class="button ghost small" type="button">Defaults</button></div></div>
+            </div>
+          </details>
+          <p class="status" id="status" role="status">Ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 REAL MODELS -->
+    <section class="pilot band dark" id="pilot" aria-labelledby="pilot-title">
+      <div class="wrap">
+        <header class="section-head split">
+          <div>
+            <p class="section-num">03 · Real models</p>
+            <h2 id="pilot-title">What a real language model did.</h2>
+            <p class="section-lede">Eight instances of one model, eight rounds, the same report and budget rules. Each agent saw only its own evidence and chose to check, relay, or abstain. These are its recorded decisions.</p>
+          </div>
+          <div class="pilot-meta" id="pilot-meta"></div>
+        </header>
+
+        <div class="episode-switch" role="radiogroup" aria-label="Pilot episode">
+          <button role="radio" data-episode="false" aria-checked="true">The report is false <small>Patch B</small></button>
+          <button role="radio" data-episode="true" aria-checked="false">The report is true <small>Patch A</small></button>
+        </div>
+
+        <div class="pilot-stats" id="pilot-stats"></div>
+
+        <div class="pilot-grid-wrap">
+          <div class="pilot-grid-block">
+            <div class="grid-legend" aria-hidden="true">
+              <span><i class="cell-sw check"></i>Requested a check</span><span><i class="cell-sw relay"></i>Relayed an assessment</span><span><i class="cell-sw abstain"></i>Abstained</span><span><i class="cell-sw invalid"></i>Malformed output</span><span><i class="mini-bar"></i>Stated support for the claim</span>
+            </div>
+            <div class="pilot-grid" id="pilot-grid" role="group" aria-label="Decisions by agent and round. Use arrow keys to move between cells."></div>
+            <p class="fine">Rows are agents, columns are rounds. ● marks agents holding the original report; ◆ marks a delivered probe result. Select a cell to read the decision.</p>
+          </div>
+          <div class="decision-card" id="decision-card" aria-live="polite"></div>
+        </div>
+
+        <div class="not-yet">
+          <h3>Why this does not yet test the loop</h3>
+          <ul>
+            <li><b>The budget never forced a choice.</b> One check plus seven relays used 11 of the 24 available units, so agents could check and still talk.</li>
+            <li><b>The check was free of doubt.</b> Every agent could reach a definitive probe, and most requested it in round one, before any peers had spoken.</li>
+            <li><b>Agreement was not varied.</b> The next experiment holds evidence and budget fixed and randomizes how many peers endorse the report.</li>
+          </ul>
+          <p>One model, one seed, one case family. No agent was ever mistaken, so these runs could not show the harmful loop. <a href="assets/pilot-report.md" target="_blank" rel="noopener">Full pilot report and failures ↗</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 RESEARCH PROGRAM -->
+    <section class="program wrap" id="program" aria-labelledby="program-title">
+      <span class="anchor-alias" id="research" aria-hidden="true"></span>
+      <header class="section-head">
+        <p class="section-num">04 · Research program</p>
+        <h2 id="program-title">From instrument to finding.</h2>
+        <p class="section-lede">Each hypothesis states how it would be shown false. A null result counts: if reliable checking makes the loop disappear, that is worth knowing.</p>
+      </header>
+
+      <div class="hypotheses">
+        <article class="hyp"><span class="hyp-id">H1</span><h3>Acquisition feedback</h3><p>Holding evidence fixed, more peer agreement lowers the chance an agent requests a check.</p><p class="falsify"><b>False if</b> checking stays flat or rises across controlled, held-out exposures.</p><span class="state next">Next experiment</span></article>
+        <article class="hyp"><span class="hyp-id">H2</span><h3>Opportunity-cost harm</h3><p>Under a fixed budget, the lost checking raises error. Correlation between agreement and error is not enough.</p><p class="falsify"><b>Test:</b> replay matched runs on an externally fixed checking schedule.</p><span class="state">Proposed</span></article>
+        <article class="hyp"><span class="hyp-id">H3</span><h3>Ancestry helps</h3><p>Showing that endorsements share one source weakens the effect, rather than only improving static aggregation.</p><p class="falsify"><b>Caution:</b> the authored model above shows source tracking can also backfire.</p><span class="state">Proposed</span></article>
+        <article class="hyp"><span class="hyp-id">H4</span><h3>Reserved checking</h3><p>Keeping a small checking reserve cuts error on false reports at an acceptable cost on true ones.</p><p class="falsify"><b>Fails if</b> it spends effort without improving the accuracy-cost frontier.</p><span class="state">Proposed</span></article>
+      </div>
+
+      <ol class="stages">
+        <li class="done"><span class="stage-id">Stage 0</span><div><h3>Infrastructure</h3><p>Grounded fixtures, the inspectable model, a bounded decision harness with cost controls, and a first real-model pilot.</p></div><span class="state done">Built</span></li>
+        <li><span class="stage-id">Stage 1</span><div><h3>Local response</h3><p>Freeze an agent's state; randomize endorsing peers, independent sources, and whether shared ancestry is visible. Measure check probability across 24+ case families.</p></div><span class="state next">Next</span></li>
+        <li><span class="stage-id">Stage 2</span><div><h3>Close the loop</h3><p>16 to 64 agents, three model families, matched budgets. Compare agent-chosen checking with fixed and reserved schedules.</p></div><span class="state">Proposed</span></li>
+        <li><span class="stage-id">Stage 3</span><div><h3>Fit and predict</h3><p>Fit transition rules from Stages 1 and 2, then test on held-out cases and graphs. Only then simulate at scale, labeled as extrapolation.</p></div><span class="state">Proposed</span></li>
+      </ol>
+
+      <div class="prior">
+        <h3>Closest prior work, and the gap Witness targets</h3>
+        <div class="prior-grid">
+          <a class="paper" href="https://arxiv.org/abs/2609.01873" target="_blank" rel="noopener"><span class="tiny">Closest baseline</span><b>Epistemic Sybil Resistance</b><span class="who">Bara · 2026</span><p>Many reports need not mean many sources. Witness asks how that shapes the decision to check.</p></a>
+          <a class="paper" href="https://arxiv.org/abs/2608.16578" target="_blank" rel="noopener"><span class="tiny">Collective dynamics</span><b>Physics of Agents</b><span class="who">El et al. · 2026</span><p>Consensus regimes across AI communities are established. Evidence acquisition is the added variable.</p></a>
+          <a class="paper" href="https://arxiv.org/abs/2606.27409" target="_blank" rel="noopener"><span class="tiny">Verification delay</span><b>Delayed Verification Destabilizes Multi-Agent LLM Belief</b><span class="who">Itkin · 2026</span><p>Grounded answering removed its oscillation, a boundary condition for this project.</p></a>
+          <a class="paper" href="https://arxiv.org/abs/2610.04744" target="_blank" rel="noopener"><span class="tiny">Costly checking</span><b>Lie Rarely, Lie Big</b><span class="who">Anand &amp; Pappas · 2026</span><p>Verification budgets under insider misinformation. Witness studies ordinary agreement, not adversaries.</p></a>
+          <a class="paper" href="https://arxiv.org/abs/2604.02668" target="_blank" rel="noopener"><span class="tiny">Social influence</span><b>Too Polite to Disagree</b><span class="who">SIGDIAL 2026</span><p>Peer sycophancy shifts outcomes. Witness measures checking behavior without assuming its cause.</p></a>
+          <a class="paper" href="https://arxiv.org/abs/2502.08691" target="_blank" rel="noopener"><span class="tiny">Scale is not novelty</span><b>AgentSociety</b><span class="who">Piao et al. · 2025</span><p>Already simulates 10,000+ agents. The browser's scale is engineering, not a finding.</p></a>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta" href="assets/research-protocol.md" target="_blank" rel="noopener"><span class="tiny">Protocol</span><b>Study design and threats ↗</b></a>
+        <a class="cta" href="assets/methods.md" target="_blank" rel="noopener"><span class="tiny">Methods</span><b>Model equations and limits ↗</b></a>
+        <a class="cta" href="assets/pilot-report.md" target="_blank" rel="noopener"><span class="tiny">Pilot</span><b>Results, costs, failures ↗</b></a>
+        <a class="cta" href="assets/witness-source.zip" download><span class="tiny">Source</span><b>Code and raw records, MIT ↓</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="wordmark small" href="#top"><span class="wm-text">witness<span>.</span></span></a>
+      <p>An open research instrument by Wesley Dalton · 2026 · MIT licensed</p>
+      <p class="mono">v0.2 · research prototype · claims scoped in the protocol</p>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
