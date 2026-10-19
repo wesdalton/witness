@@ -108,7 +108,7 @@ must not be pooled with the episodes above.
 ## Inspect and reproduce
 
 - Public machine-readable [episode summary](pilot-summary.json) and [cost/error audit](pilot-audit.json).
-- [Download the complete source and raw pilot records](https://witness-evaluation-lab.beigeglade34.chatgpt.site/assets/witness-source.zip).
+- [Browse the complete source and raw pilot records](https://github.com/wesdalton/witness).
 - Canonical source paths: `research/swarm/pilot-summary.json`, `pilot-audit.json`,
   `pilot-plan.md`, and the six pilot directories listed in the audit.
 - Recompute an episode summary: `python -m swarm_lab.analyze RUN.json --out SUMMARY.json`.

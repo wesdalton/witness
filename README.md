@@ -15,7 +15,7 @@ proposed causal mechanism. The [pilot report](research/swarm/pilot-report.md) re
 outcomes and failures; the [study protocol](research/swarm/protocol.md) distinguishes
 implemented infrastructure from proposed experiments and maps the closest prior work.
 
-[Open the public lab](https://witness-evaluation-lab.beigeglade34.chatgpt.site).
+[Read the research note and open the lab](https://wesdalton.github.io/witness/).
 
 ## Try it locally
 
@@ -151,10 +151,10 @@ and held-out model comparisons. Changes to dynamics need versioned exports and
 reproduction checks. Keep synthetic, scripted and real-model evidence separately
 labeled; never relabel smoke runs as empirical findings.
 
-The canonical website source lives in `website/`. Hosting uses a separate checkout
-containing that source; its manifest and deployment credentials are not part of the
-research artifact. `python scripts/package_witness.py` produces an explicit, bounded
-source archive for the website without local credentials, Git history or caches.
+The website source lives in `website/dist` and is published to GitHub Pages by
+`.github/workflows/pages.yml` on every push to `main`. `python scripts/package_witness.py`
+refreshes the site's copies of the research documents and its downloadable snapshot
+archive, without local credentials, Git history or caches.
 
 Code and original project documentation are MIT licensed. Linked papers retain their
 respective rights. Cite the software using `CITATION.cff`; citing
