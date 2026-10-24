@@ -12,7 +12,7 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
-from swarm_lab import inherited_query_cases
+from swarm_lab import inherited_query_cases, query_interfaces, route_cases
 from swarm_lab.agent_budget import PhaseBudget
 from swarm_lab.agent_study import PHASE_LEDGER, append, digest, save, tool_schema
 from swarm_lab.pilot import BudgetError, load_key, money, preflight_key
@@ -62,6 +62,16 @@ TOOLS = [
     tool_schema("submit", "Submit the final belief and executable aggregate query.",
                 FIELDS, list(FIELDS)),
 ]
+ROUTE_SYSTEM = SYSTEM.replace(
+    "one inventory reconciliation claim", "one redundant-route optimization claim").replace(
+    "publisher's reported aggregate", "publisher's reported minimum total cost").replace(
+    "exact signed integer\naggregate", "exact integer\nminimum cost (or -1 if infeasible)")
+ROUTE_TOOLS = [
+    tool_schema("query", "Execute read-only SQL. Up to 100 rows are returned. "
+                "Available parameters: :source, :sink.",
+                {"sql": {"type": "string"}}, ["sql"]),
+    TOOLS[1],
+]
 
 
 class StrictQueryClient(ResponsesClient):
@@ -74,7 +84,7 @@ class StrictQueryClient(ResponsesClient):
         return value
 
 
-def initial_view(workspace, arm, smoke):
+def initial_view(workspace, arm, smoke, output_mode=None):
     peers = []
     inherited = hasattr(workspace, "inherited_query")
     reviewed = "submitted query and its execution receipt" if inherited else "smoke report"
@@ -86,8 +96,11 @@ def initial_view(workspace, arm, smoke):
                 "is supported." if arm == "endorsement" else
                 f"I received the {reviewed}. My assessment of this claim has not been made.",
             })
-    value = {"claim": "The publisher's net_shipped_units is correct under the contract.",
-            "contract": CONTRACT, "schema": SCHEMA, "query_parameters": PARAMETERS,
+    value = {"claim": getattr(workspace, "claim",
+                             "The publisher's net_shipped_units is correct under the contract."),
+            "contract": getattr(workspace, "contract", CONTRACT),
+            "schema": getattr(workspace, "schema", SCHEMA),
+            "query_parameters": getattr(workspace, "parameters", PARAMETERS),
             "publisher_report": {"id": "report", **workspace.report},
             "smoke_report": {"id": "smoke", "exit_code": smoke["exit_code"],
                              "smoke_tests_passed": 1, "smoke_tests_total": 1},
@@ -98,21 +111,24 @@ def initial_view(workspace, arm, smoke):
             "id": "publisher:execution",
             "result": {k: v for k, v in workspace.inherited_execution.items()
                        if k != "elapsed_seconds"}}
+    if output_mode:
+        value["contract"] = query_interfaces.factual_contract(value["contract"])
     return value
 
 
-def validate_submission(value, evidence):
-    if not isinstance(value, dict) or set(value) != set(FIELDS):
+def validate_submission(value, evidence, program_required=True):
+    required = set(FIELDS) - (set() if program_required else {"audit_sql"})
+    if not isinstance(value, dict) or set(value) != required:
         raise ValueError("Invalid submission fields")
     p = value["p_support"]
     if type(p) not in (int, float) or not math.isfinite(p) or not 0 <= p <= 1:
         raise ValueError("Invalid probability")
     if value["verdict"] not in FIELDS["verdict"]["enum"]:
         raise ValueError("Invalid verdict")
-    for key in ("audit_sql", "justification"):
+    for key in (("audit_sql", "justification") if program_required else ("justification",)):
         if not isinstance(value[key], str) or not value[key].strip():
             raise ValueError("Missing executable query or justification")
-    if len(value["audit_sql"].encode()) > 16000:
+    if program_required and len(value["audit_sql"].encode()) > 16000:
         raise ValueError("Oversized query")
     if not isinstance(value["evidence_ids"], list) or any(
             not isinstance(e, str) or e not in evidence for e in value["evidence_ids"]):
@@ -120,12 +136,23 @@ def validate_submission(value, evidence):
 
 
 def run_episode(spec, output, client, image):
-    workspace = (inherited_query_cases.InheritedQueryWorkspace(
-        spec["seed"], spec["truth"], image, spec["inherited_variant"])
-        if spec.get("inherited_variant") else
-        ReconciliationWorkspace(spec["seed"], spec["truth"], image, revision=2))
+    if spec.get("task") == "routes":
+        workspace = route_cases.RouteWorkspace(
+            spec["seed"], spec["truth"], image, spec.get("route_case_mode", "legacy"))
+        system = ROUTE_SYSTEM
+    else:
+        workspace = (inherited_query_cases.InheritedQueryWorkspace(
+            spec["seed"], spec["truth"], image, spec["inherited_variant"])
+            if spec.get("inherited_variant") else
+            ReconciliationWorkspace(spec["seed"], spec["truth"], image, revision=2))
+        system = SYSTEM
+    output_mode = spec.get("output_mode")
+    program_required = output_mode != "verdict"
+    if output_mode:
+        query_tool = (ROUTE_TOOLS if spec.get("task") == "routes" else TOOLS)[0]
+        system, client.tools = query_interfaces.interface(output_mode, query_tool, FIELDS)
     record = {"schema": "witness.query-audit.v1", "spec": spec, "events": [],
-              "system_prompt": SYSTEM, "started_at": datetime.now(UTC).isoformat(),
+              "system_prompt": system, "started_at": datetime.now(UTC).isoformat(),
               "workspace_sha256": workspace.hashes()}
     path = output / f"{spec['id']}.jsonl"
     submission, status, queries, metrics = None, "turn_limit", 0, None
@@ -134,13 +161,13 @@ def run_episode(spec, output, client, image):
         record["initial_integrity_execution"] = smoke
         if smoke["exit_code"] or smoke["timed_out"] or smoke["output_truncated"]:
             raise ValueError("Initial integrity check failed")
-        initial = initial_view(workspace, spec["arm"], smoke)
+        initial = initial_view(workspace, spec["arm"], smoke, output_mode)
         record["initial_view"] = initial
         append(path, {"type": "start", **record})
         evidence = {"report", "smoke"} | {p["id"] for p in initial["peer_messages"]}
         if "publisher_query" in initial:
             evidence.update(("publisher:query", "publisher:execution"))
-        messages = [{"role": "system", "content": SYSTEM},
+        messages = [{"role": "system", "content": system},
                     {"role": "user", "content": json.dumps(initial)}]
         for turn in range(1, 9):
             message, event = client.generate(messages, final=turn == 8 or queries == 8)
@@ -159,7 +186,7 @@ def run_episode(spec, output, client, image):
                 if any(name == "submit" for _, name, _ in parsed):
                     if len(parsed) != 1 or parsed[0][1] != "submit":
                         raise ValueError("Submit must be alone")
-                    validate_submission(parsed[0][2], evidence)
+                    validate_submission(parsed[0][2], evidence, program_required)
                     submission, status = parsed[0][2], "completed"
                     break
                 if queries + len(parsed) > 8:
@@ -191,15 +218,18 @@ def run_episode(spec, output, client, image):
                 messages.append({"role": "tool", "tool_call_id": call_id,
                                  "content": json.dumps(returned)})
         if submission:
-            result = execute_query(workspace, submission["audit_sql"])
-            value = scalar_result(result)
+            result = (execute_query(workspace, submission["audit_sql"])
+                      if program_required else None)
+            value = scalar_result(result) if result is not None else None
             metrics = {"brier": (submission["p_support"]-spec["truth"])**2,
                        "correct_verdict": submission["verdict"] == (
                            "supported" if spec["truth"] else "refuted"),
-                       "audit_sql_valid_aggregate": value is not None,
-                       "audit_sql_correct_this_database": value == workspace.expected,
+                       "audit_sql_valid_aggregate": value is not None if program_required else None,
+                       "audit_sql_correct_this_database": (
+                           value == workspace.expected if program_required else None),
                        "actual_total": workspace.expected, "query_aggregate": value}
-            record["artifact_evaluation"] = result  # never returned to the model
+            if result is not None:
+                record["artifact_evaluation"] = result  # never returned to the model
     except Exception as exc:
         status = "infrastructure_error"
         record["error_type"] = type(exc).__name__
@@ -220,9 +250,13 @@ def launch(args, plan):
     args.out.mkdir(parents=True, exist_ok=False)
     image = subprocess.check_output(["docker", "image", "inspect", IMAGE,
                                      "--format", "{{.Id}}"], text=True).strip()
-    references = verify_generated(range(7001, 7033), revision=2)
+    is_routes = args.task == "routes"
+    references = (route_cases.verify_generated(
+        sorted(set(args.seeds)), image, args.route_case_mode) if is_routes
+                  else verify_generated(range(7001, 7033), revision=2))
     inherited_references = (inherited_query_cases.verify_inherited(plan["episodes"], image)
-                            if args.inherited_query else None)
+                            if args.inherited_query and not is_routes else None)
+    system, tools = (ROUTE_SYSTEM, ROUTE_TOOLS) if is_routes else (SYSTEM, TOOLS)
     model_record, input_price, output_price = catalog(plan["model"])
     key = load_key(ROOT / ".env")
     if not key:
@@ -235,13 +269,20 @@ def launch(args, plan):
     batch = uuid.uuid4().hex
     sources = [ROOT / "swarm_lab" / name for name in (
         "query_study.py", "reconciliation_cases.py", "reconciliation_query.py",
-        "inherited_query_cases.py",
+        "inherited_query_cases.py", "route_cases.py", "query_interfaces.py",
         "research_client.py", "agent_workspace.py", "agent_study.py",
         "agent_budget.py", "pilot.py", "portfolio_cases.py")]
     sources += [ROOT / "research/portfolio" / name for name in (
         "query-protocol-v1.md", "loop-decisions.md", "novelty-review.md", "sandbox/Dockerfile")]
-    if args.inherited_query:
+    if is_routes:
+        sources.append(ROOT / "research/portfolio/route-protocol-v1.md")
+        sources.append(ROOT / "scripts/audit_routes_reference.py")
+    elif args.inherited_query:
         sources.append(ROOT / "research/portfolio/query-inherited-protocol-v1.md")
+    if args.output_modes:
+        sources.append(ROOT / "research/portfolio/output-requirement-protocol-v1.md")
+        sources.append(ROOT / "research/portfolio/output-requirement-reference-gate-v1.json")
+        sources.append(ROOT / "scripts/analyze_query_interfaces.py")
     sources += [ROOT / "scripts" / name for name in (
         "replay_reconciliation_queries.py", "audit_agent_study.py",
         "audit_reconciliation_reference.py")]
@@ -254,16 +295,21 @@ def launch(args, plan):
                 "reference_gate": references, "catalog": model_record, "key_limits": key_limits,
                 "inherited_reference_gate": inherited_references,
                 "source_sha256": {str(p.relative_to(ROOT)): digest(p.read_bytes())
-                                  for p in sources}, "system_prompt": SYSTEM, "tools": TOOLS,
+                                  for p in sources}, "system_prompt": system, "tools": tools,
                 "settings": {"api": "responses", "retries": 0, "fallbacks": False,
                              "provider": "openai", "sampling": "provider defaults",
                              "strict_tools": True},
                 "git_head": subprocess.check_output(
                     ["git", "rev-parse", "HEAD"], text=True).strip()}
+    if args.output_modes:
+        manifest["output_interfaces"] = {
+            mode: dict(zip(("system_prompt", "tools"),
+                           query_interfaces.interface(mode, tools[0], FIELDS), strict=True))
+            for mode in args.output_modes}
     save(args.out / "manifest.json", manifest)
     ledger = PhaseBudget(PHASE_LEDGER)
     client = StrictQueryClient(key, plan["model"], ledger, batch, money(args.batch_ceiling),
-                               input_price, output_price, max_tokens=4096, tools=TOOLS,
+                               input_price, output_price, max_tokens=4096, tools=tools,
                                reasoning="medium", responses_input_limit=256000)
     records = []
     for spec in plan["episodes"]:
@@ -290,6 +336,9 @@ def main():
                         default=["no_peers"])
     parser.add_argument("--batch-ceiling", default="1.1")
     parser.add_argument("--inherited-query", action="store_true")
+    parser.add_argument("--task", choices=["inventory", "routes"], default="inventory")
+    parser.add_argument("--output-modes", nargs="+", choices=["program", "verdict"])
+    parser.add_argument("--route-case-mode", choices=["legacy", "same_program"], default="legacy")
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--live", action="store_true")
     args = parser.parse_args()
@@ -297,7 +346,18 @@ def main():
         raise ValueError("Duplicate seed or arm")
     specs = [{"seed": seed, "truth": truth, "arm": arm}
              for seed in args.seeds for truth in (False, True) for arm in args.arms]
-    if args.inherited_query:
+    if args.output_modes:
+        if len(set(args.output_modes)) != len(args.output_modes):
+            raise ValueError("Duplicate output mode")
+        specs = [{**spec, "output_mode": mode} for spec in specs for mode in args.output_modes]
+    if args.task == "routes":
+        if not args.inherited_query:
+            raise ValueError("Route protocol requires supplied publisher query")
+        for spec in specs:
+            spec["task"] = "routes"
+            if args.route_case_mode != "legacy":
+                spec["route_case_mode"] = args.route_case_mode
+    elif args.inherited_query:
         variants = {seed: inherited_query_cases.VARIANTS[i % len(inherited_query_cases.VARIANTS)]
                     for i, seed in enumerate(sorted(args.seeds))}
         for spec in specs:
@@ -307,14 +367,23 @@ def main():
         spec["id"] = f"episode-{i+1:03d}"
     plan = {"model": "openai/gpt-6-luna", "episodes": specs, "max_calls": len(specs)*8,
             "batch_ceiling_usd": str(money(args.batch_ceiling)), "phase_ceiling_usd": "25",
-            "generator_revision": 2, "reasoning": "medium", "max_output_tokens": 4096,
+            "generator_revision": 1 if args.task == "routes" else 2,
+            "task": args.task, "reasoning": "medium", "max_output_tokens": 4096,
             "responses_input_limit": 256000, "inherited_query": args.inherited_query}
+    if args.output_modes:
+        plan["output_modes"] = args.output_modes
+    if args.route_case_mode != "legacy":
+        plan["route_case_mode"] = args.route_case_mode
     if not args.live:
         print(json.dumps(plan, indent=2))
         return 0
     if LIVE_HOLD_REASON:
         raise BudgetError(LIVE_HOLD_REASON)
-    if args.inherited_query and inherited_query_cases.LIVE_HOLD_REASON:
+    if args.output_modes and query_interfaces.LIVE_HOLD_REASON:
+        raise BudgetError(query_interfaces.LIVE_HOLD_REASON)
+    if args.task == "routes" and route_cases.LIVE_HOLD_REASON:
+        raise BudgetError(route_cases.LIVE_HOLD_REASON)
+    if args.task != "routes" and args.inherited_query and inherited_query_cases.LIVE_HOLD_REASON:
         raise BudgetError(inherited_query_cases.LIVE_HOLD_REASON)
     return launch(args, plan)
 

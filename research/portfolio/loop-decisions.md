@@ -245,3 +245,63 @@ batch reservation $2.2, inside the existing phase ceiling. Replay final programs
 unchanged on sixteen fresh worlds each and review every trace before another
 paid decision. No automatic peer matrix, retries, or result-dependent replacement.
 Phase before dispatch: 385 requests, $0.392453325 charges, $5.615678375 reservations.
+
+## Loop 8 result and free Loop 9 development
+
+All eight inherited inventory audits completed correctly. Each first aggregate
+query was correct, and all final programs passed sixteen fresh database conditions.
+No interpretation or probability-direction inconsistency was found. Twenty-one
+requests added $0.006220050 charges and $0.079480625 retained reservations.
+Phase totals: 406 requests, $0.398673375 charges, $5.695159000 reservations.
+Do not buy a larger social comparison on a task that remains straightforward.
+
+Develop a new joint optimization task with independently checked finite labels:
+minimum combined cost of two routes with internal-node and risk-group disjointness.
+The natural greedy publisher program is compared with a correct program on identical
+graphs; both supply truthful execution receipts. Free checks include exhaustive
+five-node graphs under three risk assignments, semantic mutations, renamed nodes,
+infeasible graphs, and repeated risk groups within one route. A paid capability
+decision requires those gates and a frozen protocol first. This is a new task;
+do not pool it with inventory or describe seeded graphs as independent real projects.
+
+## Loop 9 paid capability decision
+
+The first free replay gate missed the greedy fault; preserve that failed gate.
+After adding reference-qualified fresh greedy traps before model inference, all
+nine authored mutations have counterexamples. All 30 live replay conditions and
+eight planned supplied-program labels pass. The exhaustive small-graph comparison,
+138 local tests, and ledger/source/trace audit pass. Freeze route-protocol-v1.md.
+Run eight no-peer route audits, seeds 14001–14004 in both publisher-program states,
+maximum reservation $2.2 within the unchanged phase ceiling. This spends on an
+algorithmic capability question that free reference checks cannot answer; it
+does not assume the task will be hard or authorize a subsequent peer matrix.
+
+## Loop 9 result and Loop 10 output-requirement decision
+
+All eight route audits completed correctly and all eight programs passed thirty
+fresh graph conditions. Two ordinary multi-statement SQL errors were recovered
+within the fixed tool allowance; all optimization queries used correct all-pairs
+logic. No Daybreak rejection or reference error occurred. Twenty-nine requests
+added $0.008682365 charges and $0.114933000 retained reservations. Phase totals:
+435 requests, $0.407355740 charges, $5.810092000 reservations.
+
+Repeated mandatory-program ceilings do not establish a hard behavioral task.
+Instead test whether the artifact requirement itself changes verification.
+Before any output-interface calls, review found a second design issue: legacy
+correct-code/true versus flawed-code/false pairing could cue the label from code.
+The unrun design and gate are retained. The final same_program mode supplies the
+same greedy program, reported total, and receipt in both truth states; only source
+data change. Live free checks verify all eight labels and complete initial-view
+equality across truth states for all peer/output conditions. Thus a finite truth
+distinction requires new database evidence. Source-only checking is still valid
+in general; this particular paired construction supplies no such distinction.
+
+Freeze output-requirement-protocol-v1.md and run 32 episodes: four fresh seed blocks
+16001–16004 × truth × neutral/endorsement × program/verdict interface. Maximum
+reservation $8.8 inside the existing phase ceiling. All other source evidence and
+tool access are matched. Primary exploratory contrast is program-minus-verdict
+Brier loss on endorsed false claims; controls, acquisition, and artifact replay
+are separate diagnostics. This small screen tests a measurement intervention,
+not a larger replication of the old required-program task. Review the fixed full
+sample and its uncertainty before another paid decision; do not stop on effect
+direction, retry failures, or tune stimuli. Stop any incomplete episode for review.

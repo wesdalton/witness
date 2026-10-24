@@ -62,12 +62,19 @@ retries/replacements. Its allocation contrast is inconclusive; see
 allocation-screen-report.md and screening-01-continuation.md. Four no-peer
 executable-query audits passed all fresh-data replay conditions, but every first
 aggregate query was correct: do not scale that likely ceiling. The next frozen
-capability pilot tests inherited correct/flawed queries and truthful execution
-receipts; read query-inherited-protocol-v1.md and loop-decisions.md before dispatch.
+capability pilot tested inherited correct/flawed queries and truthful execution
+receipts: all eight passed, including fresh program replay. It is not being scaled.
+A separate joint route-optimization capability pilot also passed all eight episodes
+and thirty replay conditions per program. Read route-calibration-report.md.
+The next frozen screen tests mandatory-program versus verdict-only output, crossed
+with neutral/endorsement messages. Its same_program route mode removes the earlier
+code/label cue: identical initial evidence, different finite database truth. Read
+output-requirement-protocol-v1.md and loop-decisions.md before further spending.
+New routes are authored finite tasks, not independent real projects.
 Null or beneficial effects are valid results; do not tune cases to manufacture harm.
 
-Accounting after query calibration: 385 requests, $0.392453325 reported cost
-and $5.615678375 retained reservations. Later batches add to this;
+Accounting before output-requirement screening: 435 requests, $0.407355740 reported
+cost and $5.810092000 retained reservations. Later batches add to this;
 read the current ledger before spending. Do not reset the ledger.
 
 Validation: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`, and

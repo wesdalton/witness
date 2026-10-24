@@ -55,6 +55,37 @@ bias in evidence re-ranking and answer generation for scientific claims. Its
 abstract reinforces that separating evidence selection from final judgment is
 established practice; full methods comparison remains outstanding.
 
+The next full-text request for CoBiT returned an access error; it was not retried
+through another route. Additional primary-source method review found closer work:
+
+* [Audit Without Verification](https://arxiv.org/html/2609.07680) holds reports'
+  observations fixed while removing an upstream conclusion field. Its auditor
+  attribution changes substantially, with correct-suggestion costs and incorrect-
+  suggestion benefits studied separately and replicated across auditors/domains.
+  Therefore fixed-evidence conclusion contamination and its trade-off are already
+  established; merely moving that manipulation into SQL is insufficient novelty.
+  Its inspected auditor outcome is an origin attribution, whereas our candidate
+  outcome is a newly constructed executable verification program and its behavior
+  on fresh data. That distinction still needs an informative finding.
+* [Auditing and Decomposing Feedback-Driven Evolution](https://arxiv.org/html/2608.19626)
+  audits single-reference test oracles using independent implementations and
+  compares iterative feedback with equal-budget resampling and matched placebo
+  feedback. It already separates execution success from semantic validity and
+  interaction structure from useful feedback. Our repaired benchmark and fresh
+  program replay are validity safeguards, not by themselves research novelty.
+* [Contextual Bias in Security Code Review](https://arxiv.org/html/2603.18740)
+  includes real autonomous review pipelines. The current v4 differs materially
+  from the older abstract surfaced in search; use its current full text. Simple
+  framing can fail or backfire, while adaptive metadata refinement is stronger.
+  Do not equate a simple endorsement null with robustness to all social context,
+  and do not tune stimuli until they manufacture a failure. Our study does not
+  deploy vulnerability reintroduction or optimize a code-review attack.
+
+These comparisons narrow the candidate contribution to a measured change in
+verification-program semantics, conditional on truthful execution evidence and
+fixed access. A claim about causal mediation would require an additional controlled
+intervention on the verification procedure; trace correlations alone do not prove it.
+
 ## Candidate contribution and falsification
 
 Test whether peer endorsement changes *the evidence-generating procedure* an

@@ -33,7 +33,7 @@ with sqlite3.connect("file:records.sqlite?mode=ro", uri=True) as db:
 def execute_query(workspace, sql):
     if not isinstance(sql, str) or not sql.strip() or len(sql.encode()) > 16000:
         raise ValueError("Expected a nonempty SQL query of at most 16000 bytes")
-    payload = json.dumps({"sql": sql, "parameters": PARAMETERS})
+    payload = json.dumps({"sql": sql, "parameters": getattr(workspace, "parameters", PARAMETERS)})
     code = "REQUEST_JSON = " + repr(payload) + "\n" + DRIVER
     return workspace.execute(["python", "-"], code)
 

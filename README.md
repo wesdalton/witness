@@ -35,7 +35,11 @@ under a two-investigation budget. Allocation was 8/16 in both conditions, with
 uncertainty too wide for equivalence. V1 remains disabled; novel behavioral
 conclusions are still pending. Four executable-query audits and their unchanged
 programs passed sixteen fresh database conditions each; this likely ceiling is
-not being scaled. An inherited-query capability pilot is the next research stage.
+not being scaled. Eight inherited-query audits also passed all fresh conditions.
+A joint route-optimization pilot also passed eight audits and thirty replay
+conditions per program. The next fixed comparison tests whether requiring an
+executable verifier changes auditing under endorsement, with identical initial
+evidence across true/false claims. No novel behavioral conclusion is established.
 
 The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning
 only by default). The [protocol](research/agent-study/protocol.md),

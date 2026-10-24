@@ -100,3 +100,33 @@ def test_development_hold_stops_before_creating_a_batch(tmp_path, monkeypatch):
     with pytest.raises(BudgetError, match="test design hold"):
         query_study.main()
     assert not output.exists()
+
+
+def test_route_hold_stops_before_creating_a_batch(tmp_path, monkeypatch):
+    output = tmp_path / "undispatched-routes"
+    monkeypatch.setattr(query_study.route_cases, "LIVE_HOLD_REASON", "route design hold")
+    monkeypatch.setattr("sys.argv", ["query_study", "--live", "--task", "routes",
+                                    "--inherited-query", "--out", str(output)])
+    with pytest.raises(BudgetError, match="route design hold"):
+        query_study.main()
+    assert not output.exists()
+
+
+def test_route_view_preserves_task_contract_and_peer_evidence_invariance():
+    from types import SimpleNamespace
+
+    from swarm_lab import route_cases
+
+    workspace = SimpleNamespace(
+        contract=route_cases.CONTRACT, schema=route_cases.SCHEMA,
+        parameters=route_cases.PARAMETERS, claim="Route claim", report={"minimum_total_cost": 7},
+        inherited_query=route_cases.GREEDY_SQL,
+        inherited_execution={"exit_code": 0, "elapsed_seconds": 0.2})
+    neutral = initial_view(workspace, "neutral", {"exit_code": 0})
+    endorsed = initial_view(workspace, "endorsement", {"exit_code": 0})
+    assert neutral["query_parameters"] == {"source": 0, "sink": 9}
+    assert neutral["schema"] == route_cases.SCHEMA
+    assert neutral["contract"] == route_cases.CONTRACT
+    assert "inventory" not in query_study.ROUTE_SYSTEM
+    assert neutral.pop("peer_messages") != endorsed.pop("peer_messages")
+    assert neutral == endorsed

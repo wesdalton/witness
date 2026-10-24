@@ -39,8 +39,24 @@ bare-report comparison. See [the calibration report](query-calibration-report.md
 The [inherited-query pilot](query-inherited-protocol-v1.md) adds an actual supplied
 SQL program and truthful execution receipt. Four plausible semantic faults and
 four correct controls passed free reference checks. Eight no-peer audits are
-frozen to measure whether auditors recover correct verification programs.
-No inherited-query model inference has run at this report revision.
+completed correctly, with every program passing all sixteen fresh conditions.
+Each first aggregate query was correct, so this setup is not being scaled.
+See [the inherited-query report](inherited-query-calibration-report.md).
+
+The [route pilot](route-protocol-v1.md) now tests joint cost optimization with
+internal-node and risk-group disjointness. A greedy inherited program can return
+the wrong optimum despite executing successfully. Free independent-reference,
+boundary, and mutation checks passed after one documented replay-gate repair.
+All eight model audits completed correctly and passed thirty replay conditions
+each. The task still has not demonstrated a hard behavioral failure; see
+[the route report](route-calibration-report.md).
+
+The [next fixed 32-audit screen](output-requirement-protocol-v1.md) tests whether
+requiring an executable verifier changes judgments under endorsement. A new
+same-program construction holds initial evidence identical across true/false
+claims; only querying the database can distinguish them. Earlier code/label cues
+were removed before this screen, with the unrun design preserved. The output
+requirement and peer text are independently varied; all data and access are fixed.
 
 Agents execute real queries and tools. Peer messages and supplied faulty programs
 are authored stimuli, not independently executing peer agents. Fresh database
@@ -54,8 +70,8 @@ quality of the evidence-generating program, but novelty remains provisional.
 See [the literature comparison](novelty-review.md). A novel causal claim requires
 fresh confirmation, stronger transfer, and a full comparison with related work.
 
-Before the inherited-query pilot: 385 requests, $0.392453325 reported cost and
-$5.615678375 retained reservations. The append-only phase ledger is authoritative;
+Before the output-requirement screen: 435 requests, $0.407355740 reported cost and
+$5.810092000 retained reservations. The append-only phase ledger is authoritative;
 the total ceiling remains $25. Reservations are conservative limits, not charges.
 No Daybreak rejection has appeared in visible outputs in this loop. Any rejected
 action must stop without retrying or using an alternate route.

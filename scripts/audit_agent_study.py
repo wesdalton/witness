@@ -92,9 +92,10 @@ def audit(root: Path):
                     errors.append(f"Provider response ID mismatch: {request}")
                 if complete["usage"] != event["usage"]:
                     errors.append(f"Usage mismatch: {request}")
-            grouped[episode["spec"]["arm"]].append(episode)
+            grouped[(episode["spec"]["arm"], episode["spec"].get("output_mode", "legacy"))].append(
+                episode)
         rows = []
-        for arm, episodes in sorted(grouped.items()):
+        for (arm, output_mode), episodes in sorted(grouped.items()):
             tool_lists = [[e for e in ep["events"] if e["type"] == "tool"] for ep in episodes]
             submitted = [ep for ep in episodes if ep["submission"]]
             cost = sum((Decimal(str(e["usage"]["cost"])) for ep in episodes
@@ -118,12 +119,15 @@ def audit(root: Path):
                 })
                 continue
             if query_audit:
+                with_artifact = [ep for ep in submitted if "audit_sql" in ep["submission"]]
                 rows.append({
-                    "arm": arm, "attempted": len(episodes), "submitted": len(submitted),
+                    "arm": arm, "output_mode": output_mode,
+                    "attempted": len(episodes), "submitted": len(submitted),
                     "correct_claim_verdicts": sum(ep["metrics"]["correct_verdict"]
                                                   for ep in submitted),
                     "correct_sql_on_observed_database": sum(
-                        ep["metrics"]["audit_sql_correct_this_database"] for ep in submitted),
+                        ep["metrics"]["audit_sql_correct_this_database"] for ep in with_artifact),
+                    "submitted_sql_artifacts": len(with_artifact),
                     "mean_brier": sum(ep["metrics"]["brier"] for ep in submitted)
                     / len(submitted) if submitted else None,
                     "live_queries": sum(map(len, tool_lists)),
