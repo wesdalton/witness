@@ -17,6 +17,18 @@ implemented infrastructure from proposed experiments and maps the closest prior 
 
 [Read the research note and open the lab](https://wesdalton.github.io/witness/).
 
+**24 October research update:** [24 live-tool auditor episodes](research/agent-study/report.md)
+now exercise actual source inspection and, in four episodes, agent-written Python/SQL.
+The small ledger peer-message screen showed no reduction in verification: every
+auditor inspected source and answered correctly. This is an early capability and
+measurement pilot, not evidence for the proposed cascade. The existing public
+website still describes the October 18 recorded-observation pilot.
+
+The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning
+only by default). The [protocol](research/agent-study/protocol.md),
+[stage decisions](research/agent-study/decisions.md), and
+[next experiment](research/agent-study/next-experiment.md) document the research.
+
 ## Try it locally
 
 Node 22+ and Python 3.12+; the website has no npm runtime dependencies or build step.
