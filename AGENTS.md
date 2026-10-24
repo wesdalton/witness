@@ -74,14 +74,20 @@ Free numeric review found v1's unbounded costs could exceed SQLite integer range
 finite scores remain valid, universal correctness is unsupported. Route contract
 v2 prospectively bounds costs and validates graph constraints. The eight one-query
 audits also all passed, including thirty replay conditions per program. Read
-scarce-query-report.md. Routes are retired from further paid testing. Free
-development of unscaffolded concurrency-outcome verification is the next step;
-it needs its own validity gates and paid decision. Read loop-decisions.md.
+scarce-query-report.md. Routes are retired from further paid testing. The new
+unscaffolded schedule pilot also passed four audits and sixteen replay conditions
+per program; read schedule-report.md. Do not scale another ceiling automatically.
+The free query-work audit and deterministic deduplication ablation reduce work
+40–52x on one boundary, preserving all 64 replay answers; this is a local
+optimization, not a novel LLM finding or runtime speedup. Read query-work-report.md.
+No further paid batch is selected. Continue contribution/design review using the
+expanded novelty-review.md and loop-decisions.md; do not manufacture difficulty
+by lowering limits until models fail. Call count is not fixed computational effort.
 New routes are authored finite tasks, not independent real projects.
 Null or beneficial effects are valid results; do not tune cases to manufacture harm.
 
-Accounting after one-query calibration: 575 requests, $0.444178490 reported
-cost and $6.359431500 retained reservations. Later batches add to this;
+Accounting after schedule calibration: 590 requests, $0.449982210 reported
+cost and $6.425077750 retained reservations. Later batches add to this;
 read the current ledger before spending. Do not reset the ledger.
 
 Validation: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`, and

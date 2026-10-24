@@ -15,7 +15,7 @@ from swarm_lab.agent_workspace import Workspace
 from swarm_lab.portfolio_cases import IMAGE
 from swarm_lab.reconciliation_query import execute_query, scalar_result
 
-LIVE_HOLD_REASON = None  # Four-episode decision frozen in schedule-protocol-v1.md.
+LIVE_HOLD_REASON = "Schedule capability pilot completed at ceiling; no further paid batch selected"
 SCHEMA = """
 CREATE TABLE workers(worker INTEGER PRIMARY KEY, delta INTEGER NOT NULL);
 CREATE TABLE operations(op INTEGER PRIMARY KEY, worker INTEGER NOT NULL,

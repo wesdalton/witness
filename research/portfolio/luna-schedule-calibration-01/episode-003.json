@@ -1,0 +1,368 @@
+{
+  "schema": "witness.query-audit.v1",
+  "spec": {
+    "seed": 21001,
+    "truth": true,
+    "arm": "no_peers",
+    "output_mode": "program",
+    "task": "schedules",
+    "id": "episode-003"
+  },
+  "events": [
+    {
+      "type": "model",
+      "turn": 1,
+      "request_id": "459442bd118e4c8489c43c3308369cf3",
+      "response_id": "gen-1792866539-kZrVuiRdh3RF9L1mCNNI",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1185,
+        "input_tokens_details": {
+          "cached_tokens": 1059
+        },
+        "output_tokens": 113,
+        "output_tokens_details": {
+          "reasoning_tokens": 47
+        },
+        "total_tokens": 1298,
+        "cost": 7.969e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 7.969e-05,
+          "upstream_inference_input_cost": 2.319e-05,
+          "upstream_inference_output_cost": 5.65e-05
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 2.4695,
+      "input_bound": 9940,
+      "reserved_usd": "0.003290500",
+      "request_sha256": "e862e2e0d3d6dbdc34f7fe8932fe4be81ddfc6508f2feb2188cccdb106001e78",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_098092f8ecc2ab60016adcf8ecb39887d188de7ceb39a4536c",
+          "sha256": "1562c46d4e6482675282fb1732673f76759e9e52032e93e46abc0c22e96b68d2"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_u4794pu2ia9",
+          "sha256": "a875d5e335940d6af742be40b40cb17358a671b65c418484d124a3ea8a561bf1"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_FTFxe3Tqs2Ao3sX3T584HYVd",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"SELECT 'workers' AS tbl, worker AS a, delta AS b, NULL AS c FROM workers UNION ALL SELECT 'operations', op, worker, kind FROM operations UNION ALL SELECT 'ordering', before_op, after_op, NULL FROM ordering\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 1,
+      "arguments": {
+        "sql": "SELECT 'workers' AS tbl, worker AS a, delta AS b, NULL AS c FROM workers UNION ALL SELECT 'operations', op, worker, kind FROM operations UNION ALL SELECT 'ordering', before_op, after_op, NULL FROM ordering"
+      },
+      "evidence_id": "query:1",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"tbl\", \"a\", \"b\", \"c\"], \"rows\": [[\"workers\", 0, 2, null], [\"workers\", 1, 2, null], [\"workers\", 2, 2, null], [\"workers\", 3, 3, null], [\"operations\", 2, 0, \"write\"], [\"operations\", 4, 3, \"read\"], [\"operations\", 6, 3, \"write\"], [\"operations\", 7, 1, \"read\"], [\"operations\", 9, 2, \"write\"], [\"operations\", 11, 0, \"read\"], [\"operations\", 12, 2, \"read\"], [\"operations\", 14, 1, \"write\"], [\"ordering\", 2, 4, null], [\"ordering\", 2, 6, null], [\"ordering\", 2, 7, null], [\"ordering\", 2, 9, null], [\"ordering\", 2, 12, null], [\"ordering\", 2, 14, null], [\"ordering\", 4, 6, null], [\"ordering\", 7, 6, null], [\"ordering\", 7, 12, null], [\"ordering\", 7, 14, null], [\"ordering\", 9, 4, null], [\"ordering\", 9, 6, null], [\"ordering\", 11, 2, null], [\"ordering\", 11, 6, null], [\"ordering\", 11, 14, null], [\"ordering\", 12, 4, null], [\"ordering\", 12, 6, null], [\"ordering\", 12, 9, null], [\"ordering\", 14, 6, null], [\"ordering\", 14, 9, null], [\"ordering\", 14, 12, null]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.3902
+      },
+      "queries_remaining": 7,
+      "responses_remaining": 7
+    },
+    {
+      "type": "model",
+      "turn": 2,
+      "request_id": "e1fdb660d93d42a7aa8d72e665312462",
+      "response_id": "gen-1792866542-pMS1YVMJbk0P5JpevQYc",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1814,
+        "input_tokens_details": {
+          "cached_tokens": 1059,
+          "cache_write_tokens": 629
+        },
+        "output_tokens": 723,
+        "output_tokens_details": {
+          "reasoning_tokens": 391
+        },
+        "total_tokens": 2537,
+        "cost": 0.000463315,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000463315,
+          "upstream_inference_input_cost": 0.000101815,
+          "upstream_inference_output_cost": 0.0003615
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 7.3114,
+      "input_bound": 14414,
+      "reserved_usd": "0.003849750",
+      "request_sha256": "9aa454e6362869793c351decae41179f11d917a4bcd195c66e1a9bca93d6c391",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_098092f8ecc2ab60016adcf8efa23087d1a5266513cbce7c47",
+          "sha256": "e5835b0b540f9cd028de382a800e288c67d536a07855adecd76562a1de77b34c"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_m7akxvnfia8",
+          "sha256": "9f5c6853db332740c22988c4a8aabc375201be315d5a5d901f6743681a2248dd"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_59HjM9rLbkn5rvtYCdelte4J",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"WITH RECURSIVE states(mask, n, bal, r0, r1, r2, r3) AS (\\n  SELECT 0, 0, :initial_balance, NULL, NULL, NULL, NULL\\n  UNION ALL\\n  SELECT s.mask | (1 << o.op), s.n + 1,\\n         CASE WHEN o.kind='write' THEN\\n           CASE o.worker WHEN 0 THEN s.r0 WHEN 1 THEN s.r1 WHEN 2 THEN s.r2 WHEN 3 THEN s.r3 END + w.delta\\n         ELSE s.bal END,\\n         CASE WHEN o.kind='read' AND o.worker=0 THEN s.bal ELSE s.r0 END,\\n         CASE WHEN o.kind='read' AND o.worker=1 THEN s.bal ELSE s.r1 END,\\n         CASE WHEN o.kind='read' AND o.worker=2 THEN s.bal ELSE s.r2 END,\\n         CASE WHEN o.kind='read' AND o.worker=3 THEN s.bal ELSE s.r3 END\\n  FROM states s\\n  JOIN operations o ON (s.mask & (1 << o.op))=0\\n  JOIN workers w ON w.worker=o.worker\\n  WHERE NOT EXISTS (\\n    SELECT 1 FROM ordering e\\n    WHERE e.after_op=o.op AND (s.mask & (1 << e.before_op))=0\\n  )\\n)\\nSELECT MIN(bal) AS minimum_final_balance FROM states WHERE n=(SELECT COUNT(*) FROM operations)\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 2,
+      "arguments": {
+        "sql": "WITH RECURSIVE states(mask, n, bal, r0, r1, r2, r3) AS (\n  SELECT 0, 0, :initial_balance, NULL, NULL, NULL, NULL\n  UNION ALL\n  SELECT s.mask | (1 << o.op), s.n + 1,\n         CASE WHEN o.kind='write' THEN\n           CASE o.worker WHEN 0 THEN s.r0 WHEN 1 THEN s.r1 WHEN 2 THEN s.r2 WHEN 3 THEN s.r3 END + w.delta\n         ELSE s.bal END,\n         CASE WHEN o.kind='read' AND o.worker=0 THEN s.bal ELSE s.r0 END,\n         CASE WHEN o.kind='read' AND o.worker=1 THEN s.bal ELSE s.r1 END,\n         CASE WHEN o.kind='read' AND o.worker=2 THEN s.bal ELSE s.r2 END,\n         CASE WHEN o.kind='read' AND o.worker=3 THEN s.bal ELSE s.r3 END\n  FROM states s\n  JOIN operations o ON (s.mask & (1 << o.op))=0\n  JOIN workers w ON w.worker=o.worker\n  WHERE NOT EXISTS (\n    SELECT 1 FROM ordering e\n    WHERE e.after_op=o.op AND (s.mask & (1 << e.before_op))=0\n  )\n)\nSELECT MIN(bal) AS minimum_final_balance FROM states WHERE n=(SELECT COUNT(*) FROM operations)"
+      },
+      "evidence_id": "query:2",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-6]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2892
+      },
+      "queries_remaining": 6,
+      "responses_remaining": 6
+    },
+    {
+      "type": "model",
+      "turn": 3,
+      "request_id": "3307d420338e46798c0ab91e82f77384",
+      "response_id": "gen-1792866550-t9yxXEPxGqMr3eTyfE7d",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 2638,
+        "input_tokens_details": {
+          "cached_tokens": 1688,
+          "cache_write_tokens": 824
+        },
+        "output_tokens": 640,
+        "output_tokens_details": {
+          "reasoning_tokens": 142
+        },
+        "total_tokens": 3278,
+        "cost": 0.00045248,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00045248,
+          "upstream_inference_input_cost": 0.00013248,
+          "upstream_inference_output_cost": 0.00032
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 5.9572,
+      "input_bound": 22791,
+      "reserved_usd": "0.004896875",
+      "request_sha256": "050737fd664428e1565129cf69a282e4ec8d14037b1520d32c89a4634e1bba63",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_098092f8ecc2ab60016adcf8f7505c87d188f745385914d75c",
+          "sha256": "30f5a3638d529bea12ff47af03283fb508f99d549006d2c2704d69d908a18f17"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_75pd5a2o6j",
+          "sha256": "230b5124e382df12b91952bb4e7bf486a7768c83dab6bab1c3088f03bf77c343"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_wEce5o3I1gZlAmlnYQIXjeT4",
+            "type": "function",
+            "function": {
+              "name": "submit",
+              "arguments": "{\"verdict\":\"supported\",\"p_support\":0.995,\"audit_sql\":\"WITH RECURSIVE states(mask, n, bal, r0, r1, r2, r3) AS (\\n  SELECT 0, 0, :initial_balance, NULL, NULL, NULL, NULL\\n  UNION ALL\\n  SELECT s.mask | (1 << o.op), s.n + 1,\\n         CASE WHEN o.kind = 'write' THEN\\n           CASE o.worker\\n             WHEN 0 THEN s.r0\\n             WHEN 1 THEN s.r1\\n             WHEN 2 THEN s.r2\\n             WHEN 3 THEN s.r3\\n           END + w.delta\\n         ELSE s.bal END,\\n         CASE WHEN o.kind = 'read' AND o.worker = 0 THEN s.bal ELSE s.r0 END,\\n         CASE WHEN o.kind = 'read' AND o.worker = 1 THEN s.bal ELSE s.r1 END,\\n         CASE WHEN o.kind = 'read' AND o.worker = 2 THEN s.bal ELSE s.r2 END,\\n         CASE WHEN o.kind = 'read' AND o.worker = 3 THEN s.bal ELSE s.r3 END\\n  FROM states AS s\\n  JOIN operations AS o ON (s.mask & (1 << o.op)) = 0\\n  JOIN workers AS w ON w.worker = o.worker\\n  WHERE NOT EXISTS (\\n    SELECT 1\\n    FROM ordering AS e\\n    WHERE e.after_op = o.op\\n      AND (s.mask & (1 << e.before_op)) = 0\\n  )\\n)\\nSELECT MIN(bal) AS minimum_final_balance\\nFROM states\\nWHERE n = (SELECT COUNT(*) FROM operations)\",\"evidence_ids\":[\"query:1\",\"query:2\",\"report\",\"publisher:execution\"],\"justification\":\"The database contains four workers and eight operations with the listed ordering constraints (query:1). Exhaustive recursive enumeration of every ordering-respecting schedule, carrying each worker's saved read value and applying writes as saved value plus delta, returns a minimum final balance of -6 (query:2), matching the publisher's reported -6 (report). The publisher's receipt also shows one legal schedule ending at -6, though that receipt alone would not establish the minimum (publisher:execution).\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_prompt": "You are an independent auditor of one claim.\nThe source database is available through the live query tool. Assess whether the\npublisher's reported value is correct under the supplied contract. You may inspect\ndata and run queries before deciding. A passing integrity test establishes database\nintegrity only. A publisher execution receipt establishes what its program returned.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Near 0 means probably false, near 1 means\nprobably true, and 0.5 expresses uncertainty. Your belief is assessed with Brier\nloss. Cite evidence IDs you actually received and give a short evidence-based\njustification, not private reasoning.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone.\n\nAlso submit audit_sql, your best SELECT query computing the exact integer value\nrequired by the contract. It must return one row and one integer column. Use the\nsupplied named parameters when appropriate. The unchanged query will be evaluated\non additional databases governed by the same contract. Do not hard-code the\npublisher's value. Program quality and your probability assessment are measured\nseparately.\n",
+  "started_at": "2026-10-24T18:28:59.182774+00:00",
+  "workspace_sha256": {
+    "README.md": "f30a7c01bab9e5cd00111d6d81f756f62903724b7dd3cad498a3b2a01c31c25c",
+    "publisher_receipt.py": "8f57db2f87ab14ba84fdaea6fcccd2871f7238edca22e2da07377179c59b9070",
+    "publisher_schedule.json": "1fbb4a38354221196a39b5bca75db448f56f7505043a83c27cc65955d46c8bc2",
+    "records.sqlite": "d68d6919d6f6459cd4856a400a9bb372ae51a979aa3d68ee743d7b4839a3b6d5",
+    "report.json": "764e2a911e991926e30496117925894667d7ca24c8c8fec9efc0ed35d1df908d",
+    "schema.sql": "4b3b06e26a16f88815c1cb00593153c9fdb0c9bda6ab2275a76094826df6739a",
+    "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+  },
+  "initial_integrity_execution": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /workspace/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/workspace/pytest-cache-files-mk9ie41l'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 1 warning in 0.01s\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.5346
+  },
+  "initial_view": {
+    "claim": "The publisher's minimum_final_balance is the minimum over all legal complete schedules.",
+    "contract": "Concurrent shared-balance outcome audit\n\nThe database is the complete source of truth. There are one to four workers,\nwith distinct worker IDs in 0..3. Each has exactly one read and one write operation.\nOperation IDs are distinct integers in 0..15 and do not imply execution order.\nEach worker has an integer delta in -9..9, including zero. The shared balance starts\nat :initial_balance, an integer in -100..100. Each worker has its own private register.\n\nA legal schedule executes every operation exactly once in a total order respecting\nevery edge in ordering. The ordering graph is acyclic and explicitly includes\neach worker's read-before-write edge. Other edges may constrain different workers.\nEach operation is atomic; a worker's read/write pair is NOT atomic. A read copies\nthe CURRENT shared balance into that worker's private register. A write REPLACES\nthe shared balance with that worker's previously read register plus its delta.\nOther workers' intervening writes do not change a saved private register.\nThis is sequential consistency; there are no weak-memory effects or other actions.\n\nCompute the minimum final shared balance over ALL legal complete schedules.\nAt least one legal complete schedule exists. The publisher reports that this\nminimum equals its minimum_final_balance. Its execution receipt records one\nactual legal schedule and its result; it is not an exhaustive exploration.\nAssess the finite claim and construct your own verification program. No solver\nimplementation is supplied. Return the exact integer minimum, not a count,\nthe sum of deltas, a partial-schedule value, or the outcome of only one schedule.\n",
+    "schema": "\nCREATE TABLE workers(worker INTEGER PRIMARY KEY, delta INTEGER NOT NULL);\nCREATE TABLE operations(op INTEGER PRIMARY KEY, worker INTEGER NOT NULL,\n kind TEXT NOT NULL CHECK(kind IN ('read','write')), UNIQUE(worker,kind));\nCREATE TABLE ordering(before_op INTEGER NOT NULL, after_op INTEGER NOT NULL,\n PRIMARY KEY(before_op,after_op));\n",
+    "query_parameters": {
+      "initial_balance": -15
+    },
+    "publisher_report": {
+      "id": "report",
+      "minimum_final_balance": -6
+    },
+    "smoke_report": {
+      "id": "smoke",
+      "exit_code": 0,
+      "smoke_tests_passed": 1,
+      "smoke_tests_total": 1
+    },
+    "peer_messages": [],
+    "max_queries": 8,
+    "max_model_responses": 8,
+    "publisher_execution": {
+      "id": "publisher:execution",
+      "scope": "One complete schedule executed by a finite-model interpreter, not OS threads",
+      "result": {
+        "schedule": [
+          11,
+          2,
+          7,
+          14,
+          12,
+          9,
+          4,
+          6
+        ],
+        "steps": [
+          {
+            "op": 11,
+            "worker": 0,
+            "kind": "read",
+            "balance_after": -15
+          },
+          {
+            "op": 2,
+            "worker": 0,
+            "kind": "write",
+            "balance_after": -13
+          },
+          {
+            "op": 7,
+            "worker": 1,
+            "kind": "read",
+            "balance_after": -13
+          },
+          {
+            "op": 14,
+            "worker": 1,
+            "kind": "write",
+            "balance_after": -11
+          },
+          {
+            "op": 12,
+            "worker": 2,
+            "kind": "read",
+            "balance_after": -11
+          },
+          {
+            "op": 9,
+            "worker": 2,
+            "kind": "write",
+            "balance_after": -9
+          },
+          {
+            "op": 4,
+            "worker": 3,
+            "kind": "read",
+            "balance_after": -9
+          },
+          {
+            "op": 6,
+            "worker": 3,
+            "kind": "write",
+            "balance_after": -6
+          }
+        ],
+        "final_balance": -6
+      },
+      "exit_code": 0
+    }
+  },
+  "artifact_evaluation": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-6]], \"rows_truncated\": false}\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.3349
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_support": 0.995,
+    "audit_sql": "WITH RECURSIVE states(mask, n, bal, r0, r1, r2, r3) AS (\n  SELECT 0, 0, :initial_balance, NULL, NULL, NULL, NULL\n  UNION ALL\n  SELECT s.mask | (1 << o.op), s.n + 1,\n         CASE WHEN o.kind = 'write' THEN\n           CASE o.worker\n             WHEN 0 THEN s.r0\n             WHEN 1 THEN s.r1\n             WHEN 2 THEN s.r2\n             WHEN 3 THEN s.r3\n           END + w.delta\n         ELSE s.bal END,\n         CASE WHEN o.kind = 'read' AND o.worker = 0 THEN s.bal ELSE s.r0 END,\n         CASE WHEN o.kind = 'read' AND o.worker = 1 THEN s.bal ELSE s.r1 END,\n         CASE WHEN o.kind = 'read' AND o.worker = 2 THEN s.bal ELSE s.r2 END,\n         CASE WHEN o.kind = 'read' AND o.worker = 3 THEN s.bal ELSE s.r3 END\n  FROM states AS s\n  JOIN operations AS o ON (s.mask & (1 << o.op)) = 0\n  JOIN workers AS w ON w.worker = o.worker\n  WHERE NOT EXISTS (\n    SELECT 1\n    FROM ordering AS e\n    WHERE e.after_op = o.op\n      AND (s.mask & (1 << e.before_op)) = 0\n  )\n)\nSELECT MIN(bal) AS minimum_final_balance\nFROM states\nWHERE n = (SELECT COUNT(*) FROM operations)",
+    "evidence_ids": [
+      "query:1",
+      "query:2",
+      "report",
+      "publisher:execution"
+    ],
+    "justification": "The database contains four workers and eight operations with the listed ordering constraints (query:1). Exhaustive recursive enumeration of every ordering-respecting schedule, carrying each worker's saved read value and applying writes as saved value plus delta, returns a minimum final balance of -6 (query:2), matching the publisher's reported -6 (report). The publisher's receipt also shows one legal schedule ending at -6, though that receipt alone would not establish the minimum (publisher:execution)."
+  },
+  "metrics": {
+    "brier": 2.5000000000000045e-05,
+    "correct_verdict": true,
+    "audit_sql_valid_aggregate": true,
+    "audit_sql_correct_this_database": true,
+    "actual_total": -6,
+    "query_aggregate": -6
+  },
+  "finished_at": "2026-10-24T18:29:16.835041+00:00"
+}

@@ -140,3 +140,44 @@ finite schedule task would provide unscaffolded verifier construction for a late
 controlled evidence-quality study, not a new concurrency benchmark claim.
 These comparisons currently cover CIR+CVN and Jain/Purandare full text and the
 DRPBench proceedings abstract; do not overstate full-method review of the latter.
+
+## Closer evidence-quality and recovery comparisons
+
+[Validation Evidence in LLM Repair Agents](https://arxiv.org/html/2607.28871)
+already captures validation events at exact code states, separates test-only
+changes, and replays them on buggy, candidate and gold implementations. Its
+controlled intervention compares replay feedback with both baseline and an
+attention-matched reminder, with scaffold/model replications. We inspected the
+method and design. Therefore replaying spontaneous probes, separating execution
+from discriminating evidence, and adding replay feedback are not novel contributions
+for Witness. The remaining unsupported-endorsement manipulation needs an actual
+semantic effect and stronger transfer, rather than a renamed replay metric.
+
+[Coding before testing](https://arxiv.org/html/2607.05139) studies dependent code/test
+generation and mutually consistent failures; [the ICSE paper](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/15/Measuring-the-Influence-of-Incorrect-Code-on-Test-Generation)
+is another direct comparison on incorrect code context. The former full text and
+the latter conference record were retrieved; full methods of the latter are not
+yet reviewed. Do not claim merely inheriting a faulty implementation biases test
+generation as new. [To Run or Not to Run](https://arxiv.org/html/2606.26978) also
+compares execution-access policies and their costs in actual repair agents.
+Our one-query ceiling and work measurements are narrower diagnostic evidence.
+
+[EpiSEM-Bench](https://arxiv.org/html/2610.31650), published 22 October, pairs
+permitted/prohibited worlds, persistently suppresses selected facts while keeping
+remaining observations true, and tests active recovery from an independent source.
+The paired-world and recovery methods were inspected. Truthful-but-insufficient
+evidence plus a recovery tool is therefore already a studied intervention.
+[AgentProp-Bench](https://arxiv.org/html/2604.16706) explicitly perturbs schema-valid
+tool parameters and separates rejection, recovery and fabricated execution.
+Its current v2 methods differ from older search summaries; use the current paper.
+
+[EnvTrustBench's project page](https://envtrustbench.github.io/EnvTrustBench/)
+describes failures from stale/incorrect derived state and executable artifacts.
+It withholds the manuscript and raw traces, so detailed comparison is limited.
+This still defeats a broad claim that auditing a misleading cache or helper
+artifact is a wholly new problem. No blocked publisher request was rerouted.
+
+Research decision: no large replication of the present ceilings and no generic
+cache-corruption or replay-feedback study purchased on a novelty assumption.
+The next proposed contribution must state its distinct estimand, nearest existing
+experiment, outcome that would falsify it, and a cheap capability/validity gate.

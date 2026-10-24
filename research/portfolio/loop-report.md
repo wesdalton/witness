@@ -63,8 +63,22 @@ correctness is unsupported. [Contract v2](route-protocol-v2.md) bounds costs and
 validates graphs prospectively. The [eight-episode one-query pilot](scarce-query-report.md)
 also completed perfectly, including thirty fresh replay conditions per program.
 Every first query computed the exact optimum. The route setup is retired from
-further paid testing. Free development now considers concurrency outcomes without
-a near-complete supplied solver; new validity gates and a paid decision are required.
+further paid testing. The [unscaffolded schedule pilot](schedule-report.md) also
+completed four correct audits, with sixteen fresh replay conditions per program.
+Agents wrote exact recursive verifiers from the contract and data. One SQL error
+was recovered. This is capability evidence, not a demonstrated hard failure.
+
+The next loop was free: [query-work measurement and a deterministic ablation](query-work-report.md).
+One SQL credit can include exhaustive computation. Replacing duplicate-preserving
+recursion with state deduplication in the four reviewed schedule programs cuts
+nominal database progress work by 40–52x on a predeclared boundary, with all 64
+replay answers preserved. This is a local optimization, not model speedup or
+research novelty. Original agent artifacts and scores remain unchanged.
+
+No larger peer matrix or further paid batch is selected. New primary literature
+substantially overlaps replay feedback, implementation-induced test errors, and
+truthful-but-incomplete evidence recovery. The next loop needs a sharper
+contribution and an independently motivated effort measure before more inference.
 
 Agents execute real queries and tools. Peer messages and supplied faulty programs
 are authored stimuli, not independently executing peer agents. Fresh database
@@ -78,8 +92,8 @@ quality of the evidence-generating program, but novelty remains provisional.
 See [the literature comparison](novelty-review.md). A novel causal claim requires
 fresh confirmation, stronger transfer, and a full comparison with related work.
 
-After one-query calibration: 575 requests, $0.444178490 reported cost and
-$6.359431500 retained reservations. The append-only phase ledger is authoritative;
+After schedule calibration: 590 requests, $0.449982210 reported cost and
+$6.425077750 retained reservations. The append-only phase ledger is authoritative;
 the total ceiling remains $25. Reservations are conservative limits, not charges.
 No Daybreak rejection has appeared in visible outputs in this loop. Any rejected
 action must stop without retrying or using an alternate route.

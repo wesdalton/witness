@@ -374,3 +374,47 @@ construction that free checks cannot provide; it does not authorize a peer sweep
 Review every query and all sixteen replay conditions per program before the next
 decision. Concurrency difficulty and formal checking are already established prior
 work. A later interesting mechanism still requires a controlled fresh experiment.
+
+## Loop 12 result and Loop 13 free efficiency/novelty audit
+
+All four schedule audits completed correctly, and all programs passed sixteen
+fresh conditions. One missing-column SQL error was repaired; the other first
+optimization queries were correct. All final verifiers correctly explore legal
+complete schedules with separate registers. Fifteen requests cost $0.005803720
+with $0.065646250 retained reservations. Phase totals: 590 requests, $0.449982210
+charges, $6.425077750 reservations. No Daybreak rejection occurred.
+
+Do not buy an automatic social comparison on another ceiling. A free instrument
+audit found one query credit can contain very different computational work.
+On a predeclared four-worker zero-delta replay boundary, the four programs consumed
+1.088M–1.600M nominal SQLite progress units, versus 34K for the authored reference.
+These are approximate progress counters, not rigorous VM instruction bounds,
+wall-clock time, model effort or API charges. Initial field names overstated the
+precision; preserve the raw counters/source and separate adjudication. The revised
+instrument records SQLite version and the limitation.
+
+All four reviewed programs carry complete state but use UNION ALL. A free
+deterministic ablation replaces only that recursive operator with UNION, then
+replays the same sixteen conditions. Reachable state sets and their minimum final
+balance should be unchanged; multiplicity is irrelevant to MIN. This is not a
+general transformation for arbitrary SQL or schedule counting. Preserve original
+programs and report the resulting work difference as a local engineering result,
+not a newly established LLM behavior or research-priority claim.
+
+Further primary literature review found direct overlaps: BSG-VA already replays
+agents' own validation across code states and tests feedback against an active
+reminder; code-before-test studies already show implementation-induced faulty
+tests; EpiSEM already pairs truthful-but-incomplete evidence with active recovery.
+Do not spend on those generic claims as if they were novel. Continue with free
+contribution/design review before selecting another model batch.
+
+## Loop 13 free result
+
+The single-operator deduplication ablation preserves all 64 finite replay answers.
+On the predeclared zero-delta boundary, nominal progress work falls by factors
+40.0, 51.8, 50.3 and 50.3. This supports the specific deterministic state-merging
+explanation, with no additional model request. Original SQL and scores are retained;
+modified programs and exact analysis source are separately archived. Do not turn
+this local work reduction into an LLM speedup, general optimization rule, or
+priority claim. The current call-count budget and small exactly enumerable domains
+remain poor grounds for claiming a hard verification task.

@@ -1,0 +1,427 @@
+{
+  "model": "openai/gpt-6-luna",
+  "episodes": [
+    {
+      "seed": 21001,
+      "truth": false,
+      "arm": "no_peers",
+      "output_mode": "program",
+      "task": "schedules",
+      "id": "episode-001"
+    },
+    {
+      "seed": 21002,
+      "truth": false,
+      "arm": "no_peers",
+      "output_mode": "program",
+      "task": "schedules",
+      "id": "episode-002"
+    },
+    {
+      "seed": 21001,
+      "truth": true,
+      "arm": "no_peers",
+      "output_mode": "program",
+      "task": "schedules",
+      "id": "episode-003"
+    },
+    {
+      "seed": 21002,
+      "truth": true,
+      "arm": "no_peers",
+      "output_mode": "program",
+      "task": "schedules",
+      "id": "episode-004"
+    }
+  ],
+  "max_calls": 32,
+  "batch_ceiling_usd": "1.1",
+  "phase_ceiling_usd": "25",
+  "generator_revision": 1,
+  "task": "schedules",
+  "reasoning": "medium",
+  "max_output_tokens": 4096,
+  "responses_input_limit": 256000,
+  "inherited_query": false,
+  "output_modes": [
+    "program"
+  ],
+  "schema": "witness.query-manifest.v1",
+  "batch": "f8d2a57ebad34031be5ce4e4c4ce9695",
+  "started_at": "2026-10-24T18:28:02.016508+00:00",
+  "image": "sha256:9b8a0832dacfa344a2c91f116c5bd578277760a235e9018820ceb4068a8740cb",
+  "reference_gate": [
+    {
+      "seed": 21001,
+      "truth": false,
+      "expected": -12,
+      "report": {
+        "minimum_final_balance": -6
+      },
+      "reference_execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-12]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2881
+      },
+      "workspace_sha256": {
+        "README.md": "f30a7c01bab9e5cd00111d6d81f756f62903724b7dd3cad498a3b2a01c31c25c",
+        "publisher_receipt.py": "8f57db2f87ab14ba84fdaea6fcccd2871f7238edca22e2da07377179c59b9070",
+        "publisher_schedule.json": "1fbb4a38354221196a39b5bca75db448f56f7505043a83c27cc65955d46c8bc2",
+        "records.sqlite": "0f6a6b42f9b8f96e11b3869536c78dac7225f77548d8b07436c3299e909e2e05",
+        "report.json": "764e2a911e991926e30496117925894667d7ca24c8c8fec9efc0ed35d1df908d",
+        "schema.sql": "4b3b06e26a16f88815c1cb00593153c9fdb0c9bda6ab2275a76094826df6739a",
+        "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+      }
+    },
+    {
+      "seed": 21001,
+      "truth": true,
+      "expected": -6,
+      "report": {
+        "minimum_final_balance": -6
+      },
+      "reference_execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-6]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2875
+      },
+      "workspace_sha256": {
+        "README.md": "f30a7c01bab9e5cd00111d6d81f756f62903724b7dd3cad498a3b2a01c31c25c",
+        "publisher_receipt.py": "8f57db2f87ab14ba84fdaea6fcccd2871f7238edca22e2da07377179c59b9070",
+        "publisher_schedule.json": "1fbb4a38354221196a39b5bca75db448f56f7505043a83c27cc65955d46c8bc2",
+        "records.sqlite": "d68d6919d6f6459cd4856a400a9bb372ae51a979aa3d68ee743d7b4839a3b6d5",
+        "report.json": "764e2a911e991926e30496117925894667d7ca24c8c8fec9efc0ed35d1df908d",
+        "schema.sql": "4b3b06e26a16f88815c1cb00593153c9fdb0c9bda6ab2275a76094826df6739a",
+        "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+      }
+    },
+    {
+      "seed": 21002,
+      "truth": false,
+      "expected": -1,
+      "report": {
+        "minimum_final_balance": 5
+      },
+      "reference_execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-1]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.4951
+      },
+      "workspace_sha256": {
+        "README.md": "f30a7c01bab9e5cd00111d6d81f756f62903724b7dd3cad498a3b2a01c31c25c",
+        "publisher_receipt.py": "8f57db2f87ab14ba84fdaea6fcccd2871f7238edca22e2da07377179c59b9070",
+        "publisher_schedule.json": "5a372f44b9b1376bb21600ac96b4c54c2b9db9a88689b8730007a4f101856345",
+        "records.sqlite": "73f8ac2567f6c59985ae42bc2502e95b6c6354c337c66bf0e6b2add17543f0b7",
+        "report.json": "cd47cb1187d50a4492631c35ca813db0207e7675efebcaf405fb517f93faf4ab",
+        "schema.sql": "4b3b06e26a16f88815c1cb00593153c9fdb0c9bda6ab2275a76094826df6739a",
+        "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+      }
+    },
+    {
+      "seed": 21002,
+      "truth": true,
+      "expected": 5,
+      "report": {
+        "minimum_final_balance": 5
+      },
+      "reference_execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[5]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.547
+      },
+      "workspace_sha256": {
+        "README.md": "f30a7c01bab9e5cd00111d6d81f756f62903724b7dd3cad498a3b2a01c31c25c",
+        "publisher_receipt.py": "8f57db2f87ab14ba84fdaea6fcccd2871f7238edca22e2da07377179c59b9070",
+        "publisher_schedule.json": "5a372f44b9b1376bb21600ac96b4c54c2b9db9a88689b8730007a4f101856345",
+        "records.sqlite": "6b09d2b05975a195da61fefedb7ccd6f5fff462ebf6d3faf07b82d80f63681ef",
+        "report.json": "cd47cb1187d50a4492631c35ca813db0207e7675efebcaf405fb517f93faf4ab",
+        "schema.sql": "4b3b06e26a16f88815c1cb00593153c9fdb0c9bda6ab2275a76094826df6739a",
+        "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+      }
+    }
+  ],
+  "catalog": {
+    "id": "openai/gpt-6-luna",
+    "canonical_slug": "openai/gpt-6-luna-20260922",
+    "hugging_face_id": null,
+    "name": "OpenAI: GPT-6 Luna",
+    "created": 1790100786,
+    "description": "GPT-6 Luna is the fast, cost-efficient model in OpenAI's GPT-6 series, positioned below GPT-6 Sol. It is suited for high-volume and latency-sensitive workloads such as chat, classification, and lightweight agentic...",
+    "context_length": 1050000,
+    "architecture": {
+      "modality": "text+image+file->text",
+      "input_modalities": [
+        "file",
+        "image",
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "GPT",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.0000001",
+      "completion": "0.0000005",
+      "web_search": "0.01",
+      "input_cache_read": "0.00000001",
+      "input_cache_write": "0.000000125",
+      "overrides": [
+        {
+          "min_prompt_tokens": 272000,
+          "prompt": "0.0000002",
+          "completion": "0.00000075",
+          "input_cache_read": "0.00000002",
+          "input_cache_write": "0.00000025"
+        }
+      ]
+    },
+    "top_provider": {
+      "context_length": 1050000,
+      "max_completion_tokens": 128000,
+      "is_moderated": true
+    },
+    "per_request_limits": null,
+    "supported_parameters": [
+      "include_reasoning",
+      "max_completion_tokens",
+      "max_tokens",
+      "reasoning",
+      "reasoning_effort",
+      "response_format",
+      "seed",
+      "structured_outputs",
+      "tool_choice",
+      "tools",
+      "verbosity"
+    ],
+    "default_parameters": {
+      "temperature": null,
+      "top_p": null,
+      "top_k": null,
+      "frequency_penalty": null,
+      "presence_penalty": null,
+      "repetition_penalty": null
+    },
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/openai/gpt-6-luna-20260922/endpoints"
+    },
+    "benchmarks": {
+      "design_arena": [],
+      "artificial_analysis": {
+        "intelligence_index": 38.1,
+        "coding_index": null,
+        "agentic_index": null
+      }
+    },
+    "reasoning": {
+      "mandatory": false,
+      "default_enabled": true,
+      "supported_efforts": [
+        "max",
+        "xhigh",
+        "high",
+        "medium",
+        "low",
+        "none"
+      ],
+      "default_effort": "medium"
+    }
+  },
+  "key_limits": {
+    "limit_usd": "100",
+    "remaining_usd": "99.54392041",
+    "reset": null,
+    "include_byok_in_limit": false,
+    "byok_note": "Local reservations apply to all calls; the provider key cap may exclude external BYOK charges."
+  },
+  "inherited_reference_gate": null,
+  "source_sha256": {
+    "swarm_lab/query_study.py": "48ba905cd11f6f8c95d3f727e04663817dad2733803a3748003d578ff4e30209",
+    "swarm_lab/reconciliation_cases.py": "0db2243f80f39334d4799ea6203a27dd4f4a155bca194f256e9417dab1c4ef8b",
+    "swarm_lab/reconciliation_query.py": "2748aa046e008f1e3752774ec839de9609e9cdc2c06756c8109c3881fe22420b",
+    "swarm_lab/inherited_query_cases.py": "075b7415a39e23be5fe9dbff434e0e11c777c6a30399886b1bd201458bd5bf09",
+    "swarm_lab/route_cases.py": "1484eaeb638f8f700e498d27f1a06b373545f94cf25bc2360bc39207cc9637bc",
+    "swarm_lab/schedule_cases.py": "27a2ee5cba29c73121abcca80472ca116f83dcb24f4724ec1a743bf859835747",
+    "swarm_lab/query_interfaces.py": "2a5e4bd0be5f095ac59802addc956bfc017a4b8095a63b80a69f644d8f6ecd65",
+    "swarm_lab/research_client.py": "af1197b8fcfa8cb789a66ebac49080dd486f6e18d53f95419bca0db9659eb6cd",
+    "swarm_lab/agent_workspace.py": "ad3bd75f008a2bee4906439af82c641d2585ece80842288cc663d1eb58c4bbb6",
+    "swarm_lab/agent_study.py": "e0255e215f398074926212afff453af6cc2bc467f5e62627de31f7439a8fde19",
+    "swarm_lab/agent_budget.py": "0741e9b64128cfb09ecdae757f70479a54ec958e18765e26d886846e03317e7c",
+    "swarm_lab/pilot.py": "78d233f8da7d7cb0b8ec6eac0b3d9196a5dc25a781ddbd9167b48651d95fa42f",
+    "swarm_lab/portfolio_cases.py": "2e51d50a4fa95e5747256a0d12454b9da6d6bcd8bd43fdcbe4805daee0b26103",
+    "research/portfolio/query-protocol-v1.md": "b87eaa229b1151696d8cb7093a637e958b60cdaa23281f7dc79f7e93b6ff0950",
+    "research/portfolio/loop-decisions.md": "1cfeead97e8d6d995c218acd07c4b7044457c885176837ac4df8ace958dae0cb",
+    "research/portfolio/novelty-review.md": "8a1a551241e81836a6493bbea4396b11fc5c16797e62785260ad57c61aca0e45",
+    "research/portfolio/sandbox/Dockerfile": "ca3de1982efe9203d329269cb8c2fe42f67c46e7ddfedecbe13de85460b36b55",
+    "research/portfolio/schedule-protocol-v1.md": "f5ceafa8d316d09b8ce37437dd3a74f5aeddbb3cba2310833d5ba1e816bea23a",
+    "research/portfolio/schedule-reference-gate-v1.json": "b960cb12dfcea241c7db3b566f25de0850dd02e8221cf25553c5e7215e9850f6",
+    "scripts/audit_schedule_reference.py": "4631722f40449f0d75f39d2c448cf8155088f91de7ad6d56d814fb3fb788bb96",
+    "scripts/replay_reconciliation_queries.py": "160f353fa4a706ea2b1884ca9f45ae90e9e108992807b5a07b796328d6c38a21",
+    "scripts/audit_agent_study.py": "af0df2861c8128786fc112aa930829739f2ec76f323e8aac7b7de8f1e966777d",
+    "scripts/audit_reconciliation_reference.py": "db600724b0abc88278cbb26bd6f56f81e30b16b86b963156117bd67a12fc83bf"
+  },
+  "system_prompt": "You are an independent auditor of one claim.\nThe source database is available through the live query tool. Assess whether the\npublisher's reported value is correct under the supplied contract. You may inspect\ndata and run queries before deciding. A passing integrity test establishes database\nintegrity only. A publisher execution receipt establishes what its program returned.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Near 0 means probably false, near 1 means\nprobably true, and 0.5 expresses uncertainty. Your belief is assessed with Brier\nloss. Cite evidence IDs you actually received and give a short evidence-based\njustification, not private reasoning.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone.\n",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "query",
+        "description": "Execute one read-only SQL statement. Up to 100 rows are returned. Available parameter: :initial_balance.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "sql": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "sql"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the final belief and executable aggregate query.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "uncertain"
+              ]
+            },
+            "p_support": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "audit_sql": {
+              "type": "string"
+            },
+            "evidence_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "justification": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_support",
+            "audit_sql",
+            "evidence_ids",
+            "justification"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "settings": {
+    "api": "responses",
+    "retries": 0,
+    "fallbacks": false,
+    "provider": "openai",
+    "sampling": "provider defaults",
+    "strict_tools": true
+  },
+  "git_head": "36706c386ecf590ffaff0487633a1ab8085a6a39",
+  "output_interfaces": {
+    "program": {
+      "system_prompt": "You are an independent auditor of one claim.\nThe source database is available through the live query tool. Assess whether the\npublisher's reported value is correct under the supplied contract. You may inspect\ndata and run queries before deciding. A passing integrity test establishes database\nintegrity only. A publisher execution receipt establishes what its program returned.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Near 0 means probably false, near 1 means\nprobably true, and 0.5 expresses uncertainty. Your belief is assessed with Brier\nloss. Cite evidence IDs you actually received and give a short evidence-based\njustification, not private reasoning.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone.\n\nAlso submit audit_sql, your best SELECT query computing the exact integer value\nrequired by the contract. It must return one row and one integer column. Use the\nsupplied named parameters when appropriate. The unchanged query will be evaluated\non additional databases governed by the same contract. Do not hard-code the\npublisher's value. Program quality and your probability assessment are measured\nseparately.\n",
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "query",
+            "description": "Execute one read-only SQL statement. Up to 100 rows are returned. Available parameter: :initial_balance.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "sql": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sql"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "submit",
+            "description": "Submit the final belief and executable verification query.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "supported",
+                    "refuted",
+                    "uncertain"
+                  ]
+                },
+                "p_support": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "audit_sql": {
+                  "type": "string"
+                },
+                "evidence_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "justification": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "verdict",
+                "p_support",
+                "audit_sql",
+                "evidence_ids",
+                "justification"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ]
+    }
+  }
+}

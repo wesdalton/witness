@@ -43,8 +43,12 @@ verifier was required. All sixteen requested programs passed thirty fresh
 conditions. A prospective numeric-domain repair preserves these finite results.
 The [one-query pilot](research/portfolio/scarce-query-report.md) also passed all
 eight audits and thirty replay conditions per program. This route setup is now
-retired from paid testing; free development is investigating verification of
-concurrent schedule outcomes without a supplied solver.
+retired from paid testing. Four [unscaffolded schedule audits](research/portfolio/schedule-report.md)
+also passed, including sixteen fresh conditions per program. A free
+[work-measurement and deduplication audit](research/portfolio/query-work-report.md)
+shows why query count alone is not verification effort, and improves the generated
+programs without additional inference. Current phase charges are $0.449982210;
+retained reservations are $6.425077750 of the $25 ceiling.
 No novel behavioral conclusion is established.
 
 The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning

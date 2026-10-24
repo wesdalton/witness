@@ -1,0 +1,10 @@
+{
+  "artifact": "query-work-measurement.json",
+  "raw_numbers_preserved": true,
+  "model_inference": false,
+  "field_name_limitation": "vm_steps_lower_bound and vm_steps_upper_exclusive are not rigorous VM-instruction bounds. They are the accumulated progress-handler counter and that counter plus 1000.",
+  "reason": "SQLite documents N as an approximate instruction interval and allows callbacks during query preparation. Interpret these as nominal progress units, not exact instruction counts or timing.",
+  "primary_source": "https://www.sqlite.org/c3ref/progress_handler.html",
+  "original_script": "query-work-measurement-v0-source/measure_query_work.py",
+  "prospective_correction": "measure_query_work.py uses progress_callbacks and nominal_progress_units and records SQLite version; v1 also measures the authored reference solver."
+}

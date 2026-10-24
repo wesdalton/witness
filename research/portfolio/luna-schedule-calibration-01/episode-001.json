@@ -1,0 +1,458 @@
+{
+  "schema": "witness.query-audit.v1",
+  "spec": {
+    "seed": 21001,
+    "truth": false,
+    "arm": "no_peers",
+    "output_mode": "program",
+    "task": "schedules",
+    "id": "episode-001"
+  },
+  "events": [
+    {
+      "type": "model",
+      "turn": 1,
+      "request_id": "a46f8e4d8764408fb1b7e99049eb0e92",
+      "response_id": "gen-1792866483-IK4jAx5dMZqhnPFZRtJx",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1185,
+        "input_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1059
+        },
+        "output_tokens": 106,
+        "output_tokens_details": {
+          "reasoning_tokens": 36
+        },
+        "total_tokens": 1291,
+        "cost": 0.000197975,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000197975,
+          "upstream_inference_input_cost": 0.000144975,
+          "upstream_inference_output_cost": 5.3e-05
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 2.0686,
+      "input_bound": 9940,
+      "reserved_usd": "0.003290500",
+      "request_sha256": "e862e2e0d3d6dbdc34f7fe8932fe4be81ddfc6508f2feb2188cccdb106001e78",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0941d4104b662180016adcf8b42c7087d19ef91a224732083f",
+          "sha256": "2aa8ef163e2650509e431b5ee883a4696f727477002e36b57def158217508ae2"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_uy8zs5k205q",
+          "sha256": "32912501c66fabb71202599f99f2d45b77d3c6d53abc0ae467159cfa02dcfffc"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_nc6SLlLMXeJSakbJsQRtG3Q6",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"SELECT 'workers' AS t, worker AS a, delta AS b, NULL AS c FROM workers UNION ALL SELECT 'operations', op, worker, kind FROM operations UNION ALL SELECT 'ordering', before_op, after_op, NULL FROM ordering ORDER BY t,a\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 1,
+      "arguments": {
+        "sql": "SELECT 'workers' AS t, worker AS a, delta AS b, NULL AS c FROM workers UNION ALL SELECT 'operations', op, worker, kind FROM operations UNION ALL SELECT 'ordering', before_op, after_op, NULL FROM ordering ORDER BY t,a"
+      },
+      "evidence_id": "query:1",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"t\", \"a\", \"b\", \"c\"], \"rows\": [[\"operations\", 2, 0, \"write\"], [\"operations\", 4, 3, \"read\"], [\"operations\", 6, 3, \"write\"], [\"operations\", 7, 1, \"read\"], [\"operations\", 9, 2, \"write\"], [\"operations\", 11, 0, \"read\"], [\"operations\", 12, 2, \"read\"], [\"operations\", 14, 1, \"write\"], [\"ordering\", 2, 6, null], [\"ordering\", 4, 6, null], [\"ordering\", 7, 14, null], [\"ordering\", 9, 6, null], [\"ordering\", 11, 2, null], [\"ordering\", 11, 6, null], [\"ordering\", 12, 9, null], [\"ordering\", 14, 12, null], [\"workers\", 0, 2, null], [\"workers\", 1, 2, null], [\"workers\", 2, 2, null], [\"workers\", 3, 3, null]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.286
+      },
+      "queries_remaining": 7,
+      "responses_remaining": 7
+    },
+    {
+      "type": "model",
+      "turn": 2,
+      "request_id": "e430f40082cb42c18962cc49c65e76aa",
+      "response_id": "gen-1792866486-akEzW8LvWf0rTCJp8Bne",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1650,
+        "input_tokens_details": {
+          "cached_tokens": 1059,
+          "cache_write_tokens": 465
+        },
+        "output_tokens": 1256,
+        "output_tokens_details": {
+          "reasoning_tokens": 850
+        },
+        "total_tokens": 2906,
+        "cost": 0.000709315,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000709315,
+          "upstream_inference_input_cost": 8.1315e-05,
+          "upstream_inference_output_cost": 0.000628
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 12.2755,
+      "input_bound": 13805,
+      "reserved_usd": "0.003773625",
+      "request_sha256": "016799249eb22bf650c43d6a2379ff90f7e78b727abc90b3b67d4699257715d2",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0941d4104b662180016adcf8b7158c87d189960fe2650bc080",
+          "sha256": "adf709926d76a08e2103beb433cfabe6787271c27869ff28dcc6a052d62eabf8"
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0941d4104b662180016adcf8bc471487d18c859c3e77b5d71f",
+          "sha256": "09855ccb3e133eb4bf292af28a68b37f561c11bb4890c2d3f8496e9ce71506d0"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_e32a9vxk07h",
+          "sha256": "4af8faf1af6b154874c046ba71300f3d4b47cc385356e52226f6f9da746367e0"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_eQymAI5o3el6xdeGsxGRbHdP",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"WITH RECURSIVE\\nopbits AS (\\n  SELECT op, worker, kind, ROW_NUMBER() OVER (ORDER BY op) - 1 AS idx\\n  FROM operations\\n),\\nopinfo AS (\\n  SELECT b.op, b.worker, b.kind, (1 << b.idx) AS bit,\\n         COALESCE((SELECT SUM(p.bit) FROM ordering e JOIN opbits p ON p.op=e.before_op WHERE e.after_op=b.op), 0) AS predmask,\\n         w.delta\\n  FROM opbits b JOIN workers w ON w.worker=b.worker\\n),\\nwalk(mask, bal, r0, r1, r2, r3) AS (\\n  SELECT 0, :initial_balance, NULL, NULL, NULL, NULL\\n  UNION ALL\\n  SELECT w.mask | o.bit,\\n         CASE WHEN o.kind='write' THEN CASE o.worker WHEN 0 THEN w.r0+o.delta WHEN 1 THEN w.r1+o.delta WHEN 2 THEN w.r2+o.delta WHEN 3 THEN w.r3+o.delta END ELSE w.bal END,\\n         CASE WHEN o.worker=0 AND o.kind='read' THEN w.bal ELSE w.r0 END,\\n         CASE WHEN o.worker=1 AND o.kind='read' THEN w.bal ELSE w.r1 END,\\n         CASE WHEN o.worker=2 AND o.kind='read' THEN w.bal ELSE w.r2 END,\\n         CASE WHEN o.worker=3 AND o.kind='read' THEN w.bal ELSE w.r3 END\\n  FROM walk w JOIN opinfo o\\n    ON (w.mask & o.bit)=0 AND (w.mask & o.predmask)=o.predmask\\n)\\nSELECT MIN(bal) AS minimum_final_balance\\nFROM walk\\nWHERE mask=(SELECT SUM(bit) FROM opinfo)\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 2,
+      "arguments": {
+        "sql": "WITH RECURSIVE\nopbits AS (\n  SELECT op, worker, kind, ROW_NUMBER() OVER (ORDER BY op) - 1 AS idx\n  FROM operations\n),\nopinfo AS (\n  SELECT b.op, b.worker, b.kind, (1 << b.idx) AS bit,\n         COALESCE((SELECT SUM(p.bit) FROM ordering e JOIN opbits p ON p.op=e.before_op WHERE e.after_op=b.op), 0) AS predmask,\n         w.delta\n  FROM opbits b JOIN workers w ON w.worker=b.worker\n),\nwalk(mask, bal, r0, r1, r2, r3) AS (\n  SELECT 0, :initial_balance, NULL, NULL, NULL, NULL\n  UNION ALL\n  SELECT w.mask | o.bit,\n         CASE WHEN o.kind='write' THEN CASE o.worker WHEN 0 THEN w.r0+o.delta WHEN 1 THEN w.r1+o.delta WHEN 2 THEN w.r2+o.delta WHEN 3 THEN w.r3+o.delta END ELSE w.bal END,\n         CASE WHEN o.worker=0 AND o.kind='read' THEN w.bal ELSE w.r0 END,\n         CASE WHEN o.worker=1 AND o.kind='read' THEN w.bal ELSE w.r1 END,\n         CASE WHEN o.worker=2 AND o.kind='read' THEN w.bal ELSE w.r2 END,\n         CASE WHEN o.worker=3 AND o.kind='read' THEN w.bal ELSE w.r3 END\n  FROM walk w JOIN opinfo o\n    ON (w.mask & o.bit)=0 AND (w.mask & o.predmask)=o.predmask\n)\nSELECT MIN(bal) AS minimum_final_balance\nFROM walk\nWHERE mask=(SELECT SUM(bit) FROM opinfo)"
+      },
+      "evidence_id": "query:2",
+      "result": {
+        "exit_code": 1,
+        "timed_out": false,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 18, in <module>\nsqlite3.OperationalError: no such column: p.bit\n",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2851
+      },
+      "queries_remaining": 6,
+      "responses_remaining": 6
+    },
+    {
+      "type": "model",
+      "turn": 3,
+      "request_id": "bb7df78ea9a14289bfaca83066e1ad43",
+      "response_id": "gen-1792866498-tVD6OoGJI4L6ngHrbFfZ",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 3023,
+        "input_tokens_details": {
+          "cached_tokens": 1524,
+          "cache_write_tokens": 1373
+        },
+        "output_tokens": 444,
+        "output_tokens_details": {
+          "reasoning_tokens": 35
+        },
+        "total_tokens": 3467,
+        "cost": 0.000421465,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000421465,
+          "upstream_inference_input_cost": 0.000199465,
+          "upstream_inference_output_cost": 0.000222
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 3.8795,
+      "input_bound": 30217,
+      "reserved_usd": "0.005825125",
+      "request_sha256": "6dd40acc2c7ef9385407594d59c1b3b01ffbd33c1f12bbf1a60fa8c96061c0ac",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0941d4104b662180016adcf8c3e6c487d1acb4c3bb85cd688f",
+          "sha256": "83b53020989999eadf8e98c406383e867b73f32961422f890adcf7954d11cb9e"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_mg3gw0t2zta",
+          "sha256": "41e4416338644d5dff930f886b2682567e39d953b452f8015b774b00af203e41"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_cNkwV9LVrhmlByP2ZVmAySBN",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"WITH RECURSIVE\\nopbits AS (\\n  SELECT op, worker, kind, ROW_NUMBER() OVER (ORDER BY op) - 1 AS idx\\n  FROM operations\\n),\\nopinfo AS (\\n  SELECT b.op, b.worker, b.kind, (1 << b.idx) AS bit,\\n         COALESCE((SELECT SUM(1 << p.idx) FROM ordering e JOIN opbits p ON p.op=e.before_op WHERE e.after_op=b.op), 0) AS predmask,\\n         w.delta\\n  FROM opbits b JOIN workers w ON w.worker=b.worker\\n),\\nwalk(mask, bal, r0, r1, r2, r3) AS (\\n  SELECT 0, :initial_balance, NULL, NULL, NULL, NULL\\n  UNION ALL\\n  SELECT w.mask | o.bit,\\n         CASE WHEN o.kind='write' THEN CASE o.worker WHEN 0 THEN w.r0+o.delta WHEN 1 THEN w.r1+o.delta WHEN 2 THEN w.r2+o.delta WHEN 3 THEN w.r3+o.delta END ELSE w.bal END,\\n         CASE WHEN o.worker=0 AND o.kind='read' THEN w.bal ELSE w.r0 END,\\n         CASE WHEN o.worker=1 AND o.kind='read' THEN w.bal ELSE w.r1 END,\\n         CASE WHEN o.worker=2 AND o.kind='read' THEN w.bal ELSE w.r2 END,\\n         CASE WHEN o.worker=3 AND o.kind='read' THEN w.bal ELSE w.r3 END\\n  FROM walk w JOIN opinfo o\\n    ON (w.mask & o.bit)=0 AND (w.mask & o.predmask)=o.predmask\\n)\\nSELECT MIN(bal) AS minimum_final_balance\\nFROM walk\\nWHERE mask=(SELECT SUM(bit) FROM opinfo)\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 3,
+      "arguments": {
+        "sql": "WITH RECURSIVE\nopbits AS (\n  SELECT op, worker, kind, ROW_NUMBER() OVER (ORDER BY op) - 1 AS idx\n  FROM operations\n),\nopinfo AS (\n  SELECT b.op, b.worker, b.kind, (1 << b.idx) AS bit,\n         COALESCE((SELECT SUM(1 << p.idx) FROM ordering e JOIN opbits p ON p.op=e.before_op WHERE e.after_op=b.op), 0) AS predmask,\n         w.delta\n  FROM opbits b JOIN workers w ON w.worker=b.worker\n),\nwalk(mask, bal, r0, r1, r2, r3) AS (\n  SELECT 0, :initial_balance, NULL, NULL, NULL, NULL\n  UNION ALL\n  SELECT w.mask | o.bit,\n         CASE WHEN o.kind='write' THEN CASE o.worker WHEN 0 THEN w.r0+o.delta WHEN 1 THEN w.r1+o.delta WHEN 2 THEN w.r2+o.delta WHEN 3 THEN w.r3+o.delta END ELSE w.bal END,\n         CASE WHEN o.worker=0 AND o.kind='read' THEN w.bal ELSE w.r0 END,\n         CASE WHEN o.worker=1 AND o.kind='read' THEN w.bal ELSE w.r1 END,\n         CASE WHEN o.worker=2 AND o.kind='read' THEN w.bal ELSE w.r2 END,\n         CASE WHEN o.worker=3 AND o.kind='read' THEN w.bal ELSE w.r3 END\n  FROM walk w JOIN opinfo o\n    ON (w.mask & o.bit)=0 AND (w.mask & o.predmask)=o.predmask\n)\nSELECT MIN(bal) AS minimum_final_balance\nFROM walk\nWHERE mask=(SELECT SUM(bit) FROM opinfo)"
+      },
+      "evidence_id": "query:3",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-12]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2826
+      },
+      "queries_remaining": 5,
+      "responses_remaining": 5
+    },
+    {
+      "type": "model",
+      "turn": 4,
+      "request_id": "1ee4ebce65e84bb3952ca33d5361c6ac",
+      "response_id": "gen-1792866503-KXuAZiJwf7Be5EEVZFHx",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 3568,
+        "input_tokens_details": {
+          "cached_tokens": 2897,
+          "cache_write_tokens": 545
+        },
+        "output_tokens": 1094,
+        "output_tokens_details": {
+          "reasoning_tokens": 545
+        },
+        "total_tokens": 4662,
+        "cost": 0.000656695,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000656695,
+          "upstream_inference_input_cost": 0.000109695,
+          "upstream_inference_output_cost": 0.000547
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 9.4844,
+      "input_bound": 34265,
+      "reserved_usd": "0.006331125",
+      "request_sha256": "18f97f33dd84e06645e4b6d811b8e8bd75867f3c30e075e82c65e747286df85d",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0941d4104b662180016adcf8c7d54487d1a14cc3f7f523f4b6",
+          "sha256": "24c8b8417edb199b1a4813aae79acd1b1fc0ffd189073242fb7657efc64540a4"
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0941d4104b662180016adcf8cc884087d1afc32c4c58dd39a2",
+          "sha256": "f56b903107b742b1485000af080ed0710bd57ed6a0f69d27a5a9dc3963e62c78"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_cp62xg56kfw",
+          "sha256": "b1a0b596b3a982fc867c91d1cb6d4153663fb783b5e4f36a1041c33ba9064977"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_fvNgKQoXAFbOza9CfFGqRN6a",
+            "type": "function",
+            "function": {
+              "name": "submit",
+              "arguments": "{\"verdict\":\"refuted\",\"p_support\":0.001,\"audit_sql\":\"WITH RECURSIVE\\nopbits AS (\\n  SELECT op, worker, kind, ROW_NUMBER() OVER (ORDER BY op) - 1 AS idx\\n  FROM operations\\n),\\nopinfo AS (\\n  SELECT b.op, b.worker, b.kind, (1 << b.idx) AS bit,\\n         COALESCE((SELECT SUM(1 << p.idx)\\n                   FROM ordering e JOIN opbits p ON p.op = e.before_op\\n                   WHERE e.after_op = b.op), 0) AS predmask,\\n         w.delta\\n  FROM opbits b JOIN workers w ON w.worker = b.worker\\n),\\nwalk(mask, bal, r0, r1, r2, r3) AS (\\n  SELECT 0, :initial_balance, NULL, NULL, NULL, NULL\\n  UNION ALL\\n  SELECT w.mask | o.bit,\\n         CASE WHEN o.kind = 'write' THEN\\n           CASE o.worker WHEN 0 THEN w.r0 + o.delta\\n                         WHEN 1 THEN w.r1 + o.delta\\n                         WHEN 2 THEN w.r2 + o.delta\\n                         WHEN 3 THEN w.r3 + o.delta END\\n         ELSE w.bal END,\\n         CASE WHEN o.worker = 0 AND o.kind = 'read' THEN w.bal ELSE w.r0 END,\\n         CASE WHEN o.worker = 1 AND o.kind = 'read' THEN w.bal ELSE w.r1 END,\\n         CASE WHEN o.worker = 2 AND o.kind = 'read' THEN w.bal ELSE w.r2 END,\\n         CASE WHEN o.worker = 3 AND o.kind = 'read' THEN w.bal ELSE w.r3 END\\n  FROM walk w JOIN opinfo o\\n    ON (w.mask & o.bit) = 0\\n   AND (w.mask & o.predmask) = o.predmask\\n)\\nSELECT MIN(bal) AS minimum_final_balance\\nFROM walk\\nWHERE mask = (SELECT SUM(bit) FROM opinfo)\",\"evidence_ids\":[\"query:1\",\"query:3\",\"report\",\"publisher:execution\"],\"justification\":\"The complete operation/ordering data were inspected, and a recursive SQL exploration of all reachable order-respecting schedules returned a minimum final balance of -12 (query:3). The publisher reports -6; its receipt records just one legal schedule ending at -6, which does not establish a minimum. Thus the reported value is not the minimum under the contract.\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_prompt": "You are an independent auditor of one claim.\nThe source database is available through the live query tool. Assess whether the\npublisher's reported value is correct under the supplied contract. You may inspect\ndata and run queries before deciding. A passing integrity test establishes database\nintegrity only. A publisher execution receipt establishes what its program returned.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Near 0 means probably false, near 1 means\nprobably true, and 0.5 expresses uncertainty. Your belief is assessed with Brier\nloss. Cite evidence IDs you actually received and give a short evidence-based\njustification, not private reasoning.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone.\n\nAlso submit audit_sql, your best SELECT query computing the exact integer value\nrequired by the contract. It must return one row and one integer column. Use the\nsupplied named parameters when appropriate. The unchanged query will be evaluated\non additional databases governed by the same contract. Do not hard-code the\npublisher's value. Program quality and your probability assessment are measured\nseparately.\n",
+  "started_at": "2026-10-24T18:28:02.476476+00:00",
+  "workspace_sha256": {
+    "README.md": "f30a7c01bab9e5cd00111d6d81f756f62903724b7dd3cad498a3b2a01c31c25c",
+    "publisher_receipt.py": "8f57db2f87ab14ba84fdaea6fcccd2871f7238edca22e2da07377179c59b9070",
+    "publisher_schedule.json": "1fbb4a38354221196a39b5bca75db448f56f7505043a83c27cc65955d46c8bc2",
+    "records.sqlite": "0f6a6b42f9b8f96e11b3869536c78dac7225f77548d8b07436c3299e909e2e05",
+    "report.json": "764e2a911e991926e30496117925894667d7ca24c8c8fec9efc0ed35d1df908d",
+    "schema.sql": "4b3b06e26a16f88815c1cb00593153c9fdb0c9bda6ab2275a76094826df6739a",
+    "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+  },
+  "initial_integrity_execution": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /workspace/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/workspace/pytest-cache-files-vz2i6wnp'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 1 warning in 0.01s\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.6392
+  },
+  "initial_view": {
+    "claim": "The publisher's minimum_final_balance is the minimum over all legal complete schedules.",
+    "contract": "Concurrent shared-balance outcome audit\n\nThe database is the complete source of truth. There are one to four workers,\nwith distinct worker IDs in 0..3. Each has exactly one read and one write operation.\nOperation IDs are distinct integers in 0..15 and do not imply execution order.\nEach worker has an integer delta in -9..9, including zero. The shared balance starts\nat :initial_balance, an integer in -100..100. Each worker has its own private register.\n\nA legal schedule executes every operation exactly once in a total order respecting\nevery edge in ordering. The ordering graph is acyclic and explicitly includes\neach worker's read-before-write edge. Other edges may constrain different workers.\nEach operation is atomic; a worker's read/write pair is NOT atomic. A read copies\nthe CURRENT shared balance into that worker's private register. A write REPLACES\nthe shared balance with that worker's previously read register plus its delta.\nOther workers' intervening writes do not change a saved private register.\nThis is sequential consistency; there are no weak-memory effects or other actions.\n\nCompute the minimum final shared balance over ALL legal complete schedules.\nAt least one legal complete schedule exists. The publisher reports that this\nminimum equals its minimum_final_balance. Its execution receipt records one\nactual legal schedule and its result; it is not an exhaustive exploration.\nAssess the finite claim and construct your own verification program. No solver\nimplementation is supplied. Return the exact integer minimum, not a count,\nthe sum of deltas, a partial-schedule value, or the outcome of only one schedule.\n",
+    "schema": "\nCREATE TABLE workers(worker INTEGER PRIMARY KEY, delta INTEGER NOT NULL);\nCREATE TABLE operations(op INTEGER PRIMARY KEY, worker INTEGER NOT NULL,\n kind TEXT NOT NULL CHECK(kind IN ('read','write')), UNIQUE(worker,kind));\nCREATE TABLE ordering(before_op INTEGER NOT NULL, after_op INTEGER NOT NULL,\n PRIMARY KEY(before_op,after_op));\n",
+    "query_parameters": {
+      "initial_balance": -15
+    },
+    "publisher_report": {
+      "id": "report",
+      "minimum_final_balance": -6
+    },
+    "smoke_report": {
+      "id": "smoke",
+      "exit_code": 0,
+      "smoke_tests_passed": 1,
+      "smoke_tests_total": 1
+    },
+    "peer_messages": [],
+    "max_queries": 8,
+    "max_model_responses": 8,
+    "publisher_execution": {
+      "id": "publisher:execution",
+      "scope": "One complete schedule executed by a finite-model interpreter, not OS threads",
+      "result": {
+        "schedule": [
+          11,
+          2,
+          7,
+          14,
+          12,
+          9,
+          4,
+          6
+        ],
+        "steps": [
+          {
+            "op": 11,
+            "worker": 0,
+            "kind": "read",
+            "balance_after": -15
+          },
+          {
+            "op": 2,
+            "worker": 0,
+            "kind": "write",
+            "balance_after": -13
+          },
+          {
+            "op": 7,
+            "worker": 1,
+            "kind": "read",
+            "balance_after": -13
+          },
+          {
+            "op": 14,
+            "worker": 1,
+            "kind": "write",
+            "balance_after": -11
+          },
+          {
+            "op": 12,
+            "worker": 2,
+            "kind": "read",
+            "balance_after": -11
+          },
+          {
+            "op": 9,
+            "worker": 2,
+            "kind": "write",
+            "balance_after": -9
+          },
+          {
+            "op": 4,
+            "worker": 3,
+            "kind": "read",
+            "balance_after": -9
+          },
+          {
+            "op": 6,
+            "worker": 3,
+            "kind": "write",
+            "balance_after": -6
+          }
+        ],
+        "final_balance": -6
+      },
+      "exit_code": 0
+    }
+  },
+  "artifact_evaluation": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-12]], \"rows_truncated\": false}\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.2842
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_support": 0.001,
+    "audit_sql": "WITH RECURSIVE\nopbits AS (\n  SELECT op, worker, kind, ROW_NUMBER() OVER (ORDER BY op) - 1 AS idx\n  FROM operations\n),\nopinfo AS (\n  SELECT b.op, b.worker, b.kind, (1 << b.idx) AS bit,\n         COALESCE((SELECT SUM(1 << p.idx)\n                   FROM ordering e JOIN opbits p ON p.op = e.before_op\n                   WHERE e.after_op = b.op), 0) AS predmask,\n         w.delta\n  FROM opbits b JOIN workers w ON w.worker = b.worker\n),\nwalk(mask, bal, r0, r1, r2, r3) AS (\n  SELECT 0, :initial_balance, NULL, NULL, NULL, NULL\n  UNION ALL\n  SELECT w.mask | o.bit,\n         CASE WHEN o.kind = 'write' THEN\n           CASE o.worker WHEN 0 THEN w.r0 + o.delta\n                         WHEN 1 THEN w.r1 + o.delta\n                         WHEN 2 THEN w.r2 + o.delta\n                         WHEN 3 THEN w.r3 + o.delta END\n         ELSE w.bal END,\n         CASE WHEN o.worker = 0 AND o.kind = 'read' THEN w.bal ELSE w.r0 END,\n         CASE WHEN o.worker = 1 AND o.kind = 'read' THEN w.bal ELSE w.r1 END,\n         CASE WHEN o.worker = 2 AND o.kind = 'read' THEN w.bal ELSE w.r2 END,\n         CASE WHEN o.worker = 3 AND o.kind = 'read' THEN w.bal ELSE w.r3 END\n  FROM walk w JOIN opinfo o\n    ON (w.mask & o.bit) = 0\n   AND (w.mask & o.predmask) = o.predmask\n)\nSELECT MIN(bal) AS minimum_final_balance\nFROM walk\nWHERE mask = (SELECT SUM(bit) FROM opinfo)",
+    "evidence_ids": [
+      "query:1",
+      "query:3",
+      "report",
+      "publisher:execution"
+    ],
+    "justification": "The complete operation/ordering data were inspected, and a recursive SQL exploration of all reachable order-respecting schedules returned a minimum final balance of -12 (query:3). The publisher reports -6; its receipt records just one legal schedule ending at -6, which does not establish a minimum. Thus the reported value is not the minimum under the contract."
+  },
+  "metrics": {
+    "brier": 1e-06,
+    "correct_verdict": true,
+    "audit_sql_valid_aggregate": true,
+    "audit_sql_correct_this_database": true,
+    "actual_total": -12,
+    "query_aggregate": -12
+  },
+  "finished_at": "2026-10-24T18:28:32.840693+00:00"
+}
