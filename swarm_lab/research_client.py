@@ -31,11 +31,16 @@ def catalog(model):
 class ResponsesClient(Client):
     """Stateless provider endpoint; full native output items stay in the next request."""
 
-    def __init__(self, *args, reasoning="medium", **kwargs):
+    def __init__(self, *args, reasoning="medium", responses_input_limit=160000, **kwargs):
         super().__init__(*args, **kwargs)
+        if responses_input_limit not in (160000, 256000):
+            raise BudgetError("Unreviewed Responses input ceiling")
+        if responses_input_limit > 160000 and self.model != "openai/gpt-6-luna":
+            raise BudgetError("Expanded short-context contract reviewed only for Luna")
         self.history = []
         self.consumed = 0
         self.reasoning = reasoning
+        self.responses_input_limit = responses_input_limit
 
     def payload(self, messages, final):
         if len(messages) == 2:
@@ -58,15 +63,17 @@ class ResponsesClient(Client):
             "reasoning": {"effort": self.reasoning}, "max_output_tokens": self.max_tokens,
             "provider": {"only": ["openai"], "allow_fallbacks": False,
                          "require_parameters": True,
-                         "max_price": {"prompt": 2.5, "completion": 10}},
+                         "max_price": {"prompt": float(self.input_price * 1000000),
+                                       "completion": float(self.output_price * 1000000)}},
         }
 
     def generate(self, messages, final=False):
         body = json.dumps(self.payload(messages, final), ensure_ascii=True,
                           allow_nan=False).encode()
         bound = len(body) + 4096
-        if bound > 160000:
-            raise BudgetError("Responses input exceeds reviewed short-context ceiling")
+        if bound > self.responses_input_limit:
+            raise BudgetError(f"Responses input exceeds reviewed short-context ceiling: "
+                              f"{bound} > {self.responses_input_limit}")
         reserve = bound * self.input_price + self.max_tokens * self.output_price
         request_id = uuid.uuid4().hex
         self.budget.reserve(request_id, self.batch, reserve, self.batch_limit)

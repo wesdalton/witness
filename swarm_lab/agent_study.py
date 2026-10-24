@@ -191,11 +191,15 @@ def model_catalog(model: str):
 
 class Client:
     def __init__(self, key, model, budget, batch, batch_limit, input_price, output_price,
-                 max_tokens=1024, interval=3.2, tools=None):
+                 max_tokens=1024, interval=3.2, tools=None, input_limit=60000):
+        if not 1 <= input_limit <= 160000 or (
+                input_limit > 60000 and model != "openai/gpt-6-luna"):
+            raise BudgetError("Input ceiling lacks a reviewed model contract")
         self.key, self.model, self.budget = key, model, budget
         self.batch, self.batch_limit = batch, batch_limit
         self.input_price, self.output_price = input_price, output_price
         self.max_tokens, self.interval = max_tokens, interval
+        self.input_limit = input_limit
         self.tools = TOOLS if tools is None else tools
         self.last_request = 0.0
         self.calls = 0
@@ -212,7 +216,7 @@ class Client:
         }
         body = json.dumps(payload, ensure_ascii=True, allow_nan=False).encode()
         bound = len(body) + 4096
-        if bound > 60000:
+        if bound > self.input_limit:
             raise BudgetError("Context exceeds reviewed conservative input bound")
         reserve = bound * self.input_price + self.max_tokens * self.output_price
         request_id = uuid.uuid4().hex

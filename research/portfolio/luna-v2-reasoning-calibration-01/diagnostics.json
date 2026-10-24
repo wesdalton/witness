@@ -1,0 +1,314 @@
+{
+  "schema": "witness.portfolio-diagnostics.v1",
+  "batch": "luna-v2-reasoning-calibration-01",
+  "summaries": {
+    "no_peers": {
+      "attempted_episodes": 2,
+      "completed_episodes": 2,
+      "commands": 21,
+      "model_responses": 17,
+      "nonzero_exit_commands": 1,
+      "probability_contradictions": 0,
+      "inspected_claims": 4,
+      "uninspected_software_assessments": [
+        {
+          "seed": 1002,
+          "claim_id": "C3",
+          "family": "routing",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 1002,
+          "claim_id": "C5",
+          "family": "callbacks",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 1002,
+          "claim_id": "C6",
+          "family": "multipart",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 1003,
+          "claim_id": "C3",
+          "family": "multipart",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": true
+        },
+        {
+          "seed": 1003,
+          "claim_id": "C5",
+          "family": "callbacks",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 1003,
+          "claim_id": "C6",
+          "family": "callbacks",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        }
+      ]
+    }
+  },
+  "episodes": [
+    {
+      "file": "episode-001.json",
+      "spec": {
+        "seed": 1002,
+        "arm": "no_peers",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-001"
+      },
+      "status": "completed",
+      "model_responses": 11,
+      "commands": 13,
+      "nonzero_exit_commands": 0,
+      "claims": [
+        {
+          "family": "control",
+          "truth": true,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 38,
+          "id": "C1",
+          "claim_id": "C1",
+          "verdict": "supported",
+          "p_support": 0.99,
+          "evidence_ids": [],
+          "justification": "The displayed values sum to 17 + 29 \u2212 8 = 38.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.00010000000000000018
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C2",
+          "variant": "historical",
+          "claim_id": "C2",
+          "verdict": "refuted",
+          "p_support": 0.01,
+          "evidence_ids": [
+            "tool:C2:5",
+            "tool:C2:7"
+          ],
+          "justification": "A live chunk-width-1 probe using a valid multipart file body lost the one-byte CR payload (reported as empty), contradicting byte preservation for the stated payload set.",
+          "inspected": true,
+          "commands": 5,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0001
+        },
+        {
+          "family": "routing",
+          "truth": true,
+          "id": "C3",
+          "variant": "historical",
+          "claim_id": "C3",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "This case was not investigated, so the smoke-test report alone does not establish the full range of named-converter behavior.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C4",
+          "variant": "historical",
+          "claim_id": "C4",
+          "verdict": "supported",
+          "p_support": 0.96,
+          "evidence_ids": [
+            "tool:C4:10",
+            "tool:C4:11",
+            "tool:C4:12",
+            "tool:C4:13"
+          ],
+          "justification": "Source is recorded before value processing and restored if an option loses destination arbitration. Live probes showed type conversion and eager callbacks observing COMMANDLINE, ENVIRONMENT, DEFAULT_MAP, DEFAULT, and PROMPT, including initial prompt processing; the implementation also explicitly restores the winning source for shared destinations.",
+          "inspected": true,
+          "commands": 8,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.001600000000000003
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C5",
+          "variant": "residual",
+          "claim_id": "C5",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "This independent candidate was not investigated; evidence from C4 cannot establish its behavior.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C6",
+          "variant": "historical",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "This independent candidate was not investigated; the multipart failure observed in C2 does not establish the behavior of this candidate.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        }
+      ],
+      "target": "C2",
+      "target_selected_from_events": true
+    },
+    {
+      "file": "episode-002.json",
+      "spec": {
+        "seed": 1003,
+        "arm": "no_peers",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-002"
+      },
+      "status": "completed",
+      "model_responses": 6,
+      "commands": 8,
+      "nonzero_exit_commands": 1,
+      "claims": [
+        {
+          "family": "routing",
+          "truth": false,
+          "id": "C1",
+          "variant": "historical",
+          "claim_id": "C1",
+          "verdict": "refuted",
+          "p_support": 0.0,
+          "evidence_ids": [
+            "tool:C1:5"
+          ],
+          "justification": "A live route-match probe with 16 named integer converters returned values assigned to the wrong names (for example, x2 received 10 and x10 received 4), contradicting the claimed correspondence.",
+          "inspected": true,
+          "commands": 3,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C2",
+          "variant": "historical",
+          "claim_id": "C2",
+          "verdict": "refuted",
+          "p_support": 0.0,
+          "evidence_ids": [
+            "tool:C2:8"
+          ],
+          "justification": "An exhaustive payload probe found a counterexample: the one-byte CR payload parsed as empty with chunk size 1, so payload bytes are not always preserved across chunk boundaries.",
+          "inspected": true,
+          "commands": 5,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C3",
+          "variant": "historical",
+          "claim_id": "C3",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "This candidate was not investigated. The matching claim and smoke-test report alone do not establish the full regression contract for this independently implemented candidate.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "control",
+          "truth": false,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 39,
+          "id": "C4",
+          "claim_id": "C4",
+          "verdict": "refuted",
+          "p_support": 0.0,
+          "evidence_ids": [],
+          "justification": "The displayed items sum to 17 + 29 \u2212 8 = 38, not 39.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C5",
+          "variant": "historical",
+          "claim_id": "C5",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "This candidate was not investigated, and a passing smoke test does not establish the full option-source behavior described.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C6",
+          "variant": "historical",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "This candidate was not investigated. Its matching claim and smoke-test report do not establish the full behavior for this independently implemented candidate.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        }
+      ],
+      "target": "C3",
+      "target_selected_from_events": false
+    }
+  ],
+  "interpretation": "Descriptive diagnostics added after observing a probability/verdict inconsistency in the exploratory screen. Preserve literal probabilities; do not invert or impute. Nonzero exit codes can be informative counterexamples, and tool counts are not verification quality. No new confirmatory tests."
+}

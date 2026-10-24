@@ -20,6 +20,7 @@ from swarm_lab.portfolio import (
     view,
 )
 from swarm_lab.portfolio_cases import FAMILIES, TARGET_PATHS, CaseWorkspace
+from swarm_lab.portfolio_v2_cases import ContractWorkspace
 from swarm_lab.research_client import ResponsesClient
 
 
@@ -165,3 +166,34 @@ def test_invalid_reference_gate_stops_before_any_new_run(tmp_path, monkeypatch):
     with pytest.raises(BudgetError, match="invalid positive labels"):
         main()
     assert not output.exists()
+
+
+@pytest.mark.parametrize("family", ("multipart", "callbacks"))
+def test_v2_preserves_residual_negatives_and_repairs_only_target_source(family):
+    original = CaseWorkspace(family, True)
+    residual = ContractWorkspace(family, False, variant="residual")
+    repaired = ContractWorkspace(family, True)
+    try:
+        old, bad, good = original.hashes(), residual.hashes(), repaired.hashes()
+        path = TARGET_PATHS[family]
+        assert old[path] == bad[path]
+        assert old[path] != good[path]
+        assert [p for p in good if good[p] != bad[p]] == [path]
+        compile((repaired.path / path).read_text(), path, "exec")
+    finally:
+        original.close()
+        residual.close()
+        repaired.close()
+
+
+def test_v2_variant_and_truth_are_not_in_initial_view():
+    portfolio = make_portfolio(1001, "v2")
+    changed = copy.deepcopy(portfolio)
+    for case in changed["cases"]:
+        if case["family"] != "control":
+            case["truth"] = not case["truth"]
+            case["variant"] = "residual" if case["variant"] == "historical" else "historical"
+    for arm in ARMS:
+        assert view(portfolio, arm, 2, "v2") == view(changed, arm, 2, "v2")
+    assert "PROMPT" in json.dumps(view(portfolio, "no_peers", 2, "v2"))
+    assert portfolio["target"] == make_portfolio(1001)["target"]

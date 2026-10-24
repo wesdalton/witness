@@ -27,8 +27,15 @@ website still describes the October 18 recorded-observation pilot.
 **Harder-task calibration:** a [six-claim software audit](research/portfolio/report.md)
 now uses historical Click and Werkzeug regressions with isolated live tools.
 GPT-6.1 Sol wrote adversarial probes and exposed two errors in our expected
-answers. Both counterexamples reproduced. Further portfolio inference is stopped
-until the reference labels are repaired; the original raw score is invalid.
+answers. Both counterexamples reproduced; the original raw score is invalid.
+The [continuing research loop](research/portfolio/loop-report.md) repaired the
+reference contracts, validated capable live auditors, and completed a fixed
+[16-pair exploratory comparison](research/portfolio/allocation-screen-report.md)
+under a two-investigation budget. Allocation was 8/16 in both conditions, with
+uncertainty too wide for equivalence. V1 remains disabled; novel behavioral
+conclusions are still pending. Four executable-query audits and their unchanged
+programs passed sixteen fresh database conditions each; this likely ceiling is
+not being scaled. An inherited-query capability pilot is the next research stage.
 
 The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning
 only by default). The [protocol](research/agent-study/protocol.md),

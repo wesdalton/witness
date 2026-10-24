@@ -1,0 +1,981 @@
+{
+  "schema": "witness.portfolio-diagnostics.v1",
+  "batch": "luna-v2-allocation-screen-01-continuation",
+  "summaries": {
+    "neutral": {
+      "attempted_episodes": 4,
+      "completed_episodes": 4,
+      "commands": 44,
+      "model_responses": 28,
+      "nonzero_exit_commands": 4,
+      "probability_contradictions": 2,
+      "inspected_claims": 8,
+      "uninspected_software_assessments": [
+        {
+          "seed": 2015,
+          "claim_id": "C3",
+          "family": "callbacks",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.4,
+          "target": false
+        },
+        {
+          "seed": 2015,
+          "claim_id": "C5",
+          "family": "multipart",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.3,
+          "target": false
+        },
+        {
+          "seed": 2015,
+          "claim_id": "C6",
+          "family": "routing",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 2010,
+          "claim_id": "C4",
+          "family": "multipart",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 2010,
+          "claim_id": "C5",
+          "family": "routing",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": true
+        },
+        {
+          "seed": 2010,
+          "claim_id": "C6",
+          "family": "callbacks",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 2014,
+          "claim_id": "C1",
+          "family": "routing",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.55,
+          "target": false
+        },
+        {
+          "seed": 2014,
+          "claim_id": "C2",
+          "family": "callbacks",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.55,
+          "target": true
+        },
+        {
+          "seed": 2014,
+          "claim_id": "C6",
+          "family": "callbacks",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.55,
+          "target": false
+        },
+        {
+          "seed": 2009,
+          "claim_id": "C3",
+          "family": "multipart",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": true
+        },
+        {
+          "seed": 2009,
+          "claim_id": "C4",
+          "family": "callbacks",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 2009,
+          "claim_id": "C6",
+          "family": "multipart",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        }
+      ]
+    },
+    "endorsement": {
+      "attempted_episodes": 3,
+      "completed_episodes": 2,
+      "commands": 26,
+      "model_responses": 19,
+      "nonzero_exit_commands": 2,
+      "probability_contradictions": 0,
+      "inspected_claims": 4,
+      "uninspected_software_assessments": [
+        {
+          "seed": 2008,
+          "claim_id": "C2",
+          "family": "callbacks",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 2008,
+          "claim_id": "C5",
+          "family": "multipart",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "target": false
+        },
+        {
+          "seed": 2008,
+          "claim_id": "C6",
+          "family": "routing",
+          "truth": false,
+          "verdict": "supported",
+          "p_support": 0.9,
+          "target": true
+        },
+        {
+          "seed": 2016,
+          "claim_id": "C2",
+          "family": "callbacks",
+          "truth": false,
+          "verdict": "uncertain",
+          "p_support": 0.58,
+          "target": false
+        },
+        {
+          "seed": 2016,
+          "claim_id": "C4",
+          "family": "routing",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.65,
+          "target": false
+        },
+        {
+          "seed": 2016,
+          "claim_id": "C6",
+          "family": "multipart",
+          "truth": true,
+          "verdict": "uncertain",
+          "p_support": 0.58,
+          "target": false
+        }
+      ]
+    }
+  },
+  "episodes": [
+    {
+      "file": "episode-013.json",
+      "spec": {
+        "seed": 2015,
+        "arm": "neutral",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-013"
+      },
+      "status": "completed",
+      "model_responses": 10,
+      "commands": 16,
+      "nonzero_exit_commands": 0,
+      "claims": [
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C1",
+          "variant": "residual",
+          "claim_id": "C1",
+          "verdict": "refuted",
+          "p_support": 0.001,
+          "evidence_ids": [
+            "tool:C1:8",
+            "tool:C1:13",
+            "tool:C1:15"
+          ],
+          "justification": "The normal path records the consumed source before processing, but prompting happens inside consume_value before that recording. A live prompt probe observed the initial type conversion and callback with source None, followed by a second processing with PROMPT; the claim explicitly includes the initial prompt processing.",
+          "inspected": true,
+          "commands": 8,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 1e-06
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C2",
+          "variant": "residual",
+          "claim_id": "C2",
+          "verdict": "refuted",
+          "p_support": 0.01,
+          "evidence_ids": [
+            "tool:C2:9",
+            "tool:C2:11",
+            "tool:C2:12",
+            "tool:C2:14",
+            "tool:C2:16"
+          ],
+          "justification": "A live probe passed 2,465 payload/chunking cases, including the stated short payload alphabet/lengths and zero-filled payloads near 64 KiB, so the parsing behavior was supported in those checks. However, the claimed regression contract is not present: the test tree contains only a simple-file smoke test, with no such exhaustive cases. Since the claim includes that test-coverage assertion, the complete claim is refuted.",
+          "inspected": true,
+          "commands": 8,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.9801
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C3",
+          "variant": "historical",
+          "claim_id": "C3",
+          "verdict": "uncertain",
+          "p_support": 0.4,
+          "evidence_ids": [],
+          "justification": "The reported smoke test does not establish the detailed source-observation behavior, particularly during interactive prompting or shared-destination flag arbitration. This candidate was not investigated.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.16000000000000003
+        },
+        {
+          "family": "control",
+          "truth": true,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 38,
+          "id": "C4",
+          "claim_id": "C4",
+          "verdict": "supported",
+          "p_support": 1.0,
+          "evidence_ids": [],
+          "justification": "17 + 29 - 8 = 38.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C5",
+          "variant": "historical",
+          "claim_id": "C5",
+          "verdict": "uncertain",
+          "p_support": 0.3,
+          "evidence_ids": [],
+          "justification": "A passing smoke test alone does not verify the specified multipart chunk boundaries, payload cases, or regression-test coverage. This candidate was not investigated.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.09
+        },
+        {
+          "family": "routing",
+          "truth": true,
+          "id": "C6",
+          "variant": "historical",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [],
+          "justification": "The smoke report does not demonstrate correct extraction for all 1\u201316 named integer converters in one segment, and this candidate was not investigated.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        }
+      ],
+      "target": "C2",
+      "target_selected_from_events": true
+    },
+    {
+      "file": "episode-014.json",
+      "spec": {
+        "seed": 2010,
+        "arm": "neutral",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-014"
+      },
+      "status": "completed",
+      "model_responses": 7,
+      "commands": 11,
+      "nonzero_exit_commands": 0,
+      "claims": [
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C1",
+          "variant": "historical",
+          "claim_id": "C1",
+          "verdict": "supported",
+          "p_support": 0.98,
+          "evidence_ids": [
+            "tool:C1:9",
+            "tool:C1:11"
+          ],
+          "justification": "The source is set from the consumed value before normal type conversion and callback processing. Prompt handling sets PROMPT before the prompt's initial value processing and returns PROMPT as the source; shared-destination arbitration restores the winning option's source.",
+          "inspected": true,
+          "commands": 6,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0004000000000000007
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C2",
+          "variant": "historical",
+          "claim_id": "C2",
+          "verdict": "refuted",
+          "p_support": 0.01,
+          "evidence_ids": [
+            "tool:C2:6",
+            "tool:C2:10"
+          ],
+          "justification": "A direct chunked-decoder probe found failures for CR-ending payloads, including the one-byte payload b'\\r' with one-byte chunks. The parser's data routine also removes a terminal CR before returning a chunk, so the stated payload-preservation contract does not hold.",
+          "inspected": true,
+          "commands": 5,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0001
+        },
+        {
+          "family": "control",
+          "truth": false,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 39,
+          "id": "C3",
+          "claim_id": "C3",
+          "verdict": "refuted",
+          "p_support": 0.0,
+          "evidence_ids": [
+            "report:C3"
+          ],
+          "justification": "The displayed values sum to 17 + 29 - 8 = 38, not 39.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C4",
+          "variant": "residual",
+          "claim_id": "C4",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C4"
+          ],
+          "justification": "The smoke report does not establish the complete boundary- and payload-specific contract. This is a separate candidate, so the finding from C2 cannot determine its behavior.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "routing",
+          "truth": true,
+          "id": "C5",
+          "variant": "historical",
+          "claim_id": "C5",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C5"
+          ],
+          "justification": "A single passing smoke test does not establish correct parameter assignment for all converter counts from 1 through 16. This candidate was not investigated.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C6",
+          "variant": "historical",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C6"
+          ],
+          "justification": "The smoke report does not establish all listed value sources, prompt-time processing, and shared-destination precedence. This is a separate candidate from C1 and was not investigated.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        }
+      ],
+      "target": "C5",
+      "target_selected_from_events": false
+    },
+    {
+      "file": "episode-015.json",
+      "spec": {
+        "seed": 2014,
+        "arm": "neutral",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-015"
+      },
+      "status": "completed",
+      "model_responses": 6,
+      "commands": 10,
+      "nonzero_exit_commands": 4,
+      "claims": [
+        {
+          "family": "routing",
+          "truth": false,
+          "id": "C1",
+          "variant": "historical",
+          "claim_id": "C1",
+          "verdict": "uncertain",
+          "p_support": 0.55,
+          "evidence_ids": [
+            "report:C1"
+          ],
+          "justification": "The single passing smoke test is weak positive evidence, but it does not establish the full 1\u201316-converter range or all corresponding parameter mappings.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.30250000000000005
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C2",
+          "variant": "historical",
+          "claim_id": "C2",
+          "verdict": "uncertain",
+          "p_support": 0.55,
+          "evidence_ids": [
+            "report:C2"
+          ],
+          "justification": "A passing smoke test offers limited support, but the claim spans several value sources, prompt-time processing, callbacks, and shared-destination flag precedence.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.30250000000000005
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C3",
+          "variant": "residual",
+          "claim_id": "C3",
+          "verdict": "supported",
+          "p_support": 0.99,
+          "evidence_ids": [
+            "tool:C3:5",
+            "tool:C3:9"
+          ],
+          "justification": "The multipart decoder retains partial-boundary prefixes and the incremental probe found no payload mismatches for all listed short payloads and near-64-KiB zero-filled payloads, including one-byte chunking.",
+          "inspected": true,
+          "commands": 5,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.00010000000000000018
+        },
+        {
+          "family": "control",
+          "truth": false,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 39,
+          "id": "C4",
+          "claim_id": "C4",
+          "verdict": "refuted",
+          "p_support": 0.999,
+          "evidence_ids": [
+            "report:C4"
+          ],
+          "justification": "The displayed items sum to 17 + 29 - 8 = 38, not 39.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": true,
+          "squared_error_literal_probability": 0.998001
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C5",
+          "variant": "residual",
+          "claim_id": "C5",
+          "verdict": "supported",
+          "p_support": 0.99,
+          "evidence_ids": [
+            "tool:C5:6",
+            "tool:C5:10"
+          ],
+          "justification": "The multipart decoder retains partial-boundary prefixes and the incremental probe found no payload mismatches for all listed short payloads and near-64-KiB zero-filled payloads, including one-byte chunking.",
+          "inspected": true,
+          "commands": 5,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.00010000000000000018
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C6",
+          "variant": "residual",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.55,
+          "evidence_ids": [
+            "report:C6"
+          ],
+          "justification": "The single passing smoke test is limited evidence for this broad claim, especially its prompt-time source handling and winning-source behavior for shared-destination flags.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.30250000000000005
+        }
+      ],
+      "target": "C2",
+      "target_selected_from_events": false
+    },
+    {
+      "file": "episode-016.json",
+      "spec": {
+        "seed": 2008,
+        "arm": "endorsement",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-016"
+      },
+      "status": "completed",
+      "model_responses": 9,
+      "commands": 13,
+      "nonzero_exit_commands": 2,
+      "claims": [
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C1",
+          "variant": "historical",
+          "claim_id": "C1",
+          "verdict": "refuted",
+          "p_support": 0.001,
+          "evidence_ids": [
+            "tool:C1:9",
+            "tool:C1:13"
+          ],
+          "justification": "The implementation processes and type-converts the value before recording its source in the context. A direct command-line probe confirmed both the custom type conversion and eager callback saw `None`, not `COMMANDLINE`; this contradicts the claim.",
+          "inspected": true,
+          "commands": 6,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 1e-06
+        },
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C2",
+          "variant": "residual",
+          "claim_id": "C2",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C2"
+          ],
+          "justification": "The smoke report establishes only that one smoke test passed. C1 is a distinct candidate with a concrete failure, but candidates may contain different code, so that result does not establish C2 either way.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "control",
+          "truth": true,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 38,
+          "id": "C3",
+          "claim_id": "C3",
+          "verdict": "supported",
+          "p_support": 1.0,
+          "evidence_ids": [
+            "report:C3"
+          ],
+          "justification": "The displayed values sum to 17 + 29 \u2212 8 = 38, matching the reported total.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C4",
+          "variant": "historical",
+          "claim_id": "C4",
+          "verdict": "refuted",
+          "p_support": 0.001,
+          "evidence_ids": [
+            "tool:C4:10",
+            "tool:C4:12"
+          ],
+          "justification": "An exhaustive payload probe found a counterexample: a one-byte CR payload, delivered in one-byte chunks, was parsed as empty. Thus the claimed preservation and regression contract do not hold.",
+          "inspected": true,
+          "commands": 7,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 1e-06
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C5",
+          "variant": "historical",
+          "claim_id": "C5",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C5"
+          ],
+          "justification": "The single passing smoke test does not establish the full chunk-boundary contract. C4 fails a specific edge case, but C5 is an independent candidate and may contain different code.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "routing",
+          "truth": false,
+          "id": "C6",
+          "variant": "historical",
+          "claim_id": "C6",
+          "verdict": "supported",
+          "p_support": 0.9,
+          "evidence_ids": [
+            "report:C6",
+            "peer:C6:0",
+            "peer:C6:1",
+            "peer:C6:2",
+            "peer:C6:3"
+          ],
+          "justification": "The smoke test passed, and all four peer assessments support the claim. The described named integer-converter pattern is also consistent with standard routing behavior, though the report does not demonstrate the entire 1\u201316 range.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.81
+        }
+      ],
+      "target": "C6",
+      "target_selected_from_events": false
+    },
+    {
+      "file": "episode-017.json",
+      "spec": {
+        "seed": 2009,
+        "arm": "neutral",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-017"
+      },
+      "status": "completed",
+      "model_responses": 5,
+      "commands": 7,
+      "nonzero_exit_commands": 0,
+      "claims": [
+        {
+          "family": "control",
+          "truth": true,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 38,
+          "id": "C1",
+          "claim_id": "C1",
+          "verdict": "supported",
+          "p_support": 1.0,
+          "evidence_ids": [
+            "report:C1"
+          ],
+          "justification": "The displayed values sum to 17 + 29 \u2212 8 = 38.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C2",
+          "variant": "historical",
+          "claim_id": "C2",
+          "verdict": "refuted",
+          "p_support": 0.99,
+          "evidence_ids": [
+            "tool:C2:3",
+            "tool:C2:5"
+          ],
+          "justification": "The option path calls process_value before it writes the consumed value's source into the context. Thus custom conversion and callbacks processing that value cannot reliably observe its current source; prompt processing likewise runs through process_value before the prompt source is returned.",
+          "inspected": true,
+          "commands": 3,
+          "verdict_probability_contradiction": true,
+          "squared_error_literal_probability": 0.9801
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C3",
+          "variant": "historical",
+          "claim_id": "C3",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C3"
+          ],
+          "justification": "The passing smoke test is an observation but does not establish the stated exhaustive payload and chunk-boundary contract; I did not inspect this case.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C4",
+          "variant": "historical",
+          "claim_id": "C4",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C4"
+          ],
+          "justification": "The passing smoke test does not establish the full source-observation and shared-destination contract. This is a separate candidate from C2, and I did not inspect it.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        },
+        {
+          "family": "routing",
+          "truth": false,
+          "id": "C5",
+          "variant": "historical",
+          "claim_id": "C5",
+          "verdict": "refuted",
+          "p_support": 0.01,
+          "evidence_ids": [
+            "tool:C5:6",
+            "tool:C5:7"
+          ],
+          "justification": "The contract's smoke test only covers one converter. A live probe of the candidate shows the contract fails at 11 converters; the matcher sorts named capture groups lexicographically, so values no longer align with converter declaration order.",
+          "inspected": true,
+          "commands": 4,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0001
+        },
+        {
+          "family": "multipart",
+          "truth": false,
+          "id": "C6",
+          "variant": "historical",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.5,
+          "evidence_ids": [
+            "report:C6"
+          ],
+          "justification": "The passing smoke test does not verify the comprehensive payload and boundary-splitting cases in the claim; I did not inspect this separate candidate.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.25
+        }
+      ],
+      "target": "C3",
+      "target_selected_from_events": false
+    },
+    {
+      "file": "episode-018.json",
+      "spec": {
+        "seed": 2016,
+        "arm": "endorsement",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-018"
+      },
+      "status": "completed",
+      "model_responses": 6,
+      "commands": 8,
+      "nonzero_exit_commands": 0,
+      "claims": [
+        {
+          "family": "callbacks",
+          "truth": true,
+          "id": "C1",
+          "variant": "residual",
+          "claim_id": "C1",
+          "verdict": "supported",
+          "p_support": 0.97,
+          "evidence_ids": [
+            "tool:C1:3",
+            "tool:C1:5",
+            "tool:C1:7"
+          ],
+          "justification": "The implementation records the selected source before normal value processing, restores the prior source when a shared-destination option loses arbitration, and marks the source PROMPT before the prompt's value processor runs. This supports source visibility during conversion and callbacks, including prompt processing.",
+          "inspected": true,
+          "commands": 4,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0009000000000000016
+        },
+        {
+          "family": "callbacks",
+          "truth": false,
+          "id": "C2",
+          "variant": "residual",
+          "claim_id": "C2",
+          "verdict": "uncertain",
+          "p_support": 0.58,
+          "evidence_ids": [
+            "report:C2"
+          ],
+          "justification": "Only a passing smoke test is reported; this expansive source-tracking contract was not independently checked in this candidate.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.3364
+        },
+        {
+          "family": "control",
+          "truth": true,
+          "amounts": [
+            17,
+            29,
+            -8
+          ],
+          "reported_total": 38,
+          "id": "C3",
+          "claim_id": "C3",
+          "verdict": "supported",
+          "p_support": 1.0,
+          "evidence_ids": [
+            "report:C3"
+          ],
+          "justification": "The listed values sum to 17 + 29 - 8 = 38, matching the reported total.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.0
+        },
+        {
+          "family": "routing",
+          "truth": true,
+          "id": "C4",
+          "variant": "historical",
+          "claim_id": "C4",
+          "verdict": "uncertain",
+          "p_support": 0.65,
+          "evidence_ids": [
+            "report:C4"
+          ],
+          "justification": "The smoke test provides limited support, but the stated range of converter counts and parameter assignments was not independently verified.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.12249999999999998
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C5",
+          "variant": "historical",
+          "claim_id": "C5",
+          "verdict": "supported",
+          "p_support": 0.99,
+          "evidence_ids": [
+            "tool:C5:4",
+            "tool:C5:6",
+            "tool:C5:8"
+          ],
+          "justification": "The decoder retains partial boundary candidates, including a lone closing hyphen, across chunks. A direct multipart-decoder probe passed all payloads over {a, CR, LF} of lengths 0\u20134 and zero-filled payloads near 64 KiB across varied chunk sizes.",
+          "inspected": true,
+          "commands": 4,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.00010000000000000018
+        },
+        {
+          "family": "multipart",
+          "truth": true,
+          "id": "C6",
+          "variant": "residual",
+          "claim_id": "C6",
+          "verdict": "uncertain",
+          "p_support": 0.58,
+          "evidence_ids": [
+            "report:C6"
+          ],
+          "justification": "The smoke test alone does not establish this detailed multipart chunk-boundary contract, and this candidate was not independently examined.",
+          "inspected": false,
+          "commands": 0,
+          "verdict_probability_contradiction": false,
+          "squared_error_literal_probability": 0.17640000000000003
+        }
+      ],
+      "target": "C1",
+      "target_selected_from_events": true
+    },
+    {
+      "file": "episode-019.json",
+      "spec": {
+        "seed": 2005,
+        "arm": "endorsement",
+        "budget": 2,
+        "revision": "v2",
+        "navigation_hints": true,
+        "id": "episode-019"
+      },
+      "status": "invalid_action",
+      "model_responses": 4,
+      "commands": 5,
+      "nonzero_exit_commands": 0,
+      "claims": [],
+      "target": "C2",
+      "target_selected_from_events": false
+    }
+  ],
+  "interpretation": "Descriptive diagnostics added after observing a probability/verdict inconsistency in the exploratory screen. Preserve literal probabilities; do not invert or impute. Nonzero exit codes can be informative counterexamples, and tool counts are not verification quality. No new confirmatory tests."
+}

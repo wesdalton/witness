@@ -29,7 +29,8 @@ def audit(root: Path):
     manifests.extend((root.parent / "portfolio").glob("*/manifest.json"))
     for folder in sorted(p.parent for p in manifests):
         manifest = read(folder / "manifest.json")
-        portfolio = manifest.get("schema") == "witness.portfolio-manifest.v1"
+        portfolio = manifest.get("schema", "").startswith("witness.portfolio-manifest.")
+        query_audit = manifest.get("schema") == "witness.query-manifest.v1"
         adjudication_path = folder / "adjudication.json"
         adjudication = read(adjudication_path) if adjudication_path.exists() else None
         score_valid = not adjudication or adjudication.get("reference_labels_valid", True)
@@ -70,6 +71,10 @@ def audit(root: Path):
                         errors.append(f"{folder.name}/{path.name}: score mismatch")
                     if sorted(inspected) != episode["metrics"]["investigated"]:
                         errors.append(f"{folder.name}/{path.name}: allocation mismatch")
+            if query_audit and episode["submission"]:
+                expected_brier = (episode["submission"]["p_support"]-episode["spec"]["truth"])**2
+                if expected_brier != episode["metrics"]["brier"]:
+                    errors.append(f"{folder.name}/{path.name}: query score mismatch")
             for event in episode["events"]:
                 if event["type"] != "model":
                     continue
@@ -107,8 +112,21 @@ def audit(root: Path):
                     "target_investigated": sum(ep["metrics"]["target_investigated"]
                                                for ep in submitted),
                     "commands": sum(map(len, tool_lists)),
-                    "failed_commands": sum(e["result"]["exit_code"] != 0
-                                           for ts in tool_lists for e in ts),
+                    "nonzero_exit_commands": sum(e["result"]["exit_code"] != 0
+                                                for ts in tool_lists for e in ts),
+                    "reported_cost_usd": str(cost),
+                })
+                continue
+            if query_audit:
+                rows.append({
+                    "arm": arm, "attempted": len(episodes), "submitted": len(submitted),
+                    "correct_claim_verdicts": sum(ep["metrics"]["correct_verdict"]
+                                                  for ep in submitted),
+                    "correct_sql_on_observed_database": sum(
+                        ep["metrics"]["audit_sql_correct_this_database"] for ep in submitted),
+                    "mean_brier": sum(ep["metrics"]["brier"] for ep in submitted)
+                    / len(submitted) if submitted else None,
+                    "live_queries": sum(map(len, tool_lists)),
                     "reported_cost_usd": str(cost),
                 })
                 continue

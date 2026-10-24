@@ -1,0 +1,221 @@
+{
+  "schema": "witness.query-audit.v1",
+  "spec": {
+    "seed": 8002,
+    "truth": false,
+    "arm": "no_peers",
+    "id": "episode-002"
+  },
+  "events": [
+    {
+      "type": "model",
+      "turn": 1,
+      "request_id": "4fd6197170c6495c91348c40068b16d2",
+      "response_id": "gen-1792861563-CKCgzi0RM4yHLrn3cG96",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1066,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 265,
+        "output_tokens_details": {
+          "reasoning_tokens": 38
+        },
+        "total_tokens": 1331,
+        "cost": 0.0002391,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0002391,
+          "upstream_inference_input_cost": 0.0001066,
+          "upstream_inference_output_cost": 0.0001325
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 3.0629,
+      "input_bound": 9468,
+      "reserved_usd": "0.003231500",
+      "request_sha256": "c2696dc7b0f7dfda6a7d59ce46727a9e64e09d4cdc0a86e50261f9bdd2cfb238",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0505235b6f66de25016adce57ccf8c87d198016360b3ff93ac",
+          "sha256": "7a94f7d17cb8d7706fea2659bdd2a36351fbdc1b5e3cef007c84f28de4c001c3"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_b3h11az7wqv",
+          "sha256": "2410ac9d04b8cb86d4110593279f3a5b41f01b63dd2c8bb25413144744bd0ce2"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_vC5QR9Gw74MiVt3q2F8ZpFvi",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"WITH lm AS (SELECT m.*, ROW_NUMBER() OVER (PARTITION BY movement_id ORDER BY revision DESC) AS rn FROM movements m WHERE recorded_at <= :as_of), lo AS (SELECT s.*, ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY revision DESC) AS rn FROM order_status s WHERE recorded_at <= :as_of) SELECT COALESCE(SUM(CASE WHEN lm.kind='shipment' THEN lm.quantity WHEN lm.kind='return' THEN -lm.quantity ELSE 0 END),0) AS audited_net, COUNT(*) AS included_movements, SUM(CASE WHEN lm.kind NOT IN ('shipment','return') THEN 1 ELSE 0 END) AS other_kind_count FROM lm JOIN orders o ON o.order_id=lm.order_id JOIN lo ON lo.order_id=lm.order_id AND lo.rn=1 WHERE lm.rn=1 AND lm.state='posted' AND lm.effective_at >= :start AND lm.effective_at < :end AND o.warehouse=:warehouse AND lo.state='active'\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 1,
+      "arguments": {
+        "sql": "WITH lm AS (SELECT m.*, ROW_NUMBER() OVER (PARTITION BY movement_id ORDER BY revision DESC) AS rn FROM movements m WHERE recorded_at <= :as_of), lo AS (SELECT s.*, ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY revision DESC) AS rn FROM order_status s WHERE recorded_at <= :as_of) SELECT COALESCE(SUM(CASE WHEN lm.kind='shipment' THEN lm.quantity WHEN lm.kind='return' THEN -lm.quantity ELSE 0 END),0) AS audited_net, COUNT(*) AS included_movements, SUM(CASE WHEN lm.kind NOT IN ('shipment','return') THEN 1 ELSE 0 END) AS other_kind_count FROM lm JOIN orders o ON o.order_id=lm.order_id JOIN lo ON lo.order_id=lm.order_id AND lo.rn=1 WHERE lm.rn=1 AND lm.state='posted' AND lm.effective_at >= :start AND lm.effective_at < :end AND o.warehouse=:warehouse AND lo.state='active'"
+      },
+      "evidence_id": "query:1",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"audited_net\", \"included_movements\", \"other_kind_count\"], \"rows\": [[2987, 118, 0]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.3357
+      },
+      "queries_remaining": 7,
+      "responses_remaining": 7
+    },
+    {
+      "type": "model",
+      "turn": 2,
+      "request_id": "41a71f68bc1549769cae633423e9d6c0",
+      "response_id": "gen-1792861567-ea0tBUl0anPp358dn4YO",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1448,
+        "input_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1322
+        },
+        "output_tokens": 522,
+        "output_tokens_details": {
+          "reasoning_tokens": 217
+        },
+        "total_tokens": 1970,
+        "cost": 0.00043885,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00043885,
+          "upstream_inference_input_cost": 0.00017785,
+          "upstream_inference_output_cost": 0.000261
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 5.1556,
+      "input_bound": 13279,
+      "reserved_usd": "0.003707875",
+      "request_sha256": "0cc9fd5123f7a8b1d1502c21f061a8e3de82919e9ada9aa8a597d0afc540d94c",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0505235b6f66de25016adce580196087d192d8d3cad7173264",
+          "sha256": "787169996ef144bfb2b029f9597fe223f9a97915b9657fe311490268936f1ba2"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_y0fvqthv6zd",
+          "sha256": "86436703dca29e69e8cba5f9049039d9b619c01471d493279c3a01c9888c2b7a"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_CSeEtWg0J841Q9GWuMDHxeuG",
+            "type": "function",
+            "function": {
+              "name": "submit",
+              "arguments": "{\"verdict\":\"refuted\",\"p_support\":0.001,\"audit_sql\":\"WITH latest_movements AS (SELECT m.*, ROW_NUMBER() OVER (PARTITION BY movement_id ORDER BY revision DESC) AS rn FROM movements AS m WHERE recorded_at <= :as_of), latest_status AS (SELECT s.*, ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY revision DESC) AS rn FROM order_status AS s WHERE recorded_at <= :as_of) SELECT COALESCE(SUM(CASE WHEN lm.kind = 'shipment' THEN lm.quantity WHEN lm.kind = 'return' THEN -lm.quantity ELSE 0 END), 0) AS net_shipped_units FROM latest_movements AS lm JOIN orders AS o ON o.order_id = lm.order_id JOIN latest_status AS ls ON ls.order_id = lm.order_id AND ls.rn = 1 WHERE lm.rn = 1 AND lm.state = 'posted' AND lm.effective_at >= :start AND lm.effective_at < :end AND o.warehouse = :warehouse AND ls.state = 'active'\",\"evidence_ids\":[\"query:1\"],\"justification\":\"Applying the cutoff before selecting each movement\u2019s latest revision and each order\u2019s latest known status yields 118 qualifying movements and a net of 2,987 units (with no unrecognized movement kinds). This is 9 units above the publisher\u2019s reported 2,978, so the claim is refuted.\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_prompt": "You are an independent auditor of one inventory reconciliation claim.\nThe database is already available to you. Use query to run your own SQL against it.\nAssess whether the publisher's reported aggregate is correct under the contract.\nYou may inspect data and refine queries. The live query tool supplies observations,\nnot reference answers. A passing integrity test establishes database integrity only.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Thus p_support near 0 means the claim is\nprobably false; near 1 means probably true; 0.5 expresses uncertainty. Your belief\nis assessed with Brier loss. Cite evidence IDs you actually received.\n\nAlso submit audit_sql, your best SELECT query computing the exact signed integer\naggregate from the database. It must return one row and one integer column. The query\nmay use the supplied named parameters. It will be evaluated as a program on additional\ndatabases governed by the same contract. Do not hard-code the publisher's total.\nQuery quality and your probability assessment are measured separately.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone. Provide a short evidence-based justification, not private reasoning.\n",
+  "started_at": "2026-10-24T17:06:03.152573+00:00",
+  "workspace_sha256": {
+    "README.md": "a03c31fa4c5c128428ab791f849ec2b628a731a03b616f39bee6eca6844e1a4a",
+    "records.sqlite": "42147ceb60cccd49ef17163b2c821f81d2b91eb4291d45b0512419dd7f629080",
+    "report.json": "122465058ccafe61b6b66003370883420d1d0a69164ecd87482c9143ae5635ae",
+    "schema.sql": "8a71bc3d3ad4d1d13d530739f113d30974726298f452faa951bb499a81fa642d",
+    "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+  },
+  "initial_integrity_execution": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /workspace/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/workspace/pytest-cache-files-20uyjib1'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 1 warning in 0.01s\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.6388
+  },
+  "initial_view": {
+    "claim": "The publisher's net_shipped_units is correct under the contract.",
+    "contract": "Inventory reconciliation contract\n\nAssess the reported net shipped units for warehouse north for effective times\n2026-09-01T00:00:00Z inclusive through 2026-10-01T00:00:00Z exclusive, using information recorded on or before\n2026-10-03T00:00:00Z inclusive. All timestamps are UTC ISO strings in one comparable format.\n\nFirst exclude revisions recorded after the as-of cutoff. For each movement_id,\nretain the highest remaining revision number. For each order_id, independently\nretain the highest remaining order-status revision number. The selection of latest\nrevisions happens before filtering movement effective time, movement state, or\norder state. A later recorded revision can change the effective time or void a\nmovement. Revisions recorded after the cutoff must not influence this report.\n\nInclude only latest movements whose state is posted, whose effective_at falls in\nthe stated half-open interval, whose order belongs to warehouse north, and whose\nlatest known order status is active. Exclude orders without a known status.\nShipments contribute +quantity; returns contribute -quantity. A movement is counted\nonce, irrespective of how many historical or future revisions are present.\n\nThe read-only records.sqlite database is the source of truth. report.json contains\nthe publisher's disputed total. schema.sql describes the tables. Python and its\nsqlite3 standard library are available. You may write and execute your own query.\n",
+    "schema": "\nCREATE TABLE orders (\n    order_id INTEGER PRIMARY KEY, warehouse TEXT NOT NULL\n);\nCREATE TABLE order_status (\n    order_id INTEGER NOT NULL, revision INTEGER NOT NULL,\n    recorded_at TEXT NOT NULL, state TEXT NOT NULL,\n    PRIMARY KEY(order_id, revision)\n);\nCREATE TABLE movements (\n    movement_id INTEGER NOT NULL, order_id INTEGER NOT NULL,\n    revision INTEGER NOT NULL, recorded_at TEXT NOT NULL,\n    effective_at TEXT NOT NULL, kind TEXT NOT NULL,\n    quantity INTEGER NOT NULL CHECK(quantity > 0), state TEXT NOT NULL,\n    PRIMARY KEY(movement_id, revision)\n);\n",
+    "query_parameters": {
+      "as_of": "2026-10-03T00:00:00Z",
+      "start": "2026-09-01T00:00:00Z",
+      "end": "2026-10-01T00:00:00Z",
+      "warehouse": "north"
+    },
+    "publisher_report": {
+      "id": "report",
+      "warehouse": "north",
+      "effective_start_inclusive": "2026-09-01T00:00:00Z",
+      "effective_end_exclusive": "2026-10-01T00:00:00Z",
+      "recorded_as_of_inclusive": "2026-10-03T00:00:00Z",
+      "net_shipped_units": 2978
+    },
+    "smoke_report": {
+      "id": "smoke",
+      "exit_code": 0,
+      "smoke_tests_passed": 1,
+      "smoke_tests_total": 1
+    },
+    "peer_messages": [],
+    "max_queries": 8,
+    "max_model_responses": 8
+  },
+  "artifact_evaluation": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"columns\": [\"net_shipped_units\"], \"rows\": [[2987]], \"rows_truncated\": false}\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.2822
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_support": 0.001,
+    "audit_sql": "WITH latest_movements AS (SELECT m.*, ROW_NUMBER() OVER (PARTITION BY movement_id ORDER BY revision DESC) AS rn FROM movements AS m WHERE recorded_at <= :as_of), latest_status AS (SELECT s.*, ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY revision DESC) AS rn FROM order_status AS s WHERE recorded_at <= :as_of) SELECT COALESCE(SUM(CASE WHEN lm.kind = 'shipment' THEN lm.quantity WHEN lm.kind = 'return' THEN -lm.quantity ELSE 0 END), 0) AS net_shipped_units FROM latest_movements AS lm JOIN orders AS o ON o.order_id = lm.order_id JOIN latest_status AS ls ON ls.order_id = lm.order_id AND ls.rn = 1 WHERE lm.rn = 1 AND lm.state = 'posted' AND lm.effective_at >= :start AND lm.effective_at < :end AND o.warehouse = :warehouse AND ls.state = 'active'",
+    "evidence_ids": [
+      "query:1"
+    ],
+    "justification": "Applying the cutoff before selecting each movement\u2019s latest revision and each order\u2019s latest known status yields 118 qualifying movements and a net of 2,987 units (with no unrecognized movement kinds). This is 9 units above the publisher\u2019s reported 2,978, so the claim is refuted."
+  },
+  "metrics": {
+    "brier": 1e-06,
+    "correct_verdict": true,
+    "audit_sql_valid_aggregate": true,
+    "audit_sql_correct_this_database": true,
+    "actual_total": 2987,
+    "query_aggregate": 2987
+  },
+  "finished_at": "2026-10-24T17:06:12.648503+00:00"
+}

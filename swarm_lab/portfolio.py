@@ -13,6 +13,7 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
+from swarm_lab import portfolio_v2_cases
 from swarm_lab.agent_budget import PhaseBudget
 from swarm_lab.agent_study import PHASE_LEDGER, Client, append, digest, save, tool_schema
 from swarm_lab.agent_workspace import Workspace
@@ -26,6 +27,11 @@ LIVE_HOLD_REASON = (
     "Portfolio v1 has invalid positive labels: the calibration agent reproduced "
     "counterexamples in multipart and callbacks. Revise and validate the reference "
     "contract under a new protocol before further inference; see research/portfolio/report.md."
+)
+NAVIGATION_HINT = (
+    "\nEnvironment details: package directories click/ or werkzeug/ are directly "
+    "under /workspace. Available shell utilities include grep, sed, find and head. "
+    "Use grep for searches; rg is not installed.\n"
 )
 SYSTEM = """You are the independent auditor for a portfolio of submitted release claims.
 Assess each claim using the evidence you choose to obtain. Maximize 1 minus the mean
@@ -73,7 +79,7 @@ TOOLS = [
 ]
 
 
-def make_portfolio(seed: int):
+def make_portfolio(seed: int, revision="v1"):
     rng = random.Random(f"witness-portfolio-v1:{seed}:truth")
     cases = [{"family": family, "truth": bool(rng.getrandbits(1))}
              for family in ("multipart", "callbacks", "routing", "multipart", "callbacks")]
@@ -83,12 +89,16 @@ def make_portfolio(seed: int):
     random.Random(f"witness-portfolio-v1:{seed}:order").shuffle(cases)
     for index, case in enumerate(cases):
         case["id"] = f"C{index+1}"
+        if revision == "v2" and case["family"] != "control":
+            variant_rng = random.Random(f"witness-portfolio-v2:{seed}:{index}:variant")
+            case["variant"] = ("residual" if case["family"] != "routing"
+                               and variant_rng.getrandbits(1) else "historical")
     targets = [case["id"] for case in cases if case["family"] != "control"]
     target = random.Random(f"witness-portfolio-v1:{seed}:target").choice(targets)
     return {"seed": seed, "cases": cases, "target": target}
 
 
-def view(portfolio, arm, budget):
+def view(portfolio, arm, budget, revision="v1"):
     claims = []
     for case in portfolio["cases"]:
         cid = case["id"]
@@ -96,7 +106,8 @@ def view(portfolio, arm, budget):
             claim = f"The displayed line items sum to {case['reported_total']}."
             report = {"line_items": case["amounts"], "reported_total": case["reported_total"]}
         else:
-            claim = CLAIMS[case["family"]]
+            contracts = portfolio_v2_cases.CLAIMS if revision == "v2" else CLAIMS
+            claim = contracts[case["family"]]
             report = {"smoke_tests_passed": 1, "smoke_tests_total": 1, "exit_code": 0}
         claims.append({"claim_id": cid, "claim": claim,
                        "report": {"id": f"report:{cid}", **report}})
@@ -204,13 +215,15 @@ def score(portfolio, submission, inspected):
 
 
 def run_episode(spec, output, client, image):
-    portfolio = make_portfolio(spec["seed"])
-    initial = view(portfolio, spec["arm"], spec["budget"])
-    messages = [{"role": "system", "content": SYSTEM},
+    revision = spec.get("revision", "v1")
+    portfolio = make_portfolio(spec["seed"], revision)
+    initial = view(portfolio, spec["arm"], spec["budget"], revision)
+    system = SYSTEM + (NAVIGATION_HINT if spec.get("navigation_hints") else "")
+    messages = [{"role": "system", "content": system},
                 {"role": "user", "content": json.dumps(initial)}]
-    record = {"schema": "witness.portfolio.v1", "kind": "live_portfolio_audit",
+    record = {"schema": f"witness.portfolio.{revision}", "kind": "live_portfolio_audit",
               "spec": spec, "portfolio": portfolio, "initial_view": initial,
-              "system_prompt": SYSTEM, "events": [],
+              "system_prompt": system, "events": [],
               "started_at": datetime.now(UTC).isoformat()}
     path = output / f"{spec['id']}.jsonl"
     append(path, {"type": "start", **record})
@@ -247,8 +260,13 @@ def run_episode(spec, output, client, image):
                 first_access = cid not in inspected
                 inspected.add(cid)
                 if cid not in workspaces:
-                    workspaces[cid] = (ControlWorkspace(case, image) if case["family"] == "control"
-                                       else CaseWorkspace(case["family"], case["truth"], image))
+                    if case["family"] == "control":
+                        workspaces[cid] = ControlWorkspace(case, image)
+                    elif revision == "v2":
+                        workspaces[cid] = portfolio_v2_cases.ContractWorkspace(
+                            case["family"], case["truth"], image, case["variant"])
+                    else:
+                        workspaces[cid] = CaseWorkspace(case["family"], case["truth"], image)
                 command_count += 1
                 result = workspaces[cid].execute(["bash", "-lc", args["command"]])
                 eid = f"tool:{cid}:{command_count}"
@@ -281,10 +299,41 @@ def run_episode(spec, output, client, image):
     return record
 
 
+def unattempted_specs(folder):
+    """Continue only undispatched specs; preserve every started episode as-is."""
+    manifest = json.loads((folder / "manifest.json").read_text())
+    completion = json.loads((folder / "completion.json").read_text())
+    if completion["status"] != "stopped_for_review":
+        raise ValueError("Continuation requires a stopped, reviewed batch")
+    attempted = {p.stem for p in folder.glob("episode-*.jsonl")}
+    completed_files = {p.stem for p in folder.glob("episode-*.json")}
+    if attempted != completed_files:
+        raise ValueError("Unfinished episode log requires review before continuation")
+    if len(attempted) != completion["attempted_episodes"]:
+        raise ValueError("Attempted episode count does not match completion")
+    specs = [spec for spec in manifest["episodes"] if spec["id"] not in attempted]
+    if not specs:
+        raise ValueError("No unattempted episodes remain")
+    return manifest, specs
+
+
+def stop_after_episode(status, continue_invalid_actions=False):
+    return status != "completed" and not (
+        continue_invalid_actions and status == "invalid_action")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", choices=["openai/gpt-6-luna", "openai/gpt-6.1-sol"],
                         default="openai/gpt-6.1-sol")
+    parser.add_argument("--revision", choices=["v1", "v2"], default="v1")
+    parser.add_argument("--navigation-hints", action="store_true")
+    parser.add_argument("--reasoning", choices=["medium"])
+    parser.add_argument("--max-output-tokens", type=int, choices=[2048, 3072, 4096])
+    parser.add_argument("--responses-input-limit", type=int, choices=[160000, 256000],
+                        default=160000)
+    parser.add_argument("--remaining-from", type=Path)
+    parser.add_argument("--continue-invalid-actions", action="store_true")
     parser.add_argument("--seeds", type=int, nargs="+", default=[1001])
     parser.add_argument("--arms", choices=ARMS, nargs="+", default=["no_peers"])
     parser.add_argument("--budget", type=int, choices=[2, 4, 6], default=6)
@@ -292,25 +341,55 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--live", action="store_true")
     args = parser.parse_args()
+    strong = args.model.endswith("gpt-6.1-sol")
+    reasoning = args.reasoning or ("medium" if strong else "disabled")
+    use_responses = reasoning != "disabled"
+    max_tokens = args.max_output_tokens or (4096 if use_responses else 3072)
+    if args.responses_input_limit > 160000 and (
+            args.model != "openai/gpt-6-luna" or not use_responses):
+        raise BudgetError("Expanded Responses ceiling is reviewed only for Luna reasoning")
     if len(set(args.seeds)) != len(args.seeds) or len(set(args.arms)) != len(args.arms):
         raise ValueError("Duplicate seed or arm")
-    specs = [{"seed": seed, "arm": arm, "budget": args.budget}
+    specs = [{"seed": seed, "arm": arm, "budget": args.budget, "revision": args.revision,
+              "navigation_hints": args.navigation_hints}
              for seed in args.seeds for arm in args.arms]
     random.Random("witness-portfolio-order-v1").shuffle(specs)
     for i, spec in enumerate(specs):
         spec["id"] = f"episode-{i+1:03d}"
-    plan = {"model": args.model, "episodes": specs, "max_calls": len(specs)*16,
+    continuation = {}
+    if args.remaining_from:
+        previous, specs = unattempted_specs(args.remaining_from)
+        if (previous["model"], previous["reasoning"], previous["max_output_tokens"]) != (
+                args.model, reasoning, max_tokens):
+            raise ValueError("Continuation changes model or generation settings")
+        if any((s["revision"], s["budget"], s["navigation_hints"]) != (
+                args.revision, args.budget, args.navigation_hints) for s in specs):
+            raise ValueError("Continuation changes episode settings")
+        if previous["system_prompt"] != SYSTEM + (
+                NAVIGATION_HINT if args.navigation_hints else "") or previous["tools"] != TOOLS:
+            raise ValueError("Continuation changes model-facing instructions")
+        continuation = {
+            "continuation_of": str(args.remaining_from.resolve().relative_to(ROOT)),
+            "continuation_manifest_sha256": digest(
+                (args.remaining_from / "manifest.json").read_bytes()),
+            "continuation_policy": "Unattempted episodes only; no retry or replacement"}
+    plan = {"model": args.model, "reasoning": reasoning, "max_output_tokens": max_tokens,
+            "episodes": specs, "max_calls": len(specs)*16,
+            "responses_input_limit": args.responses_input_limit, **continuation,
+            "continue_invalid_actions": args.continue_invalid_actions,
             "batch_ceiling_usd": str(money(args.batch_ceiling)), "phase_ceiling_usd": "25",
-            "live_hold_reason": LIVE_HOLD_REASON or None}
+            "live_hold_reason": LIVE_HOLD_REASON if args.revision == "v1" else None}
     if not args.live:
         print(json.dumps(plan, indent=2))
         return 0
-    if LIVE_HOLD_REASON:
+    if args.revision == "v1" and LIVE_HOLD_REASON:
         raise BudgetError(LIVE_HOLD_REASON)
     args.out.mkdir(parents=True, exist_ok=False)
     image = subprocess.check_output(["docker", "image", "inspect", IMAGE,
                                      "--format", "{{.Id}}"], text=True).strip()
-    references = verify_cases(image)
+    references = (portfolio_v2_cases.verify_contracts(image)
+                  + portfolio_v2_cases.verify_residuals(image)
+                  if args.revision == "v2" else verify_cases(image))
     model_record, input_price, output_price = catalog(args.model)
     key = load_key(ROOT / ".env")
     if not key:
@@ -322,50 +401,68 @@ def main():
                Path(__file__).with_name("agent_workspace.py"),
                Path(__file__).with_name("agent_study.py"),
                Path(__file__).with_name("agent_budget.py"),
-               Path(__file__).with_name("pilot.py"), PROTOCOL]
+               Path(__file__).with_name("pilot.py"),
+               Path(__file__).with_name("portfolio_v2_cases.py"),
+               PROTOCOL.with_name("protocol-v2.md") if args.revision == "v2" else PROTOCOL,
+               ROOT / "research/portfolio/loop-decisions.md",
+               ROOT / "research/portfolio/novelty-review.md",
+               ROOT / "research/portfolio/screening-01.md",
+               ROOT / "scripts/analyze_portfolio_pairs.py"]
+    if args.remaining_from:
+        sources.append(ROOT / "research/portfolio/screening-01-continuation.md")
     sources.extend(p for p in VENDOR.rglob("*") if p.is_file())
     sources.append(ROOT / "research/portfolio/sandbox/Dockerfile")
     for source in sources:
         target = args.out / "source" / source.relative_to(ROOT)
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
-    strong = args.model.endswith("gpt-6.1-sol")
-    manifest = {**plan, "schema": "witness.portfolio-manifest.v1", "batch": batch,
+    manifest = {**plan, "schema": f"witness.portfolio-manifest.{args.revision}", "batch": batch,
                 "started_at": datetime.now(UTC).isoformat(), "image": image,
                 "reference_gate": references, "catalog": model_record, "key_limits": key_limits,
                 "source_sha256": {str(p.relative_to(ROOT)): digest(p.read_bytes())
                                   for p in sources},
-                "system_prompt": SYSTEM, "tools": TOOLS,
-                "settings": {"max_output_tokens": 4096 if strong else 3072,
-                             "reasoning": "medium" if strong else "disabled",
-                             "api": "responses" if strong else "chat_completions",
+                "system_prompt": SYSTEM + (NAVIGATION_HINT if args.navigation_hints else ""),
+                "tools": TOOLS,
+                "settings": {"max_output_tokens": max_tokens,
+                             "reasoning": reasoning,
+                             "api": "responses" if use_responses else "chat_completions",
                              "retries": 0, "fallbacks": False, "provider": "openai",
                              "minimum_request_interval": 3.2, "sampling": "provider defaults"},
                 "git_head": subprocess.check_output(
                     ["git", "rev-parse", "HEAD"], text=True).strip()}
     save(args.out / "manifest.json", manifest)
     ledger = PhaseBudget(PHASE_LEDGER)
-    client_class = ResponsesClient if strong else Client
+    if model_record["context_length"] < args.responses_input_limit + max_tokens:
+        raise BudgetError("Reviewed short-context contract unavailable")
+    client_class = ResponsesClient if use_responses else Client
     client = client_class(key, args.model, ledger, batch, money(args.batch_ceiling),
                           input_price, output_price,
-                          max_tokens=4096 if strong else 3072, tools=TOOLS)
+                          max_tokens=max_tokens, tools=TOOLS,
+                          **({"reasoning": reasoning,
+                              "responses_input_limit": args.responses_input_limit} if use_responses
+                             else {"input_limit": 160000}))
     records = []
     for spec in specs:
         record = run_episode(spec, args.out, client, image)
         records.append(record)
         print(json.dumps({**spec, "status": record["status"], "metrics": record["metrics"]}),
               flush=True)
-        if record["status"] != "completed":
+        if stop_after_episode(record["status"], args.continue_invalid_actions):
             break
+    all_attempted = len(records) == len(specs)
+    completed_cleanly = all(r["status"] == "completed" for r in records)
+    allowed_statuses = {"completed", "invalid_action"} if args.continue_invalid_actions \
+        else {"completed"}
+    finished_allowed = all_attempted and all(r["status"] in allowed_statuses for r in records)
     save(args.out / "completion.json", {
-        "status": "completed" if len(records) == len(specs)
-        and all(r["status"] == "completed" for r in records) else "stopped_for_review",
+        "status": ("completed" if all_attempted and completed_cleanly else
+                   "completed_with_invalid_actions" if finished_allowed else "stopped_for_review"),
         "attempted_episodes": len(records), "planned_episodes": len(specs),
         "dispatched_requests": client.calls, "phase_budget": ledger.summary(),
         "finished_at": datetime.now(UTC).isoformat(),
     })
     print(json.dumps(ledger.summary()))
-    return 0 if all(r["status"] == "completed" for r in records) else 1
+    return 0 if finished_allowed else 1
 
 
 if __name__ == "__main__":
