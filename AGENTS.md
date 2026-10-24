@@ -9,6 +9,16 @@ Read `research/agent-study/report.md`, `decisions.md`, and `next-experiment.md`
 before continuing research. The next-experiment document is a design draft,
 not an implemented or completed study.
 
+Also read `research/portfolio/report.md` and `decisions.md`: the portfolio
+successor is implemented, but live inference is now stopped by a validity guard.
+One GPT-6.1 Sol calibration found reproducible counterexamples in two candidates
+labeled correct. Do not interpret its original accuracy/Brier as model errors or
+run more v1 portfolios. Preserve the raw labels and separate adjudication. A new
+protocol and a stronger reference gate are required before further paid inference.
+
+The user additionally instructed: stop doing things that Daybreak blocks. Treat
+rejections as stops; do not retry blocked actions through another route or tool.
+
 Before each paid batch, record the question, why its answer would change a
 research decision, a maximum reservation, and stopping criteria. Review the
 preceding stage's validity, failure modes, floor/ceiling effects, alternative
@@ -38,6 +48,10 @@ Current evidence: all 16 ledger screening episodes acquired source evidence and
 answered correctly, regardless of peer-message arm. Stop repeating that setup.
 The next useful study needs an actual opportunity cost across competing claims.
 Null or beneficial effects are valid results; do not tune cases to manufacture harm.
+
+Latest phase accounting: 85 requests, $0.089660865 response-reported cost and
+$1.217083625 retained reservations. This includes the seven-request portfolio
+calibration ($0.079943), alongside the prior 78 requests. Do not reset the ledger.
 
 Validation: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`, and
 `.venv/bin/python scripts/audit_agent_study.py`. Browser changes additionally use

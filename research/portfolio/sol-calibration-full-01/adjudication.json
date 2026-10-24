@@ -1,0 +1,26 @@
+{
+  "schema": "witness.portfolio-adjudication.v1",
+  "adjudicated_at": "2026-10-24T15:21:54.846221+00:00",
+  "reference_labels_valid": false,
+  "original_artifacts_unchanged": true,
+  "excluded_from_valid_accuracy_and_brier": true,
+  "basis": "Both agent-authored counterexamples replayed in fresh isolated containers with identical stdout.",
+  "corrections": [
+    {
+      "claim_id": "C3",
+      "family": "callbacks",
+      "original_truth": true,
+      "adjudicated_truth": false,
+      "reason": "Prompted eager option initially reports source None during conversion and callback."
+    },
+    {
+      "claim_id": "C4",
+      "family": "multipart",
+      "original_truth": true,
+      "adjudicated_truth": false,
+      "reason": "Streaming end-to-end parsing appends a CR to some valid payloads with small buffers."
+    }
+  ],
+  "replay_artifact": "../counterexample-replays.json",
+  "scope": "Validity of the claims in this recorded candidate environment, not a novelty or upstream-latest assertion."
+}

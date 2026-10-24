@@ -24,10 +24,18 @@ auditor inspected source and answered correctly. This is an early capability and
 measurement pilot, not evidence for the proposed cascade. The existing public
 website still describes the October 18 recorded-observation pilot.
 
+**Harder-task calibration:** a [six-claim software audit](research/portfolio/report.md)
+now uses historical Click and Werkzeug regressions with isolated live tools.
+GPT-6.1 Sol wrote adversarial probes and exposed two errors in our expected
+answers. Both counterexamples reproduced. Further portfolio inference is stopped
+until the reference labels are repaired; the original raw score is invalid.
+
 The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning
 only by default). The [protocol](research/agent-study/protocol.md),
 [stage decisions](research/agent-study/decisions.md), and
-[next experiment](research/agent-study/next-experiment.md) document the research.
+[next-experiment draft](research/agent-study/next-experiment.md) document that cycle.
+The [portfolio protocol](research/portfolio/protocol.md) and
+[decision log](research/portfolio/decisions.md) record its successor.
 
 ## Try it locally
 

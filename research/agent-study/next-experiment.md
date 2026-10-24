@@ -1,5 +1,9 @@
 # Next experiment: allocation of verification across competing claims
 
+Historical design draft. The [portfolio successor](../portfolio/report.md) has
+since been implemented and calibrated. That calibration exposed two incorrect
+reference labels; further inference is disabled pending a revised validity gate.
+
 Design draft after the 24 October pilot. Not implemented or run. Freeze a final
 protocol and pass the free validity gate before dispatching further model calls.
 

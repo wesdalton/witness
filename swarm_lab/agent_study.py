@@ -191,17 +191,18 @@ def model_catalog(model: str):
 
 class Client:
     def __init__(self, key, model, budget, batch, batch_limit, input_price, output_price,
-                 max_tokens=1024, interval=3.2):
+                 max_tokens=1024, interval=3.2, tools=None):
         self.key, self.model, self.budget = key, model, budget
         self.batch, self.batch_limit = batch, batch_limit
         self.input_price, self.output_price = input_price, output_price
         self.max_tokens, self.interval = max_tokens, interval
+        self.tools = TOOLS if tools is None else tools
         self.last_request = 0.0
         self.calls = 0
 
     def generate(self, messages: list, final: bool = False):
         payload = {
-            "model": self.model, "messages": messages, "tools": TOOLS,
+            "model": self.model, "messages": messages, "tools": self.tools,
             "tool_choice": {"type": "function", "function": {"name": "submit"}}
             if final else "required",
             "max_tokens": self.max_tokens, "reasoning": {"enabled": False},

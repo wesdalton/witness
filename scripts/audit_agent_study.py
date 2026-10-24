@@ -25,8 +25,16 @@ def audit(root: Path):
         errors.append("Duplicate request reservation")
     if len(completions) != sum(row["type"] == "complete" for row in ledger):
         errors.append("Duplicate request completion")
-    for folder in sorted(p.parent for p in root.glob("*/manifest.json")):
+    manifests = list(root.glob("*/manifest.json"))
+    manifests.extend((root.parent / "portfolio").glob("*/manifest.json"))
+    for folder in sorted(p.parent for p in manifests):
         manifest = read(folder / "manifest.json")
+        portfolio = manifest.get("schema") == "witness.portfolio-manifest.v1"
+        adjudication_path = folder / "adjudication.json"
+        adjudication = read(adjudication_path) if adjudication_path.exists() else None
+        score_valid = not adjudication or adjudication.get("reference_labels_valid", True)
+        if not score_valid:
+            warnings.append(f"{folder.name}: invalid reference labels; accuracy/Brier excluded")
         source_dir = folder / "source"
         if not source_dir.exists():
             warnings.append(f"{folder.name}: no full source snapshot; hashes/configuration only")
@@ -46,6 +54,22 @@ def audit(root: Path):
                 errors.append(f"{folder.name}/{path.name}: event trace mismatch")
             if trace[-1]["status"] != episode["status"]:
                 errors.append(f"{folder.name}/{path.name}: completion mismatch")
+            if trace[-1]["submission"] != episode["submission"]:
+                errors.append(f"{folder.name}/{path.name}: submission mismatch")
+            if portfolio:
+                tools = [e for e in episode["events"] if e["type"] == "tool"]
+                inspected = {e["claim_id"] for e in tools}
+                if len(inspected) > episode["spec"]["budget"] or len(tools) > 24:
+                    errors.append(f"{folder.name}/{path.name}: investigation budget mismatch")
+                if episode["submission"]:
+                    truth = {c["id"]: c["truth"] for c in episode["portfolio"]["cases"]}
+                    assessments = episode["submission"]["assessments"]
+                    brier = sum((a["p_support"]-truth[a["claim_id"]])**2
+                                for a in assessments) / len(truth)
+                    if brier != episode["metrics"]["brier"]:
+                        errors.append(f"{folder.name}/{path.name}: score mismatch")
+                    if sorted(inspected) != episode["metrics"]["investigated"]:
+                        errors.append(f"{folder.name}/{path.name}: allocation mismatch")
             for event in episode["events"]:
                 if event["type"] != "model":
                     continue
@@ -70,6 +94,24 @@ def audit(root: Path):
             submitted = [ep for ep in episodes if ep["submission"]]
             cost = sum((Decimal(str(e["usage"]["cost"])) for ep in episodes
                         for e in ep["events"] if e["type"] == "model"), Decimal(0))
+            if portfolio:
+                rows.append({
+                    "arm": arm, "attempted": len(episodes), "submitted": len(submitted),
+                    "correct_claim_verdicts": sum(ep["metrics"]["correct_verdicts"]
+                                                  for ep in submitted) if score_valid else None,
+                    "uncertain_claim_verdicts": sum(ep["metrics"]["uncertain_verdicts"]
+                                                    for ep in submitted),
+                    "mean_brier": sum(ep["metrics"]["brier"] for ep in submitted)
+                    / len(submitted) if submitted and score_valid else None,
+                    "reference_labels_valid": score_valid,
+                    "target_investigated": sum(ep["metrics"]["target_investigated"]
+                                               for ep in submitted),
+                    "commands": sum(map(len, tool_lists)),
+                    "failed_commands": sum(e["result"]["exit_code"] != 0
+                                           for ts in tool_lists for e in ts),
+                    "reported_cost_usd": str(cost),
+                })
+                continue
             rows.append({
                 "arm": arm, "attempted": len(episodes), "submitted": len(submitted),
                 "correct": sum(ep["submission"]["verdict"] == (
@@ -92,7 +134,7 @@ def audit(root: Path):
                     if r["reported_cost_usd"] is not None), Decimal(0))
     if reserved > Decimal("25") or reported > reserved:
         errors.append("Phase spend/reservation invariant failed")
-    return {"schema": "witness.live-auditor-audit.v1", "errors": errors, "warnings": warnings,
+    return {"schema": "witness.live-auditor-audit.v2", "errors": errors, "warnings": warnings,
             "requests": len(reservations), "reserved_usd": str(reserved),
             "reported_cost_usd": str(reported), "batches": batches}
 
