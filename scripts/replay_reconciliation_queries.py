@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from swarm_lab import schedule_cases  # noqa: E402
 from swarm_lab.reconciliation_cases import ReconciliationWorkspace  # noqa: E402
 from swarm_lab.reconciliation_query import execute_query, scalar_result  # noqa: E402
 from swarm_lab.route_cases import RouteDatabase, replay_worlds  # noqa: E402
@@ -25,6 +26,21 @@ def replay(episode_path, seeds):
         raise ValueError("Replay worlds must differ from the observed database")
     sql = episode["submission"]["audit_sql"]
     rows = []
+    if episode["spec"].get("task") == "schedules":
+        for spec in schedule_cases.replay_worlds(seeds):
+            workspace = schedule_cases.ScheduleDatabase(
+                spec["workers"], spec["operations"], spec["ordering"],
+                spec["initial"], manifest["image"])
+            try:
+                result = execute_query(workspace, sql)
+                value = scalar_result(result)
+                rows.append({"name": spec["name"], "parameters": workspace.parameters,
+                             "expected": workspace.expected, "aggregate": value,
+                             "correct": value == workspace.expected, "result": result,
+                             "workspace_sha256": workspace.hashes()})
+            finally:
+                workspace.close()
+        return replay_record(episode_path, manifest, sql, rows, 1)
     if episode["spec"].get("task") == "routes":
         for spec in replay_worlds(seeds):
             workspace = RouteDatabase(spec["nodes"], spec["edges"], manifest["image"],
@@ -62,7 +78,8 @@ def replay_record(episode_path, manifest, sql, rows, revision):
                                       hashlib.sha256(p.read_bytes()).hexdigest() for p in (
                                           Path(__file__), ROOT/"swarm_lab/reconciliation_cases.py",
                                           ROOT/"swarm_lab/reconciliation_query.py",
-                                          ROOT/"swarm_lab/route_cases.py")},
+                                          ROOT/"swarm_lab/route_cases.py",
+                                          ROOT/"swarm_lab/schedule_cases.py")},
             "worlds": rows, "correct_worlds": sum(r["correct"] for r in rows),
             "all_worlds_correct": all(r["correct"] for r in rows),
             "interpretation": "One generated agent query is one artifact. Replayed databases "

@@ -355,3 +355,22 @@ independent permutation and state-exploration references, live SQL execution,
 numeric/domain bounds, semantic mutations, and fresh artifact replay before any
 small paid capability decision. Concurrency difficulty alone is established prior
 work and supplies no novelty claim. This entry authorizes development only.
+
+## Loop 12 paid capability decision
+
+The new schedule task provides a single truthful finite-model execution receipt,
+without solver code. Complete initial views match across finite truth states;
+only hidden ordering constraints differ. Independent permutation, state-exploration,
+and SQL references agree. All four planned labels, sixteen fresh live replay
+references, seven semantic mutations and 152 local tests pass. Numeric bounds
+keep exact arithmetic small. Receipt execution occurs in the isolated container;
+the model describes sequential consistency, not actual OS scheduling.
+
+Freeze schedule-protocol-v1.md. Run four no-peer Luna/medium program-output audits,
+seeds 21001 and 21002 in both truth states, eight queries/eight responses, maximum
+retained reservation $1.10. Existing phase totals are 575 requests, $0.444178490
+charges, $6.359431500 reservations. This buys evidence about unscaffolded verifier
+construction that free checks cannot provide; it does not authorize a peer sweep.
+Review every query and all sixteen replay conditions per program before the next
+decision. Concurrency difficulty and formal checking are already established prior
+work. A later interesting mechanism still requires a controlled fresh experiment.

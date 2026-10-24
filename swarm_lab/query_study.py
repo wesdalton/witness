@@ -12,7 +12,7 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
-from swarm_lab import inherited_query_cases, query_interfaces, route_cases
+from swarm_lab import inherited_query_cases, query_interfaces, route_cases, schedule_cases
 from swarm_lab.agent_budget import PhaseBudget
 from swarm_lab.agent_study import PHASE_LEDGER, append, digest, save, tool_schema
 from swarm_lab.pilot import BudgetError, load_key, money, preflight_key
@@ -72,6 +72,12 @@ ROUTE_TOOLS = [
                 {"sql": {"type": "string"}}, ["sql"]),
     TOOLS[1],
 ]
+SCHEDULE_TOOLS = [
+    tool_schema("query", "Execute one read-only SQL statement. Up to 100 rows are returned. "
+                "Available parameter: :initial_balance.",
+                {"sql": {"type": "string"}}, ["sql"]),
+    TOOLS[1],
+]
 
 
 class StrictQueryClient(ResponsesClient):
@@ -123,6 +129,9 @@ def initial_view(workspace, arm, smoke, output_mode=None, query_budget=8):
             "id": "publisher:execution",
             "result": {k: v for k, v in workspace.inherited_execution.items()
                        if k != "elapsed_seconds"}}
+    elif hasattr(workspace, "publisher_execution"):
+        value["publisher_execution"] = {"id": "publisher:execution",
+                                        **workspace.publisher_execution}
     if output_mode:
         value["contract"] = query_interfaces.factual_contract(value["contract"])
     return value
@@ -152,6 +161,9 @@ def run_episode(spec, output, client, image):
         workspace = route_cases.RouteWorkspace(
             spec["seed"], spec["truth"], image, spec.get("route_case_mode", "legacy"))
         system = ROUTE_SYSTEM
+    elif spec.get("task") == "schedules":
+        workspace = schedule_cases.ScheduleWorkspace(spec["seed"], spec["truth"], image)
+        system = query_interfaces.COMMON_SYSTEM
     else:
         workspace = (inherited_query_cases.InheritedQueryWorkspace(
             spec["seed"], spec["truth"], image, spec["inherited_variant"])
@@ -162,7 +174,8 @@ def run_episode(spec, output, client, image):
     query_budget = spec.get("query_budget", 8)
     program_required = output_mode != "verdict"
     if output_mode:
-        query_tool = (ROUTE_TOOLS if spec.get("task") == "routes" else TOOLS)[0]
+        query_tool = (ROUTE_TOOLS if spec.get("task") == "routes" else
+                      SCHEDULE_TOOLS if spec.get("task") == "schedules" else TOOLS)[0]
         system, client.tools = query_interfaces.interface(output_mode, query_tool, FIELDS)
     system = budgeted_system(system, query_budget)
     record = {"schema": "witness.query-audit.v1", "spec": spec, "events": [],
@@ -181,6 +194,8 @@ def run_episode(spec, output, client, image):
         evidence = {"report", "smoke"} | {p["id"] for p in initial["peer_messages"]}
         if "publisher_query" in initial:
             evidence.update(("publisher:query", "publisher:execution"))
+        elif "publisher_execution" in initial:
+            evidence.add("publisher:execution")
         messages = [{"role": "system", "content": system},
                     {"role": "user", "content": json.dumps(initial)}]
         for turn in range(1, 9):
@@ -265,13 +280,17 @@ def launch(args, plan):
     args.out.mkdir(parents=True, exist_ok=False)
     image = subprocess.check_output(["docker", "image", "inspect", IMAGE,
                                      "--format", "{{.Id}}"], text=True).strip()
-    is_routes = args.task == "routes"
+    is_routes, is_schedules = args.task == "routes", args.task == "schedules"
     references = (route_cases.verify_generated(
         sorted(set(args.seeds)), image, args.route_case_mode) if is_routes
+                  else schedule_cases.verify_generated(sorted(set(args.seeds)), image)
+                  if is_schedules
                   else verify_generated(range(7001, 7033), revision=2))
     inherited_references = (inherited_query_cases.verify_inherited(plan["episodes"], image)
                             if args.inherited_query and not is_routes else None)
-    system, tools = (ROUTE_SYSTEM, ROUTE_TOOLS) if is_routes else (SYSTEM, TOOLS)
+    system, tools = ((ROUTE_SYSTEM, ROUTE_TOOLS) if is_routes else
+                     (query_interfaces.COMMON_SYSTEM, SCHEDULE_TOOLS) if is_schedules else
+                     (SYSTEM, TOOLS))
     system = budgeted_system(system, args.query_budget)
     model_record, input_price, output_price = catalog(plan["model"])
     key = load_key(ROOT / ".env")
@@ -285,7 +304,7 @@ def launch(args, plan):
     batch = uuid.uuid4().hex
     sources = [ROOT / "swarm_lab" / name for name in (
         "query_study.py", "reconciliation_cases.py", "reconciliation_query.py",
-        "inherited_query_cases.py", "route_cases.py", "query_interfaces.py",
+        "inherited_query_cases.py", "route_cases.py", "schedule_cases.py", "query_interfaces.py",
         "research_client.py", "agent_workspace.py", "agent_study.py",
         "agent_budget.py", "pilot.py", "portfolio_cases.py")]
     sources += [ROOT / "research/portfolio" / name for name in (
@@ -294,9 +313,13 @@ def launch(args, plan):
         sources.append(ROOT / "research/portfolio/route-protocol-v1.md")
         sources.append(ROOT / "research/portfolio/route-protocol-v2.md")
         sources.append(ROOT / "scripts/audit_routes_reference.py")
+    elif is_schedules:
+        sources.append(ROOT / "research/portfolio/schedule-protocol-v1.md")
+        sources.append(ROOT / "research/portfolio/schedule-reference-gate-v1.json")
+        sources.append(ROOT / "scripts/audit_schedule_reference.py")
     elif args.inherited_query:
         sources.append(ROOT / "research/portfolio/query-inherited-protocol-v1.md")
-    if args.output_modes:
+    if args.output_modes and not is_schedules:
         sources.append(ROOT / "research/portfolio/output-requirement-protocol-v1.md")
         sources.append(ROOT / "research/portfolio/output-requirement-reference-gate-v1.json")
         sources.append(ROOT / "scripts/analyze_query_interfaces.py")
@@ -359,7 +382,7 @@ def main():
                         default=["no_peers"])
     parser.add_argument("--batch-ceiling", default="1.1")
     parser.add_argument("--inherited-query", action="store_true")
-    parser.add_argument("--task", choices=["inventory", "routes"], default="inventory")
+    parser.add_argument("--task", choices=["inventory", "routes", "schedules"], default="inventory")
     parser.add_argument("--output-modes", nargs="+", choices=["program", "verdict"])
     parser.add_argument("--route-case-mode", choices=["legacy", "same_program"], default="legacy")
     parser.add_argument("--query-budget", type=int, choices=[1, 2, 4, 8], default=8)
@@ -384,6 +407,13 @@ def main():
             spec["task"] = "routes"
             if args.route_case_mode != "legacy":
                 spec["route_case_mode"] = args.route_case_mode
+    elif args.task == "schedules":
+        if args.inherited_query or args.output_modes != ["program"] or args.query_budget != 8:
+            raise ValueError("Schedule protocol requires program output and eight queries")
+        if args.arms != ["no_peers"] or args.route_case_mode != "legacy":
+            raise ValueError("Schedule capability protocol is no-peer, without route options")
+        for spec in specs:
+            spec["task"] = "schedules"
     elif args.inherited_query:
         variants = {seed: inherited_query_cases.VARIANTS[i % len(inherited_query_cases.VARIANTS)]
                     for i, seed in enumerate(sorted(args.seeds))}
@@ -395,7 +425,7 @@ def main():
     plan = {"model": "openai/gpt-6-luna", "episodes": specs,
             "max_calls": len(specs)*min(8, args.query_budget+1),
             "batch_ceiling_usd": str(money(args.batch_ceiling)), "phase_ceiling_usd": "25",
-            "generator_revision": 1 if args.task == "routes" else 2,
+            "generator_revision": 2 if args.task == "inventory" else 1,
             "task": args.task, "reasoning": "medium", "max_output_tokens": 4096,
             "responses_input_limit": 256000, "inherited_query": args.inherited_query}
     if args.output_modes:
@@ -415,6 +445,8 @@ def main():
         raise BudgetError(query_interfaces.LIVE_HOLD_REASON)
     if args.task == "routes" and route_cases.LIVE_HOLD_REASON:
         raise BudgetError(route_cases.LIVE_HOLD_REASON)
+    if args.task == "schedules" and schedule_cases.LIVE_HOLD_REASON:
+        raise BudgetError(schedule_cases.LIVE_HOLD_REASON)
     if args.task != "routes" and args.inherited_query and inherited_query_cases.LIVE_HOLD_REASON:
         raise BudgetError(inherited_query_cases.LIVE_HOLD_REASON)
     return launch(args, plan)
