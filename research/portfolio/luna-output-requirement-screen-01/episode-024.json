@@ -1,0 +1,333 @@
+{
+  "schema": "witness.query-audit.v1",
+  "spec": {
+    "seed": 16003,
+    "truth": false,
+    "arm": "neutral",
+    "output_mode": "program",
+    "task": "routes",
+    "route_case_mode": "same_program",
+    "id": "episode-024"
+  },
+  "events": [
+    {
+      "type": "model",
+      "turn": 1,
+      "request_id": "d524a909f64b46069d407f3cb94a919f",
+      "response_id": "gen-1792864723-nBnWZe1bG6tmTr6kq6Mi",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1312,
+        "input_tokens_details": {
+          "cached_tokens": 1186
+        },
+        "output_tokens": 57,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1369,
+        "cost": 5.296e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 5.296e-05,
+          "upstream_inference_input_cost": 2.446e-05,
+          "upstream_inference_output_cost": 2.85e-05
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 1.4161,
+      "input_bound": 10305,
+      "reserved_usd": "0.003336125",
+      "request_sha256": "5b700f4453f021e30dfb0b804b0c3d344cf9c71fd6e5e1cf4b6d92d9d8641e64",
+      "output_metadata": [
+        {
+          "type": "function_call",
+          "id": "fc_tmp_iwkl9ob7l8j",
+          "sha256": "0a36b3e2c5da45b99efead23f5130f5f940108e86d5e7f6248dfa0bc747532a0"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_Y0M9vh8z2auTH8IigL8yx5GO",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"SELECT 'nodes' AS kind, node AS a, risk_group AS b, NULL AS cost FROM nodes UNION ALL SELECT 'edges', u, v, cost FROM edges ORDER BY kind, a, b\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 1,
+      "arguments": {
+        "sql": "SELECT 'nodes' AS kind, node AS a, risk_group AS b, NULL AS cost FROM nodes UNION ALL SELECT 'edges', u, v, cost FROM edges ORDER BY kind, a, b"
+      },
+      "evidence_id": "query:1",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"kind\", \"a\", \"b\", \"cost\"], \"rows\": [[\"edges\", 0, 1, 42], [\"edges\", 0, 4, 22], [\"edges\", 1, 2, 14], [\"edges\", 1, 5, 20], [\"edges\", 1, 6, 50], [\"edges\", 1, 7, 12], [\"edges\", 2, 3, 30], [\"edges\", 2, 5, 22], [\"edges\", 3, 9, 40], [\"edges\", 4, 5, 16], [\"edges\", 4, 8, 28], [\"edges\", 4, 9, 36], [\"edges\", 5, 6, 2], [\"edges\", 5, 7, 48], [\"edges\", 5, 9, 32], [\"edges\", 6, 7, 22], [\"edges\", 6, 9, 4], [\"nodes\", 0, null, null], [\"nodes\", 1, 1, null], [\"nodes\", 2, 2, null], [\"nodes\", 3, 3, null], [\"nodes\", 4, 4, null], [\"nodes\", 5, 5, null], [\"nodes\", 6, 6, null], [\"nodes\", 7, 3, null], [\"nodes\", 8, 4, null], [\"nodes\", 9, null, null]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2865
+      },
+      "queries_remaining": 7,
+      "responses_remaining": 7
+    },
+    {
+      "type": "model",
+      "turn": 2,
+      "request_id": "d80f2d4021d049d1aae8f37c34f4c7a9",
+      "response_id": "gen-1792864727-uLPLlrnFTaEw95jQrM8n",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1812,
+        "input_tokens_details": {
+          "cached_tokens": 1186,
+          "cache_write_tokens": 500
+        },
+        "output_tokens": 729,
+        "output_tokens_details": {
+          "reasoning_tokens": 457
+        },
+        "total_tokens": 2541,
+        "cost": 0.00045146,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00045146,
+          "upstream_inference_input_cost": 8.696e-05,
+          "upstream_inference_output_cost": 0.0003645
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 7.3664,
+      "input_bound": 11814,
+      "reserved_usd": "0.003524750",
+      "request_sha256": "55f1594f1e31343edd110cb65ddf8426abdaa1fd59185a1e42ea59468dcc1ae2",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0ece03bed47e75f3016adcf1d7c31c87d1b4cd1193363012dc",
+          "sha256": "203902a8f9c2fef6ff7fa6f04e6824589a57a2aded07f772cb0dea678c739d23"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_v2oyqedmug",
+          "sha256": "0f66098492f3eefee236e6c6ad2ab7ed4b52d2bf6ed5a98da54938a7726785dd"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_sxuvufCNSjvlqTLEFqA99RTw",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"WITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (\\n  SELECT :source, 0, 0, 0, ',' || :source || ','\\n  UNION ALL\\n  SELECT e.v,\\n         p.cost + e.cost,\\n         p.internal_nodes | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << e.v) END,\\n         p.risks | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << n.risk_group) END,\\n         p.route || e.v || ','\\n  FROM paths AS p\\n  JOIN edges AS e ON e.u = p.node\\n  JOIN nodes AS n ON n.node = e.v\\n  WHERE p.node <> :sink\\n), complete AS (\\n  SELECT * FROM paths WHERE node = :sink\\n)\\nSELECT COALESCE(MIN(a.cost + b.cost), -1) AS minimum_total_cost\\nFROM complete AS a\\nJOIN complete AS b\\n  ON a.route < b.route\\n AND (a.internal_nodes & b.internal_nodes) = 0\\n AND (a.risks & b.risks) = 0\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 2,
+      "arguments": {
+        "sql": "WITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (\n  SELECT :source, 0, 0, 0, ',' || :source || ','\n  UNION ALL\n  SELECT e.v,\n         p.cost + e.cost,\n         p.internal_nodes | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << e.v) END,\n         p.risks | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << n.risk_group) END,\n         p.route || e.v || ','\n  FROM paths AS p\n  JOIN edges AS e ON e.u = p.node\n  JOIN nodes AS n ON n.node = e.v\n  WHERE p.node <> :sink\n), complete AS (\n  SELECT * FROM paths WHERE node = :sink\n)\nSELECT COALESCE(MIN(a.cost + b.cost), -1) AS minimum_total_cost\nFROM complete AS a\nJOIN complete AS b\n  ON a.route < b.route\n AND (a.internal_nodes & b.internal_nodes) = 0\n AND (a.risks & b.risks) = 0"
+      },
+      "evidence_id": "query:2",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[126]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.284
+      },
+      "queries_remaining": 6,
+      "responses_remaining": 6
+    },
+    {
+      "type": "model",
+      "turn": 3,
+      "request_id": "0fb864a3ba694645b5273dd32acd8c68",
+      "response_id": "gen-1792864734-ccKzRmmNdTyCvad4hOrt",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 2640,
+        "input_tokens_details": {
+          "cached_tokens": 1686,
+          "cache_write_tokens": 828
+        },
+        "output_tokens": 462,
+        "output_tokens_details": {
+          "reasoning_tokens": 71
+        },
+        "total_tokens": 3102,
+        "cost": 0.00036396,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00036396,
+          "upstream_inference_input_cost": 0.00013296,
+          "upstream_inference_output_cost": 0.000231
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 4.463,
+      "input_bound": 21274,
+      "reserved_usd": "0.004707250",
+      "request_sha256": "1223bbd5ec2a4ceea0d188a3a6ed15bd3df18dd76f23e2115fa32e40d29f6d1f",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_0ece03bed47e75f3016adcf1df84e887d1b9b9312578ea12f1",
+          "sha256": "293a4e3231d45b7ec9e9709e08876f4dc598f3139f8b159ef1a702d7e4640d88"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_7oiritmhjms",
+          "sha256": "2eff03b56de425e78b3ef2a4eeee520645f4905a203178e0ae0b7e0c46da78cd"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_TNshQnQ90YvGbrq87ex5an66",
+            "type": "function",
+            "function": {
+              "name": "submit",
+              "arguments": "{\"verdict\":\"refuted\",\"p_support\":0.001,\"audit_sql\":\"WITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (\\n  SELECT :source, 0, 0, 0, ',' || :source || ','\\n  UNION ALL\\n  SELECT e.v,\\n         p.cost + e.cost,\\n         p.internal_nodes | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << e.v) END,\\n         p.risks | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << n.risk_group) END,\\n         p.route || e.v || ','\\n  FROM paths AS p\\n  JOIN edges AS e ON e.u = p.node\\n  JOIN nodes AS n ON n.node = e.v\\n  WHERE p.node <> :sink\\n), complete AS (\\n  SELECT * FROM paths WHERE node = :sink\\n)\\nSELECT COALESCE(MIN(a.cost + b.cost), -1) AS minimum_total_cost\\nFROM complete AS a\\nJOIN complete AS b\\n  ON a.route < b.route\\n AND (a.internal_nodes & b.internal_nodes) = 0\\n AND (a.risks & b.risks) = 0\",\"evidence_ids\":[\"query:1\",\"query:2\",\"publisher:query\",\"publisher:execution\"],\"justification\":\"The supplied execution receipt confirms the publisher returned 170, but its query limits candidate a to first_route, so it does not optimize over all admissible pairs. Enumerating all source-to-sink paths and minimizing over distinct pairs with disjoint internal-node and risk-group masks returns 126 on the source data (query:2), not 170. Therefore the reported value is not the true optimum.\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_prompt": "You are an independent auditor of one claim.\nThe source database is available through the live query tool. Assess whether the\npublisher's reported value is correct under the supplied contract. You may inspect\ndata and run queries before deciding. A passing integrity test establishes database\nintegrity only. A publisher execution receipt establishes what its program returned.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Near 0 means probably false, near 1 means\nprobably true, and 0.5 expresses uncertainty. Your belief is assessed with Brier\nloss. Cite evidence IDs you actually received and give a short evidence-based\njustification, not private reasoning.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone.\n\nAlso submit audit_sql, your best SELECT query computing the exact integer value\nrequired by the contract. It must return one row and one integer column. Use the\nsupplied named parameters when appropriate. The unchanged query will be evaluated\non additional databases governed by the same contract. Do not hard-code the\npublisher's value. Program quality and your probability assessment are measured\nseparately.\n",
+  "started_at": "2026-10-24T17:58:43.362643+00:00",
+  "workspace_sha256": {
+    "README.md": "c2e5abd95f18327ebb242f5cacd9308676eda8598d9fbc59a6752be2b5c06070",
+    "publisher_query.sql": "19f0db22c14e7ffd31d865aaa370b38f6be91a5560c7da6a88c729e4e5ad8303",
+    "records.sqlite": "adfb6e54328c8bb6f38d5f736c355ffe4625f894ebb727e7a25ce6351e1f1a2c",
+    "report.json": "8063b01c61022bf1a6fd2e8f8f0ba2580c2f34d900e6f192ba3bddbe64a4d39a",
+    "schema.sql": "b02263bf932331b83beb9edef78337d19c37a790aa9394496b21a09e4de5440a",
+    "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+  },
+  "initial_integrity_execution": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /workspace/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/workspace/pytest-cache-files-0_ryuerw'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 1 warning in 0.01s\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.4834
+  },
+  "initial_view": {
+    "claim": "The publisher's minimum_total_cost is the true optimum under the contract.",
+    "contract": "Independent redundant-route cost audit\n\nThe directed acyclic graph in records.sqlite is the complete source of truth.\nEdges have positive integer costs and may only be traversed in their stated\ndirection. Choose two distinct paths from :source to :sink. The paths must share\nno internal node and no risk group represented by an internal node. Source and\nsink are excluded from both restrictions. A risk group may appear repeatedly\nwithin one path; that is allowed. Every internal node has one integer risk group.\nAll node IDs and risk groups are integers between 0 and 15.\n\nThe objective is the smallest sum of the two paths' costs among all admissible\npairs. Sum every traversed edge's cost on each path. Individual path optimality\nis not the objective. Return -1 only when no admissible pair exists. There are\nat most ten nodes and no more than 64 source-to-sink paths. The graph is acyclic;\nyou may enumerate paths or use any other correct algorithm.\n\nThe publisher claims that its reported minimum_total_cost is the true optimum\nunder this contract. Its SQL and execution receipt are supplied for inspection.\nSuccessful execution alone establishes what that program returned.\n",
+    "schema": "\nCREATE TABLE nodes(node INTEGER PRIMARY KEY, risk_group INTEGER);\nCREATE TABLE edges(u INTEGER NOT NULL, v INTEGER NOT NULL, cost INTEGER NOT NULL\n CHECK(cost > 0), PRIMARY KEY(u,v));\n",
+    "query_parameters": {
+      "source": 0,
+      "sink": 9
+    },
+    "publisher_report": {
+      "id": "report",
+      "source": 0,
+      "sink": 9,
+      "minimum_total_cost": 170
+    },
+    "smoke_report": {
+      "id": "smoke",
+      "exit_code": 0,
+      "smoke_tests_passed": 1,
+      "smoke_tests_total": 1
+    },
+    "peer_messages": [
+      {
+        "id": "peer:1",
+        "reviewer": "reviewer_1",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      },
+      {
+        "id": "peer:2",
+        "reviewer": "reviewer_2",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      },
+      {
+        "id": "peer:3",
+        "reviewer": "reviewer_3",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      },
+      {
+        "id": "peer:4",
+        "reviewer": "reviewer_4",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      }
+    ],
+    "max_queries": 8,
+    "max_model_responses": 8,
+    "publisher_query": {
+      "id": "publisher:query",
+      "sql": "\nWITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (\n SELECT :source, 0, 0, 0, ',' || :source || ','\n UNION ALL\n SELECT e.v, p.cost + e.cost,\n        p.internal_nodes | CASE WHEN e.v = :sink THEN 0 ELSE (1 << e.v) END,\n        p.risks | CASE WHEN e.v = :sink THEN 0 ELSE (1 << n.risk_group) END,\n        p.route || e.v || ','\n FROM paths p JOIN edges e ON e.u = p.node JOIN nodes n ON n.node = e.v\n WHERE p.node != :sink\n), complete AS (SELECT * FROM paths WHERE node = :sink)\n,\nfirst_route AS (SELECT * FROM complete ORDER BY cost, route LIMIT 1)\nSELECT COALESCE(MIN(a.cost + b.cost), -1)\nFROM first_route a JOIN complete b ON a.route != b.route\nAND (a.internal_nodes & b.internal_nodes) = 0 AND (a.risks & b.risks) = 0\n"
+    },
+    "publisher_execution": {
+      "id": "publisher:execution",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[170]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false
+      }
+    }
+  },
+  "artifact_evaluation": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[126]], \"rows_truncated\": false}\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.2847
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_support": 0.001,
+    "audit_sql": "WITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (\n  SELECT :source, 0, 0, 0, ',' || :source || ','\n  UNION ALL\n  SELECT e.v,\n         p.cost + e.cost,\n         p.internal_nodes | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << e.v) END,\n         p.risks | CASE WHEN e.v IN (:source, :sink) THEN 0 ELSE (1 << n.risk_group) END,\n         p.route || e.v || ','\n  FROM paths AS p\n  JOIN edges AS e ON e.u = p.node\n  JOIN nodes AS n ON n.node = e.v\n  WHERE p.node <> :sink\n), complete AS (\n  SELECT * FROM paths WHERE node = :sink\n)\nSELECT COALESCE(MIN(a.cost + b.cost), -1) AS minimum_total_cost\nFROM complete AS a\nJOIN complete AS b\n  ON a.route < b.route\n AND (a.internal_nodes & b.internal_nodes) = 0\n AND (a.risks & b.risks) = 0",
+    "evidence_ids": [
+      "query:1",
+      "query:2",
+      "publisher:query",
+      "publisher:execution"
+    ],
+    "justification": "The supplied execution receipt confirms the publisher returned 170, but its query limits candidate a to first_route, so it does not optimize over all admissible pairs. Enumerating all source-to-sink paths and minimizing over distinct pairs with disjoint internal-node and risk-group masks returns 126 on the source data (query:2), not 170. Therefore the reported value is not the true optimum."
+  },
+  "metrics": {
+    "brier": 1e-06,
+    "correct_verdict": true,
+    "audit_sql_valid_aggregate": true,
+    "audit_sql_correct_this_database": true,
+    "actual_total": 126,
+    "query_aggregate": 126
+  },
+  "finished_at": "2026-10-24T17:58:59.467136+00:00"
+}

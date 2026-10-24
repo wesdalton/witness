@@ -1,0 +1,437 @@
+{
+  "schema": "witness.query-audit.v1",
+  "spec": {
+    "seed": 16003,
+    "truth": false,
+    "arm": "neutral",
+    "output_mode": "verdict",
+    "task": "routes",
+    "route_case_mode": "same_program",
+    "id": "episode-012"
+  },
+  "events": [
+    {
+      "type": "model",
+      "turn": 1,
+      "request_id": "cca34d00c656446d8d97ce8712cc8dd9",
+      "response_id": "gen-1792864496-nXuXjgUYoy13i5PaqEJZ",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1224,
+        "input_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1098
+        },
+        "output_tokens": 39,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1263,
+        "cost": 0.00016935,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00016935,
+          "upstream_inference_input_cost": 0.00014985,
+          "upstream_inference_output_cost": 1.95e-05
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 1.0605,
+      "input_bound": 9806,
+      "reserved_usd": "0.003273750",
+      "request_sha256": "c016ea9bc5b79c0cbe7135ed84ed0da96c8f4374b8dee4d5b3646cc53be12c05",
+      "output_metadata": [
+        {
+          "type": "function_call",
+          "id": "fc_tmp_sap9anokt9i",
+          "sha256": "8ef2ddfe2731bced52ac5904cb78fa78d31c51094634f277515be302e96b2128"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_KgbFXcStanQu358WStJLKucz",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"SELECT node, risk_group FROM nodes ORDER BY node; SELECT u,v,cost FROM edges ORDER BY u,v;\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 1,
+      "arguments": {
+        "sql": "SELECT node, risk_group FROM nodes ORDER BY node; SELECT u,v,cost FROM edges ORDER BY u,v;"
+      },
+      "evidence_id": "query:1",
+      "result": {
+        "exit_code": 1,
+        "timed_out": false,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 18, in <module>\nsqlite3.ProgrammingError: You can only execute one statement at a time.\n",
+        "output_truncated": false,
+        "elapsed_seconds": 0.288
+      },
+      "queries_remaining": 7,
+      "responses_remaining": 7
+    },
+    {
+      "type": "model",
+      "turn": 2,
+      "request_id": "0bd2180bca754202882b7402cc8537cc",
+      "response_id": "gen-1792864499-Ob76FGaUxTI1GJQwvyN1",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1383,
+        "input_tokens_details": {
+          "cached_tokens": 1098,
+          "cache_write_tokens": 159
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1448,
+        "cost": 7.5955e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 7.5955e-05,
+          "upstream_inference_input_cost": 4.3455e-05,
+          "upstream_inference_output_cost": 3.25e-05
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 1.2339,
+      "input_bound": 10547,
+      "reserved_usd": "0.003366375",
+      "request_sha256": "9b6831eda040e5fa12df711b7c20437ff13adf5a5c69a03a28a47c089f55b451",
+      "output_metadata": [
+        {
+          "type": "function_call",
+          "id": "fc_tmp_yi237agqnh",
+          "sha256": "a08fcbe3adc71835c07eb5831c1b6e080e51803ef26995e72e60d3a41a981628"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_6kil0fxwsf5",
+          "sha256": "93f1b6599f4e066f2566f7ed556e2eea52a4ee6eecf68dbfbe6f370daf76f3fd"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_ZuZr2TUsauboVOJarFN44RIO",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"SELECT node, risk_group FROM nodes ORDER BY node\"}"
+            }
+          },
+          {
+            "id": "call_hzQsEOzITNvfm7ZR6SNJ5xv8",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"SELECT u,v,cost FROM edges ORDER BY u,v\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 2,
+      "arguments": {
+        "sql": "SELECT node, risk_group FROM nodes ORDER BY node"
+      },
+      "evidence_id": "query:2",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"node\", \"risk_group\"], \"rows\": [[0, null], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 3], [8, 4], [9, null]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.8092
+      },
+      "queries_remaining": 6,
+      "responses_remaining": 6
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 2,
+      "arguments": {
+        "sql": "SELECT u,v,cost FROM edges ORDER BY u,v"
+      },
+      "evidence_id": "query:3",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"u\", \"v\", \"cost\"], \"rows\": [[0, 1, 42], [0, 4, 22], [1, 2, 14], [1, 5, 20], [1, 6, 50], [1, 7, 12], [2, 3, 30], [2, 5, 22], [3, 9, 40], [4, 5, 16], [4, 8, 28], [4, 9, 36], [5, 6, 2], [5, 7, 48], [5, 9, 32], [6, 7, 22], [6, 9, 4]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.6664
+      },
+      "queries_remaining": 5,
+      "responses_remaining": 6
+    },
+    {
+      "type": "model",
+      "turn": 3,
+      "request_id": "d0f5103d363d4c408a4b268b77120dde",
+      "response_id": "gen-1792864503-GucZ6ZWWaHnDLUxKELFd",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 1857,
+        "input_tokens_details": {
+          "cached_tokens": 1257,
+          "cache_write_tokens": 474
+        },
+        "output_tokens": 804,
+        "output_tokens_details": {
+          "reasoning_tokens": 613
+        },
+        "total_tokens": 2661,
+        "cost": 0.00048642,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00048642,
+          "upstream_inference_input_cost": 8.442e-05,
+          "upstream_inference_output_cost": 0.000402
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 7.7152,
+      "input_bound": 12117,
+      "reserved_usd": "0.003562625",
+      "request_sha256": "7c815fcdac8551badd1e876f7e3ce204e631e104c75751c871ffec23dae5ba74",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_02b0ab4fb7620911016adcf0f7d33887d1ad6d69cb83cf8510",
+          "sha256": "aaae02cbc42838dd479402d19fed2ba27f097947eef2514c0c99b13839904931"
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_02b0ab4fb7620911016adcf0fc7f2887d18d5015bf533865e9",
+          "sha256": "57032b841520de2d617214cc619ce18c72a451a17fbea302acc4af37c2faefde"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_pt4n59onlw",
+          "sha256": "ed3d60d850d168b2366457136242b040becad78c156161ce5963df309b8d32fa"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0d6pvJRL5do82EnCGkivK1bk",
+            "type": "function",
+            "function": {
+              "name": "query",
+              "arguments": "{\"sql\":\"WITH RECURSIVE paths(node,cost,imask,rmask,route) AS (SELECT 0,0,0,0,',0,' UNION ALL SELECT e.v,p.cost+e.cost,p.imask|CASE WHEN e.v=9 THEN 0 ELSE (1<<e.v) END,p.rmask|CASE WHEN e.v=9 THEN 0 ELSE (1<<n.risk_group) END,p.route||e.v||',' FROM paths p JOIN edges e ON e.u=p.node JOIN nodes n ON n.node=e.v WHERE p.node<>9), complete AS (SELECT * FROM paths WHERE node=9) SELECT MIN(a.cost+b.cost) AS optimum FROM complete a JOIN complete b ON a.route<b.route AND (a.imask&b.imask)=0 AND (a.rmask&b.rmask)=0\"}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool",
+      "name": "query",
+      "turn": 3,
+      "arguments": {
+        "sql": "WITH RECURSIVE paths(node,cost,imask,rmask,route) AS (SELECT 0,0,0,0,',0,' UNION ALL SELECT e.v,p.cost+e.cost,p.imask|CASE WHEN e.v=9 THEN 0 ELSE (1<<e.v) END,p.rmask|CASE WHEN e.v=9 THEN 0 ELSE (1<<n.risk_group) END,p.route||e.v||',' FROM paths p JOIN edges e ON e.u=p.node JOIN nodes n ON n.node=e.v WHERE p.node<>9), complete AS (SELECT * FROM paths WHERE node=9) SELECT MIN(a.cost+b.cost) AS optimum FROM complete a JOIN complete b ON a.route<b.route AND (a.imask&b.imask)=0 AND (a.rmask&b.rmask)=0"
+      },
+      "evidence_id": "query:4",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"optimum\"], \"rows\": [[126]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2878
+      },
+      "queries_remaining": 4,
+      "responses_remaining": 5
+    },
+    {
+      "type": "model",
+      "turn": 4,
+      "request_id": "2792b2bb04b34b0a996d4af8e1a96d6f",
+      "response_id": "gen-1792864511-UsHua0u7FRu3u9ySZa8E",
+      "model": "openai/gpt-6-luna",
+      "provider": null,
+      "api": "responses",
+      "usage": {
+        "input_tokens": 2760,
+        "input_tokens_details": {
+          "cached_tokens": 1731,
+          "cache_write_tokens": 903
+        },
+        "output_tokens": 370,
+        "output_tokens_details": {
+          "reasoning_tokens": 228
+        },
+        "total_tokens": 3130,
+        "cost": 0.000327785,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000327785,
+          "upstream_inference_input_cost": 0.000142785,
+          "upstream_inference_output_cost": 0.000185
+        }
+      },
+      "finish_reason": "tool_calls",
+      "native_finish_reason": "completed",
+      "elapsed_seconds": 5.3528,
+      "input_bound": 22593,
+      "reserved_usd": "0.004872125",
+      "request_sha256": "ecc500d838bfaa186f2ba14fc38f6532bed270e03a7f5c05ad1e025b37fd2d53",
+      "output_metadata": [
+        {
+          "type": "reasoning",
+          "id": "rs_02b0ab4fb7620911016adcf10146ec87d195cbc7e019ca9663",
+          "sha256": "98fcaf46fb60e328d438aa7fc470367d732ba3cda54119baf20180bc5776c570"
+        },
+        {
+          "type": "function_call",
+          "id": "fc_tmp_xiyaqhx786",
+          "sha256": "0abf4369b6719733a0e97ee05c079a3bb09a99aab84f6a6969591bb751c0e4b9"
+        }
+      ],
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_03RqDk1YD8p2Y986tEDCxzKx",
+            "type": "function",
+            "function": {
+              "name": "submit",
+              "arguments": "{\"verdict\":\"refuted\",\"p_support\":0.001,\"evidence_ids\":[\"query:2\",\"query:3\",\"query:4\",\"publisher:query\",\"publisher:execution\"],\"justification\":\"The exhaustive admissible-pair query returns an optimum of 126, not the reported 170. The edges show a qualifying pair: 0\u21924\u21929 costs 58 and 0\u21921\u21925\u21926\u21929 costs 68; their internal nodes and risk groups are disjoint. The publisher query restricts one side of its pairing to the single cheapest route, so it can miss a better pair.\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "system_prompt": "You are an independent auditor of one claim.\nThe source database is available through the live query tool. Assess whether the\npublisher's reported value is correct under the supplied contract. You may inspect\ndata and run queries before deciding. A passing integrity test establishes database\nintegrity only. A publisher execution receipt establishes what its program returned.\n\nSubmit a verdict and p_support: the probability that the publisher's claim is TRUE,\nnot confidence in your chosen verdict. Near 0 means probably false, near 1 means\nprobably true, and 0.5 expresses uncertainty. Your belief is assessed with Brier\nloss. Cite evidence IDs you actually received and give a short evidence-based\njustification, not private reasoning.\n\nYou have at most eight model responses and eight live queries before submission.\nCall submit alone.\n",
+  "started_at": "2026-10-24T17:54:56.157616+00:00",
+  "workspace_sha256": {
+    "README.md": "c2e5abd95f18327ebb242f5cacd9308676eda8598d9fbc59a6752be2b5c06070",
+    "publisher_query.sql": "19f0db22c14e7ffd31d865aaa370b38f6be91a5560c7da6a88c729e4e5ad8303",
+    "records.sqlite": "adfb6e54328c8bb6f38d5f736c355ffe4625f894ebb727e7a25ce6351e1f1a2c",
+    "report.json": "8063b01c61022bf1a6fd2e8f8f0ba2580c2f34d900e6f192ba3bddbe64a4d39a",
+    "schema.sql": "b02263bf932331b83beb9edef78337d19c37a790aa9394496b21a09e4de5440a",
+    "tests/test_smoke.py": "1c350bf8bf6189adedf2ec4e8756c59642cf90b67e1639739e2a909aac4cb99b"
+  },
+  "initial_integrity_execution": {
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": ".                                                                        [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475\n  /usr/local/lib/python3.12/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /workspace/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/workspace/pytest-cache-files-iou71_z6'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 1 warning in 0.01s\n",
+    "stderr": "",
+    "output_truncated": false,
+    "elapsed_seconds": 0.5886
+  },
+  "initial_view": {
+    "claim": "The publisher's minimum_total_cost is the true optimum under the contract.",
+    "contract": "Independent redundant-route cost audit\n\nThe directed acyclic graph in records.sqlite is the complete source of truth.\nEdges have positive integer costs and may only be traversed in their stated\ndirection. Choose two distinct paths from :source to :sink. The paths must share\nno internal node and no risk group represented by an internal node. Source and\nsink are excluded from both restrictions. A risk group may appear repeatedly\nwithin one path; that is allowed. Every internal node has one integer risk group.\nAll node IDs and risk groups are integers between 0 and 15.\n\nThe objective is the smallest sum of the two paths' costs among all admissible\npairs. Sum every traversed edge's cost on each path. Individual path optimality\nis not the objective. Return -1 only when no admissible pair exists. There are\nat most ten nodes and no more than 64 source-to-sink paths. The graph is acyclic;\nyou may enumerate paths or use any other correct algorithm.\n\nThe publisher claims that its reported minimum_total_cost is the true optimum\nunder this contract. Its SQL and execution receipt are supplied for inspection.\nSuccessful execution alone establishes what that program returned.\n",
+    "schema": "\nCREATE TABLE nodes(node INTEGER PRIMARY KEY, risk_group INTEGER);\nCREATE TABLE edges(u INTEGER NOT NULL, v INTEGER NOT NULL, cost INTEGER NOT NULL\n CHECK(cost > 0), PRIMARY KEY(u,v));\n",
+    "query_parameters": {
+      "source": 0,
+      "sink": 9
+    },
+    "publisher_report": {
+      "id": "report",
+      "source": 0,
+      "sink": 9,
+      "minimum_total_cost": 170
+    },
+    "smoke_report": {
+      "id": "smoke",
+      "exit_code": 0,
+      "smoke_tests_passed": 1,
+      "smoke_tests_total": 1
+    },
+    "peer_messages": [
+      {
+        "id": "peer:1",
+        "reviewer": "reviewer_1",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      },
+      {
+        "id": "peer:2",
+        "reviewer": "reviewer_2",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      },
+      {
+        "id": "peer:3",
+        "reviewer": "reviewer_3",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      },
+      {
+        "id": "peer:4",
+        "reviewer": "reviewer_4",
+        "message": "I received the submitted query and its execution receipt. My assessment of this claim has not been made."
+      }
+    ],
+    "max_queries": 8,
+    "max_model_responses": 8,
+    "publisher_query": {
+      "id": "publisher:query",
+      "sql": "\nWITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (\n SELECT :source, 0, 0, 0, ',' || :source || ','\n UNION ALL\n SELECT e.v, p.cost + e.cost,\n        p.internal_nodes | CASE WHEN e.v = :sink THEN 0 ELSE (1 << e.v) END,\n        p.risks | CASE WHEN e.v = :sink THEN 0 ELSE (1 << n.risk_group) END,\n        p.route || e.v || ','\n FROM paths p JOIN edges e ON e.u = p.node JOIN nodes n ON n.node = e.v\n WHERE p.node != :sink\n), complete AS (SELECT * FROM paths WHERE node = :sink)\n,\nfirst_route AS (SELECT * FROM complete ORDER BY cost, route LIMIT 1)\nSELECT COALESCE(MIN(a.cost + b.cost), -1)\nFROM first_route a JOIN complete b ON a.route != b.route\nAND (a.internal_nodes & b.internal_nodes) = 0 AND (a.risks & b.risks) = 0\n"
+    },
+    "publisher_execution": {
+      "id": "publisher:execution",
+      "result": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[170]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false
+      }
+    }
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_support": 0.001,
+    "evidence_ids": [
+      "query:2",
+      "query:3",
+      "query:4",
+      "publisher:query",
+      "publisher:execution"
+    ],
+    "justification": "The exhaustive admissible-pair query returns an optimum of 126, not the reported 170. The edges show a qualifying pair: 0\u21924\u21929 costs 58 and 0\u21921\u21925\u21926\u21929 costs 68; their internal nodes and risk groups are disjoint. The publisher query restricts one side of its pairing to the single cheapest route, so it can miss a better pair."
+  },
+  "metrics": {
+    "brier": 1e-06,
+    "correct_verdict": true,
+    "audit_sql_valid_aggregate": null,
+    "audit_sql_correct_this_database": null,
+    "actual_total": 126,
+    "query_aggregate": null
+  },
+  "finished_at": "2026-10-24T17:55:16.525722+00:00"
+}

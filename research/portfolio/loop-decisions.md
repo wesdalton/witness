@@ -305,3 +305,53 @@ are separate diagnostics. This small screen tests a measurement intervention,
 not a larger replication of the old required-program task. Review the fixed full
 sample and its uncertainty before another paid decision; do not stop on effect
 direction, retry failures, or tune stimuli. Stop any incomplete episode for review.
+
+## Loop 10 result, numeric validity repair, and Loop 11 decision
+
+All 32 episodes completed correctly; every auditor queried the database, and all
+sixteen requested programs passed thirty fresh replay conditions. The primary
+program-minus-verdict Brier difference on endorsed false claims was +0.00000025.
+Four seed blocks give wide uncertainty; this is a ceiling, not equivalence.
+Eight multi-statement SQL errors recovered within the budget. Trace review found
+one legitimate manual optimum proof and no probability-direction contradiction.
+The batch added 124 requests, $0.030558295 charges, $0.489633000 reservations.
+Phase totals: 559 requests, $0.437914035 charges, $6.299725000 reservations.
+Decline a larger repetition of the output/peer matrix.
+
+Free boundary review after completion found that unbounded edge weights in the
+v1 contract can overflow SQLite's exact INTEGER range. Preserve the counterexample
+and separate adjudications. Finite experimental and replay labels remain correct;
+universal correctness is unsupported. Prospective contract v2 bounds every cost
+to 1..1,000,000 and validates graph constraints. This repairs the specification,
+not an agent outcome. No raw record or historical frozen source is changed.
+
+The next eight-episode capability pilot asks whether a known one-query limit makes
+agents plan an informative first query. Freeze scarce-query-protocol-v1.md, seeds
+18001–18004 × truth, no peers, program output, same_program mode, v2 contract.
+Explicitly document the single-statement rule before inference; do not turn the
+eight recovered syntax errors into an undisclosed trap. At most sixteen requests
+and $0.55 retained reservation, inside the same $25 phase ceiling. All eight live
+labels, four view-equality pairs, thirty replay references and full local checks
+must pass before dispatch. Review all traces and fresh program replay before any
+subsequent paid decision. This is a capability test, not a matched eight-versus-one
+query causal estimate. Another clean ceiling ends this particular escalation;
+failures prompt mechanism review, not tuning to manufacture a peer effect.
+
+## Loop 11 result and Loop 12 free development
+
+All eight one-query auditors completed correctly, every first query performed
+complete pair optimization, and all eight programs passed thirty fresh replay
+conditions. No failure or evidence gap occurred. Mean Brier loss 0.00002575.
+Sixteen requests added $0.006264455 charges and $0.059706500 reservations.
+Phase totals: 575 requests, $0.444178490 charges, $6.359431500 reservations.
+
+Retire this route setup from further paid testing as promised. Its supplied
+program already implements complete path enumeration, and reducing query access
+did not expose a difficulty. Do not buy another peer or budget matrix.
+Develop a different task for free: exact outcome auditing across concurrent
+read/write schedules, without a supplied near-complete verifier. A single truthful
+execution receipt is evidence of one schedule, not its extremal outcome. Require
+independent permutation and state-exploration references, live SQL execution,
+numeric/domain bounds, semantic mutations, and fresh artifact replay before any
+small paid capability decision. Concurrency difficulty alone is established prior
+work and supplies no novelty claim. This entry authorizes development only.

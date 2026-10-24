@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import sys
+from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +39,11 @@ def analyze(folder):
             expected = manifest["output_interfaces"][record["spec"]["output_mode"]]["system_prompt"]
             if record["system_prompt"] != expected:
                 raise ValueError("Wrong intervention system prompt")
+    if manifest.get("route_case_mode") == "same_program":
+        for seed, arm, mode in sorted({(k[0], k[2], k[3]) for k in planned}):
+            a, b = (by_key.get((seed, t, arm, mode)) for t in (False, True))
+            if a and b and a["initial_view"] != b["initial_view"]:
+                raise ValueError("Finite truth leaked through the initial model view")
     comparisons = []
     for truth in (False, True):
         for arm in ("neutral", "endorsement"):
@@ -68,6 +74,53 @@ def analyze(folder):
                     int(r["program_correct"]) - int(r["verdict_correct"]) for r in rows])
                     if rows else None,
             })
+    peers = []
+    cells = []
+    for mode in ("verdict", "program"):
+        for truth in (False, True):
+            rows, missing = [], []
+            seeds = sorted({s[0] for s in planned if s[1] == truth and s[3] == mode})
+            for seed in seeds:
+                a, b = (by_key.get((seed, truth, arm, mode))
+                        for arm in ("neutral", "endorsement"))
+                if not a or not b or a["status"] != "completed" or b["status"] != "completed":
+                    missing.append(seed)
+                    continue
+                rows.append({
+                    "seed": seed,
+                    "neutral_correct": a["metrics"]["correct_verdict"],
+                    "endorsement_correct": b["metrics"]["correct_verdict"],
+                    "brier_difference_endorsement_minus_neutral":
+                        b["metrics"]["brier"] - a["metrics"]["brier"],
+                    "live_query_difference_endorsement_minus_neutral":
+                        sum(e["type"] == "tool" for e in b["events"])
+                        - sum(e["type"] == "tool" for e in a["events"]),
+                })
+            peers.append({
+                "output_mode": mode, "truth": truth, "pairs": rows, "missing_seeds": missing,
+                "accuracy_difference": paired_binary([
+                    int(r["endorsement_correct"]) - int(r["neutral_correct"]) for r in rows])
+                    if rows else None,
+            })
+            for arm in ("neutral", "endorsement"):
+                selected = [r for r in records if r["spec"]["output_mode"] == mode
+                            and r["spec"]["truth"] == truth and r["spec"]["arm"] == arm]
+                complete = [r for r in selected if r["status"] == "completed"]
+                tools = [e for r in selected for e in r["events"] if e["type"] == "tool"]
+                cells.append({
+                    "output_mode": mode, "truth": truth, "peer_arm": arm,
+                    "attempted": len(selected), "completed": len(complete),
+                    "correct": sum(r["metrics"]["correct_verdict"] for r in complete),
+                    "mean_brier": sum(r["metrics"]["brier"] for r in complete) / len(complete)
+                                  if complete else None,
+                    "live_queries": len(tools),
+                    "query_errors": sum(e["result"]["exit_code"] != 0 for e in tools),
+                    "episodes_with_query": sum(any(e["type"] == "tool" for e in r["events"])
+                                               for r in selected),
+                    "reported_cost_usd": str(sum(
+                        (Decimal(str(e["usage"]["cost"])) for r in selected for e in r["events"]
+                         if e["type"] == "model"), Decimal(0))),
+                })
     return {
         "schema": "witness.output-requirement-analysis.v1",
         "manifest_sha256": hashlib.sha256((folder / "manifest.json").read_bytes()).hexdigest(),
@@ -75,6 +128,7 @@ def analyze(folder):
         "status_counts": {status: sum(r["status"] == status for r in records)
                           for status in sorted({r["status"] for r in records})},
         "output_requirement_contrasts": comparisons,
+        "secondary_peer_contrasts": peers, "cells": cells,
         "interpretation": "Exploratory matched contrasts. Four seed blocks, not independent "
         "truth-state/peer repetitions. Source-only evidence is legitimate. Unrequested final "
         "programs are unmeasured, not failures. No mediation claim or equivalence from a wide CI.",

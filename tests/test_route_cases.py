@@ -1,6 +1,8 @@
 import itertools
 import sqlite3
 
+import pytest
+
 from swarm_lab.route_cases import (
     GREEDY_SQL,
     ORACLE_SQL,
@@ -8,6 +10,7 @@ from swarm_lab.route_cases import (
     generated_graph,
     matched_program_graph,
     python_optimum,
+    validate_graph,
 )
 
 
@@ -59,3 +62,19 @@ def test_same_program_pair_has_identical_report_and_different_finite_truth():
             assert optimum >= 0 and greedy > 0
             totals.append(greedy)
         assert totals[0] == totals[1]
+
+
+def test_v1_numeric_counterexample_and_v2_preexecution_domain_guard():
+    nodes = [(0, None), (1, 1), (2, 2), (9, None)]
+    edges = [(u, v, 3_000_000_000_000_000_001)
+             for u, v in ((0, 1), (1, 9), (0, 2), (2, 9))]
+    assert python_optimum(nodes, edges) == 12_000_000_000_000_000_004
+    actual = sql_value(nodes, edges, sink=9)
+    assert type(actual) is float and actual != python_optimum(nodes, edges)
+    with pytest.raises(ValueError, match="integer-cost"):
+        validate_graph(nodes, edges)
+    bounded = [(u, v, 1_000_000) for u, v, _ in edges]
+    validate_graph(nodes, bounded)
+    assert sql_value(nodes, bounded, sink=9) == 4_000_000
+    with pytest.raises(ValueError, match="acyclic"):
+        validate_graph(nodes, bounded + [(9, 0, 1)])

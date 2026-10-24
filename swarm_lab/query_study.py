@@ -84,7 +84,19 @@ class StrictQueryClient(ResponsesClient):
         return value
 
 
-def initial_view(workspace, arm, smoke, output_mode=None):
+def budgeted_system(system, query_budget):
+    if query_budget == 8:
+        return system
+    phrase = {1: "one live query", 2: "two live queries", 4: "four live queries"}[query_budget]
+    system = system.replace("eight live queries", phrase)
+    return system + (
+        f"\nThe total query budget is {query_budget}. Every query tool call consumes "
+        "one credit, including failed queries. Bundled calls each consume a credit. "
+        "A query call accepts exactly one SQL statement. "
+        "After these credits are used, your next response must submit.\n")
+
+
+def initial_view(workspace, arm, smoke, output_mode=None, query_budget=8):
     peers = []
     inherited = hasattr(workspace, "inherited_query")
     reviewed = "submitted query and its execution receipt" if inherited else "smoke report"
@@ -104,7 +116,7 @@ def initial_view(workspace, arm, smoke, output_mode=None):
             "publisher_report": {"id": "report", **workspace.report},
             "smoke_report": {"id": "smoke", "exit_code": smoke["exit_code"],
                              "smoke_tests_passed": 1, "smoke_tests_total": 1},
-            "peer_messages": peers, "max_queries": 8, "max_model_responses": 8}
+            "peer_messages": peers, "max_queries": query_budget, "max_model_responses": 8}
     if inherited:
         value["publisher_query"] = {"id": "publisher:query", "sql": workspace.inherited_query}
         value["publisher_execution"] = {
@@ -147,10 +159,12 @@ def run_episode(spec, output, client, image):
             ReconciliationWorkspace(spec["seed"], spec["truth"], image, revision=2))
         system = SYSTEM
     output_mode = spec.get("output_mode")
+    query_budget = spec.get("query_budget", 8)
     program_required = output_mode != "verdict"
     if output_mode:
         query_tool = (ROUTE_TOOLS if spec.get("task") == "routes" else TOOLS)[0]
         system, client.tools = query_interfaces.interface(output_mode, query_tool, FIELDS)
+    system = budgeted_system(system, query_budget)
     record = {"schema": "witness.query-audit.v1", "spec": spec, "events": [],
               "system_prompt": system, "started_at": datetime.now(UTC).isoformat(),
               "workspace_sha256": workspace.hashes()}
@@ -161,7 +175,7 @@ def run_episode(spec, output, client, image):
         record["initial_integrity_execution"] = smoke
         if smoke["exit_code"] or smoke["timed_out"] or smoke["output_truncated"]:
             raise ValueError("Initial integrity check failed")
-        initial = initial_view(workspace, spec["arm"], smoke, output_mode)
+        initial = initial_view(workspace, spec["arm"], smoke, output_mode, query_budget)
         record["initial_view"] = initial
         append(path, {"type": "start", **record})
         evidence = {"report", "smoke"} | {p["id"] for p in initial["peer_messages"]}
@@ -170,7 +184,7 @@ def run_episode(spec, output, client, image):
         messages = [{"role": "system", "content": system},
                     {"role": "user", "content": json.dumps(initial)}]
         for turn in range(1, 9):
-            message, event = client.generate(messages, final=turn == 8 or queries == 8)
+            message, event = client.generate(messages, final=turn == 8 or queries == query_budget)
             event = {"type": "model", "turn": turn, **event}
             record["events"].append(event)
             append(path, event)
@@ -189,7 +203,7 @@ def run_episode(spec, output, client, image):
                     validate_submission(parsed[0][2], evidence, program_required)
                     submission, status = parsed[0][2], "completed"
                     break
-                if queries + len(parsed) > 8:
+                if queries + len(parsed) > query_budget:
                     raise ValueError("Query budget exceeded")
                 for _, name, args in parsed:
                     if name != "query" or not isinstance(args, dict) or set(args) != {"sql"}:
@@ -210,7 +224,8 @@ def run_episode(spec, output, client, image):
                 eid = f"query:{queries}"
                 evidence.add(eid)
                 returned = {"evidence_id": eid, "result": result,
-                            "queries_remaining": 8-queries, "responses_remaining": 8-turn}
+                            "queries_remaining": query_budget-queries,
+                            "responses_remaining": 8-turn}
                 event = {"type": "tool", "name": "query", "turn": turn,
                          "arguments": args, **returned}
                 record["events"].append(event)
@@ -257,6 +272,7 @@ def launch(args, plan):
     inherited_references = (inherited_query_cases.verify_inherited(plan["episodes"], image)
                             if args.inherited_query and not is_routes else None)
     system, tools = (ROUTE_SYSTEM, ROUTE_TOOLS) if is_routes else (SYSTEM, TOOLS)
+    system = budgeted_system(system, args.query_budget)
     model_record, input_price, output_price = catalog(plan["model"])
     key = load_key(ROOT / ".env")
     if not key:
@@ -276,6 +292,7 @@ def launch(args, plan):
         "query-protocol-v1.md", "loop-decisions.md", "novelty-review.md", "sandbox/Dockerfile")]
     if is_routes:
         sources.append(ROOT / "research/portfolio/route-protocol-v1.md")
+        sources.append(ROOT / "research/portfolio/route-protocol-v2.md")
         sources.append(ROOT / "scripts/audit_routes_reference.py")
     elif args.inherited_query:
         sources.append(ROOT / "research/portfolio/query-inherited-protocol-v1.md")
@@ -283,6 +300,10 @@ def launch(args, plan):
         sources.append(ROOT / "research/portfolio/output-requirement-protocol-v1.md")
         sources.append(ROOT / "research/portfolio/output-requirement-reference-gate-v1.json")
         sources.append(ROOT / "scripts/analyze_query_interfaces.py")
+    if args.query_budget != 8:
+        sources.append(ROOT / "research/portfolio/scarce-query-protocol-v1.md")
+        sources.append(ROOT / "research/portfolio/scarce-query-reference-gate-v1.json")
+        sources.append(ROOT / "scripts/audit_scarce_query_reference.py")
     sources += [ROOT / "scripts" / name for name in (
         "replay_reconciliation_queries.py", "audit_agent_study.py",
         "audit_reconciliation_reference.py")]
@@ -306,6 +327,8 @@ def launch(args, plan):
             mode: dict(zip(("system_prompt", "tools"),
                            query_interfaces.interface(mode, tools[0], FIELDS), strict=True))
             for mode in args.output_modes}
+        for value in manifest["output_interfaces"].values():
+            value["system_prompt"] = budgeted_system(value["system_prompt"], args.query_budget)
     save(args.out / "manifest.json", manifest)
     ledger = PhaseBudget(PHASE_LEDGER)
     client = StrictQueryClient(key, plan["model"], ledger, batch, money(args.batch_ceiling),
@@ -339,6 +362,7 @@ def main():
     parser.add_argument("--task", choices=["inventory", "routes"], default="inventory")
     parser.add_argument("--output-modes", nargs="+", choices=["program", "verdict"])
     parser.add_argument("--route-case-mode", choices=["legacy", "same_program"], default="legacy")
+    parser.add_argument("--query-budget", type=int, choices=[1, 2, 4, 8], default=8)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--live", action="store_true")
     args = parser.parse_args()
@@ -350,6 +374,9 @@ def main():
         if len(set(args.output_modes)) != len(args.output_modes):
             raise ValueError("Duplicate output mode")
         specs = [{**spec, "output_mode": mode} for spec in specs for mode in args.output_modes]
+    if args.query_budget != 8:
+        for spec in specs:
+            spec["query_budget"] = args.query_budget
     if args.task == "routes":
         if not args.inherited_query:
             raise ValueError("Route protocol requires supplied publisher query")
@@ -365,15 +392,20 @@ def main():
     random.Random("witness-query-order-v1").shuffle(specs)
     for i, spec in enumerate(specs):
         spec["id"] = f"episode-{i+1:03d}"
-    plan = {"model": "openai/gpt-6-luna", "episodes": specs, "max_calls": len(specs)*8,
+    plan = {"model": "openai/gpt-6-luna", "episodes": specs,
+            "max_calls": len(specs)*min(8, args.query_budget+1),
             "batch_ceiling_usd": str(money(args.batch_ceiling)), "phase_ceiling_usd": "25",
             "generator_revision": 1 if args.task == "routes" else 2,
             "task": args.task, "reasoning": "medium", "max_output_tokens": 4096,
             "responses_input_limit": 256000, "inherited_query": args.inherited_query}
     if args.output_modes:
         plan["output_modes"] = args.output_modes
+    if args.query_budget != 8:
+        plan["query_budget"] = args.query_budget
     if args.route_case_mode != "legacy":
         plan["route_case_mode"] = args.route_case_mode
+    if args.task == "routes":
+        plan["route_contract_revision"] = route_cases.CONTRACT_REVISION
     if not args.live:
         print(json.dumps(plan, indent=2))
         return 0

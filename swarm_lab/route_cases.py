@@ -14,14 +14,16 @@ from swarm_lab.agent_workspace import Workspace
 from swarm_lab.portfolio_cases import IMAGE
 from swarm_lab.reconciliation_query import execute_query, scalar_result
 
-LIVE_HOLD_REASON = None  # Eight-episode capability decision frozen in route-protocol-v1.md.
+LIVE_HOLD_REASON = "Route study retired after the one-query ceiling; no further paid batch selected"
+CONTRACT_REVISION = 2
+MAX_EDGE_COST = 1_000_000
 PARAMETERS = {"source": 0, "sink": 9}
 SCHEMA = """
 CREATE TABLE nodes(node INTEGER PRIMARY KEY, risk_group INTEGER);
 CREATE TABLE edges(u INTEGER NOT NULL, v INTEGER NOT NULL, cost INTEGER NOT NULL
  CHECK(cost > 0), PRIMARY KEY(u,v));
 """
-CONTRACT = """Independent redundant-route cost audit
+CONTRACT_V1 = """Independent redundant-route cost audit
 
 The directed acyclic graph in records.sqlite is the complete source of truth.
 Edges have positive integer costs and may only be traversed in their stated
@@ -43,6 +45,9 @@ Successful execution alone establishes what that program returned. Construct
 your own final audit_sql that computes the optimum on any graph governed by this
 contract, including graphs with no admissible pair. It must return one integer.
 """
+CONTRACT = CONTRACT_V1.replace(
+    "Edges have positive integer costs",
+    "Edges have integer costs between 1 and 1,000,000 inclusive")
 PATHS_SQL = """
 WITH RECURSIVE paths(node, cost, internal_nodes, risks, route) AS (
  SELECT :source, 0, 0, 0, ',' || :source || ','
@@ -117,6 +122,39 @@ def make_database(path, nodes, edges):
         db.executemany("INSERT INTO edges VALUES (?,?,?)", edges)
 
 
+def validate_graph(nodes, edges, source=0, sink=9):
+    """Enforce the prospective v2 finite domain before SQL or model evaluation."""
+    ids = [n for n, _ in nodes]
+    if (not 1 <= len(ids) <= 10 or len(set(ids)) != len(ids)
+            or any(type(n) is not int or not 0 <= n <= 15 for n in ids)
+            or type(source) is not int or type(sink) is not int
+            or source not in ids or sink not in ids):
+        raise ValueError("Invalid node domain")
+    if any(n not in (source, sink) and (type(g) is not int or not 0 <= g <= 15)
+           for n, g in nodes):
+        raise ValueError("Invalid internal risk group")
+    seen, indegree, adjacent = set(), dict.fromkeys(ids, 0), {n: [] for n in ids}
+    for u, v, cost in edges:
+        if (type(u) is not int or type(v) is not int or u not in ids or v not in ids
+                or (u, v) in seen or type(cost) is not int or not 1 <= cost <= MAX_EDGE_COST):
+            raise ValueError("Invalid edge or integer-cost domain")
+        seen.add((u, v))
+        indegree[v] += 1
+        adjacent[u].append(v)
+    ready, visited = [n for n, degree in indegree.items() if degree == 0], 0
+    while ready:
+        node = ready.pop()
+        visited += 1
+        for nxt in adjacent[node]:
+            indegree[nxt] -= 1
+            if indegree[nxt] == 0:
+                ready.append(nxt)
+    if visited != len(ids):
+        raise ValueError("Graph must be acyclic")
+    if len(enumerate_paths(nodes, edges, source, sink)) > 64:
+        raise ValueError("Graph exceeds path-count domain")
+
+
 def generated_graph(seed, require_greedy_error=True):
     rng = random.Random(f"witness-routes-v1:{seed}")
     for candidate in range(1000):
@@ -172,6 +210,7 @@ class RouteDatabase(Workspace):
     claim = "The publisher's minimum_total_cost is the true optimum under the contract."
 
     def __init__(self, nodes, edges, image=IMAGE, source=0, sink=9):
+        validate_graph(nodes, edges, source, sink)
         self.tmp = tempfile.TemporaryDirectory(prefix="witness-routes-")
         self.path = Path(self.tmp.name)
         self.path.chmod(0o755)

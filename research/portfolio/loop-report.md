@@ -51,12 +51,20 @@ All eight model audits completed correctly and passed thirty replay conditions
 each. The task still has not demonstrated a hard behavioral failure; see
 [the route report](route-calibration-report.md).
 
-The [next fixed 32-audit screen](output-requirement-protocol-v1.md) tests whether
-requiring an executable verifier changes judgments under endorsement. A new
-same-program construction holds initial evidence identical across true/false
-claims; only querying the database can distinguish them. Earlier code/label cues
-were removed before this screen, with the unrun design preserved. The output
-requirement and peer text are independently varied; all data and access are fixed.
+The [fixed 32-audit screen](output-requirement-report.md) is complete: all judgments
+were correct, and all sixteen requested programs passed thirty fresh conditions.
+The primary Brier contrast was +0.00000025; four seed blocks leave wide uncertainty.
+Initial evidence was identical across true/false claims, so new database evidence
+was needed. Both output modes acquired it. Decline a larger ceiling replication.
+
+After completion, free numeric review found unbounded v1 costs could overflow
+SQLite's exact integers. Finite experimental scores remain valid; universal
+correctness is unsupported. [Contract v2](route-protocol-v2.md) bounds costs and
+validates graphs prospectively. The [eight-episode one-query pilot](scarce-query-report.md)
+also completed perfectly, including thirty fresh replay conditions per program.
+Every first query computed the exact optimum. The route setup is retired from
+further paid testing. Free development now considers concurrency outcomes without
+a near-complete supplied solver; new validity gates and a paid decision are required.
 
 Agents execute real queries and tools. Peer messages and supplied faulty programs
 are authored stimuli, not independently executing peer agents. Fresh database
@@ -70,8 +78,8 @@ quality of the evidence-generating program, but novelty remains provisional.
 See [the literature comparison](novelty-review.md). A novel causal claim requires
 fresh confirmation, stronger transfer, and a full comparison with related work.
 
-Before the output-requirement screen: 435 requests, $0.407355740 reported cost and
-$5.810092000 retained reservations. The append-only phase ledger is authoritative;
+After one-query calibration: 575 requests, $0.444178490 reported cost and
+$6.359431500 retained reservations. The append-only phase ledger is authoritative;
 the total ceiling remains $25. Reservations are conservative limits, not charges.
 No Daybreak rejection has appeared in visible outputs in this loop. Any rejected
 action must stop without retrying or using an alternate route.

@@ -37,9 +37,15 @@ conclusions are still pending. Four executable-query audits and their unchanged
 programs passed sixteen fresh database conditions each; this likely ceiling is
 not being scaled. Eight inherited-query audits also passed all fresh conditions.
 A joint route-optimization pilot also passed eight audits and thirty replay
-conditions per program. The next fixed comparison tests whether requiring an
-executable verifier changes auditing under endorsement, with identical initial
-evidence across true/false claims. No novel behavioral conclusion is established.
+conditions per program. A [matched 32-audit comparison](research/portfolio/output-requirement-report.md)
+also finished with every judgment correct, whether or not a final executable
+verifier was required. All sixteen requested programs passed thirty fresh
+conditions. A prospective numeric-domain repair preserves these finite results.
+The [one-query pilot](research/portfolio/scarce-query-report.md) also passed all
+eight audits and thirty replay conditions per program. This route setup is now
+retired from paid testing; free development is investigating verification of
+concurrent schedule outcomes without a supplied solver.
+No novel behavioral conclusion is established.
 
 The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning
 only by default). The [protocol](research/agent-study/protocol.md),

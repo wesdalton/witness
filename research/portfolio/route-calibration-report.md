@@ -30,3 +30,9 @@ with a common substantive contract, fixed tool access, and neutral/endorsement
 conditions. Claim judgment is the common endpoint; absence of an unrequested
 program must never be scored as failed verification. This is a new mechanism
 screen, not a larger replication of the same mandatory-program task.
+
+Later scope adjudication: v1 allowed unbounded costs beyond exact SQLite INTEGER
+arithmetic. Every observed and replayed graph here remains in the valid exact
+range; finite scores are retained. Universal program correctness is unsupported.
+See [the numeric counterexample and repair](route-protocol-v2.md). Original frozen
+sources, prompts, records and scores remain unchanged.

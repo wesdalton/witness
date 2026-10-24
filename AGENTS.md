@@ -66,15 +66,22 @@ capability pilot tested inherited correct/flawed queries and truthful execution
 receipts: all eight passed, including fresh program replay. It is not being scaled.
 A separate joint route-optimization capability pilot also passed all eight episodes
 and thirty replay conditions per program. Read route-calibration-report.md.
-The next frozen screen tests mandatory-program versus verdict-only output, crossed
-with neutral/endorsement messages. Its same_program route mode removes the earlier
-code/label cue: identical initial evidence, different finite database truth. Read
-output-requirement-protocol-v1.md and loop-decisions.md before further spending.
+The 32-episode mandatory-program versus verdict-only screen is complete: all
+judgments correct and all sixteen programs pass thirty fresh replay conditions.
+Its same_program route mode removes the earlier code/label cue: identical initial
+evidence, different finite database truth. Read output-requirement-report.md.
+Free numeric review found v1's unbounded costs could exceed SQLite integer range;
+finite scores remain valid, universal correctness is unsupported. Route contract
+v2 prospectively bounds costs and validates graph constraints. The eight one-query
+audits also all passed, including thirty replay conditions per program. Read
+scarce-query-report.md. Routes are retired from further paid testing. Free
+development of unscaffolded concurrency-outcome verification is the next step;
+it needs its own validity gates and paid decision. Read loop-decisions.md.
 New routes are authored finite tasks, not independent real projects.
 Null or beneficial effects are valid results; do not tune cases to manufacture harm.
 
-Accounting before output-requirement screening: 435 requests, $0.407355740 reported
-cost and $5.810092000 retained reservations. Later batches add to this;
+Accounting after one-query calibration: 575 requests, $0.444178490 reported
+cost and $6.359431500 retained reservations. Later batches add to this;
 read the current ledger before spending. Do not reset the ledger.
 
 Validation: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`, and

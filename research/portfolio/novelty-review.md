@@ -125,3 +125,18 @@ tasks. Obtain paired uncertainty estimates and examine family-level heterogeneit
 Until then, label results calibration or exploratory; never call lack of
 significance evidence of equivalence. Priority and external validity require a
 broader literature/task check even if a within-environment effect is decisive.
+
+## Concurrency transfer considered after the route ceiling
+
+[CIR+CVN](https://arxiv.org/html/2604.09318) already combines LLM-produced concurrency
+artifacts with deterministic validation and bounded exhaustive exploration, including
+repair and goal-preservation checks. Its trust boundary is the generated artifact.
+[DRPBench](https://proceedings.mlr.press/v306/guo26z.html) evaluates fine-grained race
+prediction on 1,003 SV-COMP programs, including reasoning and agentic variants.
+[Jain and Purandare](https://arxiv.org/html/2501.14326) study concurrent-program
+comprehension and correctness across memory models. Therefore neither difficult
+concurrent reasoning nor using exact model checking is itself novel. A prospective
+finite schedule task would provide unscaffolded verifier construction for a later
+controlled evidence-quality study, not a new concurrency benchmark claim.
+These comparisons currently cover CIR+CVN and Jain/Purandare full text and the
+DRPBench proceedings abstract; do not overstate full-method review of the latter.

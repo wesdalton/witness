@@ -36,6 +36,9 @@ def audit(root: Path):
         score_valid = not adjudication or adjudication.get("reference_labels_valid", True)
         if not score_valid:
             warnings.append(f"{folder.name}: invalid reference labels; accuracy/Brier excluded")
+        if adjudication and not adjudication.get("universal_correctness_claim_valid", True):
+            warnings.append(
+                f"{folder.name}: finite scores retained; universal program correctness unsupported")
         source_dir = folder / "source"
         if not source_dir.exists():
             warnings.append(f"{folder.name}: no full source snapshot; hashes/configuration only")
@@ -71,6 +74,13 @@ def audit(root: Path):
                         errors.append(f"{folder.name}/{path.name}: score mismatch")
                     if sorted(inspected) != episode["metrics"]["investigated"]:
                         errors.append(f"{folder.name}/{path.name}: allocation mismatch")
+            if query_audit:
+                query_events = [e for e in episode["events"] if e["type"] == "tool"]
+                query_budget = episode["spec"].get("query_budget", 8)
+                if len(query_events) > query_budget or any(
+                        e["queries_remaining"] != query_budget-i
+                        for i, e in enumerate(query_events, 1)):
+                    errors.append(f"{folder.name}/{path.name}: query budget mismatch")
             if query_audit and episode["submission"]:
                 expected_brier = (episode["submission"]["p_support"]-episode["spec"]["truth"])**2
                 if expected_brier != episode["metrics"]["brier"]:
