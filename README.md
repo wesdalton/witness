@@ -9,6 +9,11 @@ displaces independent verification**.
 **28 October:** historical evidence and writeup editions are indexed and checked
 for changes. The approved repository-audit pilot was stopped before setup by an
 automatic command guard; [status and unspent budget](research/repository-audit-status-20261028.md).
+An independent [446-execution replay audit](research/experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md)
+subsequently found two apparent replay differences caused solely by memory-address
+logging and validated stronger measurement controls, with no new inference charges.
+[Archive completeness and historical limitations](research/archive-completeness-20261028.md)
+cover the recovered early scripted Inspect logs as well as the live-agent records.
 
 Run a swarm, trace a claim to its original evidence, compare policies under a fixed
 effort budget, and export the experiment. The browser supports up to 10,000 simulated

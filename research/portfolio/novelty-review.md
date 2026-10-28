@@ -181,3 +181,22 @@ Research decision: no large replication of the present ceilings and no generic
 cache-corruption or replay-feedback study purchased on a novelty assumption.
 The next proposed contribution must state its distinct estimand, nearest existing
 experiment, outcome that would falsify it, and a cheap capability/validity gate.
+
+## Repeatability controls, 28 October 2026
+
+New free work tests repeated execution of the 76 archived Python probes. Ordinary
+object representations can contain runtime addresses, so raw stdout differences
+need not indicate different behavior. This is a local measurement issue, not a
+novel property of agents: [Verifying Determinism in Sequential Programs](https://homes.cs.washington.edu/~mernst/pubs/determinism-icse2021.pdf)
+explicitly discusses default object formatting and memory addresses. Its paper was
+opened; the comparison does not depend on a secondary summary.
+
+[On the Flakiness of LLM-Generated Tests](https://arxiv.org/abs/2601.08998)
+studies repeated tests on four database systems and transfer of flakiness through
+prompt context. Only its abstract was reviewed here. Our observation concerns
+logged bytes; it must not be described as a changed pass/fail verdict or a new
+test-flakiness mechanism. The known BSG-VA and oracle-quality overlaps remain.
+
+A search also surfaced an October preprint about test repair destroying
+bug-revealing tests. Its SSRN page returned HTTP 403; access was not retried or
+rerouted, and no full-method claim is based on that inaccessible paper.

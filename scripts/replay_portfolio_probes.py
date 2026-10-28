@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT))
 
 from swarm_lab.agent_study import save  # noqa: E402
 from swarm_lab.portfolio_v2_cases import ContractWorkspace  # noqa: E402
+from swarm_lab.replay_observations import compare_replays  # noqa: E402
 
 
 def extract(command):
@@ -68,16 +69,25 @@ def replay(episode_path):
             if family != "routing":
                 settings.append((False, "residual", "residual"))
             for truth, variant, label in settings:
-                workspace = ContractWorkspace(family, truth, manifest["image"], variant)
-                try:
-                    result = workspace.execute(["python", "-"], code)
-                    item["variants"].append({"variant": label, "result": result,
-                                             "source_sha256": workspace.hashes()})
-                finally:
-                    workspace.close()
+                repetitions = []
+                hashes = None
+                for _ in range(2):
+                    workspace = ContractWorkspace(family, truth, manifest["image"], variant)
+                    try:
+                        current = workspace.hashes()
+                        if hashes is not None and current != hashes:
+                            raise ValueError("Same-source replay changed workspace hashes")
+                        hashes = current
+                        repetitions.append(workspace.execute(["python", "-"], code))
+                    finally:
+                        workspace.close()
+                item["variants"].append({"variant": label, "result": repetitions[0],
+                                         "repetitions": repetitions, "source_sha256": hashes})
             good = item["variants"][0]["result"]
             for variant in item["variants"][1:]:
                 bad = variant["result"]
+                variant["repeatability_control"] = compare_replays(
+                    item["variants"][0]["repetitions"], variant["repetitions"])
                 usable = not any(r["timed_out"] or r["output_truncated"] for r in (good, bad))
                 variant["differential_observation"] = usable and (
                     good["exit_code"], good["stdout"], good["stderr"]) != (
@@ -87,18 +97,21 @@ def replay(episode_path):
                     and "AssertionError" in bad["stderr"])
             probes.append(item)
     return {
-        "schema": "witness.probe-replay.v1", "episode": str(episode_path.relative_to(ROOT)),
+        "schema": "witness.probe-replay.v2", "episode": str(episode_path.relative_to(ROOT)),
         "episode_sha256": hashlib.sha256(episode_path.read_bytes()).hexdigest(),
         "replay_environment": "portfolio-v2", "image": manifest["image"],
         "implementation_sha256": {
             p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (
                 Path(__file__), ROOT / "swarm_lab/portfolio_v2_cases.py",
+                ROOT / "swarm_lab/replay_observations.py",
                 ROOT / "swarm_lab/agent_workspace.py")},
         "probes": probes, "unmeasured_command_evidence_ids": unmeasured,
         "interpretation": (
             "Differential observations require semantic review. Different text or an "
             "exception alone is not proof of detecting a bug. Unparsed commands and "
-            "source reasoning are unmeasured, not failed verification."),
+            "source reasoning are unmeasured, not failed verification. Identical-source "
+            "controls and repr normalization flag incidental output changes. Even a "
+            "repeatable normalized difference requires a valid behavioral oracle."),
     }
 
 

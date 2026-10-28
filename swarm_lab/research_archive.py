@@ -149,7 +149,7 @@ class Archive:
             link = Path("..") / path.relative_to(self.root / "research")
             title = record["title"].replace("|", "\\|")
             original = record.get("original_path")
-            suffix = (f" ([living original](../{Path(original).relative_to('research')}))"
+            suffix = (f" ([living original](../../{Path(original).as_posix()}))"
                       if original else "")
             lines.append(f"| {record['experiment']} | {record['kind']} | "
                          f"[{title}]({link.as_posix()}){suffix} | {record['id']} |")

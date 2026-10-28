@@ -1,0 +1,94 @@
+{
+  "family": "multipart",
+  "sha256": "2113f1c8f9762b927056cf8435c9fa40a27cb1e2886d007b933e9915e26ea86e",
+  "origins": [
+    {
+      "path": "research/portfolio/luna-v2-allocation-screen-01/probe-replay-001.json",
+      "sha256": "d46d72d487fe9526cf80f5edd7d6efed5092b6f66703a52fcb4d6ae935b38c2e",
+      "episode": "research/portfolio/luna-v2-allocation-screen-01/episode-001.json",
+      "evidence_ids": [
+        "tool:C3:8"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "variant": "repaired",
+      "repetitions": [
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "<class 'werkzeug.sansio.multipart.NeedData'> <class 'werkzeug.sansio.multipart.Data'> <class 'werkzeug.sansio.multipart.File'>\n    def _parse_data(\n        self, data: bytes | bytearray, *, start: bool\n    ) -> tuple[bytes, int, bool]:\n        # Body parts must start with CRLF (or CR or LF)\n        if start:\n            match = LINE_BREAK_RE.match(data)\n            data_start = t.cast(t.Match[bytes], match).end()\n        else:\n            data_start = 0\n\n        if self.buffer.find(b\"--\" + self.boundary) == -1:\n            # No complete boundary in the buffer, but there may be\n            # a partial boundary at the end.\n            data_end = del_index = (\n                self._last_partial_boundary_index(data[data_start:]) + data_start\n            )\n            more_data = True\n        else:\n            match = self.boundary_re.search(data)\n            if match is not None:\n                if match.group(1).startswith(b\"--\"):\n                    self.state = State.EPILOGUE\n                else:\n                    self.state = State.PART\n                data_end = match.start()\n                del_index = match.end()\n            else:\n                data_end = del_index = (\n                    self._last_partial_boundary_index(data[data_start:]) + data_start\n                )\n            more_data = match is None\n        return bytes(data[data_start:data_end]), del_index, more_data\n\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 2.168
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "<class 'werkzeug.sansio.multipart.NeedData'> <class 'werkzeug.sansio.multipart.Data'> <class 'werkzeug.sansio.multipart.File'>\n    def _parse_data(\n        self, data: bytes | bytearray, *, start: bool\n    ) -> tuple[bytes, int, bool]:\n        # Body parts must start with CRLF (or CR or LF)\n        if start:\n            match = LINE_BREAK_RE.match(data)\n            data_start = t.cast(t.Match[bytes], match).end()\n        else:\n            data_start = 0\n\n        if self.buffer.find(b\"--\" + self.boundary) == -1:\n            # No complete boundary in the buffer, but there may be\n            # a partial boundary at the end.\n            data_end = del_index = (\n                self._last_partial_boundary_index(data[data_start:]) + data_start\n            )\n            more_data = True\n        else:\n            match = self.boundary_re.search(data)\n            if match is not None:\n                if match.group(1).startswith(b\"--\"):\n                    self.state = State.EPILOGUE\n                else:\n                    self.state = State.PART\n                data_end = match.start()\n                del_index = match.end()\n            else:\n                data_end = del_index = (\n                    self._last_partial_boundary_index(data[data_start:]) + data_start\n                )\n            more_data = match is None\n        return bytes(data[data_start:data_end]), del_index, more_data\n\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.5396
+        }
+      ],
+      "repeat_comparable": true,
+      "repeat_differs": false,
+      "normalized_repeat_differs": false,
+      "archived_differential": false,
+      "archived_address_only_difference": false
+    },
+    {
+      "variant": "historical",
+      "repetitions": [
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "<class 'werkzeug.sansio.multipart.NeedData'> <class 'werkzeug.sansio.multipart.Data'> <class 'werkzeug.sansio.multipart.File'>\n    def _parse_data(\n        self, data: bytes | bytearray, *, start: bool\n    ) -> tuple[bytes, int, bool]:\n        # Body parts must start with CRLF (or CR or LF)\n        if start:\n            match = LINE_BREAK_RE.match(data)\n            data_start = t.cast(t.Match[bytes], match).end()\n        else:\n            data_start = 0\n\n        boundary = b\"--\" + self.boundary\n\n        if self.buffer.find(boundary) == -1:\n            # No complete boundary in the buffer, but there may be\n            # a partial boundary at the end. As the boundary\n            # starts with either a nl or cr find the earliest and\n            # return up to that as data.\n            data_end = del_index = self.last_newline(data[data_start:]) + data_start\n            # If amount of data after last newline is far from\n            # possible length of partial boundary, we should\n            # assume that there is no partial boundary in the buffer\n            # and return all pending data.\n            if (len(data) - data_end) > len(b\"\\n\" + boundary):\n                data_end = del_index = len(data)\n            more_data = True\n        else:\n            match = self.boundary_re.search(data)\n            if match is not None:\n                if match.group(1).startswith(b\"--\"):\n                    self.state = State.EPILOGUE\n                else:\n                    self.state = State.PART\n                data_end = match.start()\n                del_index = match.end()\n            else:\n                data_end = del_index = self.last_newline(data[data_start:]) + data_start\n            more_data = match is None\n\n        # Keep \\r\\n sequence intact rather than splitting across chunks.\n        if data_end > data_start and data[data_end - 1] == 0x0D:\n            data_end -= 1\n            del_index -= 1\n\n        return bytes(data[data_start:data_end]), del_index, more_data\n\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.5387
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "<class 'werkzeug.sansio.multipart.NeedData'> <class 'werkzeug.sansio.multipart.Data'> <class 'werkzeug.sansio.multipart.File'>\n    def _parse_data(\n        self, data: bytes | bytearray, *, start: bool\n    ) -> tuple[bytes, int, bool]:\n        # Body parts must start with CRLF (or CR or LF)\n        if start:\n            match = LINE_BREAK_RE.match(data)\n            data_start = t.cast(t.Match[bytes], match).end()\n        else:\n            data_start = 0\n\n        boundary = b\"--\" + self.boundary\n\n        if self.buffer.find(boundary) == -1:\n            # No complete boundary in the buffer, but there may be\n            # a partial boundary at the end. As the boundary\n            # starts with either a nl or cr find the earliest and\n            # return up to that as data.\n            data_end = del_index = self.last_newline(data[data_start:]) + data_start\n            # If amount of data after last newline is far from\n            # possible length of partial boundary, we should\n            # assume that there is no partial boundary in the buffer\n            # and return all pending data.\n            if (len(data) - data_end) > len(b\"\\n\" + boundary):\n                data_end = del_index = len(data)\n            more_data = True\n        else:\n            match = self.boundary_re.search(data)\n            if match is not None:\n                if match.group(1).startswith(b\"--\"):\n                    self.state = State.EPILOGUE\n                else:\n                    self.state = State.PART\n                data_end = match.start()\n                del_index = match.end()\n            else:\n                data_end = del_index = self.last_newline(data[data_start:]) + data_start\n            more_data = match is None\n\n        # Keep \\r\\n sequence intact rather than splitting across chunks.\n        if data_end > data_start and data[data_end - 1] == 0x0D:\n            data_end -= 1\n            del_index -= 1\n\n        return bytes(data[data_start:data_end]), del_index, more_data\n\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.5393
+        }
+      ],
+      "repeat_comparable": true,
+      "repeat_differs": false,
+      "normalized_repeat_differs": false,
+      "archived_differential": true,
+      "archived_address_only_difference": false
+    },
+    {
+      "variant": "residual",
+      "repetitions": [
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "<class 'werkzeug.sansio.multipart.NeedData'> <class 'werkzeug.sansio.multipart.Data'> <class 'werkzeug.sansio.multipart.File'>\n    def _parse_data(\n        self, data: bytes | bytearray, *, start: bool\n    ) -> tuple[bytes, int, bool]:\n        # Body parts must start with CRLF (or CR or LF)\n        if start:\n            match = LINE_BREAK_RE.match(data)\n            data_start = t.cast(t.Match[bytes], match).end()\n        else:\n            data_start = 0\n\n        if self.buffer.find(b\"--\" + self.boundary) == -1:\n            # No complete boundary in the buffer, but there may be\n            # a partial boundary at the end.\n            data_end = del_index = (\n                self._last_partial_boundary_index(data[data_start:]) + data_start\n            )\n            more_data = True\n        else:\n            match = self.boundary_re.search(data)\n            if match is not None:\n                if match.group(1).startswith(b\"--\"):\n                    self.state = State.EPILOGUE\n                else:\n                    self.state = State.PART\n                data_end = match.start()\n                del_index = match.end()\n            else:\n                data_end = del_index = (\n                    self._last_partial_boundary_index(data[data_start:]) + data_start\n                )\n            more_data = match is None\n        return bytes(data[data_start:data_end]), del_index, more_data\n\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.5403
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "<class 'werkzeug.sansio.multipart.NeedData'> <class 'werkzeug.sansio.multipart.Data'> <class 'werkzeug.sansio.multipart.File'>\n    def _parse_data(\n        self, data: bytes | bytearray, *, start: bool\n    ) -> tuple[bytes, int, bool]:\n        # Body parts must start with CRLF (or CR or LF)\n        if start:\n            match = LINE_BREAK_RE.match(data)\n            data_start = t.cast(t.Match[bytes], match).end()\n        else:\n            data_start = 0\n\n        if self.buffer.find(b\"--\" + self.boundary) == -1:\n            # No complete boundary in the buffer, but there may be\n            # a partial boundary at the end.\n            data_end = del_index = (\n                self._last_partial_boundary_index(data[data_start:]) + data_start\n            )\n            more_data = True\n        else:\n            match = self.boundary_re.search(data)\n            if match is not None:\n                if match.group(1).startswith(b\"--\"):\n                    self.state = State.EPILOGUE\n                else:\n                    self.state = State.PART\n                data_end = match.start()\n                del_index = match.end()\n            else:\n                data_end = del_index = (\n                    self._last_partial_boundary_index(data[data_start:]) + data_start\n                )\n            more_data = match is None\n        return bytes(data[data_start:data_end]), del_index, more_data\n\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.4871
+        }
+      ],
+      "repeat_comparable": true,
+      "repeat_differs": false,
+      "normalized_repeat_differs": false,
+      "archived_differential": false,
+      "archived_address_only_difference": false
+    }
+  ]
+}

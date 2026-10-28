@@ -1,0 +1,52 @@
+{
+  "schema": "witness.episode_summary.v1",
+  "episodes": [
+    {
+      "source_sha256": "aaf3160c70ca727dc1e952a0ee3990472a9df8a159ab2326cad6c7bbee0316b8",
+      "kind": "scripted_smoke",
+      "status": "success",
+      "model": "scripted",
+      "harness_sha256": "8155b80702c1c88ce6013cfb919be9c0707a2b3228069d0d7c253b8eccfc7b5b",
+      "prompt_sha256": "d24edcc045918a8971ffd0b8566d9964bc6c592ab1414274037443b7becfe03e",
+      "artifact_sha256": "e681e5ea7d990bfc617fab1ef1a0157b86246ca8f71d62870b56a2f936a9d21b",
+      "fixture": "pytest_module_shadow",
+      "truth": false,
+      "config": {
+        "population": 8,
+        "rounds": 8,
+        "seed": 42,
+        "topology": "small-world",
+        "treatment": "reports",
+        "budget": 24,
+        "delay": 2,
+        "seed_share": 0.25,
+        "max_calls": 64,
+        "max_output_tokens": 256,
+        "concurrency": 4
+      },
+      "decision_count": 64,
+      "invalid_or_failed_decisions": 0,
+      "agents_requesting_check": 8,
+      "check_requests": 8,
+      "probe_deliveries": 8,
+      "messages": 56,
+      "effort": 88,
+      "unused_effort": 104,
+      "final_wrong": 0.0,
+      "final_uncertain": 0.0,
+      "final_correct": 1.0,
+      "final_brier": 0.0001,
+      "peak_wrong": 0.0,
+      "mean_wrong": 0.0,
+      "mean_brier": 0.062575,
+      "usage": {}
+    }
+  ],
+  "interpretation": [
+    "Each row is one dependent multi-agent episode, not N independent samples.",
+    "Mean error covers completed rounds 1..T; the harness has no round-zero metric.",
+    "Scripted and real-model kinds remain separate; no inferential statistics computed.",
+    "Repeated ledger fixtures constitute one case family, not task diversity.",
+    "Usage totals are provider-reported tokens, not inferred dollar charges."
+  ]
+}

@@ -37,9 +37,20 @@ Run before and after research work:
 
 ```sh
 .venv/bin/python scripts/research_archive.py audit
+.venv/bin/python scripts/audit_research_coverage.py
 .venv/bin/python scripts/audit_agent_study.py
 ```
 
 Regenerate navigation with `scripts/research_archive.py index`. Use `bootstrap`
 only to register legacy runs and archive new editions of legacy writeups/analyses.
 Do not rebaseline a changed sealed bundle: investigate and write an adjudication.
+
+The completeness check additionally scans `logs/`, including Git-ignored early
+Inspect files. Historical logs are copied into `research/archive/recovered/` and
+indexed with their original location. Preserve mock/scripted labels: these logs
+do not become live-model evidence merely because they use the Inspect format.
+`scripts/audit_research_coverage.py --capture-legacy` archives previously omitted
+root writeups, ignored logs and ledger snapshots. It detects unregistered evidence,
+changed writeup editions, and changes to archived ledger prefixes while permitting
+new ledger entries. Completeness means all evidence currently found in these
+directories; it cannot recover missing historical files or unrecorded work.

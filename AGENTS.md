@@ -7,12 +7,21 @@ Keep analyses, report editions and adjudications separate and link parent bundle
 IDs. Never change a sealed run or rebaseline a checksum mismatch. The registry's
 index is derived and replaceable; evidence and registry bundle records are not.
 Run `.venv/bin/python scripts/research_archive.py audit` before and after work.
+Also run `.venv/bin/python scripts/audit_research_coverage.py`: ignored `logs/`
+artifacts and root research writeups must not silently escape registration.
 
 28 October: the user approved repository-audit experiments. Preparation stopped
 before setup because an automatic command guard rejected the combined setup
 command. Read `research/repository-audit-status-20261028.md`. No new calls were made.
 Do not retry the blocked setup or use an alternate route. `swarm_lab/repo_cases.py`
 is unfinished preparation; its corpus and references have not been validated.
+
+Independent free work subsequently completed a 76-probe/446-execution negative-
+control audit. Read `research/experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md`.
+Raw output differences can reflect memory addresses; prospective replay v2 adds
+same-source repeats and diagnostic normalization without certifying bug detection.
+The historical outcome scores remain unchanged. Read the archive completeness
+report for recovered scripted Inspect logs and the early README/log discrepancy.
 
 The user delegated Witness research direction and execution on 24 October 2026.
 They authorized **$25 total for this research phase**, including the pilot and
