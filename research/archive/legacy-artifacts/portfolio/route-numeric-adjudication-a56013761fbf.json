@@ -1,0 +1,109 @@
+{
+  "schema": "witness.route-numeric-adjudication.v1",
+  "model_inference": false,
+  "reference_labels_valid": true,
+  "finite_replay_scores_valid": true,
+  "universal_correctness_claim_valid": false,
+  "counterexample": {
+    "nodes": [
+      [
+        0,
+        null
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        9,
+        null
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1,
+        3000000000000000001
+      ],
+      [
+        1,
+        9,
+        3000000000000000001
+      ],
+      [
+        0,
+        2,
+        3000000000000000001
+      ],
+      [
+        2,
+        9,
+        3000000000000000001
+      ]
+    ],
+    "expected": 12000000000000000004,
+    "sql_value": 1.2e+19,
+    "sql_type": "float"
+  },
+  "v1_contract_sha256": "c2e5abd95f18327ebb242f5cacd9308676eda8598d9fbc59a6752be2b5c06070",
+  "v2_contract_sha256": "e8bf7e2b297c7cd9238356f55c3f36f221612f9b843c2b76248c69dbb4a3beef",
+  "discovered_after_batch_completion": true,
+  "scope": "Existing small-cost finite labels/replays remain valid. The v1 unbounded domain exceeds SQLite INTEGER; this is a harness defect, not a model mistake.",
+  "v2_live_boundaries": [
+    {
+      "name": "four-max-edges",
+      "expected": 4000000,
+      "execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[4000000]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2862
+      },
+      "source_sha256": {
+        "README.md": "e8bf7e2b297c7cd9238356f55c3f36f221612f9b843c2b76248c69dbb4a3beef",
+        "records.sqlite": "6cba2e604658846c1153339f4a5e352ae41c5eec15cb7c2b07305e83c80dd4e7",
+        "schema.sql": "b02263bf932331b83beb9edef78337d19c37a790aa9394496b21a09e4de5440a"
+      }
+    },
+    {
+      "name": "ten-max-edges",
+      "expected": 10000000,
+      "execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[10000000]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2828
+      },
+      "source_sha256": {
+        "README.md": "e8bf7e2b297c7cd9238356f55c3f36f221612f9b843c2b76248c69dbb4a3beef",
+        "records.sqlite": "97a617ccc67f4f6eb2969cf3af8002e4249d64a427460678f0563128e5206c81",
+        "schema.sql": "b02263bf932331b83beb9edef78337d19c37a790aa9394496b21a09e4de5440a"
+      }
+    },
+    {
+      "name": "empty",
+      "expected": -1,
+      "execution": {
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[-1]], \"rows_truncated\": false}\n",
+        "stderr": "",
+        "output_truncated": false,
+        "elapsed_seconds": 0.2861
+      },
+      "source_sha256": {
+        "README.md": "e8bf7e2b297c7cd9238356f55c3f36f221612f9b843c2b76248c69dbb4a3beef",
+        "records.sqlite": "73cea75ad91f54b5818f0990908ba7ac559dfa09ec280176b6471bfc62d018dc",
+        "schema.sql": "b02263bf932331b83beb9edef78337d19c37a790aa9394496b21a09e4de5440a"
+      }
+    }
+  ]
+}

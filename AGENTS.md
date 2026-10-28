@@ -1,5 +1,19 @@
 # Research operating instructions
 
+Read `research/README.md` and use `research/registry/index.md` to find evidence.
+For new work, use `swarm_lab.research_archive.Archive`: unique experiment and run
+IDs, write-once output files, frozen design/source, then seal completed bundles.
+Keep analyses, report editions and adjudications separate and link parent bundle
+IDs. Never change a sealed run or rebaseline a checksum mismatch. The registry's
+index is derived and replaceable; evidence and registry bundle records are not.
+Run `.venv/bin/python scripts/research_archive.py audit` before and after work.
+
+28 October: the user approved repository-audit experiments. Preparation stopped
+before setup because an automatic command guard rejected the combined setup
+command. Read `research/repository-audit-status-20261028.md`. No new calls were made.
+Do not retry the blocked setup or use an alternate route. `swarm_lab/repo_cases.py`
+is unfinished preparation; its corpus and references have not been validated.
+
 The user delegated Witness research direction and execution on 24 October 2026.
 They authorized **$25 total for this research phase**, including the pilot and
 follow-up replications, and explicitly asked for assessment and improvements at

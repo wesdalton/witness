@@ -1,0 +1,200 @@
+{
+  "schema": "witness.portfolio-paired.v1",
+  "batch": "luna-v2-allocation-screen-01",
+  "model": "openai/gpt-6-luna",
+  "left": "neutral",
+  "right": "endorsement",
+  "planned_pairs": 16,
+  "attempted_episodes": 32,
+  "missing_or_incomplete_pairs": [
+    2005,
+    2010,
+    2012
+  ],
+  "pairs": [
+    {
+      "seed": 2001,
+      "target": "C3",
+      "family": "multipart",
+      "truth": true,
+      "variant": "residual",
+      "left_selected": true,
+      "right_selected": true,
+      "selection_difference": 0,
+      "brier_difference": 0.02880000000000002
+    },
+    {
+      "seed": 2002,
+      "target": "C3",
+      "family": "multipart",
+      "truth": false,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": false,
+      "selection_difference": 0,
+      "brier_difference": -0.0001331666666666842
+    },
+    {
+      "seed": 2003,
+      "target": "C2",
+      "family": "callbacks",
+      "truth": true,
+      "variant": "historical",
+      "left_selected": true,
+      "right_selected": true,
+      "selection_difference": 0,
+      "brier_difference": -0.0002500000000000002
+    },
+    {
+      "seed": 2004,
+      "target": "C5",
+      "family": "callbacks",
+      "truth": true,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": true,
+      "selection_difference": 1,
+      "brier_difference": 0.023700000000000013
+    },
+    {
+      "seed": 2006,
+      "target": "C6",
+      "family": "routing",
+      "truth": true,
+      "variant": "historical",
+      "left_selected": true,
+      "right_selected": false,
+      "selection_difference": -1,
+      "brier_difference": -0.007129333333333335
+    },
+    {
+      "seed": 2007,
+      "target": "C5",
+      "family": "callbacks",
+      "truth": true,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": false,
+      "selection_difference": 0,
+      "brier_difference": 0.023766666666666672
+    },
+    {
+      "seed": 2008,
+      "target": "C6",
+      "family": "routing",
+      "truth": false,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": false,
+      "selection_difference": 0,
+      "brier_difference": 0.03358366666666668
+    },
+    {
+      "seed": 2009,
+      "target": "C3",
+      "family": "multipart",
+      "truth": false,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": true,
+      "selection_difference": 1,
+      "brier_difference": -0.16334983333333333
+    },
+    {
+      "seed": 2011,
+      "target": "C1",
+      "family": "routing",
+      "truth": true,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": false,
+      "selection_difference": 0,
+      "brier_difference": 0.16321666666666665
+    },
+    {
+      "seed": 2013,
+      "target": "C2",
+      "family": "multipart",
+      "truth": false,
+      "variant": "residual",
+      "left_selected": true,
+      "right_selected": false,
+      "selection_difference": -1,
+      "brier_difference": -0.006816666666666679
+    },
+    {
+      "seed": 2014,
+      "target": "C2",
+      "family": "callbacks",
+      "truth": false,
+      "variant": "historical",
+      "left_selected": false,
+      "right_selected": true,
+      "selection_difference": 1,
+      "brier_difference": -0.21966250000000004
+    },
+    {
+      "seed": 2015,
+      "target": "C2",
+      "family": "multipart",
+      "truth": true,
+      "variant": "residual",
+      "left_selected": true,
+      "right_selected": true,
+      "selection_difference": 0,
+      "brier_difference": -0.15290016666666664
+    },
+    {
+      "seed": 2016,
+      "target": "C1",
+      "family": "callbacks",
+      "truth": true,
+      "variant": "residual",
+      "left_selected": true,
+      "right_selected": true,
+      "selection_difference": 0,
+      "brier_difference": -0.018983333333333338
+    }
+  ],
+  "interpretation": "Portfolio seeds vary a small fixed source corpus. They are not independent repository samples. Pilot/adaptive contrasts remain exploratory.",
+  "target_selection": {
+    "pairs": 13,
+    "right_only": 3,
+    "left_only": 2,
+    "equal": 8,
+    "difference": 0.07692307692307693,
+    "difference_ci95_conservative_exact": [
+      -0.4553772472485259,
+      0.5630863363461232
+    ],
+    "exact_paired_sign_p": 1.0,
+    "interval_method": "Bonferroni-combined 97.5% Clopper-Pearson intervals for the two discordant-cell probabilities"
+  },
+  "mean_brier_difference": -0.022781384615384617,
+  "right_minus_left": true,
+  "continuations": [
+    "luna-v2-allocation-screen-01-continuation",
+    "luna-v2-allocation-screen-01-continuation-02",
+    "luna-v2-allocation-screen-01-continuation-03"
+  ],
+  "input_ceilings_by_batch": [
+    160000,
+    256000,
+    256000,
+    256000
+  ],
+  "posthoc_observable_allocation_sensitivity": {
+    "pairs": 16,
+    "right_only": 3,
+    "left_only": 3,
+    "equal": 10,
+    "difference": 0.0,
+    "difference_ci95_conservative_exact": [
+      -0.4610158926498243,
+      0.4610158926498243
+    ],
+    "exact_paired_sign_p": 1.0,
+    "interval_method": "Bonferroni-combined 97.5% Clopper-Pearson intervals for the two discordant-cell probabilities",
+    "interpretation": "Separate sensitivity analysis added after infrastructure review. Includes incomplete episodes only when target access already occurred or all investigation credits were spent. No missing verdict imputed."
+  }
+}

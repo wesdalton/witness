@@ -27,6 +27,7 @@ def audit(root: Path):
         errors.append("Duplicate request completion")
     manifests = list(root.glob("*/manifest.json"))
     manifests.extend((root.parent / "portfolio").glob("*/manifest.json"))
+    manifests.extend((root.parent / "experiments").glob("*/runs/*/manifest.json"))
     for folder in sorted(p.parent for p in manifests):
         manifest = read(folder / "manifest.json")
         portfolio = manifest.get("schema", "").startswith("witness.portfolio-manifest.")
@@ -179,7 +180,8 @@ def main():
     result = audit(args.root)
     text = json.dumps(result, indent=2) + "\n"
     if args.out:
-        args.out.write_text(text)
+        with args.out.open("x") as stream:
+            stream.write(text)
     print(text)
     return bool(result["errors"])
 

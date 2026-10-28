@@ -3,6 +3,13 @@
 An open research instrument for studying **when communication among AI agents
 displaces independent verification**.
 
+[Experiment and writeup index](research/registry/index.md) ·
+[Storage, provenance and correction rules](research/README.md)
+
+**28 October:** historical evidence and writeup editions are indexed and checked
+for changes. The approved repository-audit pilot was stopped before setup by an
+automatic command guard; [status and unspent budget](research/repository-audit-status-20261028.md).
+
 Run a swarm, trace a claim to its original evidence, compare policies under a fixed
 effort budget, and export the experiment. The browser supports up to 10,000 simulated
 agents. A separate Python harness collects real-model decisions through an optional

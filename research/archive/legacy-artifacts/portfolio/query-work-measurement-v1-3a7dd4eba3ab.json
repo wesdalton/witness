@@ -1,0 +1,794 @@
+{
+  "model_inference": false,
+  "analysis_timing": "Post-hoc after both fixed pilots completed",
+  "driver_sha256": "3d24462703f2a976a169976a1dfa324c97b937191ad661b672c08a0e2cbf413a",
+  "source_sha256": {
+    "scripts/measure_query_work.py": "97d0869df3c3d0917686cb575d00d405b81404ad483a17fe48fbf5e4b8e8aec6",
+    "swarm_lab/reconciliation_query.py": "2748aa046e008f1e3752774ec839de9609e9cdc2c06756c8109c3881fe22420b",
+    "swarm_lab/route_cases.py": "1484eaeb638f8f700e498d27f1a06b373545f94cf25bc2360bc39207cc9637bc",
+    "swarm_lab/schedule_cases.py": "27a2ee5cba29c73121abcca80472ca116f83dcb24f4724ec1a743bf859835747"
+  },
+  "interpretation": "Each SQL statement costs one query credit. Progress callbacks are an approximate SQLite-version-dependent work measure, not rigorous instruction bounds. They can include preparation work. Nominal units = callbacks*1000; not API dollars, human effort, model reasoning tokens or a causal treatment outcome.",
+  "rows": [
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-001.json",
+      "condition": "observed",
+      "episode_sha256": "f25ac75dcf7fef8265df1ec01a8c4b6898080001649a278c4102ad2695c90f3c",
+      "expected": 144,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.3358
+        }
+      },
+      "verification": {
+        "progress_callbacks": 4,
+        "nominal_progress_units": 4000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 144,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[144]], \"rows_truncated\": false, \"progress_callbacks\": 4, \"nominal_progress_units\": 4000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2859
+        }
+      },
+      "reference": {
+        "progress_callbacks": 4,
+        "nominal_progress_units": 4000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 144,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[144]], \"rows_truncated\": false, \"progress_callbacks\": 4, \"nominal_progress_units\": 4000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2858
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-002.json",
+      "condition": "observed",
+      "episode_sha256": "7e89376250786eef713c5740046d3eaf283be93d798841020bbc2dfc15cefe77",
+      "expected": 194,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2893
+        }
+      },
+      "verification": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 194,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[194]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.339
+        }
+      },
+      "reference": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 194,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[194]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2864
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-003.json",
+      "condition": "observed",
+      "episode_sha256": "1b2e7ea1435b5d3fae74362ea5ec5b5c86b2351dbccfd6af578858e7d50db248",
+      "expected": 142,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2863
+        }
+      },
+      "verification": {
+        "progress_callbacks": 6,
+        "nominal_progress_units": 6000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 142,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[142]], \"rows_truncated\": false, \"progress_callbacks\": 6, \"nominal_progress_units\": 6000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2848
+        }
+      },
+      "reference": {
+        "progress_callbacks": 6,
+        "nominal_progress_units": 6000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 142,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[142]], \"rows_truncated\": false, \"progress_callbacks\": 6, \"nominal_progress_units\": 6000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2909
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-004.json",
+      "condition": "observed",
+      "episode_sha256": "f1e0f0873ddadda6a9e5cb141b4b127302e448f54233a82a46b9c101d11b98a3",
+      "expected": 226,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.3344
+        }
+      },
+      "verification": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 226,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"optimum\"], \"rows\": [[226]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2849
+        }
+      },
+      "reference": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 226,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[226]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2874
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-005.json",
+      "condition": "observed",
+      "episode_sha256": "95210a1e21445591e703ccee692d9134de6d579ade002f01c3f53306d9b5138f",
+      "expected": 188,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2825
+        }
+      },
+      "verification": {
+        "progress_callbacks": 1,
+        "nominal_progress_units": 1000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 188,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[188]], \"rows_truncated\": false, \"progress_callbacks\": 1, \"nominal_progress_units\": 1000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2833
+        }
+      },
+      "reference": {
+        "progress_callbacks": 1,
+        "nominal_progress_units": 1000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 188,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[188]], \"rows_truncated\": false, \"progress_callbacks\": 1, \"nominal_progress_units\": 1000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2845
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-006.json",
+      "condition": "observed",
+      "episode_sha256": "7459683ae8e007803e418e529a634ee5ae35522df539080714c001464c08849f",
+      "expected": 168,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2847
+        }
+      },
+      "verification": {
+        "progress_callbacks": 8,
+        "nominal_progress_units": 8000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 168,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[168]], \"rows_truncated\": false, \"progress_callbacks\": 8, \"nominal_progress_units\": 8000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2839
+        }
+      },
+      "reference": {
+        "progress_callbacks": 8,
+        "nominal_progress_units": 8000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 168,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[168]], \"rows_truncated\": false, \"progress_callbacks\": 8, \"nominal_progress_units\": 8000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2873
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-007.json",
+      "condition": "observed",
+      "episode_sha256": "61d768720be6570c17cfa7c38ebe8b8218f64babffe82697b849e327d30ef6d7",
+      "expected": 148,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2871
+        }
+      },
+      "verification": {
+        "progress_callbacks": 3,
+        "nominal_progress_units": 3000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 148,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[148]], \"rows_truncated\": false, \"progress_callbacks\": 3, \"nominal_progress_units\": 3000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2848
+        }
+      },
+      "reference": {
+        "progress_callbacks": 3,
+        "nominal_progress_units": 3000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 148,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[148]], \"rows_truncated\": false, \"progress_callbacks\": 3, \"nominal_progress_units\": 3000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.286
+        }
+      }
+    },
+    {
+      "batch": "luna-scarce-query-calibration-01",
+      "episode": "episode-008.json",
+      "condition": "observed",
+      "episode_sha256": "db1382f7991cf796dabc1f2dc3581317b797ef8517101fda11b4544e4df3be8f",
+      "expected": 234,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2858
+        }
+      },
+      "verification": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 234,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_total_cost\"], \"rows\": [[234]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2855
+        }
+      },
+      "reference": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 234,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"COALESCE(MIN(a.cost + b.cost), -1)\"], \"rows\": [[234]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2845
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-001.json",
+      "condition": "observed",
+      "episode_sha256": "623da9393e5f808c6bd0959eb74ddb2ca7c207b04df663ac521f8cc5c91a049c",
+      "expected": -12,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.3364
+        }
+      },
+      "verification": {
+        "progress_callbacks": 178,
+        "nominal_progress_units": 178000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -12,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-12]], \"rows_truncated\": false, \"progress_callbacks\": 178, \"nominal_progress_units\": 178000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2893
+        }
+      },
+      "reference": {
+        "progress_callbacks": 47,
+        "nominal_progress_units": 47000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -12,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-12]], \"rows_truncated\": false, \"progress_callbacks\": 47, \"nominal_progress_units\": 47000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2837
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-001.json",
+      "condition": "boundary-(0, 0, 0, 0)--17",
+      "expected": -17,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2857
+        }
+      },
+      "verification": {
+        "progress_callbacks": 1600,
+        "nominal_progress_units": 1600000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 1600, \"nominal_progress_units\": 1600000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2825
+        }
+      },
+      "reference": {
+        "progress_callbacks": 34,
+        "nominal_progress_units": 34000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 34, \"nominal_progress_units\": 34000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.29
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-002.json",
+      "condition": "observed",
+      "episode_sha256": "2f65d17e68fa2c5eba15128158bb45a9980489ffa697b7ad93808307c6e49933",
+      "expected": -1,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.289
+        }
+      },
+      "verification": {
+        "progress_callbacks": 174,
+        "nominal_progress_units": 174000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-1]], \"rows_truncated\": false, \"progress_callbacks\": 174, \"nominal_progress_units\": 174000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2888
+        }
+      },
+      "reference": {
+        "progress_callbacks": 88,
+        "nominal_progress_units": 88000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-1]], \"rows_truncated\": false, \"progress_callbacks\": 88, \"nominal_progress_units\": 88000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2831
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-002.json",
+      "condition": "boundary-(0, 0, 0, 0)--17",
+      "expected": -17,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2846
+        }
+      },
+      "verification": {
+        "progress_callbacks": 1088,
+        "nominal_progress_units": 1088000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 1088, \"nominal_progress_units\": 1088000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2313
+        }
+      },
+      "reference": {
+        "progress_callbacks": 34,
+        "nominal_progress_units": 34000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 34, \"nominal_progress_units\": 34000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2848
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-003.json",
+      "condition": "observed",
+      "episode_sha256": "8e620e39d194571365d422c02dedc0c8643b500acb4464c00426b8ed1fbe97ee",
+      "expected": -6,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2844
+        }
+      },
+      "verification": {
+        "progress_callbacks": 3,
+        "nominal_progress_units": 3000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -6,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-6]], \"rows_truncated\": false, \"progress_callbacks\": 3, \"nominal_progress_units\": 3000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.287
+        }
+      },
+      "reference": {
+        "progress_callbacks": 8,
+        "nominal_progress_units": 8000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -6,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-6]], \"rows_truncated\": false, \"progress_callbacks\": 8, \"nominal_progress_units\": 8000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2851
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-003.json",
+      "condition": "boundary-(0, 0, 0, 0)--17",
+      "expected": -17,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2869
+        }
+      },
+      "verification": {
+        "progress_callbacks": 1107,
+        "nominal_progress_units": 1107000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 1107, \"nominal_progress_units\": 1107000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2842
+        }
+      },
+      "reference": {
+        "progress_callbacks": 34,
+        "nominal_progress_units": 34000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 34, \"nominal_progress_units\": 34000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2852
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-004.json",
+      "condition": "observed",
+      "episode_sha256": "0b80795667e120361e4f7f8c36f987f61bd62f190daf8f263e8668237c80799c",
+      "expected": 5,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2846
+        }
+      },
+      "verification": {
+        "progress_callbacks": 2,
+        "nominal_progress_units": 2000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 5,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[5]], \"rows_truncated\": false, \"progress_callbacks\": 2, \"nominal_progress_units\": 2000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2864
+        }
+      },
+      "reference": {
+        "progress_callbacks": 8,
+        "nominal_progress_units": 8000,
+        "sqlite_version": "3.46.1",
+        "aggregate": 5,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[5]], \"rows_truncated\": false, \"progress_callbacks\": 8, \"nominal_progress_units\": 8000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2849
+        }
+      }
+    },
+    {
+      "batch": "luna-schedule-calibration-01",
+      "episode": "episode-004.json",
+      "condition": "boundary-(0, 0, 0, 0)--17",
+      "expected": -17,
+      "baseline": {
+        "progress_callbacks": 0,
+        "nominal_progress_units": 0,
+        "sqlite_version": "3.46.1",
+        "aggregate": 1,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"1\"], \"rows\": [[1]], \"rows_truncated\": false, \"progress_callbacks\": 0, \"nominal_progress_units\": 0, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2882
+        }
+      },
+      "verification": {
+        "progress_callbacks": 1107,
+        "nominal_progress_units": 1107000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"minimum_final_balance\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 1107, \"nominal_progress_units\": 1107000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2892
+        }
+      },
+      "reference": {
+        "progress_callbacks": 34,
+        "nominal_progress_units": 34000,
+        "sqlite_version": "3.46.1",
+        "aggregate": -17,
+        "execution": {
+          "exit_code": 0,
+          "timed_out": false,
+          "stdout": "{\"columns\": [\"MIN(balance)\"], \"rows\": [[-17]], \"rows_truncated\": false, \"progress_callbacks\": 34, \"nominal_progress_units\": 34000, \"sqlite_version\": \"3.46.1\"}\n",
+          "stderr": "",
+          "output_truncated": false,
+          "elapsed_seconds": 0.2876
+        }
+      }
+    }
+  ]
+}
