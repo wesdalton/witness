@@ -1,119 +1,78 @@
-# Research operating instructions
+# Witness research operating instructions
 
-Read `research/README.md` and use `research/registry/index.md` to find evidence.
-For new work, use `swarm_lab.research_archive.Archive`: unique experiment and run
-IDs, write-once output files, frozen design/source, then seal completed bundles.
-Keep analyses, report editions and adjudications separate and link parent bundle
-IDs. Never change a sealed run or rebaseline a checksum mismatch. The registry's
-index is derived and replaceable; evidence and registry bundle records are not.
-Run `.venv/bin/python scripts/research_archive.py audit` before and after work.
-Also run `.venv/bin/python scripts/audit_research_coverage.py`: ignored `logs/`
-artifacts and root research writeups must not silently escape registration.
+The user delegated research direction and execution on 24 October 2026 and asked
+for an iterative research loop toward interesting, validated, novel findings.
+They authorized **$25 total for the phase**, including pilots and replications,
+and asked that each stage justify the next dollar. They subsequently raised
+concerns about novelty and technical debt. Continue research through focused
+question selection, evidence review and the smallest justified experiments.
 
-28 October: the user approved repository-audit experiments. Preparation stopped
-before setup because an automatic command guard rejected the combined setup
-command. Read `research/repository-audit-status-20261028.md`. No new calls were made.
-Do not retry the blocked setup or use an alternate route. `swarm_lab/repo_cases.py`
-is unfinished preparation; its corpus and references have not been validated.
+## Research scope
 
-Independent free work subsequently completed a 76-probe/446-execution negative-
-control audit. Read `research/experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md`.
-Raw output differences can reflect memory addresses; prospective replay v2 adds
-same-source repeats and diagnostic normalization without certifying bug detection.
-The historical outcome scores remain unchanged. Read the archive completeness
-report for recovered scripted Inspect logs and the early README/log discrepancy.
+No next paid batch is selected. The completed studies are historical reproduction
+tools, not an active backlog of frameworks to extend. Before adding experiment
+code, identify the unresolved prediction, the closest existing experiment, the
+specific difference, and what each possible outcome would change. Prefer existing
+tools. Do not build another general runner or keep raising task difficulty merely
+to produce model errors. Infrastructure improvements alone are not novel findings.
 
-The user delegated Witness research direction and execution on 24 October 2026.
-They authorized **$25 total for this research phase**, including the pilot and
-follow-up replications, and explicitly asked for assessment and improvements at
-every stage so that future dollars are spent well.
+Read `README.md`, `research/README.md`, and the registry index. Use
+`research/portfolio/novelty-review.md` and `loop-decisions.md` for prior decisions.
+Before continuing a particular study, read its frozen protocol, report and
+adjudications. Original decisions remain in `research/agent-study/decisions.md`
+and `research/portfolio/decisions.md`; old proposed designs are not completed work.
 
-Read `research/agent-study/report.md`, `decisions.md`, and `next-experiment.md`
-before continuing research. The next-experiment document is a design draft,
-not an implemented or completed study.
+## Preserved scientific restrictions
 
-Also read `research/portfolio/report.md`, `decisions.md`, and `loop-report.md`:
-the original portfolio version is stopped by a validity guard.
-One GPT-6.1 Sol calibration found reproducible counterexamples in two candidates
-labeled correct. Do not interpret its original accuracy/Brier as model errors or
-run more v1 portfolios. Preserve the raw labels and separate adjudication. A new
-protocol and a stronger reference gate are required before further paid inference.
+- Portfolio v1 is disabled: the stronger calibration exposed two invalid positive
+  labels. Preserve its raw results and exclude invalid accuracy/Brier scores.
+  V2 uses separately repaired contracts; it does not erase v1's failures.
+- The original ledger, inventory, inherited-query, route and schedule capability
+  tasks reached ceilings. Do not repeat or expand them without a new scientific
+  justification. The allocation screen is inconclusive, not equivalence. Its three
+  incomplete episodes and probability/interpretation problems remain in the record.
+- SQL call count is not computational effort. Finite replay success does not prove
+  universal correctness; preserve numeric-contract adjudications separately.
+- Different replay text and zero exit status do not establish semantic fault
+  detection. Prospective replay v2 adds same-source repeats and diagnostic address
+  normalization. Even repeatable differences require a valid behavioral oracle.
+- Keep simulations, scripted Inspect checks, recorded-observation agents, live
+  tool-using agents and local replays distinct. Historical peer messages were
+  authored stimuli, not an independently executing swarm. Repeated probes or cases
+  are not independent projects. Null or beneficial effects are valid outcomes.
 
-The user additionally instructed: stop doing things that Daybreak blocks. Treat
-rejections as stops; do not retry blocked actions through another route or tool.
+## Execution and spending
 
-The user subsequently explicitly requested a continuous research LOOP toward
-interesting, validated, novel findings. Use research/portfolio/loop-decisions.md
-and novelty-review.md. Continue review, hypothesis revision, implementation, and
-the next justified experiment without repeatedly stopping at a plan. Do not
-guarantee novelty or conclusive results; establish them with literature comparison,
-valid references, a frozen confirmatory design, and independent replication.
-V1 stays disabled. V2 uses separate repaired contracts and an expanded mandatory
-reference gate; its implementation does not erase v1's failures.
+Before each paid batch, freeze its question, decision value, source/prompt/config,
+maximum reservation and stopping criteria. Review validity, confounds, floor or
+ceiling effects, and cheaper ways to resolve the uncertainty. Do not pool changed
+configurations or score infrastructure failures as model mistakes. Authorization
+within the existing scope does not require asking the user for the same approval.
 
-Before each paid batch, record the question, why its answer would change a
-research decision, a maximum reservation, and stopping criteria. Review the
-preceding stage's validity, failure modes, floor/ceiling effects, alternative
-explanations, and cheaper ways to resolve the uncertainty. Do not spend the
-allocation just because it is available. Calls within the existing authorization
-do not require asking the user for the same approval again.
+Use `research/agent-study/budget.jsonl` for the current $25 phase. Keep all previous
+reservations and failed attempts. Never reset, delete or silently replace a ledger.
+October 18's separate ledger also remains intact. Report provider charges separately
+from retained reservations. The current ledger, not a historical report, is authoritative.
 
-Use the persistent `research/agent-study/budget.jsonl` ledger for this phase.
-Retain previous reservations and all failed attempts. Never reset, delete, or
-silently replace the ledger to obtain a new budget. October 18's separate ledger
-and pilot records must also remain intact. Costs and conservative reservations
-must be reported separately.
+The user instructed us to stop actions blocked by Daybreak. Treat rejections as
+stops without retries or alternate routes. A combined three-library setup command
+was rejected before execution on 28 October; see
+`research/repository-audit-status-20261028.md`. That setup remains stopped.
+Its unused draft builder was removed from the active package and is preserved at
+`3f92abf:swarm_lab/repo_cases.py`. No corpus or inference run resulted from it.
 
-Keep simulated behavior, scripted smoke checks, model decisions that retrieve
-recorded observations, and live tool-using agents distinct. The October 24
-completed cohorts contain 24 live-tool audit episodes; four include model-written
-Python/SQL. Peer messages in the ledger screen were authored stimuli. This is
-not yet a study of an independently running multi-agent swarm.
+## Evidence and validation
 
-Freeze source/prompt/protocol configurations before inference, preserve raw
-outputs, and version changes. Do not pool changed configurations or classify
-infrastructure failures as model mistakes. A tool invocation does not itself
-prove adequate verification; inspect the code, output, and claim. Correct source
-reasoning can count as evidence without execution.
+Use unique experiment/run IDs and write-once output files. Seal completed or
+aborted bundles with `swarm_lab.research_archive.Archive`; link parent IDs. Keep
+analyses, report editions and corrections separate. Never modify sealed evidence
+or rebaseline a checksum mismatch. Derived registry indexes are replaceable.
+The completeness check covers `research/` and ignored `logs/`. Preserve historical
+gaps, including the early missing source snapshot and README/log discrepancy.
 
-Current evidence: all 16 original ledger screening episodes acquired source
-evidence and answered correctly; stop repeating that setup. Repaired portfolio
-v2 passed capable-model calibration. Luna/medium with navigation hints also
-passed the two-credit capability gate; Luna without reasoning did not. The fixed
-32-episode allocation screen is complete: 29 completed, three incomplete, no
-retries/replacements. Its allocation contrast is inconclusive; see
-allocation-screen-report.md and screening-01-continuation.md. Four no-peer
-executable-query audits passed all fresh-data replay conditions, but every first
-aggregate query was correct: do not scale that likely ceiling. The next frozen
-capability pilot tested inherited correct/flawed queries and truthful execution
-receipts: all eight passed, including fresh program replay. It is not being scaled.
-A separate joint route-optimization capability pilot also passed all eight episodes
-and thirty replay conditions per program. Read route-calibration-report.md.
-The 32-episode mandatory-program versus verdict-only screen is complete: all
-judgments correct and all sixteen programs pass thirty fresh replay conditions.
-Its same_program route mode removes the earlier code/label cue: identical initial
-evidence, different finite database truth. Read output-requirement-report.md.
-Free numeric review found v1's unbounded costs could exceed SQLite integer range;
-finite scores remain valid, universal correctness is unsupported. Route contract
-v2 prospectively bounds costs and validates graph constraints. The eight one-query
-audits also all passed, including thirty replay conditions per program. Read
-scarce-query-report.md. Routes are retired from further paid testing. The new
-unscaffolded schedule pilot also passed four audits and sixteen replay conditions
-per program; read schedule-report.md. Do not scale another ceiling automatically.
-The free query-work audit and deterministic deduplication ablation reduce work
-40–52x on one boundary, preserving all 64 replay answers; this is a local
-optimization, not a novel LLM finding or runtime speedup. Read query-work-report.md.
-No further paid batch is selected. Continue contribution/design review using the
-expanded novelty-review.md and loop-decisions.md; do not manufacture difficulty
-by lowering limits until models fail. Call count is not fixed computational effort.
-New routes are authored finite tasks, not independent real projects.
-Null or beneficial effects are valid results; do not tune cases to manufacture harm.
-
-Accounting after schedule calibration: 590 requests, $0.449982210 reported
-cost and $6.425077750 retained reservations. Later batches add to this;
-read the current ledger before spending. Do not reset the ledger.
-
-Validation: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`, and
-`.venv/bin/python scripts/audit_agent_study.py`. Browser changes additionally use
-`node --test website/tests/*.test.mjs`. Frozen source snapshots under each batch
-are historical evidence; do not reformat or edit them to satisfy current lint.
+Required checks: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`,
+`.venv/bin/python scripts/research_archive.py audit`,
+`.venv/bin/python scripts/audit_research_coverage.py`, and
+`.venv/bin/python scripts/audit_agent_study.py`.
+Browser changes additionally use `node --test website/tests/*.test.mjs`.
+Frozen source snapshots are historical evidence; do not reformat them for lint.

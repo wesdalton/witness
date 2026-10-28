@@ -1,214 +1,87 @@
 # Witness — Swarm Evidence Lab
 
-An open research instrument for studying **when communication among AI agents
-displaces independent verification**.
+A research prototype for studying whether communication among AI agents changes
+independent verification. **No novel behavioral finding is established.** Current
+work is question selection and interpretation of existing evidence; no next paid
+batch is selected.
 
-[Experiment and writeup index](research/registry/index.md) ·
-[Storage, provenance and correction rules](research/README.md)
+[Experiment index](research/registry/index.md) ·
+[Storage and correction rules](research/README.md) ·
+[Evidence completeness](research/archive-completeness-20261028.md) ·
+[Literature comparison](research/portfolio/novelty-review.md)
 
-**28 October:** historical evidence and writeup editions are indexed and checked
-for changes. The approved repository-audit pilot was stopped before setup by an
-automatic command guard; [status and unspent budget](research/repository-audit-status-20261028.md).
-An independent [446-execution replay audit](research/experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md)
-subsequently found two apparent replay differences caused solely by memory-address
-logging and validated stronger measurement controls, with no new inference charges.
-[Archive completeness and historical limitations](research/archive-completeness-20261028.md)
-cover the recovered early scripted Inspect logs as well as the live-agent records.
+## Evidence so far
 
-Run a swarm, trace a claim to its original evidence, compare policies under a fixed
-effort budget, and export the experiment. The browser supports up to 10,000 simulated
-agents. A separate Python harness collects real-model decisions through an optional
-Inspect provider adapter.
+- A capable auditor exposed two incorrect benchmark labels. Those raw results
+  remain preserved with [separate adjudication](research/portfolio/report.md).
+- The [allocation screen](research/portfolio/allocation-screen-report.md) is
+  inconclusive. Later SQL capability tasks repeatedly reached ceilings and are
+  closed to routine expansion.
+- The [probe repeatability audit](research/experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md)
+  found incidental output differences and improved measurement. This is a local
+  validity result, not a new general phenomenon about agents.
+- The browser is an authored simulation. September Inspect logs are scripted
+  checks; October 18 agents retrieved recorded observations. Later live-tool
+  audits and local replays are separately labeled in the index.
 
-**Research status:** the browser is an authored mechanistic model, not fitted LLM
-behavior. Grounding fixtures, scripted harness runs, and an initial real-model pilot
-are recorded. The pilot is an infrastructure check, not a test establishing the
-proposed causal mechanism. The [pilot report](research/swarm/pilot-report.md) records
-outcomes and failures; the [study protocol](research/swarm/protocol.md) distinguishes
-implemented infrastructure from proposed experiments and maps the closest prior work.
+The active research phase has a **$25 total ceiling**, including previous work.
+Its append-only ledger is `research/agent-study/budget.jsonl`. At this revision it
+records 590 requests, $0.449982210 reported charges and $6.425077750 retained
+reservations. The older October 18 ledger remains separate. Neither is reset.
 
-[Read the research note and open the lab](https://wesdalton.github.io/witness/).
+## Maintenance scope
 
-**24 October research update:** [24 live-tool auditor episodes](research/agent-study/report.md)
-now exercise actual source inspection and, in four episodes, agent-written Python/SQL.
-The small ledger peer-message screen showed no reduction in verification: every
-auditor inspected source and answered correctly. This is an early capability and
-measurement pilot, not evidence for the proposed cascade. The existing public
-website still describes the October 18 recorded-observation pilot.
+| Area | Status |
+| --- | --- |
+| Evidence, source snapshots, writeups and corrections | Preserve; check integrity and completeness |
+| Budget ledger, API adapter, isolated execution | Shared primitives; change for a demonstrated need |
+| Ledger, portfolio, inventory, route and schedule runners | Historical reproduction; no new batch selected |
+| Website and original Inspect tasks | Earlier prototype, independently runnable |
 
-**Harder-task calibration:** a [six-claim software audit](research/portfolio/report.md)
-now uses historical Click and Werkzeug regressions with isolated live tools.
-GPT-6.1 Sol wrote adversarial probes and exposed two errors in our expected
-answers. Both counterexamples reproduced; the original raw score is invalid.
-The [continuing research loop](research/portfolio/loop-report.md) repaired the
-reference contracts, validated capable live auditors, and completed a fixed
-[16-pair exploratory comparison](research/portfolio/allocation-screen-report.md)
-under a two-investigation budget. Allocation was 8/16 in both conditions, with
-uncertainty too wide for equivalence. V1 remains disabled; novel behavioral
-conclusions are still pending. Four executable-query audits and their unchanged
-programs passed sixteen fresh database conditions each; this likely ceiling is
-not being scaled. Eight inherited-query audits also passed all fresh conditions.
-A joint route-optimization pilot also passed eight audits and thirty replay
-conditions per program. A [matched 32-audit comparison](research/portfolio/output-requirement-report.md)
-also finished with every judgment correct, whether or not a final executable
-verifier was required. All sixteen requested programs passed thirty fresh
-conditions. A prospective numeric-domain repair preserves these finite results.
-The [one-query pilot](research/portfolio/scarce-query-report.md) also passed all
-eight audits and thirty replay conditions per program. This route setup is now
-retired from paid testing. Four [unscaffolded schedule audits](research/portfolio/schedule-report.md)
-also passed, including sixteen fresh conditions per program. A free
-[work-measurement and deduplication audit](research/portfolio/query-work-report.md)
-shows why query count alone is not verification effort, and improves the generated
-programs without additional inference. Current phase charges are $0.449982210;
-retained reservations are $6.425077750 of the $25 ceiling.
-No novel behavioral conclusion is established.
+New experiment code requires a specific unresolved prediction, a comparison with
+the closest prior experiment, and a result that would change a research decision.
+Use existing tools for the smallest discriminating test. A new general framework
+or another easy capability task is not a research objective.
 
-The new runner is `python -m swarm_lab.agent_study --out /tmp/witness-plan` (planning
-only by default). The [protocol](research/agent-study/protocol.md),
-[stage decisions](research/agent-study/decisions.md), and
-[next-experiment draft](research/agent-study/next-experiment.md) document that cycle.
-The [portfolio protocol](research/portfolio/protocol.md) and
-[decision log](research/portfolio/decisions.md) record its successor.
+The unvalidated `repo_cases.py` draft was removed from the active package. It
+produced no experiment records and had no callers. Its exact source remains in
+Git at `3f92abf:swarm_lab/repo_cases.py`; the [historical setup stop](research/repository-audit-status-20261028.md)
+is preserved. Removing the draft does not authorize retrying that blocked setup.
 
-## Try it locally
+## Validate the repository
 
-Node 22+ and Python 3.12+; the website has no npm runtime dependencies or build step.
+With the existing development environment:
 
-```bash
+```sh
+.venv/bin/python -m pytest -q
+.venv/bin/ruff check .
+.venv/bin/python scripts/research_archive.py audit
+.venv/bin/python scripts/audit_research_coverage.py
+.venv/bin/python scripts/audit_agent_study.py
+```
+
+Frozen historical source is evidence; do not rewrite it to satisfy current lint.
+New runs and writeup editions use unique paths and refuse overwrites.
+
+## Run the browser prototype
+
+The website has no npm runtime dependencies or build step. Using Node 22+:
+
+```sh
 cd website
 npm test
 npm run serve
 # Open http://localhost:4173
 ```
 
-The page is a short research note: the grounded ledger case, the hypothesized loop,
-a toy model, the recorded real-model decisions, and the next experiment. Figure 3 runs
-all three evidence policies on the same agents and network; buttons in the text load
-the settings each paragraph describes. "Change the assumptions" exposes the checking
-rule, reinforcement gain, ground truth, delay and seed. See
-[design notes](research/swarm/design.md) for how the page was written.
-The real-model section is built from the recorded pilot episodes by
-`python scripts/build_site_data.py`.
+The browser supports exporting and replaying simulated trajectories. Its public
+presentation describes an earlier research stage; the experiment index contains
+the later work. [Open the published prototype](https://wesdalton.github.io/witness/).
 
-Use **Export run** to download the trajectory and recorded interventions. Replay it:
+Historical runner configurations and exact source are recorded with each run.
+The [original Inspect documentation](research/legacy-inspect-readme.md) is retained
+with its known [documentation/log discrepancy](research/archive-completeness-20261028.md).
 
-```bash
-node website/scripts/sweep.mjs --replay /path/to/witness-run.json
-node website/scripts/sweep.mjs --seeds 10 --out /tmp/witness-sweep.json
-```
-
-A shared experiment link contains the configuration and restarts at round zero.
-An export additionally preserves the executed trajectory and interventions. Browser
-and CLI replay tolerate only very small belief/Brier floating-point differences;
-discrete outcomes and evidence identity must match.
-
-## Run the decision harness
-
-No provider is invoked by default. This standard-library command uses a scripted
-policy and recorded observations:
-
-```bash
-python -m swarm_lab.experiment --out /tmp/witness-smoke.json
-```
-
-For live model experiments, install the optional provider tooling used by this
-repository and configure its provider credential in your environment. Choose the
-model explicitly; do not place keys in the website or output files.
-
-```bash
-python -m venv .venv
-. .venv/bin/activate
-pip install -e '.[dev]'
-python -m swarm_lab.experiment \
-  --model provider/model-id \
-  --population 8 --rounds 8 --max-calls 64 --max-output-tokens 256 \
-  --fixture honest_fix --treatment ancestry --out /tmp/witness-model.json
-```
-
-`provider/model-id` is a placeholder, not a default model recommendation. The CLI
-rejects planned decisions above the call ceiling before invoking a provider. Provider
-retries are disabled. A call limit is not a dollar limit: provider input, output and
-reasoning-token pricing still apply. Usage returned by the provider is logged.
-
-Repeat with `pytest_module_shadow` to obtain the matched false-claim fixture. Its
-initial report is identical to the honest fixture's report; the independent probe
-differs. Treatments are `reports`, `ancestry`, and `reserved`. The last charges every
-agent for one forced first-turn check. It is a simple harness baseline, distinct from
-the browser's per-round allocation rule. Full factorial experiments, causal branching
-and fitted dynamics are proposed work, not features claimed by this release.
-
-Invalid outputs fail closed to abstention, remain in the event log, and contribute
-to failure counts. `--parse-mode lenient` instead accepts a leading JSON object and
-flags each such output as a format violation; strict parsing is the default. Each run writes an append-only JSONL record and final JSON result;
-existing outputs are not overwritten. Model-facing evidence excludes the observer's
-truth and fixture identity. Inspect supplies a provider adapter, not the research
-model or a requirement for the website.
-
-### Run a cost-bounded OpenRouter pilot
-
-`swarm_lab.pilot` adds persistent dollar reservations, a provider-side key-limit
-check, pinned routing, model-specific billing contracts, and optional request pacing.
-It defaults to planning only. Put a dedicated `OPENROUTER_API_KEY` in your local
-environment or `.env`; the public browser never receives it.
-
-```bash
-python -m swarm_lab.pilot \
-  --model openrouter/openai/gpt-6-luna --provider openai \
-  --input-price 0.1 --output-price 0.5 --price-as-of 2026-10-18 \
-  --billing-reference https://openrouter.ai/openai/gpt-6-luna \
-  --population 4 --rounds 4 --fixture pytest_module_shadow \
-  --treatment reports --max-calls 16 --min-request-interval 3.2 \
-  --out research/swarm/my-calibration
-```
-
-The example is a dry run. Verify current pricing and the billing contract before
-adding `--billing-bounds-confirmed --live`. The project authorization ceiling is
-US$100 across the persistent ledger, with a US$5 default batch ceiling; these are
-upper bounds, not spending targets. Reservations are retained after errors. Do not
-delete the ledger to reset spending. No provider retries or fallback routes are used.
-See the [initial pilot plan](research/swarm/pilot-plan.md).
-
-Summarize finished episode JSON files with `python -m swarm_lab.analyze RUN.json
---out SUMMARY.json`. Infrastructure-failed episodes are marked ineligible for
-behavioral comparisons. Agents within an episode are not independent replicates.
-
-## What is in the release?
-
-| Component | Purpose |
-|---|---|
-| `website/dist/` | Browser interface and shared mechanistic engine |
-| `website/tests/`, `website/scripts/` | Engine invariants, replay and parameter sweep |
-| `swarm_lab/` | Bounded synchronous agent-decision environment and provider interface |
-| `research/pilots/` | Four authored scorer-integrity fixtures and recorded subprocess evidence |
-| `research/swarm/` | Methods, protocol, prior art, synthetic artifacts and recorded live pilots |
-| `inspect_tasks/`, `sandbox/` | Original Inspect evaluation baseline and ledger task |
-
-The [methods](research/swarm/methods.md) specify the update equations, cost accounting,
-source assumptions and limitations. The [design notes](research/swarm/design.md)
-explain how established safety tooling informed evidence inspection and run identity.
-The original Inspect work sample is documented in
-[the preserved README](research/legacy-inspect-readme.md).
-
-## Validate and contribute
-
-```bash
-node --test website/tests/*.test.mjs
-python -m pytest -q
-ruff check .
-python -m research.pilots.scorer_integrity --output /tmp/witness-grounding.json
-```
-
-Useful contributions include new matched true/false case families, independent
-observation processes, asynchronous scheduling, noisy/forged evidence experiments,
-and held-out model comparisons. Changes to dynamics need versioned exports and
-reproduction checks. Keep synthetic, scripted and real-model evidence separately
-labeled; never relabel smoke runs as empirical findings.
-
-The website source lives in `website/dist` and is published to GitHub Pages by
-`.github/workflows/pages.yml` on every push to `main`. `python scripts/package_witness.py`
-refreshes the site's copies of the research documents and its downloadable snapshot
-archive, without local credentials, Git history or caches.
-
-Code and original project documentation are MIT licensed. Linked papers retain their
-respective rights. Cite the software using `CITATION.cff`; citing
-this prototype does not imply that its proposed scientific claims have been tested.
+Code and original documentation are MIT licensed; vendored libraries retain their
+licenses. Cite the software using `CITATION.cff`. Software availability does not
+establish its proposed scientific claims.
