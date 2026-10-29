@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.research_archive import Archive, bootstrap_legacy  # noqa: E402
+from swarm_lab.core.archive import Archive, bootstrap_legacy  # noqa: E402
 
 
 def main():

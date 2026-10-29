@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from swarm_lab.research_archive import Archive, bootstrap_legacy, write_once
+from swarm_lab.core.archive import Archive, bootstrap_legacy, write_once
 
 
 def experiment(tmp_path):

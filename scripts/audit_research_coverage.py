@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.research_archive import Archive, digest  # noqa: E402
+from swarm_lab.core.archive import Archive, digest  # noqa: E402
 
 LEDGERS = {"research/agent-study/budget.jsonl", "research/swarm/pilot-budget.jsonl"}
 

@@ -1,7 +1,7 @@
 import importlib.util
 from pathlib import Path
 
-from swarm_lab.research_archive import write_once
+from swarm_lab.core.archive import write_once
 
 spec = importlib.util.spec_from_file_location(
     "coverage_audit", Path(__file__).resolve().parents[1] / "scripts/audit_research_coverage.py")
