@@ -66,6 +66,9 @@ recorded in `research/repository-audit-status-20261028.md`.
   with `swarm_lab.core.archive.Archive` and link parent IDs.
 - Never modify sealed evidence or rebaseline a checksum mismatch. Corrections go
   in a separate adjudication.
+- Run source snapshots are packed into `research/archive/objects/` (one copy per
+  distinct file). Read them with `Archive.read_bytes`, or rebuild the original
+  folders with `scripts/research_archive.py restore --to DIR`.
 - Each experiment has one current report. Put limitations in one section of that
   report instead of repeating caveats in every paragraph. Superseded writeups move
   to `research/archive/`; nothing is deleted.

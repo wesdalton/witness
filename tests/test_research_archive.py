@@ -92,3 +92,64 @@ def test_legacy_import_is_idempotent_and_preserves_living_report_editions(tmp_pa
     assert not second["errors"] and second["bundles"] == 4
     copies = list((tmp_path / "research/archive/legacy-writeups/portfolio").glob("*.md"))
     assert {p.read_text() for p in copies} == {"First edition\n", "Second edition\n"}
+
+
+def sealed_snapshot(tmp_path):
+    archive, _ = experiment(tmp_path)
+    runs = []
+    for name in ("run-a", "run-b"):
+        run = archive.new_bundle("test-study", "runs", name)
+        write_once(run / "trace.json", {"run": name})
+        write_once(run / "source/lib/core.py", "shared = 1\n")
+        archive.seal(name, run, kind="run", title=name, experiment="test-study")
+        runs.append(run)
+    return archive, runs
+
+
+def test_pack_deduplicates_and_audit_still_verifies(tmp_path):
+    archive, runs = sealed_snapshot(tmp_path)
+    folders = [r.relative_to(tmp_path) / "source" for r in runs]
+    record = archive.pack("pack-01", folders)
+    assert len(record["files"]) == 2
+    assert not any((r / "source").exists() for r in runs)
+    assert len(list((tmp_path / "research/archive/objects").rglob("*/*"))) == 1
+    result = archive.audit()
+    assert not result["errors"] and result["packed_files"] == 2 and result["objects"] == 1
+    name = (folders[0] / "lib/core.py").as_posix()
+    assert archive.read_bytes(name) == b"shared = 1\n"
+    archive.restore("research/")
+    with pytest.raises(FileExistsError, match="already packed"):
+        archive.pack("pack-02", folders)
+
+
+def test_restore_rebuilds_exact_bytes_without_overwriting(tmp_path):
+    archive, runs = sealed_snapshot(tmp_path)
+    archive.pack("pack-01", [r.relative_to(tmp_path) / "source" for r in runs])
+    restored = archive.restore("research/", tmp_path / "copy")
+    assert len(restored) == 2
+    assert all((tmp_path / "copy" / n).read_bytes() == b"shared = 1\n" for n in restored)
+    archive.restore("research/")
+    assert (runs[0] / "source/lib/core.py").read_text() == "shared = 1\n"
+    assert not archive.audit()["errors"]
+    with pytest.raises(FileExistsError):
+        archive.restore("research/")
+
+
+def test_corrupt_or_missing_object_fails_audit(tmp_path):
+    archive, runs = sealed_snapshot(tmp_path)
+    archive.pack("pack-01", [r.relative_to(tmp_path) / "source" for r in runs])
+    obj = next((tmp_path / "research/archive/objects").rglob("*/*"))
+    obj.write_text("tampered\n")
+    assert archive.audit()["errors"]
+    obj.unlink()
+    assert archive.audit()["errors"]
+    with pytest.raises(FileNotFoundError):
+        archive.read_bytes((runs[0].relative_to(tmp_path) / "source/lib/core.py").as_posix())
+
+
+def test_only_sealed_unchanged_files_can_be_packed(tmp_path):
+    archive, runs = sealed_snapshot(tmp_path)
+    (runs[0] / "source/lib/core.py").write_text("edited\n")
+    with pytest.raises(ValueError, match="sealed"):
+        archive.pack("pack-01", [runs[0].relative_to(tmp_path) / "source"])
+    assert not (tmp_path / "research/registry/packs/pack-01.json").exists()

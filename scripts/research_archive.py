@@ -1,4 +1,4 @@
-"""Index or check immutable experiment bundles; bootstrap preserves all legacy paths."""
+"""Index, check, pack or restore immutable experiment bundles."""
 
 import argparse
 import json
@@ -13,11 +13,27 @@ from swarm_lab.core.archive import Archive, bootstrap_legacy  # noqa: E402
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=["bootstrap", "audit", "index"])
+    sub = parser.add_subparsers(dest="action", required=True)
+    sub.add_parser("bootstrap", help="Register legacy runs and archive new writeup editions")
+    sub.add_parser("audit", help="Verify every sealed bundle, including packed files")
+    sub.add_parser("index", help="Regenerate the derived experiment index, then audit")
+    pack = sub.add_parser("pack", help="Move sealed folders into the content-addressed store")
+    pack.add_argument("--id", required=True)
+    pack.add_argument("folders", nargs="+")
+    restore = sub.add_parser("restore", help="Rebuild packed files; never overwrites")
+    restore.add_argument("--prefix", default="research/")
+    restore.add_argument("--to", type=Path, help="Destination root (default: repository)")
     args = parser.parse_args()
     archive = Archive(ROOT)
     if args.action == "bootstrap":
         result = bootstrap_legacy(ROOT)
+    elif args.action == "pack":
+        record = archive.pack(args.id, args.folders)
+        result = {**archive.audit(), "packed_now": len(record["files"])}
+    elif args.action == "restore":
+        restored = archive.restore(args.prefix, args.to)
+        print(json.dumps({"restored": len(restored)}, indent=2))
+        return 0
     else:
         if args.action == "index":
             archive.build_index()

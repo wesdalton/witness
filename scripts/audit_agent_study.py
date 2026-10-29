@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from swarm_lab.core.archive import Archive  # noqa: E402
 from swarm_lab.core.budget import PHASE_LIMIT, exposure  # noqa: E402
 
 
@@ -25,6 +26,8 @@ def audit(root: Path):
     reservations = {row["request"]: row for row in ledger if row["type"] == "reserve"}
     completions = {row["request"]: row for row in ledger if row["type"] == "complete"}
     errors, warnings, batches, seen = [], [], [], set()
+    repository = Archive(root.resolve().parents[1])
+    packed = repository.packed()
     if len(reservations) != sum(row["type"] == "reserve" for row in ledger):
         errors.append("Duplicate request reservation")
     if len(completions) != sum(row["type"] == "complete" for row in ledger):
@@ -44,13 +47,18 @@ def audit(root: Path):
         if adjudication and not adjudication.get("universal_correctness_claim_valid", True):
             warnings.append(
                 f"{folder.name}: finite scores retained; universal program correctness unsupported")
-        source_dir = folder / "source"
-        if not source_dir.exists():
+        source_dir = (folder / "source").resolve().relative_to(repository.root)
+        snapshot = (folder / "source").exists() or any(
+            name.startswith(source_dir.as_posix() + "/") for name in packed)
+        if not snapshot:
             warnings.append(f"{folder.name}: no full source snapshot; hashes/configuration only")
         else:
             for rel, expected in manifest["source_sha256"].items():
-                path = source_dir / rel
-                if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                try:
+                    raw = repository.read_bytes(source_dir / rel)
+                except FileNotFoundError:
+                    raw = None
+                if raw is None or hashlib.sha256(raw).hexdigest() != expected:
                     errors.append(f"{folder.name}: source mismatch: {rel}")
         grouped = defaultdict(list)
         records = []

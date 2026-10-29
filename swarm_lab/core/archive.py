@@ -11,6 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 ID = re.compile(r"[a-z0-9][a-z0-9._-]{0,160}\Z")
+OBJECTS = "research/archive/objects"
 
 
 def digest(path):
@@ -33,6 +34,7 @@ class Archive:
         self.root = Path(root).resolve()
         self.registry = self.root / "research/registry"
         (self.registry / "bundles").mkdir(parents=True, exist_ok=True)
+        (self.registry / "packs").mkdir(parents=True, exist_ok=True)
 
     def path(self, value):
         path = self.root / value
@@ -116,9 +118,23 @@ class Archive:
         errors = []
         records = self.records()
         known = {r["id"] for r in records}
+        try:
+            packed = self.packed()
+        except ValueError as exc:
+            return {"bundles": len(records), "files": 0, "errors": [{"error": str(exc)}]}
+        verified = {sha: self.object_ok(sha) for sha in set(packed.values())}
+        sealed = {name for r in records for name in r["files"]}
+        errors.extend({"id": "pack", "error": "Packed file is not sealed", "path": name}
+                      for name in sorted(set(packed) - sealed))
         for record in records:
             try:
-                actual = self.inventory(record["path"])
+                try:
+                    actual = self.inventory(record["path"])
+                except FileNotFoundError:
+                    actual = {}
+                for name, sha in record["files"].items():
+                    if name not in actual and packed.get(name) == sha and verified[sha]:
+                        actual[name] = sha
                 if actual != record["files"]:
                     errors.append({"id": record["id"], "changed_or_missing": [
                         p for p, value in record["files"].items() if actual.get(p) != value],
@@ -128,8 +144,116 @@ class Archive:
             except (ValueError, FileNotFoundError) as exc:
                 errors.append({"id": record["id"], "error": type(exc).__name__})
         return {"bundles": len(records), "files": sum(len(r["files"]) for r in records),
-                "errors": errors}
+                "packed_files": len(packed), "objects": len(verified), "errors": errors}
 
+    # Content-addressed packing. Sealed snapshot files that repeat across runs are moved
+    # into research/archive/objects/<sha256>, recorded by write-once pack records. The
+    # audit treats a packed file as present when its object exists with the sealed hash,
+    # and restore rebuilds the original paths byte for byte.
+
+    def object_path(self, sha):
+        if not re.fullmatch(r"[0-9a-f]{64}", sha):
+            raise ValueError("Invalid object hash")
+        return self.root / OBJECTS / sha[:2] / sha
+
+    def packs(self):
+        return [json.loads(p.read_text()) for p in sorted((self.registry / "packs").glob("*.json"))]
+
+    def packed(self):
+        mapping = {}
+        for record in self.packs():
+            for name, sha in record["files"].items():
+                if mapping.setdefault(name, sha) != sha:
+                    raise ValueError(f"Conflicting pack records for {name}")
+        return mapping
+
+    def object_ok(self, sha):
+        path = self.object_path(sha)
+        return path.is_file() and not path.is_symlink() and digest(path) == sha
+
+    def read_bytes(self, relative):
+        """Bytes of a research file, from disk or from the object store if packed."""
+        relative = Path(relative).as_posix()
+        path = self.root / relative
+        if path.is_file():
+            return path.read_bytes()
+        sha = self.packed().get(relative)
+        if sha is None or not self.object_ok(sha):
+            raise FileNotFoundError(relative)
+        return self.object_path(sha).read_bytes()
+
+    def pack(self, pack_id, folders):
+        """Move every file under the given sealed folders into the object store."""
+        if not ID.fullmatch(pack_id):
+            raise ValueError("Invalid pack identifier")
+        sealed = {}
+        for record in self.records():
+            sealed.update(record["files"])
+        files = {}
+        for folder in folders:
+            folder = self.path(folder)
+            for path in sorted(folder.rglob("*")):
+                if path.is_symlink():
+                    raise ValueError("Symlinks cannot be packed")
+                if not path.is_file():
+                    continue
+                name = path.relative_to(self.root).as_posix()
+                sha = digest(path)
+                if sealed.get(name) != sha:
+                    raise ValueError(f"Only sealed, unchanged files can be packed: {name}")
+                files[name] = sha
+        if not files:
+            raise ValueError("Nothing to pack")
+        with (self.registry / ".lock").open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            already = self.packed()
+            if any(name in already for name in files):
+                raise FileExistsError("A file in this set is already packed")
+            for name, sha in files.items():
+                target = self.object_path(sha)
+                if target.exists():
+                    if not self.object_ok(sha):
+                        raise ValueError(f"Corrupt existing object {sha}")
+                else:
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    with target.open("xb") as stream:
+                        stream.write((self.root / name).read_bytes())
+                        stream.flush()
+                        os.fsync(stream.fileno())
+                if target.read_bytes() != (self.root / name).read_bytes():
+                    raise ValueError(f"Object differs from original: {name}")
+            record = {"schema": "witness.pack.v1", "id": pack_id,
+                      "objects": OBJECTS, "packed_at": datetime.now(UTC).isoformat(),
+                      "files": files}
+            write_once(self.registry / "packs" / f"{pack_id}.json", record)
+            for name in files:
+                (self.root / name).unlink()
+            for folder in folders:
+                folder = self.root / folder
+                for path in sorted(folder.rglob("*"), reverse=True):
+                    if path.is_dir() and not any(path.iterdir()):
+                        path.rmdir()
+                if folder.is_dir() and not any(folder.iterdir()):
+                    folder.rmdir()
+        return record
+
+    def restore(self, prefix="research/", destination=None):
+        """Rebuild packed files under a path prefix. Never overwrites an existing file."""
+        destination = Path(destination) if destination else self.root
+        restored = []
+        for name, sha in sorted(self.packed().items()):
+            if not name.startswith(prefix):
+                continue
+            if not self.object_ok(sha):
+                raise ValueError(f"Missing or corrupt object for {name}")
+            target = destination / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open("xb") as stream:
+                stream.write(self.object_path(sha).read_bytes())
+            if digest(target) != sha:
+                raise ValueError(f"Restored bytes differ for {name}")
+            restored.append(name)
+        return restored
     def build_index(self):
         records = self.records()
         lines = ["# Witness experiment index", "",
