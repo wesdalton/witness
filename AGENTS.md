@@ -1,78 +1,87 @@
 # Witness research operating instructions
 
-The user delegated research direction and execution on 24 October 2026 and asked
-for an iterative research loop toward interesting, validated, novel findings.
-They authorized **$25 total for the phase**, including pilots and replications,
-and asked that each stage justify the next dollar. They subsequently raised
-concerns about novelty and technical debt. Continue research through focused
-question selection, evidence review and the smallest justified experiments.
+The user delegated research direction and execution on 24 October 2026 and wants
+interesting, validated, novel findings. On 29 October 2026 the user approved an
+external audit and its fixes. That audit concluded that the earlier
+loops had excellent provenance but produced no finding. The causes were weak
+treatments, underpowered comparisons, and tasks at a capability ceiling. These
+rules exist to prevent a repeat.
 
-## Research scope
+## Active question
 
-No next paid batch is selected. The completed studies are historical reproduction
-tools, not an active backlog of frameworks to extend. Before adding experiment
-code, identify the unresolved prediction, the closest existing experiment, the
-specific difference, and what each possible outcome would change. Prefer existing
-tools. Do not build another general runner or keep raising task difficulty merely
-to produce model errors. Infrastructure improvements alone are not novel findings.
+**Evidence-access benchmark** (Option 1 in `research/directions.md`). For paired
+incidents where a valid and an invalid run produce identical observations under a
+restricted access policy, which additional evidence (full artifacts, independent
+run manifest, auditor-controlled replay) lets an auditor resolve the claim, and do
+LLM auditors correctly ask for that evidence instead of guessing?
 
-Read `README.md`, `research/README.md`, and the registry index. Use
-`research/portfolio/novelty-review.md` and `loop-decisions.md` for prior decisions.
-Before continuing a particular study, read its frozen protocol, report and
-adjudications. Original decisions remain in `research/agent-study/decisions.md`
-and `research/portfolio/decisions.md`; old proposed designs are not completed work.
+Work on one question at a time. Changing the active question requires the user's
+approval. Earlier studies (swarm pilot, ledger, portfolio allocation, query, route,
+schedule, output-requirement) are closed. Their code is historical reproduction
+code under `swarm_lab/legacy/`, not a backlog.
 
-## Preserved scientific restrictions
+## Design rules for any comparison that costs money
 
-- Portfolio v1 is disabled: the stronger calibration exposed two invalid positive
-  labels. Preserve its raw results and exclude invalid accuracy/Brier scores.
-  V2 uses separately repaired contracts; it does not erase v1's failures.
-- The original ledger, inventory, inherited-query, route and schedule capability
-  tasks reached ceilings. Do not repeat or expand them without a new scientific
-  justification. The allocation screen is inconclusive, not equivalence. Its three
-  incomplete episodes and probability/interpretation problems remain in the record.
-- SQL call count is not computational effort. Finite replay success does not prove
-  universal correctness; preserve numeric-contract adjudications separately.
-- Different replay text and zero exit status do not establish semantic fault
-  detection. Prospective replay v2 adds same-source repeats and diagnostic address
-  normalization. Even repeatable differences require a valid behavioral oracle.
-- Keep simulations, scripted Inspect checks, recorded-observation agents, live
-  tool-using agents and local replays distinct. Historical peer messages were
-  authored stimuli, not an independently executing swarm. Repeated probes or cases
-  are not independent projects. Null or beneficial effects are valid outcomes.
+1. **Freeze before dispatch:** question, primary endpoint, minimum effect worth
+   detecting, sample size, exclusions, analysis, stopping rule, and maximum spend.
+2. **Power first.** Compute the sample size needed to detect the minimum effect at
+   the frozen alpha. Do not run a comparison that cannot detect that effect. A
+   small pilot to estimate variance or discordance is allowed if labeled as such.
+3. **Calibrate difficulty before comparing treatments.** On development instances
+   with a no-treatment arm, adjust tasks until the baseline primary outcome sits
+   roughly between 30% and 70%. Tuning difficulty this way is standard practice,
+   not manufacturing errors. Never tune using treatment-arm outcomes, and never
+   reuse development instances for the test set.
+4. **Use a real treatment dose.** Stimuli must be plausible and strong enough to
+   matter. Include dose levels (none / weak / strong) when the question allows.
+   Avoid prompts that explicitly prime the model against the manipulation unless
+   that priming is itself a varied factor.
+5. **Ground truth is executable.** Labels come from at least two independent
+   reference implementations or exhaustive checks, plus mutation tests. An LLM's
+   opinion is never the only ground truth. Paired cases must not leak the label
+   through names, hashes, sizes, wording or ordering.
+6. **Count units honestly.** The unit of analysis is the independent incident or
+   seed. Repeated probes, turns or claims from one source family are not
+   independent. Report uncertainty clustered by family, and test a held-out family.
+7. **Report every outcome plainly.** Nulls and beneficial effects are valid
+   results. Keep simulations, scripted checks, recorded-observation agents, live
+   agents and local replays distinct.
 
-## Execution and spending
+## Spending
 
-Before each paid batch, freeze its question, decision value, source/prompt/config,
-maximum reservation and stopping criteria. Review validity, confounds, floor or
-ceiling effects, and cheaper ways to resolve the uncertainty. Do not pool changed
-configurations or score infrastructure failures as model mistakes. Authorization
-within the existing scope does not require asking the user for the same approval.
+The phase ceiling is **$25**, recorded in `research/agent-study/budget.jsonl`.
+Spend what a frozen design needs. If a design needs more than the remaining
+ceiling, stop and ask the user. Exposure counts provider-reported cost for settled
+requests and the full reservation for anything outstanding, failed or unpriced
+(`swarm_lab.core.budget.exposure`). Never reset, delete or rewrite a ledger.
+October 18's separate ledger also stays intact.
 
-Use `research/agent-study/budget.jsonl` for the current $25 phase. Keep all previous
-reservations and failed attempts. Never reset, delete or silently replace a ledger.
-October 18's separate ledger also remains intact. Report provider charges separately
-from retained reservations. The current ledger, not a historical report, is authoritative.
+The user instructed us to stop actions blocked by Daybreak. Treat a rejection as a
+stop: no retries, no alternate routes. The 28 October three-library setup stop is
+recorded in `research/repository-audit-status-20261028.md`.
 
-The user instructed us to stop actions blocked by Daybreak. Treat rejections as
-stops without retries or alternate routes. A combined three-library setup command
-was rejected before execution on 28 October; see
-`research/repository-audit-status-20261028.md`. That setup remains stopped.
-Its unused draft builder was removed from the active package and is preserved at
-`3f92abf:swarm_lab/repo_cases.py`. No corpus or inference run resulted from it.
+## Evidence
 
-## Evidence and validation
+- Use unique run IDs and write-once outputs. Seal completed or aborted bundles
+  with `swarm_lab.core.archive.Archive` and link parent IDs.
+- Never modify sealed evidence or rebaseline a checksum mismatch. Corrections go
+  in a separate adjudication.
+- Each experiment has one current report. Put limitations in one section of that
+  report instead of repeating caveats in every paragraph. Superseded writeups move
+  to `research/archive/`; nothing is deleted.
+- Restricted earlier results stay restricted: portfolio v1 accuracy/Brier is
+  excluded (two invalid labels); the allocation screen is inconclusive, not
+  equivalence; replay text differences are not fault detection without an oracle.
 
-Use unique experiment/run IDs and write-once output files. Seal completed or
-aborted bundles with `swarm_lab.research_archive.Archive`; link parent IDs. Keep
-analyses, report editions and corrections separate. Never modify sealed evidence
-or rebaseline a checksum mismatch. Derived registry indexes are replaceable.
-The completeness check covers `research/` and ignored `logs/`. Preserve historical
-gaps, including the early missing source snapshot and README/log discrepancy.
+## Required checks
 
-Required checks: `.venv/bin/python -m pytest -q`, `.venv/bin/ruff check .`,
-`.venv/bin/python scripts/research_archive.py audit`,
-`.venv/bin/python scripts/audit_research_coverage.py`, and
-`.venv/bin/python scripts/audit_agent_study.py`.
-Browser changes additionally use `node --test website/tests/*.test.mjs`.
-Frozen source snapshots are historical evidence; do not reformat them for lint.
+```sh
+.venv/bin/python -m pytest -q
+.venv/bin/ruff check .
+.venv/bin/python scripts/research_archive.py audit
+.venv/bin/python scripts/audit_research_coverage.py
+.venv/bin/python scripts/audit_agent_study.py
+```
+
+Browser changes additionally run `node --test website/tests/*.test.mjs`. Frozen
+source snapshots are historical evidence; do not reformat them for lint.
