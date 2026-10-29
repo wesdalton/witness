@@ -5,11 +5,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict
 from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from swarm_lab.agent_budget import PHASE_LIMIT, exposure  # noqa: E402
 
 
 def read(path):
@@ -165,11 +169,13 @@ def audit(root: Path):
     reserved = sum((Decimal(r["usd"]) for r in reservations.values()), Decimal(0))
     reported = sum((Decimal(r["reported_cost_usd"]) for r in completions.values()
                     if r["reported_cost_usd"] is not None), Decimal(0))
-    if reserved > Decimal("25") or reported > reserved:
+    committed = exposure(ledger)
+    if committed > PHASE_LIMIT or reported > reserved:
         errors.append("Phase spend/reservation invariant failed")
     return {"schema": "witness.live-auditor-audit.v2", "errors": errors, "warnings": warnings,
-            "requests": len(reservations), "reserved_usd": str(reserved),
-            "reported_cost_usd": str(reported), "batches": batches}
+            "requests": len(reservations), "exposure_usd": str(committed),
+            "reserved_usd": str(reserved), "reported_cost_usd": str(reported),
+            "batches": batches}
 
 
 def main():

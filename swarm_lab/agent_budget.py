@@ -1,4 +1,10 @@
-"""Persistent, conservative reservation accounting for the $25 research phase."""
+"""Persistent phase accounting for the $25 research phase.
+
+Each request reserves a conservative worst-case amount before dispatch. Once the
+provider reports a cost for a successful request, that request's exposure settles to
+the reported cost. Requests that are outstanding, failed or lack a reported cost keep
+their full reservation. The phase and batch ceilings apply to this exposure.
+"""
 
 from __future__ import annotations
 
@@ -20,6 +26,25 @@ HEADER = {
     "limit_usd": "25",
     "source": "User authorized $25 for the pilot and follow-up replications, 2026-10-24",
 }
+SETTLEMENT = (
+    "Successful requests settle to provider-reported cost; outstanding, failed or "
+    "unpriced requests retain their full reservation."
+)
+
+
+def exposure(rows, batch=None) -> Decimal:
+    """Committed spend: settled cost where known, otherwise the full reservation."""
+    completed = {r["request"]: r for r in rows if r["type"] == "complete"}
+    total = Decimal(0)
+    for row in rows:
+        if row["type"] != "reserve" or (batch is not None and row["batch"] != batch):
+            continue
+        done = completed.get(row["request"])
+        if done and done["status"] == "ok" and done.get("reported_cost_usd") is not None:
+            total += money(done["reported_cost_usd"])
+        else:
+            total += money(row["usd"])
+    return total
 
 
 class PhaseBudget:
@@ -69,10 +94,6 @@ class PhaseBudget:
             reserves = [r for r in rows if r["type"] == "reserve"]
             if any(r["request"] == request for r in reserves):
                 raise BudgetError("Request already reserved; no retries")
-            total = sum((money(r["usd"]) for r in reserves), Decimal(0))
-            batch_total = sum(
-                (money(r["usd"]) for r in reserves if r["batch"] == batch), Decimal(0)
-            )
             completed = {r["request"]: r for r in rows if r["type"] == "complete"}
             if any(
                 r["request"] not in completed
@@ -80,8 +101,9 @@ class PhaseBudget:
                 for r in reserves
             ):
                 raise BudgetError("Unreconciled or failed request; review before more spending")
-            if total + amount > PHASE_LIMIT or batch_total + amount > batch_limit:
-                raise BudgetError("Phase or batch reservation ceiling reached")
+            if (exposure(rows) + amount > PHASE_LIMIT
+                    or exposure(rows, batch) + amount > batch_limit):
+                raise BudgetError("Phase or batch spending ceiling reached")
             append({"type": "reserve", "request": request, "batch": batch, "usd": str(amount)})
 
     def complete(self, request: str, status: str, cost=None, usage=None, response_id=None):
@@ -95,10 +117,12 @@ class PhaseBudget:
                 raise BudgetError("Unknown or already completed request")
             if cost is not None and money(cost) > money(reservation["usd"]):
                 status = "billing_overrun"
+            settled = status == "ok" and cost is not None
             append({
                 "type": "complete", "request": request, "status": status,
                 "reported_cost_usd": str(money(cost)) if cost is not None else None,
-                "usage": usage, "response_id": response_id, "reservation_retained": True,
+                "usage": usage, "response_id": response_id,
+                "reservation_retained": not settled,
             })
             if status != "ok":
                 raise BudgetError(f"Request requires review: {status}")
@@ -108,6 +132,7 @@ class PhaseBudget:
             return {
                 "phase_limit_usd": str(PHASE_LIMIT),
                 "requests": sum(r["type"] == "reserve" for r in rows),
+                "exposure_usd": str(exposure(rows)),
                 "reserved_usd": str(sum(
                     (money(r["usd"]) for r in rows if r["type"] == "reserve"), Decimal(0)
                 )),
@@ -116,4 +141,5 @@ class PhaseBudget:
                      if r["type"] == "complete" and r["reported_cost_usd"] is not None),
                     Decimal(0),
                 )),
+                "settlement": SETTLEMENT,
             }
