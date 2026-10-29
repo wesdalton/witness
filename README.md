@@ -1,56 +1,38 @@
-# Witness — Swarm Evidence Lab
+# Witness
 
-A research prototype for studying whether communication among AI agents changes
-independent verification. **No novel behavioral finding is established.** Current
-work is question selection and interpretation of existing evidence; no next paid
-batch is selected.
+A research prototype on how AI auditors verify claims about agent runs, and what
+evidence they need to do it. **No behavioral finding is established yet.** The
+current state of every study is in [research/findings.md](research/findings.md).
 
-[Experiment index](research/registry/index.md) ·
-[Storage and correction rules](research/README.md) ·
-[Evidence completeness](research/archive-completeness-20261028.md) ·
-[Literature comparison](research/portfolio/novelty-review.md)
+## Where things stand
 
-## Evidence so far
+- **Active question:** the evidence-access benchmark ([research/directions.md](research/directions.md),
+  Option 1). It uses paired valid and invalid runs that look identical under
+  restricted access, and asks which added evidence lets an auditor tell them apart.
+- **Closed studies:** the swarm pilot, single-claim auditor, portfolio allocation
+  screen, and query capability series. They hit ceilings or were underpowered.
+  Their runners are kept under `swarm_lab/legacy/` and refuse paid runs.
+- **Validated results:** a capable auditor exposed two wrong labels in our own
+  benchmark, and replayed probe output can differ for incidental reasons such as
+  memory addresses. Both are measurement findings, not agent behavior.
+- **Budget:** $25 phase ceiling. 590 requests, $0.449982210 billed
+  (`research/agent-study/budget.jsonl`).
 
-- A capable auditor exposed two incorrect benchmark labels. Those raw results
-  remain preserved with [separate adjudication](research/portfolio/report.md).
-- The [allocation screen](research/portfolio/allocation-screen-report.md) is
-  inconclusive. Later SQL capability tasks repeatedly reached ceilings and are
-  closed to routine expansion.
-- The [probe repeatability audit](research/experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md)
-  found incidental output differences and improved measurement. This is a local
-  validity result, not a new general phenomenon about agents.
-- The browser is an authored simulation. September Inspect logs are scripted
-  checks; October 18 agents retrieved recorded observations. Later live-tool
-  audits and local replays are separately labeled in the index.
+Operating rules for research work are in [AGENTS.md](AGENTS.md).
 
-The active research phase has a **$25 total ceiling**, including previous work.
-Its append-only ledger is `research/agent-study/budget.jsonl`. At this revision it
-records 590 requests, $0.449982210 reported charges and $6.425077750 retained
-reservations. The older October 18 ledger remains separate. Neither is reset.
+## Layout
 
-## Maintenance scope
-
-| Area | Status |
+| Path | Contents |
 | --- | --- |
-| Evidence, source snapshots, writeups and corrections | Preserve; check integrity and completeness |
-| Budget ledger, API adapter, isolated execution | Shared primitives; change for a demonstrated need |
-| Ledger, portfolio, inventory, route and schedule runners | Historical reproduction; no new batch selected |
-| Website and original Inspect tasks | Earlier prototype, independently runnable |
-
-New experiment code requires a specific unresolved prediction, a comparison with
-the closest prior experiment, and a result that would change a research decision.
-Use existing tools for the smallest discriminating test. A new general framework
-or another easy capability task is not a research objective.
-
-The unvalidated `repo_cases.py` draft was removed from the active package. It
-produced no experiment records and had no callers. Its exact source remains in
-Git at `3f92abf:swarm_lab/repo_cases.py`; the [historical setup stop](research/repository-audit-status-20261028.md)
-is preserved. Removing the draft does not authorize retrying that blocked setup.
+| `swarm_lab/core/` | Phase budget, OpenRouter client, Docker sandbox, records, evidence archive |
+| `swarm_lab/legacy/` | Closed study runners and case builders (historical reproduction) |
+| `scripts/` | Evidence audits, archive CLI, site build; `scripts/legacy/` for closed studies |
+| `research/findings.md` | One current report covering every study |
+| `research/registry/` | Write-once SHA-256 records of all sealed evidence, plus derived index |
+| `research/archive/` | Sealed writeup editions and the content-addressed snapshot store |
+| `inspect_tasks/`, `website/` | The original Inspect tasks and browser prototype |
 
 ## Validate the repository
-
-With the existing development environment:
 
 ```sh
 .venv/bin/python -m pytest -q
@@ -60,28 +42,27 @@ With the existing development environment:
 .venv/bin/python scripts/audit_agent_study.py
 ```
 
-Frozen historical source is evidence; do not rewrite it to satisfy current lint.
-New runs and writeup editions use unique paths and refuse overwrites.
+Run source snapshots are stored once per distinct file. To rebuild the original
+snapshot folders somewhere for inspection:
+
+```sh
+.venv/bin/python scripts/research_archive.py restore --to /tmp/witness-snapshots
+```
 
 ## Run the browser prototype
 
-The website has no npm runtime dependencies or build step. Using Node 22+:
+The website has no runtime dependencies or build step. With Node 22+:
 
 ```sh
 cd website
 npm test
-npm run serve
-# Open http://localhost:4173
+npm run serve   # http://localhost:4173
 ```
 
-The browser supports exporting and replaying simulated trajectories. Its public
-presentation describes an earlier research stage; the experiment index contains
-the later work. [Open the published prototype](https://wesdalton.github.io/witness/).
+It runs an authored 10,000-agent simulation from the 18 October stage, not the
+later live-model studies. [Published prototype](https://wesdalton.github.io/witness/).
+The [original Inspect documentation](research/legacy-inspect-readme.md) covers
+the earliest tasks.
 
-Historical runner configurations and exact source are recorded with each run.
-The [original Inspect documentation](research/legacy-inspect-readme.md) is retained
-with its known [documentation/log discrepancy](research/archive-completeness-20261028.md).
-
-Code and original documentation are MIT licensed; vendored libraries retain their
-licenses. Cite the software using `CITATION.cff`. Software availability does not
-establish its proposed scientific claims.
+Code and original documentation are MIT licensed; vendored libraries keep their
+licenses. Cite with `CITATION.cff`.

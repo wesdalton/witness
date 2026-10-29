@@ -17,8 +17,9 @@ LLM auditors correctly ask for that evidence instead of guessing?
 
 Work on one question at a time. Changing the active question requires the user's
 approval. Earlier studies (swarm pilot, ledger, portfolio allocation, query, route,
-schedule, output-requirement) are closed. Their code is historical reproduction
-code under `swarm_lab/legacy/`, not a backlog.
+schedule, output-requirement) are closed; [research/findings.md](research/findings.md)
+reports them. Their code under `swarm_lab/legacy/` is for historical reproduction,
+not a backlog, and refuses paid runs (`LIVE_ENABLED = False`).
 
 ## Design rules for any comparison that costs money
 

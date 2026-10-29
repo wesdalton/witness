@@ -274,7 +274,7 @@ class Archive:
             title = record["title"].replace("|", "\\|")
             original = record.get("original_path")
             suffix = (f" ([living original](../../{Path(original).as_posix()}))"
-                      if original else "")
+                      if original and (self.root / original).is_file() else "")
             lines.append(f"| {record['experiment']} | {record['kind']} | "
                          f"[{title}]({link.as_posix()}){suffix} | {record['id']} |")
         (self.registry / "index.md").write_text("\n".join(lines) + "\n")

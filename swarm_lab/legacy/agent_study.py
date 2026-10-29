@@ -18,6 +18,7 @@ from pathlib import Path
 from swarm_lab.core.budget import PHASE_LEDGER, BudgetError, PhaseBudget, money
 from swarm_lab.core.client import MODEL_ROUTES, Client, load_key, model_catalog, preflight_key
 from swarm_lab.core.records import append, digest, save, tool_schema
+from swarm_lab.legacy import CLOSED, LIVE_ENABLED
 from swarm_lab.legacy.agent_workspace import (
     CLAIM,
     COSTS,
@@ -273,6 +274,8 @@ def main():
     if not args.live:
         print(json.dumps(plan, indent=2))
         return 0
+    if not LIVE_ENABLED:
+        raise BudgetError(CLOSED)
     args.out.mkdir(parents=True, exist_ok=False)
     image = subprocess.check_output(
         ["docker", "image", "inspect", IMAGE, "--format", "{{.Id}}"], text=True

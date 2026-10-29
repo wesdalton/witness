@@ -15,7 +15,14 @@ from pathlib import Path
 from swarm_lab.core.budget import PHASE_LEDGER, BudgetError, PhaseBudget, money
 from swarm_lab.core.client import ResponsesClient, catalog, load_key, preflight_key
 from swarm_lab.core.records import append, digest, save, tool_schema
-from swarm_lab.legacy import inherited_query_cases, query_interfaces, route_cases, schedule_cases
+from swarm_lab.legacy import (
+    CLOSED,
+    LIVE_ENABLED,
+    inherited_query_cases,
+    query_interfaces,
+    route_cases,
+    schedule_cases,
+)
 from swarm_lab.legacy.portfolio_cases import IMAGE, ROOT
 from swarm_lab.legacy.reconciliation_cases import (
     CONTRACT,
@@ -448,6 +455,8 @@ def main():
         raise BudgetError(schedule_cases.LIVE_HOLD_REASON)
     if args.task != "routes" and args.inherited_query and inherited_query_cases.LIVE_HOLD_REASON:
         raise BudgetError(inherited_query_cases.LIVE_HOLD_REASON)
+    if not LIVE_ENABLED:
+        raise BudgetError(CLOSED)
     return launch(args, plan)
 
 

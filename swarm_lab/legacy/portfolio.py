@@ -16,7 +16,7 @@ from pathlib import Path
 from swarm_lab.core.budget import PHASE_LEDGER, BudgetError, PhaseBudget, money
 from swarm_lab.core.client import Client, ResponsesClient, catalog, load_key, preflight_key
 from swarm_lab.core.records import append, digest, save, tool_schema
-from swarm_lab.legacy import portfolio_v2_cases
+from swarm_lab.legacy import CLOSED, LIVE_ENABLED, portfolio_v2_cases
 from swarm_lab.legacy.agent_workspace import Workspace
 from swarm_lab.legacy.portfolio_cases import (
     CLAIMS,
@@ -390,6 +390,8 @@ def main():
         return 0
     if args.revision == "v1" and LIVE_HOLD_REASON:
         raise BudgetError(LIVE_HOLD_REASON)
+    if not LIVE_ENABLED:
+        raise BudgetError(CLOSED)
     args.out.mkdir(parents=True, exist_ok=False)
     image = subprocess.check_output(["docker", "image", "inspect", IMAGE,
                                      "--format", "{{.Id}}"], text=True).strip()

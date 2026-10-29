@@ -1,39 +1,52 @@
 # Witness research records
 
-Start at the [experiment index](registry/index.md). It links frozen designs,
-raw runs, analyses, report editions, and corrections. Legacy evidence remains at
-its original paths; the index also links archived editions of the older writeups
-and their living originals (whose relative links remain navigable).
+Start with [findings.md](findings.md): one current report for every study, with
+links to raw runs and archived detail. The [experiment index](registry/index.md)
+lists every sealed bundle.
 
-New experiments use this layout:
+## Layout
 
 ```
-experiments/<experiment-id>/
-  design/                  # frozen question, protocol and decision criteria
-  gates/<gate-id>/          # offline validation and corpus provenance
-  runs/<run-id>/            # manifest, source snapshot, raw traces, completion
-  analyses/<analysis-id>/   # derived results, links to exact input bundles
-  reports/<edition-id>/     # separately versioned narrative
-  adjudications/<id>/       # corrections; never rewrite the original evidence
+findings.md               current report across all studies
+directions.md             background for the active evidence-access question
+experiments/<id>/         new studies (one directory per experiment)
+  design/                 frozen question, protocol, power analysis
+  gates/<gate-id>/        offline validation and corpus provenance
+  runs/<run-id>/          manifest, source snapshot, raw traces, completion
+  analyses/<id>/          derived results linked to input bundles
+  reports/<edition>/      versioned narrative
+  adjudications/<id>/     corrections; never rewrite the original evidence
+agent-study/ portfolio/ swarm/
+                          closed studies: raw runs, frozen protocols, JSON artifacts
+registry/bundles/         write-once SHA-256 inventories of sealed evidence
+registry/packs/           write-once maps from packed paths to stored objects
+archive/legacy-writeups/  sealed editions of retired narrative writeups
+archive/objects/          content-addressed store for run source snapshots
 ```
 
-Create designs and bundles with `swarm_lab.research_archive.Archive`. File writes
-use `write_once`; existing IDs, output paths and files are rejected. Seal a bundle
-when complete, linking its parent bundle IDs. Never add a correction inside a
-sealed run. Aborted runs remain evidence and must be sealed as aborted, not reused.
-Each runner freezes exact source, prompt, configuration and corpus hashes before
-inference. The shared phase ledger stays at `agent-study/budget.jsonl`; it is
-append-only, locked, and retains every reservation including failures.
+## Rules
 
-`registry/bundles/*.json` holds write-once SHA-256 inventories. The audit detects
-file edits, additions and deletions. `registry/index.md` and `index.json` are
-replaceable indexes derived from those records, never the authoritative results.
-Git records the inventories and evidence. These are overwrite guards and integrity
-checks, not tamperproof storage or an off-machine backup. Legacy seals establish
-the baseline on registration, not historical proof of immutability. Legacy live
-overviews may still change; their archived editions remain unchanged.
+Create designs and bundles with `swarm_lab.core.archive.Archive`. Files are written
+once; existing IDs and paths are rejected. Seal a bundle when it is complete and
+link its parents. Aborted runs are sealed as aborted, never reused. Never put a
+correction inside a sealed run; write an adjudication instead. Do not rebaseline a
+checksum mismatch.
 
-Run before and after research work:
+The phase ledger is `agent-study/budget.jsonl`. It is append-only and locked.
+Exposure counts settled requests at billed cost and anything else at its full
+reservation.
+
+Run source snapshots are packed into `archive/objects/` after sealing, one copy
+per distinct file. The audit verifies packed files through the store.
+`scripts/research_archive.py restore --to DIR` rebuilds them byte for byte. The
+packing record for 29 October was verified this way against git: all 1,036 files
+matched.
+
+Retired writeups were removed from the study folders only when a byte-identical
+sealed edition already existed in `archive/`. Older documents may still link to
+their retired paths; [findings.md](findings.md) links the sealed editions.
+
+## Checks
 
 ```sh
 .venv/bin/python scripts/research_archive.py audit
@@ -41,16 +54,7 @@ Run before and after research work:
 .venv/bin/python scripts/audit_agent_study.py
 ```
 
-Regenerate navigation with `scripts/research_archive.py index`. Use `bootstrap`
-only to register legacy runs and archive new editions of legacy writeups/analyses.
-Do not rebaseline a changed sealed bundle: investigate and write an adjudication.
-
-The completeness check additionally scans `logs/`, including Git-ignored early
-Inspect files. Historical logs are copied into `research/archive/recovered/` and
-indexed with their original location. Preserve mock/scripted labels: these logs
-do not become live-model evidence merely because they use the Inspect format.
-`scripts/audit_research_coverage.py --capture-legacy` archives previously omitted
-root writeups, ignored logs and ledger snapshots. It detects unregistered evidence,
-changed writeup editions, and changes to archived ledger prefixes while permitting
-new ledger entries. Completeness means all evidence currently found in these
-directories; it cannot recover missing historical files or unrecorded work.
+`audit_research_coverage.py` also scans the ignored `logs/` directory. Use
+`--capture-legacy` to archive a new edition of a root `research/*.md` file after
+editing it. Integrity checks guard against overwrites; they are not tamper-proof
+storage or an off-machine backup.
