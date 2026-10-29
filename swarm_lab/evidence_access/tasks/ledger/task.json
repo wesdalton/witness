@@ -1,0 +1,20 @@
+{
+  "name": "ledger",
+  "split": "dev",
+  "package": "ledger",
+  "bug": {
+    "file": "ledger/core.py",
+    "buggy": "    return entry.posted_on < end\n",
+    "fixed": "    return entry.posted_on <= end\n"
+  },
+  "slow": {
+    "file": "ledger/core.py",
+    "after": "def _within(entry: Entry, start: date, end: date | None) -> bool:\n",
+    "delay_s": 0.25
+  },
+  "probe": "import json\nfrom datetime import date\nfrom ledger import Entry, Ledger\nledger = Ledger()\nday = date(2024, 3, 2)\nledger.post(Entry(day, \"ops\", 7))\nprint(json.dumps({\"balance\": ledger.balance(\"ops\", as_of=day), \"statement_length\": len(ledger.statement(\"ops\", day, day))}))\n",
+  "probe_expected": {
+    "balance": 7,
+    "statement_length": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ratelimit",
+  "split": "dev",
+  "package": "ratelimit",
+  "bug": {
+    "file": "ratelimit/__init__.py",
+    "buggy": "        while self._events and self._events[0] < now - self.window:\n",
+    "fixed": "        while self._events and self._events[0] <= now - self.window:\n"
+  },
+  "slow": {
+    "file": "ratelimit/__init__.py",
+    "after": "    def _expire(self, now: float) -> None:\n",
+    "delay_s": 0.5
+  },
+  "probe": "import json\nfrom ratelimit import SlidingWindowLimiter\nl = SlidingWindowLimiter(1, 10)\nprint(json.dumps({\"first\": l.allow(0), \"after_window\": l.allow(10)}))\n",
+  "probe_expected": {
+    "first": true,
+    "after_window": true
+  }
+}

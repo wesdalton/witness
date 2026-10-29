@@ -1,0 +1,22 @@
+{
+  "name": "csvline",
+  "split": "heldout",
+  "package": "csvline",
+  "bug": {
+    "file": "csvline/__init__.py",
+    "buggy": "            if ch == '\"':\n                quoted = False\n",
+    "fixed": "            if ch == '\"':\n                if i + 1 < len(line) and line[i + 1] == '\"':\n                    buffer.append('\"')\n                    i += 2\n                    continue\n                quoted = False\n"
+  },
+  "slow": {
+    "file": "csvline/__init__.py",
+    "after": "def split_line(line: str, sep: str = \",\") -> list[str]:\n",
+    "delay_s": 1.8
+  },
+  "probe": "import json\nfrom csvline import split_line\nprint(json.dumps({\"fields\": split_line('\"a\"\"b\",c')}))\n",
+  "probe_expected": {
+    "fields": [
+      "a\"b",
+      "c"
+    ]
+  }
+}

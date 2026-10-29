@@ -1,0 +1,19 @@
+{
+  "name": "semver",
+  "split": "dev",
+  "package": "semver",
+  "bug": {
+    "file": "semver/__init__.py",
+    "buggy": "    release = len(version.prerelease) > 0\n",
+    "fixed": "    release = len(version.prerelease) == 0\n"
+  },
+  "slow": {
+    "file": "semver/__init__.py",
+    "after": "def sort_key(version: Version) -> tuple:\n",
+    "delay_s": 0.8
+  },
+  "probe": "import json\nfrom semver import compare\nprint(json.dumps({\"rc_vs_release\": compare(\"1.0.0-rc.1\", \"1.0.0\")}))\n",
+  "probe_expected": {
+    "rc_vs_release": -1
+  }
+}

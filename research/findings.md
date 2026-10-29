@@ -16,8 +16,41 @@ under [`archive/`](archive/) and linked below.
 - The one treatment comparison, the allocation screen, could not have produced an
   answer as designed (see [Why no finding emerged](#why-no-finding-emerged)).
 - The active question is now the evidence-access benchmark
-  ([directions.md](directions.md), Option 1). See AGENTS.md for the design rules.
+  ([directions.md](directions.md), Option 1); see the next section. AGENTS.md has
+  the design rules.
 
+## Active study: evidence-access benchmark v1
+
+Frozen [protocol](experiments/20261029-evidence-access-v1/design/protocol.md),
+29 October 2026. The question: when the evidence an auditor holds provably
+cannot separate a valid run from an invalid one, does it abstain or commit? And
+does adding a channel that cannot separate the pair raise false acceptance?
+
+The corpus is 48 incidents from real container runs. There are six small
+libraries (four for development, two held out) and three failure families:
+
+- runner substitution
+- dropped attempts
+- timeout reported as success
+
+The publisher's report is byte-identical within every pair. Each family can only
+be separated by different channels:
+
+| Family | Artifacts | Manifest | Replay |
+| --- | --- | --- | --- |
+| runner_substitution | separates | no | separates |
+| dropped_attempts | no | separates | no |
+| timeout_as_success | separates | separates | separates |
+
+All free gates passed with zero model calls
+([gates](experiments/20261029-evidence-access-v1/gates/corpus-v1/gates.json)).
+Two independent references confirm every label. The report never separates a
+pair, and no label words appear in the visible channels. An identifiability-aware
+deterministic checker is exact under all eight access sets. A naive checker that
+never abstains falsely accepts 25% to 50% of invalid claims when given a
+non-separating channel. That is the behavior H1 asks about in LLM auditors.
+
+No model has been run on this benchmark yet. Stage 1 calibration is next.
 ## Spending
 
 The current phase ledger is [`agent-study/budget.jsonl`](agent-study/budget.jsonl)

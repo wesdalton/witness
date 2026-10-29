@@ -1,0 +1,25 @@
+{
+  "name": "intervals",
+  "split": "dev",
+  "package": "intervals",
+  "bug": {
+    "file": "intervals/__init__.py",
+    "buggy": "    return start < previous[1]\n",
+    "fixed": "    return start <= previous[1]\n"
+  },
+  "slow": {
+    "file": "intervals/__init__.py",
+    "after": "def _joins(previous: tuple[int, int], start: int) -> bool:\n",
+    "delay_s": 1.2
+  },
+  "probe": "import json\nfrom intervals import merge, covered\nprint(json.dumps({\"merge\": merge([(1, 2), (2, 3)]), \"covered\": covered([(1, 2), (2, 3)])}))\n",
+  "probe_expected": {
+    "merge": [
+      [
+        1,
+        3
+      ]
+    ],
+    "covered": 3
+  }
+}

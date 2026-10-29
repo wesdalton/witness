@@ -1,0 +1,22 @@
+{
+  "name": "lru",
+  "split": "heldout",
+  "package": "lru",
+  "bug": {
+    "file": "lru/__init__.py",
+    "buggy": "        self.hits += 1\n        return self._data[key]\n",
+    "fixed": "        self.hits += 1\n        self._data.move_to_end(key)\n        return self._data[key]\n"
+  },
+  "slow": {
+    "file": "lru/__init__.py",
+    "after": "    def put(self, key: Hashable, value: Any) -> None:\n",
+    "delay_s": 0.7
+  },
+  "probe": "import json\nfrom lru import LRUCache\nc = LRUCache(2)\nc.put(\"a\", 1)\nc.put(\"b\", 2)\nc.get(\"a\")\nc.put(\"c\", 3)\nprint(json.dumps({\"keys\": c.keys()}))\n",
+  "probe_expected": {
+    "keys": [
+      "a",
+      "c"
+    ]
+  }
+}

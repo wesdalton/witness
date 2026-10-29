@@ -11,6 +11,8 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261028-probe-repeatability-v1 | run | [Identical-source replay controls](../experiments/20261028-probe-repeatability-v1/runs/repeat-01/manifest.json) | 20261028-probe-repeatability-v1.run |
 | 20261028-probe-repeatability-v1 | gate | [Prospective replay controls validated](../experiments/20261028-probe-repeatability-v1/gates/replay-v2-regression) | 20261028-probe-repeatability-v1.replay-v2 |
 | 20261028-probe-repeatability-v1 | report | [Incidental differences in agent probe replays](../experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md) | 20261028-probe-repeatability-v1.report-01 |
+| 20261029-evidence-access-v1 | design | [Evidence-access benchmark v1](../experiments/20261029-evidence-access-v1/design/protocol.md) | 20261029-evidence-access-v1.design |
+| 20261029-evidence-access-v1 | gate | [Corpus v1 built and free gates passed](../experiments/20261029-evidence-access-v1/gates/corpus-v1/manifest.json) | 20261029-evidence-access-v1.gate-corpus-v1 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |
@@ -132,6 +134,7 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | legacy-recovered | ledger-snapshot | [research/swarm/pilot-budget.jsonl](../archive/recovered/recovered-b2db21bf5b60-557bd4f445ff.jsonl) ([living original](../../research/swarm/pilot-budget.jsonl)) | recovered-b2db21bf5b60-557bd4f445ff |
 | legacy-recovered | legacy-artifact | [research/README.md](../archive/recovered/recovered-7457dc94d457-09f4521ff8b0.md) ([living original](../../research/README.md)) | recovered-7457dc94d457-09f4521ff8b0 |
 | legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-915992a1e0d5.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-915992a1e0d5 |
+| legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-a1973f7aaeb8.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-a1973f7aaeb8 |
 | legacy-swarm | run | [luna-calibration-01](../swarm/luna-calibration-01/manifest.json) | legacy-swarm-luna-calibration-01 |
 | legacy-swarm | run | [luna-honest-reports-attempt02](../swarm/luna-honest-reports-attempt02/manifest.json) | legacy-swarm-luna-honest-reports-attempt02 |
 | legacy-swarm | run | [luna-honest-reports-attempt03](../swarm/luna-honest-reports-attempt03/manifest.json) | legacy-swarm-luna-honest-reports-attempt03 |
