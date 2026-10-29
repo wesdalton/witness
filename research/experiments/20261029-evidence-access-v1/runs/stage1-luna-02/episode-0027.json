@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0027",
+  "incident": "inc-a428eeea70ee4ebe",
+  "access": [
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:44:48.843351+00:00",
+  "prompt_sha256": "80448ba81613097eea2eebde4905d82e65982ad715e6b11cf6730ad62afc0bc0",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "060c1a2083314a8a84dadcacd6d088d9",
+    "response_id": "gen-1793288689-AYAvxLqBwulChDPUyVsN",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 384,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 256,
+      "output_tokens_details": {
+        "reasoning_tokens": 159
+      },
+      "total_tokens": 640,
+      "cost": 0.0001664,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001664,
+        "upstream_inference_input_cost": 3.84e-05,
+        "upstream_inference_output_cost": 0.000128
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.2904,
+    "input_bound": 6230,
+    "reserved_usd": "0.002826750",
+    "request_sha256": "4c02c34f52213194b2e1e55999c358d154a8fdaac1cfe61f15e4de46a0821056",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0859ac3b59cf5154016ae369f2f4d887d184352a015d96181b",
+        "sha256": "34fa0f6ec2af172baf7475a11965a51798a2a55504f7de6a9bdd4ef03462bffc"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_to1lw9397lr",
+        "sha256": "31341373f1cfe2abb0ecb21700904e24ad1d46fbc7a859db84aac4e762bcc719"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report says all 11 tests passed, but the replay\u2014the execution evidence\u2014shows exit code -9, a timeout at the 10-second limit, and no summary. Thus the available run evidence does not demonstrate the patch passing within the limit and directly indicates a timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:44:53.689102+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0023",
+  "incident": "inc-95cd7365f0a5501a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T16:05:48.436463+00:00",
+  "prompt_sha256": "6b2a9b7b96fb3fde14c381f99fb523957a6aa6428c3e3d4dc557c3883304cdf8",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "5fe20a5ef7af401fa98211d3bc82bc0d",
+    "response_id": "gen-1793289948-I4PU8jFELAXMHO3Z20IC",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1473,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1342
+      },
+      "output_tokens": 235,
+      "output_tokens_details": {
+        "reasoning_tokens": 122
+      },
+      "total_tokens": 1708,
+      "cost": 0.005967,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005967,
+        "upstream_inference_input_cost": 0.003617,
+        "upstream_inference_output_cost": 0.00235
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.2747,
+    "input_bound": 10525,
+    "reserved_usd": "0.0672725",
+    "request_sha256": "500b09d01d0dce72c431a9cc61cb0de8805d018ce5d60b21b50fdadc22f4c2c8",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ae2f3403b73dfca016ae36edf1c7887d1af66ffe6eefeb941",
+        "sha256": "535db9e2ab4f49ab5af9f25d9da913f6910568f7d9a67565e39572fdd149c877"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_1jp5kwjy6bd",
+        "sha256": "c815cf6c599c5b1b2f0a741145976c4c6fee2f5bb3ec4446b5092e8326c44540"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.08,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts: five passed, while attempt 3 ended with an infrastructure error rather than a hidden-suite pass. The report explicitly excludes infrastructure errors, so its 5/5 is a filtered rate, not evidence that every agent attempt passed. The passing logs and replay do not establish a pass for the excluded attempt."
+  },
+  "exact": false,
+  "finished_at": "2026-10-29T16:05:55.729174+00:00"
+}

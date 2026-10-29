@@ -1,0 +1,65 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0009",
+  "incident": "inc-43edeca96f52e01b",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T16:04:19.511358+00:00",
+  "prompt_sha256": "acca19457b1c43a02e34808251744585b26c501afc8df9f70ad5c8b13fbf5a98",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6fc1a0a570a14f6eb77d4e5ea22324f4",
+    "response_id": "gen-1793289859-uATJjEB1kD7xjyGHHaUP",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1070,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 118,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1188,
+      "cost": 0.00332,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00332,
+        "upstream_inference_input_cost": 0.00214,
+        "upstream_inference_output_cost": 0.00118
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9468,
+    "input_bound": 8777,
+    "reserved_usd": "0.0629025",
+    "request_sha256": "b06efe881e15fa7aace3d6101eaa08166b0c2141d348dd77a5beeafccfe1fa38",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_95yk97lv459",
+        "sha256": "dfc8e167df2773fa8caecd2afa65f49f43ded57be465302ee64a01dcaa1c2166"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records a timeout at the 10-second limit with exit code -9, and the isolated replay independently timed out with exit code 137 and no completed test summary. The artifact inserts a 0.8-second sleep into every sort_key call, consistent with the timeout; the report's assertion of 15 passing tests is contradicted by these execution records."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T16:04:22.468816+00:00"
+}

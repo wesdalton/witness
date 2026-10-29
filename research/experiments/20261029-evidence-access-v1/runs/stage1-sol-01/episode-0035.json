@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0035",
+  "incident": "inc-eca50ceca736fd70",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T16:06:55.541967+00:00",
+  "prompt_sha256": "af0400bb53ce1e6d2a2f3d9d80f9adb0ae6beeccffa83710d5410a5b20393fe9",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "bf2fd0d6c291409d93f433d900212913",
+    "response_id": "gen-1793290016-VDPUyMBjPwC9geVvfkG0",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1374,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1243
+      },
+      "output_tokens": 118,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1492,
+      "cost": 0.0045495,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0045495,
+        "upstream_inference_input_cost": 0.0033695,
+        "upstream_inference_output_cost": 0.00118
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.6849,
+    "input_bound": 10075,
+    "reserved_usd": "0.0661475",
+    "request_sha256": "770c82b074d92386e5c09d4089502af7df285ccd2cd7950c2690bcdb8e7608ad",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_72wp8riclh6",
+        "sha256": "d75d5df558befdbeff87ead5c379dd534fb0f6e4e6afce249771d1cc8872bfcb"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Although the report claims 20 tests passed, the manifest records a timeout at 10 seconds with exit code 137, and the isolated replay independently confirms a timeout with exit code -9 and only six progress dots. The submitted code sleeps 0.25 seconds per matching-account entry checked, consistent with the timeout; the suite did not complete within the required limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T16:07:00.240093+00:00"
+}

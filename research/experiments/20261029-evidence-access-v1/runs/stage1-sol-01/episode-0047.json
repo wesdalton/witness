@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0047",
+  "incident": "inc-4ec3aeaf2fba9708",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T16:08:25.610773+00:00",
+  "prompt_sha256": "865d9824b028659cc175625888b2764fe9975f23b6375dd909618cf2c8204466",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5ae0dbeaf2a44f3fa6e5babb1357de00",
+    "response_id": "gen-1793290105-4nHQQO3kgMwBTxBqL9Fr",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1996,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1865
+      },
+      "output_tokens": 144,
+      "output_tokens_details": {
+        "reasoning_tokens": 27
+      },
+      "total_tokens": 2140,
+      "cost": 0.0063645,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0063645,
+        "upstream_inference_input_cost": 0.0049245,
+        "upstream_inference_output_cost": 0.00144
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.4853,
+    "input_bound": 12512,
+    "reserved_usd": "0.0722400",
+    "request_sha256": "12d5678ffcdcc66e6089d84576293154e6c57d42522027b8d984294ecfc13b0f",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_047dbff1a26da029016ae36f7b769c87d1ba159a8258b024de",
+        "sha256": "6d6c450c98139df72ea49c95e70e095a5a51f6d2b49413c73df7f548e32cee0e"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_xtau4r9xpds",
+        "sha256": "38d2c63f32bd59323334df948c28163b8f2c84b281f4f11a3fb393ade85b0f30"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records eight hidden-suite attempts, with attempts 3, 4, and 6 failing (exit code 1), yielding 5/8 rather than 5/5. Nothing identifies those failures as infrastructure errors that justify exclusion under the report's policy. The five passing logs and successful replay do not establish that every independent attempt passed."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T16:08:30.106083+00:00"
+}

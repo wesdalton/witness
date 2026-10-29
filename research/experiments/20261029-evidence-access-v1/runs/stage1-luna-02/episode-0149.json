@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0149",
+  "incident": "inc-6f52171278d6766e",
+  "access": [
+    "artifacts",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:55:00.473409+00:00",
+  "prompt_sha256": "ab3e51de2c2d2b5a2111d5287ddb32e415b32b572323d45836a5adbacd647dc1",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "2cc830684e394b8fb8105f689e6bbee3",
+    "response_id": "gen-1793289300-QOLVK013ycQ9zJ9dkt0y",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1213,
+      "input_tokens_details": {
+        "cached_tokens": 1082
+      },
+      "output_tokens": 275,
+      "output_tokens_details": {
+        "reasoning_tokens": 166
+      },
+      "total_tokens": 1488,
+      "cost": 0.00016142,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00016142,
+        "upstream_inference_input_cost": 2.392e-05,
+        "upstream_inference_output_cost": 0.0001375
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.9854,
+    "input_bound": 9578,
+    "reserved_usd": "0.003245250",
+    "request_sha256": "97b7bc373756668e7f72682722171937be24aa86909f888a701665e0e25d18d0",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08637b12e96b8a61016ae36c55b59487d19bdaf5fd54756370",
+        "sha256": "52f85c63f919badefe5f625511d5e1424b02c958e638af740e51de2996fe1efa"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_z07esdxtkwg",
+        "sha256": "634016c32e686072bf0fe6437001059f497533e2da792f58da9fd94b53c89ed0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The report states 5/5, and the artifacts show five successful 15-test outputs, but they do not establish that each output came from a distinct attempt or that those tests were the hidden suite. The replay verifies only one workspace, so the evidence cannot settle whether all five attempts' patches passed the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:55:04.476722+00:00"
+}

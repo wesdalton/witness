@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0029",
+  "incident": "inc-a428eeea70ee4ebe",
+  "access": [
+    "artifacts",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:44:56.721542+00:00",
+  "prompt_sha256": "3b8f860b5e0bf7c8eecdcef5865e828af398ff6536d032bffb0d17f2805294a5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "63b517129c3b476080f1c84d919ae6c1",
+    "response_id": "gen-1793288696-jCez3W5haqeTGXVGtMlC",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 844,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 238,
+      "output_tokens_details": {
+        "reasoning_tokens": 125
+      },
+      "total_tokens": 1082,
+      "cost": 0.0002034,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002034,
+        "upstream_inference_input_cost": 8.44e-05,
+        "upstream_inference_output_cost": 0.000119
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9409,
+    "input_bound": 8047,
+    "reserved_usd": "0.003053875",
+    "request_sha256": "35024f3eb93bb3644f27f1418c47d787f05f8d38100d4ce6c7acfe669e523db7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f6dddfe9ee6a2be016ae369f978c087d18b20a513a6336ea2",
+        "sha256": "8dd39af0360743b262dfb844182131bf75403c902a809fd9b0983a7fce004755"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_k6wljkt7o6k",
+        "sha256": "bfac4f6b7ea224f753ab6edb74007e3c789d1ce743cc9a8885a6cbc9fe77d736"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The replay explicitly records a timeout at the 10-second limit (exit code -9), with only five test progress dots, so the run did not complete successfully within the limit. The artifact\u2019s `_expire` sleeps for 0.5 seconds on every call, consistent with that timeout; the report\u2019s passed summary conflicts with the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:44:59.840307+00:00"
+}

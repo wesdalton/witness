@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0061",
+  "incident": "inc-7218e5e4426a8a1d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T16:09:18.354995+00:00",
+  "prompt_sha256": "72a9e1fb2b745c95e08791120aa8033fc8f47cfcd3fbd7a30dcdd8e4c7f3cf78",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "daa9340007c24820b4233bdba24f04c0",
+    "response_id": "gen-1793290158-1bufejfn8bqUjEO4BXv6",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1577,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1446
+      },
+      "output_tokens": 205,
+      "output_tokens_details": {
+        "reasoning_tokens": 80
+      },
+      "total_tokens": 1782,
+      "cost": 0.005927,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005927,
+        "upstream_inference_input_cost": 0.003877,
+        "upstream_inference_output_cost": 0.00205
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.1393,
+    "input_bound": 10829,
+    "reserved_usd": "0.0680325",
+    "request_sha256": "56e3e06c074709e8259bfe54ce5901c5e7073a02c6a602969131aecd46959c49",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06412f33786c59d1016ae36fb0784887d1b60ab6ce8ee83272",
+        "sha256": "81baa319fcd76c925df4db01e9a092f609d601be6d65230c3f6782db7aeb468c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_w3b8tsrhl9m",
+        "sha256": "ad124f7bf3838bdbd3c6e9216279cca0e4bfbc529cbca3ca9c109278ebc9edd1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records five successful hidden-suite evaluations (attempts 1, 2, 3, 5, and 6), with attempt 4 lost to an infrastructure error. The report explicitly excludes infrastructure errors from the reported rate, so these records support the reported 5/5 result rather than six completed evaluations. The five passing logs and successful isolated replay corroborate the passing results."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T16:09:24.508511+00:00"
+}

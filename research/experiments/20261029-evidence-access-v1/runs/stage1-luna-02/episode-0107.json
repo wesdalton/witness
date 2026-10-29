@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0107",
+  "incident": "inc-3e90995ec5fd1f93",
+  "access": [
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:51:49.360058+00:00",
+  "prompt_sha256": "85a191783b39cf93cedd797997c6897707e6da3bb4f3592013bc9827deac00c6",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2d74afdcc802406e91d02c989ff44d19",
+    "response_id": "gen-1793289109-T9kIRfUMZlkBivaj1bWX",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 382,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 210,
+      "output_tokens_details": {
+        "reasoning_tokens": 117
+      },
+      "total_tokens": 592,
+      "cost": 0.0001432,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001432,
+        "upstream_inference_input_cost": 3.82e-05,
+        "upstream_inference_output_cost": 0.000105
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9532,
+    "input_bound": 6232,
+    "reserved_usd": "0.002827000",
+    "request_sha256": "5ef095efc6a4ea219d361ff1bea8493db5264fd4ff6f202b748aa04b59d4b2c6",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e3951126fe5d554016ae36b96632887d1af87d3239ea14472",
+        "sha256": "ffdce0194315afaff22c7b84b7977ad453ec91cf2cfb098c5f2e9670d57e9c52"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_czn1z4k2fou",
+        "sha256": "fc0b12ecfc0b239a496b757f99f7cf81355f4a3344bd1acb6ba0cc03ac77e887"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay explicitly timed out at the 10-second limit (exit code 137) and produced no test summary, so it does not show the patch completing the suite. Although the report says 15 tests passed, that conflicts with the isolated replay result."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:51:52.637028+00:00"
+}

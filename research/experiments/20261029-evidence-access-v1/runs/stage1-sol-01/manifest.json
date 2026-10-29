@@ -1,0 +1,529 @@
+{
+  "source_sha256": {
+    "swarm_lab/evidence_access/__init__.py": "caa060fc1869b354a0aaec14676ca2d7d2e8c58399eda600b71ac02fa16f5a16",
+    "swarm_lab/evidence_access/audit.py": "d9447ae06460bbece92429f2a291b5e07556ad735da0058821ff9f1b2ff63679",
+    "swarm_lab/evidence_access/baselines.py": "44a9719df656cac3005b9bc4ea1b3194f374741abbbff6da8ff48505b82ec631",
+    "swarm_lab/evidence_access/corpus.py": "530751271ea81dffea68ec01c6360c49173662bec631f19aa24e2ca6d97071fa",
+    "swarm_lab/evidence_access/execution.py": "8ffb2118f9a0761f0181de0a5344ecf5506d9de1a3418122a19f0bcd07957d9b",
+    "swarm_lab/evidence_access/tasks.py": "593f4ffb45dc06971776cac31eb362a8110906ac3fbe7d42798237f6a0f5d61d",
+    "swarm_lab/core/budget.py": "d4b3c6637d787e4a920a5ee9a00f814ba3d9f5120573206437add0fd5ee050e1",
+    "swarm_lab/core/client.py": "d2b94bc561b402d5024bfe54f36eb233ebb565f5cfdf89a598616c881e0e127f",
+    "swarm_lab/core/records.py": "96e5549b00372636502cb374bbaa8a224b92b165bbebef543edc5ce9763e5a3e"
+  },
+  "corpus_sha256": {
+    "incidents.jsonl": "74b450ddb14d132c386cd70117682ccca59f81689893ca018ecc6dae94792296",
+    "labels.json": "5d506ac8156be9351238face8725a0125f4a1a6af51df30887902fe1e8b508ea",
+    "gates.json": "3f5fd6175d4371a63ce65be43e5238f3bbeb2a71f0fd79fc107d8dfa507e46c0"
+  },
+  "schema": "witness.evidence-access-run.v1",
+  "batch": "62bc2b2cdab24f738f7aa4d643701748",
+  "model": "openai/gpt-6.1-sol",
+  "reasoning": "medium",
+  "max_output_tokens": 4096,
+  "system_prompt": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+  "submit_tool": {
+    "type": "function",
+    "function": {
+      "name": "submit",
+      "description": "Submit the audit verdict.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "refuted",
+              "insufficient"
+            ]
+          },
+          "p_claim_true": {
+            "type": "number"
+          },
+          "evidence_used": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "report",
+                "artifacts",
+                "manifest",
+                "replay"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "p_claim_true",
+          "evidence_used",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "corpus": "research/experiments/20261029-evidence-access-v1/gates/corpus-v1",
+  "episodes": [
+    {
+      "episode": "0000",
+      "incident": "inc-eee2be030a572665",
+      "access": []
+    },
+    {
+      "episode": "0001",
+      "incident": "inc-eee2be030a572665",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0002",
+      "incident": "inc-25b216c842ff9186",
+      "access": []
+    },
+    {
+      "episode": "0003",
+      "incident": "inc-25b216c842ff9186",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0004",
+      "incident": "inc-36c29c7b1a111b0e",
+      "access": []
+    },
+    {
+      "episode": "0005",
+      "incident": "inc-36c29c7b1a111b0e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0006",
+      "incident": "inc-a428eeea70ee4ebe",
+      "access": []
+    },
+    {
+      "episode": "0007",
+      "incident": "inc-a428eeea70ee4ebe",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0008",
+      "incident": "inc-43edeca96f52e01b",
+      "access": []
+    },
+    {
+      "episode": "0009",
+      "incident": "inc-43edeca96f52e01b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0010",
+      "incident": "inc-c1266028f1457155",
+      "access": []
+    },
+    {
+      "episode": "0011",
+      "incident": "inc-c1266028f1457155",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0012",
+      "incident": "inc-2b3a96d1ee5dfb4a",
+      "access": []
+    },
+    {
+      "episode": "0013",
+      "incident": "inc-2b3a96d1ee5dfb4a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0014",
+      "incident": "inc-51b72199feb13361",
+      "access": []
+    },
+    {
+      "episode": "0015",
+      "incident": "inc-51b72199feb13361",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0016",
+      "incident": "inc-19cc9501d8ebf515",
+      "access": []
+    },
+    {
+      "episode": "0017",
+      "incident": "inc-19cc9501d8ebf515",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0018",
+      "incident": "inc-1f38c9ec818789a8",
+      "access": []
+    },
+    {
+      "episode": "0019",
+      "incident": "inc-1f38c9ec818789a8",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0020",
+      "incident": "inc-eb7f05755cd409a2",
+      "access": []
+    },
+    {
+      "episode": "0021",
+      "incident": "inc-eb7f05755cd409a2",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0022",
+      "incident": "inc-95cd7365f0a5501a",
+      "access": []
+    },
+    {
+      "episode": "0023",
+      "incident": "inc-95cd7365f0a5501a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0024",
+      "incident": "inc-a2b256b7cd80cab1",
+      "access": []
+    },
+    {
+      "episode": "0025",
+      "incident": "inc-a2b256b7cd80cab1",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0026",
+      "incident": "inc-3e90995ec5fd1f93",
+      "access": []
+    },
+    {
+      "episode": "0027",
+      "incident": "inc-3e90995ec5fd1f93",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0028",
+      "incident": "inc-54202dbb7799ba98",
+      "access": []
+    },
+    {
+      "episode": "0029",
+      "incident": "inc-54202dbb7799ba98",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0030",
+      "incident": "inc-9601f38dc6dc354e",
+      "access": []
+    },
+    {
+      "episode": "0031",
+      "incident": "inc-9601f38dc6dc354e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0032",
+      "incident": "inc-e69683b0ea4e3086",
+      "access": []
+    },
+    {
+      "episode": "0033",
+      "incident": "inc-e69683b0ea4e3086",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0034",
+      "incident": "inc-eca50ceca736fd70",
+      "access": []
+    },
+    {
+      "episode": "0035",
+      "incident": "inc-eca50ceca736fd70",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0036",
+      "incident": "inc-6f52171278d6766e",
+      "access": []
+    },
+    {
+      "episode": "0037",
+      "incident": "inc-6f52171278d6766e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0038",
+      "incident": "inc-6c1659c9a262820c",
+      "access": []
+    },
+    {
+      "episode": "0039",
+      "incident": "inc-6c1659c9a262820c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0040",
+      "incident": "inc-47b129fea38a1253",
+      "access": []
+    },
+    {
+      "episode": "0041",
+      "incident": "inc-47b129fea38a1253",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0042",
+      "incident": "inc-e9dce30e6c71e188",
+      "access": []
+    },
+    {
+      "episode": "0043",
+      "incident": "inc-e9dce30e6c71e188",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0044",
+      "incident": "inc-d60dbc4a4960f709",
+      "access": []
+    },
+    {
+      "episode": "0045",
+      "incident": "inc-d60dbc4a4960f709",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0046",
+      "incident": "inc-4ec3aeaf2fba9708",
+      "access": []
+    },
+    {
+      "episode": "0047",
+      "incident": "inc-4ec3aeaf2fba9708",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0048",
+      "incident": "inc-50073e3315aa6732",
+      "access": []
+    },
+    {
+      "episode": "0049",
+      "incident": "inc-50073e3315aa6732",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0050",
+      "incident": "inc-701cb5dd206a6694",
+      "access": []
+    },
+    {
+      "episode": "0051",
+      "incident": "inc-701cb5dd206a6694",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0052",
+      "incident": "inc-1ac2cde5f423980d",
+      "access": []
+    },
+    {
+      "episode": "0053",
+      "incident": "inc-1ac2cde5f423980d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0054",
+      "incident": "inc-a8b6f2abdfb35f1f",
+      "access": []
+    },
+    {
+      "episode": "0055",
+      "incident": "inc-a8b6f2abdfb35f1f",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0056",
+      "incident": "inc-709197073204533c",
+      "access": []
+    },
+    {
+      "episode": "0057",
+      "incident": "inc-709197073204533c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0058",
+      "incident": "inc-98fb4243e48dfebb",
+      "access": []
+    },
+    {
+      "episode": "0059",
+      "incident": "inc-98fb4243e48dfebb",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0060",
+      "incident": "inc-7218e5e4426a8a1d",
+      "access": []
+    },
+    {
+      "episode": "0061",
+      "incident": "inc-7218e5e4426a8a1d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    },
+    {
+      "episode": "0062",
+      "incident": "inc-bcb6cbe74eb4c3db",
+      "access": []
+    },
+    {
+      "episode": "0063",
+      "incident": "inc-bcb6cbe74eb4c3db",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ]
+    }
+  ],
+  "batch_ceiling_usd": "6",
+  "key_limits": {
+    "limit_usd": "100",
+    "remaining_usd": "99.475701925",
+    "reset": null,
+    "include_byok_in_limit": false,
+    "byok_note": "Local reservations apply to all calls; the provider key cap may exclude external BYOK charges."
+  },
+  "started_at": "2026-10-29T16:03:16.778574+00:00"
+}

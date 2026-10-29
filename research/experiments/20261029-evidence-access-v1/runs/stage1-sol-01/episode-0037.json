@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0037",
+  "incident": "inc-6f52171278d6766e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T16:07:08.731352+00:00",
+  "prompt_sha256": "31e249adbfbcee4e704bc3da1aab768256c0e77b8c5cc12b76fb6ebb8b947174",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "a4db726870af439ca32ecb73bb1c0c66",
+    "response_id": "gen-1793290028-sOEPBopAL4n0IKJokFy5",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1692,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1561
+      },
+      "output_tokens": 149,
+      "output_tokens_details": {
+        "reasoning_tokens": 24
+      },
+      "total_tokens": 1841,
+      "cost": 0.0056545,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0056545,
+        "upstream_inference_input_cost": 0.0041645,
+        "upstream_inference_output_cost": 0.00149
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.1135,
+    "input_bound": 11218,
+    "reserved_usd": "0.0690050",
+    "request_sha256": "ce4d5f50155aedd99a0a4725fb7840fa808ad29e6335ec28b36869e97c3ee5af",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_03ac22a0fee34b9a016ae36f2e0b5487d1ab651ccb5e532b1b",
+        "sha256": "503ac650699c8c8ae7260ce3af4b58597c0675cf263ad27e60ce1d2a1b367314"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_bmg4w3f1laj",
+        "sha256": "ed8fe4db7b38972a7a381e4b0ae3caa956ead8365b8a4186b48f6dd7e75088b1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records eight hidden-suite runs, with failures on attempts 2, 4, and 8, so it shows 5/8 passes rather than five universally successful attempts. The report's infrastructure-exclusion policy does not establish that those failures were infrastructure errors, and its five passing logs conflict with the manifest. The successful replay verifies only the supplied patch, not all independent attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T16:07:12.856534+00:00"
+}

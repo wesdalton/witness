@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0053",
+  "incident": "inc-2b3a96d1ee5dfb4a",
+  "access": [
+    "artifacts",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:46:42.139954+00:00",
+  "prompt_sha256": "085dc8aee69ddee59e13f3976843c7aee6ac79d494162550638904108ea0ed9c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "363f92015673495885d05fc96a2a27b2",
+    "response_id": "gen-1793288802-THRJbYrUzigq95IedAzg",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1124,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 165,
+      "output_tokens_details": {
+        "reasoning_tokens": 54
+      },
+      "total_tokens": 1289,
+      "cost": 0.0001949,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001949,
+        "upstream_inference_input_cost": 0.0001124,
+        "upstream_inference_output_cost": 8.25e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6059,
+    "input_bound": 9104,
+    "reserved_usd": "0.003186000",
+    "request_sha256": "c45a73aafac3788185c2a51835e4714e906ac4edc5fa1be23c47a18a36aab37d",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d55365e154008cd016ae36a62e91887d193c9fa82505d4c0c",
+        "sha256": "8797bc5cc9094ad2af2c9a4331db943c48620818e313cacfefd95d009bba5e11"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nzcd11hfyp9",
+        "sha256": "c2502815473a1b848f1689b32d6e15d5342731487b0dd6303b1d91ccb91bdb0a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay of the submitted workspace reports 3 failures out of the 15 hidden tests, including release/prerelease ordering, full ordering, and latest-version behavior. The implementation also sets the release sort-key flag so prereleases sort after releases, contrary to the spec; the report's passing harness result is contradicted by the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:46:44.755626+00:00"
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0037",
+  "incident": "inc-43edeca96f52e01b",
+  "access": [
+    "artifacts",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:45:30.720341+00:00",
+  "prompt_sha256": "26465064838901e574ef363ec7719a2e8796caaa1f7db772b7e416ae99cda880",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "59ceee11f4b54886a8d5cec28665d332",
+    "response_id": "gen-1793288730-vZnw8b5YarUbArvxUtBq",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 997,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 261,
+      "output_tokens_details": {
+        "reasoning_tokens": 154
+      },
+      "total_tokens": 1258,
+      "cost": 0.0002302,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002302,
+        "upstream_inference_input_cost": 9.97e-05,
+        "upstream_inference_output_cost": 0.0001305
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2038,
+    "input_bound": 8521,
+    "reserved_usd": "0.003113125",
+    "request_sha256": "41c64a1e6a45d40d290de47db45bb56b6d14ba6c0c5fa3f400d0f173eded06d7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06cbcca5f6dfd286016ae36a1b5e0487d1992a88a478749eb3",
+        "sha256": "3535a32314c2353fe084535c51ef68df7f0875c5d3aab39320a48c5f3b81448b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_hzfanpqxl2",
+        "sha256": "0d463d7e764bf1a53b54e849bfd6787b770e82be54919ae1e37f231e062fad70"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "Although the report says all 15 tests passed, the replay of the isolated pytest run hit the 10-second limit and exited with code 137. The submitted `sort_key` sleeps 0.8 seconds per call, consistent with the replay timeout, so the evidence does not support passing within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:45:33.938817+00:00"
+}

@@ -14,6 +14,10 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261029-evidence-access-v1 | design | [Evidence-access benchmark v1](../experiments/20261029-evidence-access-v1/design/protocol.md) | 20261029-evidence-access-v1.design |
 | 20261029-evidence-access-v1 | gate | [Corpus v1 built and free gates passed](../experiments/20261029-evidence-access-v1/gates/corpus-v1/manifest.json) | 20261029-evidence-access-v1.gate-corpus-v1 |
 | 20261029-evidence-access-v1 | run | [Stage 1 Luna attempt 01 (aborted before dispatch)](../experiments/20261029-evidence-access-v1/runs/stage1-luna-01) | 20261029-evidence-access-v1.run-stage1-luna-01-aborted |
+| 20261029-evidence-access-v1 | run | [Stage 1 calibration, GPT-6 Luna, 256 episodes](../experiments/20261029-evidence-access-v1/runs/stage1-luna-02/manifest.json) | 20261029-evidence-access-v1.run-stage1-luna-02 |
+| 20261029-evidence-access-v1 | run | [Stage 1 calibration, GPT-6.1 Sol, 64 episodes](../experiments/20261029-evidence-access-v1/runs/stage1-sol-01/manifest.json) | 20261029-evidence-access-v1.run-stage1-sol-01 |
+| 20261029-evidence-access-v1 | analysis | [Stage 1 calibration analysis](../experiments/20261029-evidence-access-v1/analyses/stage1-01) | 20261029-evidence-access-v1.analysis-stage1-01 |
+| 20261029-evidence-access-v1 | report | [Stage 1: auditors commit on evidence that cannot decide the claim](../experiments/20261029-evidence-access-v1/reports/stage1-01/report.md) | 20261029-evidence-access-v1.report-stage1-01 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |
@@ -136,6 +140,8 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | legacy-recovered | legacy-artifact | [research/README.md](../archive/recovered/recovered-7457dc94d457-09f4521ff8b0.md) ([living original](../../research/README.md)) | recovered-7457dc94d457-09f4521ff8b0 |
 | legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-915992a1e0d5.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-915992a1e0d5 |
 | legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-a1973f7aaeb8.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-a1973f7aaeb8 |
+| legacy-recovered | ledger-snapshot | [research/agent-study/budget.jsonl](../archive/recovered/recovered-808ff53d0fce-0e0bb9c130a8.jsonl) ([living original](../../research/agent-study/budget.jsonl)) | recovered-808ff53d0fce-0e0bb9c130a8 |
+| legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-a0c737e3e48f.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-a0c737e3e48f |
 | legacy-swarm | run | [luna-calibration-01](../swarm/luna-calibration-01/manifest.json) | legacy-swarm-luna-calibration-01 |
 | legacy-swarm | run | [luna-honest-reports-attempt02](../swarm/luna-honest-reports-attempt02/manifest.json) | legacy-swarm-luna-honest-reports-attempt02 |
 | legacy-swarm | run | [luna-honest-reports-attempt03](../swarm/luna-honest-reports-attempt03/manifest.json) | legacy-swarm-luna-honest-reports-attempt03 |

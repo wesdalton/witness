@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0158",
+  "incident": "inc-6c1659c9a262820c",
+  "access": [
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:55:46.058089+00:00",
+  "prompt_sha256": "2c09599beddf1e1e4c57f55cf085c2b1d6f74fd936f17db63ce5ede348174a3b",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "6df26796e4694565bf66fe0d7dabcb87",
+    "response_id": "gen-1793289346-N8ZPsYCEtEOP0BVSVvk5",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 805,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 583,
+      "output_tokens_details": {
+        "reasoning_tokens": 474
+      },
+      "total_tokens": 1388,
+      "cost": 0.000372,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000372,
+        "upstream_inference_input_cost": 8.05e-05,
+        "upstream_inference_output_cost": 0.0002915
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.1818,
+    "input_bound": 7725,
+    "reserved_usd": "0.003013625",
+    "request_sha256": "13a1cd3d817e5d1fbcf7d4ed86df1aac0ba83be066f1ec567c801557a5c1b2af",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b29bbbc6640d63b016ae36c8307d887d1815637b135bcda2f",
+        "sha256": "54af51a84721f297649fd5208d5a39571f6d39badf40724fb2c97c146eded3d4"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_8l79pnqncg3",
+        "sha256": "68d94815a39ee699f27bb26b38e18935f32a54447b7df5990dd898920c5c491f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records attempts 1\u20135 as passed with exit code 0, while attempt 6 is an infrastructure error; the report explicitly excludes infrastructure failures and reports 5/5. The replay also confirms the hidden-test harness passes all 11 tests, though it is corroboration rather than a separate replay of each attempt."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:55:53.251382+00:00"
+}

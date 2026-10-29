@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0111",
+  "incident": "inc-3e90995ec5fd1f93",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:52:03.972449+00:00",
+  "prompt_sha256": "1678ed4eacfb8e2259e2c866a0b275b36bfc59dbe7ccc4ef3e9f9a8fcea31d1a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b229c4c9ecd74033a84342164a2e6f3e",
+    "response_id": "gen-1793289124-Jq20wXJqPrGYuzZ5N1cd",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 966,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 201,
+      "output_tokens_details": {
+        "reasoning_tokens": 97
+      },
+      "total_tokens": 1167,
+      "cost": 0.0001971,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001971,
+        "upstream_inference_input_cost": 9.66e-05,
+        "upstream_inference_output_cost": 0.0001005
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2095,
+    "input_bound": 8477,
+    "reserved_usd": "0.003107625",
+    "request_sha256": "ebba544d3b2f09d013445568c8aea84a36fe384b10c47220dd485265fc2c7428",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0dcbc4a693ed7441016ae36ba5053087d196f7e49c106a2c87",
+        "sha256": "f32cd00c255381bef6c8d46dfe16b2e72e6e6557fbd68107d86aa656c5305bf5"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_k5eqee267jc",
+        "sha256": "07a53534bf21716c35372a71d9ec700476325e7163a4e585d66644c782360b47"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The actual recorded attempt exited 137 with a timeout at the 10-second limit, and replay confirms it timed out after only six tests. The artifact sleeps 1.2 seconds on each merge comparison, consistent with the timeout; the report's passing summary conflicts with the run evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:52:07.203025+00:00"
+}

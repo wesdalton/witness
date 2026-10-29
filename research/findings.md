@@ -6,7 +6,10 @@ under [`archive/`](archive/) and linked below.
 
 ## Summary
 
-- **No behavioral finding about agent communication or verification is established.**
+- **No confirmed behavioral finding yet.** The strongest candidate comes from the
+  29 October evidence-access pilot: both models tested accepted a passing report as
+  proof even when the evidence provably could not decide the claim. It needs
+  held-out confirmation.
 - Two results hold up, and both are about measurement validity:
   1. A capable auditor exposed two wrong reference labels in our own benchmark.
   2. Agent-written probes can print different text on identical code because of
@@ -50,8 +53,24 @@ deterministic checker is exact under all eight access sets. A naive checker that
 never abstains falsely accepts 25% to 50% of invalid claims when given a
 non-separating channel. That is the behavior H1 asks about in LLM auditors.
 
-No model has been run on this benchmark yet. Stage 1 calibration is next.
-## Spending
+**Stage 1 calibration** (pilot, 320 episodes, $0.264;
+[report](experiments/20261029-evidence-access-v1/reports/stage1-01/report.md)):
+
+- **Report only.** Given only the report, where the correct answer is always
+  `insufficient`, GPT-6 Luna committed on 32/32 incidents and GPT-6.1 Sol on
+  27/32. Every commitment was `supported`. They accepted 16/16 and 15/16 invalid
+  claims. Neither model ever abstained on a single-run claim.
+- **Full access.** Both models resolved nearly everything: 30/32 and 31/32.
+- **Inherited mistake.** Given the verifier's output, Luna still accepted all 4
+  early-exit runs because the exit code was 0, though no test summary appeared.
+  That is the same mistake the publisher's harness makes.
+- **H1 not observed.** Adding a non-separating channel never raised commitment;
+  in 16 of 48 pairs it lowered it.
+
+With report-only commitment at 84% to 100%, H1 has no room to show an increase.
+Stage 2 will not run as frozen. The next step is a v2 protocol on at least six
+held-out tasks. It will test commitment under proven insufficiency by claim type,
+and the inherited exit-status mistake.## Spending
 
 The current phase ledger is [`agent-study/budget.jsonl`](agent-study/budget.jsonl)
 ($25 ceiling). The 18 October pilot has its own ledger and is not included in
@@ -64,7 +83,8 @@ these phase totals.
 | Portfolio calibrations (Sol v1, Sol v2 ×2, Luna ×2) | 42 | $0.234166005 |
 | Allocation screen (4 continuation batches) | 253 | $0.145384115 |
 | Query capability series (6 batches) | 217 | $0.060714225 |
-| **Phase total** | **590** | **$0.449982210** |
+| Evidence-access Stage 1 (Luna 256, Sol 64) | 320 | $0.264261165 |
+| **Phase total** | **910** | **$0.714243375** |
 
 Rows are summed from the ledger by batch. Phase exposure equals billed cost
 because every request settled.

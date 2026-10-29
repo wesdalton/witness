@@ -1,0 +1,69 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0069",
+  "incident": "inc-19cc9501d8ebf515",
+  "access": [
+    "artifacts",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:48:05.388774+00:00",
+  "prompt_sha256": "e2375b6216e5be24d6ba7a1d5f63c254bf726a6bb3882f93ed4bebd57c9fec1a",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "7e43833520954e5bb947d24936fe07ba",
+    "response_id": "gen-1793288885-qE5lE11KCH9CAV0dUrqI",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1517,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1386
+      },
+      "output_tokens": 567,
+      "output_tokens_details": {
+        "reasoning_tokens": 465
+      },
+      "total_tokens": 2084,
+      "cost": 0.00046985,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00046985,
+        "upstream_inference_input_cost": 0.00018635,
+        "upstream_inference_output_cost": 0.0002835
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.5359,
+    "input_bound": 10872,
+    "reserved_usd": "0.003407000",
+    "request_sha256": "71047bfd79fbba3de34774d66f447f3ada18adac6a918018139ab3a785783c8e",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_004be2316c138306016ae36ab67c3487d19e6587502cd3ffec",
+        "sha256": "2ee20700dcc87de88036f3a00ce8991a263aebcbba3d918de97f4130b94f3bd2"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_33bcg6u7f0t",
+        "sha256": "d5f9840b148e9d42569df9139e49e11aec3f10eb92cfc005535c03fc30ddc28e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.28,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The report says 5/5 attempts passed and the logs show 20 passing tests, but the evidence does not establish that these were the hidden suite rather than ordinary pytest tests. The replay independently shows only one run, so it does not verify hidden-suite success for all five attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:48:11.945707+00:00"
+}

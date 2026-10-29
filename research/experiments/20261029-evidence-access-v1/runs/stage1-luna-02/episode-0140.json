@@ -1,0 +1,69 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0140",
+  "incident": "inc-eca50ceca736fd70",
+  "access": [
+    "artifacts",
+    "manifest"
+  ],
+  "started_at": "2026-10-29T15:54:17.834074+00:00",
+  "prompt_sha256": "531ecac6c3676753d3d1df26c4d71a2ea858e876042248ac5d13ad22233bb16d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "dcc028e8824d49fdabd3ae04d7d7077a",
+    "response_id": "gen-1793289257-5ghSJp4mBn6DP1E9CRYD",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1310,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1179
+      },
+      "output_tokens": 297,
+      "output_tokens_details": {
+        "reasoning_tokens": 185
+      },
+      "total_tokens": 1607,
+      "cost": 0.000308975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000308975,
+        "upstream_inference_input_cost": 0.000160475,
+        "upstream_inference_output_cost": 0.0001485
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5518,
+    "input_bound": 9841,
+    "reserved_usd": "0.003278125",
+    "request_sha256": "32197551a15cb9d71e13b749f093877a8225ab1216dc859407b9e1aeb5ea082c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_062e2c1142d7128a016ae36c2a951487d1833eb3efb6bbed05",
+        "sha256": "d4b2122c5eaff6ec2258808dcb85ed4a174ebbf0d8bbd87ae8e23a7dbf20bff9"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_bo0w56xm9gg",
+        "sha256": "7712276c8d571d9a7cd191eed4930409122bf74e88a85d22a1ad96de5fe0f07b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records the hidden-test command exiting with code 137 and status `timeout` at the 10-second limit, so it did not complete within the limit. Although the report says 20 tests passed, that conflicts with the execution manifest; the code also sleeps 0.25 seconds per date-range check, consistent with timing out."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:54:21.473186+00:00"
+}

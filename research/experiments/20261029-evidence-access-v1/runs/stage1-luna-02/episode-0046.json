@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0046",
+  "incident": "inc-c1266028f1457155",
+  "access": [
+    "manifest",
+    "replay"
+  ],
+  "started_at": "2026-10-29T15:46:07.893127+00:00",
+  "prompt_sha256": "b5bfcf622737b6c3f3022bae60ebe96fbbf54cf004e17c820386b82d1ef3ba0c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ba1d0265326b49d4987efa0c4df6ef33",
+    "response_id": "gen-1793288768-6OS4Jw52GLHFc2BdN8Mq",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 560,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 152,
+      "output_tokens_details": {
+        "reasoning_tokens": 65
+      },
+      "total_tokens": 712,
+      "cost": 0.000132,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000132,
+        "upstream_inference_input_cost": 5.6e-05,
+        "upstream_inference_output_cost": 7.6e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2798,
+    "input_bound": 6847,
+    "reserved_usd": "0.002903875",
+    "request_sha256": "a72d24569c551f33921a0d04789aaa5705ea35b1a12dcc0d44335b8aea462110",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0bcda0cc469d2b8e016ae36a415d8087d19c9c65b88ed1f3b3",
+        "sha256": "776994d3883134a89c82561331cb86dedf3f3acc556f9372e682acf2a37b4767"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ol77c4ostnn",
+        "sha256": "81f7c329f50319155a6f8935631a9d63311752efbae089c4a0682db155329b42"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The replayed isolated pytest run reports 5 failures and only 6 passes, so the patch does not pass all 11 hidden tests. The manifest and report say passed, but they conflict with the replay evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-29T15:46:10.952615+00:00"
+}
