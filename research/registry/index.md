@@ -13,6 +13,7 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261028-probe-repeatability-v1 | report | [Incidental differences in agent probe replays](../experiments/20261028-probe-repeatability-v1/reports/edition-01/report.md) | 20261028-probe-repeatability-v1.report-01 |
 | 20261029-evidence-access-v1 | design | [Evidence-access benchmark v1](../experiments/20261029-evidence-access-v1/design/protocol.md) | 20261029-evidence-access-v1.design |
 | 20261029-evidence-access-v1 | gate | [Corpus v1 built and free gates passed](../experiments/20261029-evidence-access-v1/gates/corpus-v1/manifest.json) | 20261029-evidence-access-v1.gate-corpus-v1 |
+| 20261029-evidence-access-v1 | run | [Stage 1 Luna attempt 01 (aborted before dispatch)](../experiments/20261029-evidence-access-v1/runs/stage1-luna-01) | 20261029-evidence-access-v1.run-stage1-luna-01-aborted |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |

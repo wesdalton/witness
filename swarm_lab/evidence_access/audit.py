@@ -124,6 +124,7 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--live", action="store_true")
     args = parser.parse_args()
+    args.corpus, args.out = args.corpus.resolve(), args.out.resolve()
     incidents, _, separating = load_corpus(args.corpus)
     by_id = {i["id"]: i for i in incidents}
     episodes = plan(incidents, args.model)
