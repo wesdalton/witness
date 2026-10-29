@@ -102,6 +102,21 @@ def run_episode(spec: dict, incident: dict, separating: dict, client) -> dict:
     return record
 
 
+def snapshot(out: Path) -> dict[str, str]:
+    """Copy the exact runner source into the run and return its hashes."""
+    paths = [*sorted((ROOT / "swarm_lab/evidence_access").glob("*.py")),
+             *(ROOT / "swarm_lab/core" / n for n in ("budget.py", "client.py", "records.py"))]
+    hashes = {}
+    for path in paths:
+        rel = path.relative_to(ROOT).as_posix()
+        target = out / "source" / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with target.open("xb") as stream:
+            stream.write(path.read_bytes())
+        hashes[rel] = digest(path.read_bytes())
+    return hashes
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus", type=Path, required=True)
@@ -126,7 +141,10 @@ def main():
         raise BudgetError("No provider credential")
     key_limits = preflight_key(key, money(ceiling))
     batch = uuid.uuid4().hex
+    corpus_files = {name: digest((args.corpus / name).read_bytes())
+                    for name in ("incidents.jsonl", "labels.json", "gates.json")}
     save(args.out / "manifest.json", {
+        "source_sha256": snapshot(args.out), "corpus_sha256": corpus_files,
         "schema": "witness.evidence-access-run.v1", "batch": batch, "model": args.model,
         "reasoning": "medium", "max_output_tokens": 4096, "system_prompt": SYSTEM,
         "submit_tool": SUBMIT, "corpus": str(args.corpus.relative_to(ROOT)),

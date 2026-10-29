@@ -21,6 +21,35 @@ def read(path):
     return json.loads(path.read_text())
 
 
+def audit_evidence_access(folder, manifest, reservations, completions, seen, errors):
+    """Single-response audits: every response must reconcile with the phase ledger."""
+    records = [read(p) for p in sorted(folder.glob("episode-*.json"))]
+    planned = {e["episode"] for e in manifest["episodes"]}
+    if any(r["episode"] not in planned for r in records):
+        errors.append(f"{folder.name}: unplanned episode")
+    cost = Decimal(0)
+    for record in records:
+        event = record["model_event"]
+        request = event["request_id"]
+        if request in seen:
+            errors.append(f"Duplicate response event: {request}")
+        seen.add(request)
+        reserved, complete = reservations.get(request), completions.get(request)
+        if not reserved or not complete:
+            errors.append(f"Response missing budget records: {request}")
+            continue
+        if reserved["batch"] != manifest["batch"]:
+            errors.append(f"Wrong budget batch: {request}")
+        if complete["response_id"] != event["response_id"] or complete["usage"] != event["usage"]:
+            errors.append(f"Provider response mismatch: {request}")
+        cost += Decimal(str(event["usage"]["cost"]))
+    return {"batch": folder.name, "status_counts": dict(Counter(r["status"] for r in records)),
+            "arms": [{"model": manifest["model"], "attempted": len(records),
+                      "planned": len(planned),
+                      "exact": sum(r["exact"] is True for r in records),
+                      "reported_cost_usd": str(cost)}]}
+
+
 def audit(root: Path):
     ledger = [json.loads(line) for line in (root / "budget.jsonl").read_text().splitlines()]
     reservations = {row["request"]: row for row in ledger if row["type"] == "reserve"}
@@ -60,6 +89,10 @@ def audit(root: Path):
                     raw = None
                 if raw is None or hashlib.sha256(raw).hexdigest() != expected:
                     errors.append(f"{folder.name}: source mismatch: {rel}")
+        if manifest.get("schema") == "witness.evidence-access-run.v1":
+            batches.append(audit_evidence_access(folder, manifest, reservations, completions,
+                                                 seen, errors))
+            continue
         grouped = defaultdict(list)
         records = []
         for path in sorted(folder.glob("episode-*.json")):
