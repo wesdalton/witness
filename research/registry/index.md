@@ -25,6 +25,9 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261031-evidence-access-v2 | analysis | [Stage 2 frozen analysis (P1-P3, S1)](../experiments/20261031-evidence-access-v2/analyses/stage2-01) | 20261031-evidence-access-v2.analysis-stage2-01 |
 | 20261031-evidence-access-v2 | adjudication | [Dropped-attempts supported labels not established; S1 guard sensitivity](../experiments/20261031-evidence-access-v2/adjudications/dropped-attempts-labels-01) | 20261031-evidence-access-v2.adjudication-dropped-attempts-01 |
 | 20261031-evidence-access-v2 | report | [Held-out confirmation: auditors accept reports they cannot check and trust exit 0](../experiments/20261031-evidence-access-v2/reports/stage2-01/report.md) | 20261031-evidence-access-v2.report-stage2-01 |
+| 20261031-evidence-access-v2 | gate | [Provider smoke for v3 (20 development episodes)](../experiments/20261031-evidence-access-v2/gates/provider-smoke-01/report.md) | 20261031-evidence-access-v2.gate-provider-smoke-01 |
+| 20261101-evidence-access-v3 | design | [Evidence-access benchmark v3 (cross-family replication and observed-counts intervention)](../experiments/20261101-evidence-access-v3/design/protocol.md) | 20261101-evidence-access-v3.design |
+| 20261101-evidence-access-v3 | gate | [Corpus v3 (attempts bound to patch hashes) built and free gates passed](../experiments/20261101-evidence-access-v3/gates/corpus-v3/manifest.json) | 20261101-evidence-access-v3.gate-corpus-v3 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |

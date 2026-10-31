@@ -1,0 +1,315 @@
+{
+  "source_sha256": {
+    "swarm_lab/evidence_access/__init__.py": "caa060fc1869b354a0aaec14676ca2d7d2e8c58399eda600b71ac02fa16f5a16",
+    "swarm_lab/evidence_access/audit.py": "867d51d00527511ba3b02fd46eecf0b1048e35db849215f1c449383883734658",
+    "swarm_lab/evidence_access/baselines.py": "5890978734ec9d4eaf250f2a26684804a9be582f0cbac0241b5881edbe348186",
+    "swarm_lab/evidence_access/corpus.py": "930eaba4b0c50eec688f2997d218d50978ec3142ab1b191ae02ade3746dd6272",
+    "swarm_lab/evidence_access/execution.py": "8ffb2118f9a0761f0181de0a5344ecf5506d9de1a3418122a19f0bcd07957d9b",
+    "swarm_lab/evidence_access/tasks.py": "593f4ffb45dc06971776cac31eb362a8110906ac3fbe7d42798237f6a0f5d61d",
+    "swarm_lab/core/budget.py": "8abe9e95ad4bede6b2b8c0014a3c0939283495f6a893bee89080f864313b0305",
+    "swarm_lab/core/client.py": "a85fd2907f61797e5e33a5ad78a16ecfe2d767a571f0360c1c3b1ce3e74d423b",
+    "swarm_lab/core/records.py": "96e5549b00372636502cb374bbaa8a224b92b165bbebef543edc5ce9763e5a3e"
+  },
+  "corpus_sha256": {
+    "incidents.jsonl": "808dfc304a4200627ace39ce32737b6aa143d2b87b25d5d4b70abf069d1bdefb",
+    "labels.json": "6bb380d042fb2e25d6e17803a3a69311028b1046e7c4b45cd5f27e64b0235fe6",
+    "gates.json": "6864a729757ae000db7418cc49cdc80b3b3270b0c1ac62140284a3a648566912"
+  },
+  "schema": "witness.evidence-access-run.v1",
+  "batch": "fd05f4e81822422db4cb438d35fc7592",
+  "model": "anthropic/claude-sonnet-5.5",
+  "stage": "smoke",
+  "reasoning": "medium",
+  "max_output_tokens": 4096,
+  "system_prompt": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+  "system_prompts": {
+    "base": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+    "explicit": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.\nA report produced by the evaluated harness is not independent evidence about that\nharness. If the evidence you were granted would look the same whether the claim\nwere true or false, the evidence is insufficient.",
+    "counts": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.\nBefore deciding, list each granted evidence channel and the hidden-test pass and fail\ncounts that this channel itself shows. Use null for a count the channel does not show."
+  },
+  "submit_tools": {
+    "base": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "explicit": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "counts": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "observed_counts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "channel",
+                  "passed",
+                  "failed"
+                ],
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "enum": [
+                      "report",
+                      "artifacts",
+                      "manifest",
+                      "replay"
+                    ]
+                  },
+                  "passed": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "failed": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "observed_counts",
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "contract": {
+    "provider": "anthropic",
+    "input": "0.000004",
+    "output": "0.00001",
+    "tool_choice": "auto"
+  },
+  "endpoint": {
+    "tag": "anthropic",
+    "provider_name": "Anthropic",
+    "pricing": {
+      "prompt": "0.000002",
+      "completion": "0.00001",
+      "web_search": "0.01",
+      "input_cache_read": "0.0000001",
+      "input_cache_write": "0.0000025",
+      "input_cache_write_1h": "0.000004",
+      "discount": 0
+    }
+  },
+  "submit_tool": {
+    "type": "function",
+    "function": {
+      "name": "submit",
+      "description": "Submit the audit verdict.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "refuted",
+              "insufficient"
+            ]
+          },
+          "p_claim_true": {
+            "type": "number"
+          },
+          "evidence_used": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "report",
+                "artifacts",
+                "manifest",
+                "replay"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "p_claim_true",
+          "evidence_used",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "corpus": "research/experiments/20261031-evidence-access-v2/gates/corpus-v2",
+  "episodes": [
+    {
+      "episode": "0000",
+      "incident": "inc-fcb4fc74c396af32",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0001",
+      "incident": "inc-709309ce75292168",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0002",
+      "incident": "inc-709309ce75292168",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0003",
+      "incident": "inc-fcb4fc74c396af32",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    }
+  ],
+  "batch_ceiling_usd": "0.5",
+  "key_limits": {
+    "limit_usd": "100",
+    "remaining_usd": "96.58829246",
+    "reset": null,
+    "include_byok_in_limit": false,
+    "byok_note": "Local reservations apply to all calls; the provider key cap may exclude external BYOK charges."
+  },
+  "started_at": "2026-10-31T23:11:47.307442+00:00"
+}

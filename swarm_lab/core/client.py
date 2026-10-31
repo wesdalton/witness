@@ -52,7 +52,8 @@ def model_catalog(model: str):
 
 class Client:
     def __init__(self, key, model, budget, batch, batch_limit, input_price, output_price,
-                 max_tokens=1024, interval=3.2, tools=None, input_limit=60000):
+                 max_tokens=1024, interval=3.2, tools=None, input_limit=60000,
+                 provider=None, reasoning=None, max_price=None, named_tool=True):
         if not 1 <= input_limit <= 160000 or (
                 input_limit > 60000 and model != "openai/gpt-6-luna"):
             raise BudgetError("Input ceiling lacks a reviewed model contract")
@@ -62,19 +63,26 @@ class Client:
         self.max_tokens, self.interval = max_tokens, interval
         self.input_limit = input_limit
         self.tools = list(tools or [])
+        self.provider = provider or MODEL_ROUTES.get(model)
+        self.reasoning, self.named_tool = reasoning, named_tool
+        self.max_price = max_price or {"prompt": 0.2, "completion": 0.5}
         self.last_request = 0.0
         self.calls = 0
 
-    def generate(self, messages: list, final: bool = False):
-        payload = {
+    def chat_payload(self, messages: list, final: bool) -> dict:
+        named = {"type": "function", "function": {"name": "submit"}}
+        return {
             "model": self.model, "messages": messages, "tools": self.tools,
-            "tool_choice": {"type": "function", "function": {"name": "submit"}}
-            if final else "required",
-            "max_tokens": self.max_tokens, "reasoning": {"enabled": False},
-            "provider": {"only": [MODEL_ROUTES[self.model]], "allow_fallbacks": False,
-                         "require_parameters": True,
-                         "max_price": {"prompt": 0.2, "completion": 0.5}},
+            "tool_choice": (named if final and self.named_tool is True
+                            else "auto" if self.named_tool == "auto" else "required"),
+            "max_tokens": self.max_tokens,
+            "reasoning": {"effort": self.reasoning} if self.reasoning else {"enabled": False},
+            "provider": {"only": [self.provider], "allow_fallbacks": False,
+                         "require_parameters": True, "max_price": self.max_price},
         }
+
+    def generate(self, messages: list, final: bool = False):
+        payload = self.chat_payload(messages, final)
         body = json.dumps(payload, ensure_ascii=True, allow_nan=False).encode()
         bound = len(body) + 4096
         if bound > self.input_limit:
@@ -120,6 +128,49 @@ class Client:
             "request_sha256": digest(body), "message": message,
         }
 
+
+# Reviewed price contracts for non-OpenAI auditors (31 October 2026). Requests are pinned
+# to one provider, reserved at these ceilings and refused by the router above them.
+# Anthropic rejects forced tool choice while extended thinking is on, so Sonnet uses "auto"
+# with a single submit tool; a text-only answer is recorded as an invalid output.
+CONTRACTS = {
+    "anthropic/claude-sonnet-5.5": {"provider": "anthropic", "input": Decimal("0.000004"),
+                                    "output": Decimal("0.00001"), "tool_choice": "auto"},
+    "google/gemini-3.8-flash": {"provider": "google-ai-studio", "input": Decimal("0.00000075"),
+                                "output": Decimal("0.00000375")},
+    "deepseek/deepseek-v4.1-flash": {"provider": "together", "input": Decimal("0.0000003"),
+                                     "output": Decimal("0.0000012")},
+}
+PRICE_KEYS = ("prompt", "input_cache_write", "input_cache_write_1h")
+
+
+def contract_pricing(model: str):
+    """Verify the pinned endpoint supports forced tools and costs no more than the contract."""
+    contract = CONTRACTS[model]
+    endpoints = get_json(f"https://openrouter.ai/api/v1/models/{model}/endpoints")["data"]
+    endpoint = next((e for e in endpoints["endpoints"]
+                     if (e.get("tag") or "").split("/")[0] == contract["provider"]
+                     and "/" not in (e.get("tag") or "")), None)
+    if endpoint is None or not {"tools", "tool_choice"} <= set(endpoint["supported_parameters"]):
+        raise BudgetError("Pinned provider unavailable or lacks forced tool calls")
+    rates = endpoint["pricing"]
+    if (max(money(rates.get(k, 0)) for k in PRICE_KEYS) > contract["input"]
+            or money(rates["completion"]) > contract["output"]
+            or money(rates.get("internal_reasoning", 0)) > contract["output"]
+            or money(rates.get("request", 0)) != 0):
+        raise BudgetError("Pinned provider price exceeds the reviewed contract")
+    return endpoint, contract["input"], contract["output"]
+
+
+def contract_client(key, model, budget, batch, batch_limit, tools, reasoning="medium",
+                    max_tokens=4096):
+    contract = CONTRACTS[model]
+    million = Decimal(1_000_000)
+    return Client(key, model, budget, batch, batch_limit, contract["input"], contract["output"],
+                  max_tokens=max_tokens, tools=tools, provider=contract["provider"],
+                  reasoning=reasoning, named_tool=contract.get("tool_choice", True),
+                  max_price={"prompt": float(contract["input"] * million),
+                             "completion": float(contract["output"] * million)})
 
 def load_key(env_file: Path = Path(".env")) -> str | None:
     """Read only a literal OPENROUTER_API_KEY; never execute or expand .env text."""

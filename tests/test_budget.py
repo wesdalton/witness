@@ -67,3 +67,21 @@ def test_partial_ledger_fails_closed(tmp_path):
     path.write_text('{"type":')
     with pytest.raises(BudgetError, match="Incomplete"):
         PhaseBudget(path).summary()
+
+
+def test_review_lifts_stop_but_keeps_failed_reservation(tmp_path):
+    budget = PhaseBudget(tmp_path / "budget.jsonl")
+    budget.reserve("one", "batch", Decimal("0.4"), Decimal("1"))
+    with pytest.raises(BudgetError, match="review"):
+        budget.complete("one", "provider_error:http_400")
+    with pytest.raises(BudgetError, match="Unreconciled or failed"):
+        budget.reserve("two", "batch", Decimal("0.1"), Decimal("1"))
+    with pytest.raises(BudgetError, match="note"):
+        budget.review("one", " ")
+    budget.review("one", "Provider rejected a parameter combination before billing.")
+    with pytest.raises(BudgetError, match="already reviewed"):
+        budget.review("one", "again")
+    budget.reserve("two", "batch", Decimal("0.1"), Decimal("1"))
+    assert budget.summary()["exposure_usd"] == "0.5"
+    with pytest.raises(BudgetError, match="Only completed, failed"):
+        budget.review("two", "outstanding")

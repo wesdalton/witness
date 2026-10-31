@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0003",
+  "incident": "inc-fcb4fc74c396af32",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-10-31T23:12:25.873491+00:00",
+  "prompt_sha256": "4a2099400e7fa59f1a2e0e50422b13f6ea1ad28c6bd4eef6239175223e09cef0",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "470365f9265e4ac79e96438b2ca0ef7c",
+    "response_id": "gen-1793488348-le7wonIT7u7CQWPWKFcf",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1442,
+      "completion_tokens": 836,
+      "total_tokens": 2278,
+      "cost": 0.001285272,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 512,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001285272,
+        "upstream_inference_prompt_cost": 0.000282072,
+        "upstream_inference_completions_cost": 0.0010032
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 581,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.7655,
+    "input_bound": 9151,
+    "reserved_usd": "0.0076605",
+    "request_sha256": "88d469fe97a4bb7f7e3e84d94d3207fbf02ba866a5dbe943d2bfc3a3eb5fc566"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 15,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 15,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 15,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 1,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and replay both record 15 passed and 0 failed, while the artifacts log shows pytest output ending with \"15 passed\". The manifest confirms the attempt exited 0 with status passed under the same command. Together, these channels consistently support that the submitted patch passes the 15-test hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:12:29.813337+00:00"
+}

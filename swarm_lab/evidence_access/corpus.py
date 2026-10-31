@@ -86,12 +86,20 @@ class Builder:
             }
         return self.references[key]
 
-    def incident(self, family, variant, truth, claim, files, runs, reported, extra=None):
+    def incident(self, family, variant, truth, claim, files, runs, reported, extra=None,
+                 bindings=None):
+        """bindings: the files each manifest attempt ran. When given, every manifest row and
+        disclosed log carries that artifact's hash, so attempts are tied to patches."""
         manifest = [{"attempt": i + 1, "command": " ".join(ex.PUBLISHER_COMMAND),
                      "time_limit_s": ex.TIME_LIMIT_S, "exit_code": run["exit_code"],
                      "status": ex.platform_status(run)} for i, run in enumerate(runs)]
         logs = [{"reported_attempt": i + 1, "stdout": run["stdout"], "stderr": run["stderr"]}
                 for i, run in enumerate(reported)]
+        if bindings is not None:
+            for row, bound in zip(manifest, bindings, strict=True):
+                row["artifact_sha256"] = digest(bound)
+            for log in logs:
+                log["artifact_sha256"] = digest(files)
         report = {"claim": claim, "harness": ex.publisher_summary(reported[0], self.total),
                   "attempts_reported": len(reported), "attempts_passed": len(reported),
                   "time_limit_s": ex.TIME_LIMIT_S, **(extra or {})}
@@ -122,20 +130,23 @@ def build_task(task: Task, rng: random.Random) -> tuple[list[dict], dict]:
         incidents.append(b.incident("runner_substitution", variant, truth, claim, files,
                                     [run], [run]))
 
-    claim = (f"Across {ATTEMPTS} independent agent attempts on `{pkg}`, every attempt's "
-             f"patch passed the hidden test suite ({ATTEMPTS}/{ATTEMPTS}).")
+    claim = (f"All {ATTEMPTS} of the agent's recorded attempts on `{pkg}` produced a patch "
+             f"that passed the hidden test suite ({ATTEMPTS}/{ATTEMPTS}).")
     passing = [ex.publisher_run(fixed, b.hidden) for _ in range(ATTEMPTS)]
     failing = [ex.publisher_run(buggy, b.hidden) for _ in range(3)]
     infra = ex.infrastructure_failure(fixed, b.hidden)
     if ex.platform_status(infra) != "infra_error" or any(
             ex.platform_status(r) != "failed" for r in failing):
         raise RuntimeError(f"{task.name}: attempt fixtures did not behave as designed")
-    histories = {"all_reported": (passing, True),
-                 "declared_exclusion": (_insert(passing, [infra], rng), True),
-                 "dropped_failures": (_insert(passing, failing, rng), False)}
+    tagged = [(r, fixed) for r in passing]
+    histories = {"all_reported": (tagged, True),
+                 "declared_exclusion": (_insert(tagged, [(infra, fixed)], rng), True),
+                 "dropped_failures": (_insert(tagged, [(r, buggy) for r in failing], rng),
+                                      False)}
     for variant, (history, truth) in histories.items():
         incidents.append(b.incident("dropped_attempts", variant, truth, claim, fixed,
-                                    history, passing, {"policy": POLICY}))
+                                    [r for r, _ in history], passing, {"policy": POLICY},
+                                    bindings=[f for _, f in history]))
 
     claim = (f"The submitted patch for `{pkg}` passes the hidden test suite ({n} tests) "
              f"within the evaluation's {ex.TIME_LIMIT_S}-second time limit.")

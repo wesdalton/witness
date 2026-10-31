@@ -129,3 +129,25 @@ def test_stage2_plan_covers_heldout_cells_in_fixed_order():
     early = plan[:60]
     assert {e["prompt"] for e in early} == {"base", "explicit"}
     assert len({tuple(e["access"]) for e in early}) == 3
+
+
+def test_stage3_plan_and_counts_validation():
+    from swarm_lab.evidence_access import audit
+
+    families = ["runner_substitution"] * 3 + ["dropped_attempts"] * 3 + ["timeout_as_success"] * 2
+    incidents = [{"id": f"h{t}{n}", "split": "heldout", "family": f}
+                 for t in range(8) for n, f in enumerate(families)]
+    plan = audit.plan_stage3(incidents, "openai/gpt-6-luna")
+    assert len(plan) == 1056 and {e["prompt"] for e in plan} == {"base", "counts"}
+    assert plan != audit.plan_stage3(incidents, "google/gemini-3.8-flash")
+    good = {"observed_counts": [{"channel": "replay", "passed": None, "failed": None}],
+            "verdict": "insufficient", "p_claim_true": 0.5, "evidence_used": ["replay"],
+            "reason": "r"}
+    assert audit.validate(good, "counts") == good
+    with pytest.raises(ValueError):
+        audit.validate({**good, "observed_counts": [{"channel": "replay", "passed": -1,
+                                                     "failed": None}]}, "counts")
+    with pytest.raises(ValueError):
+        audit.validate({k: v for k, v in good.items() if k != "observed_counts"}, "counts")
+    with pytest.raises(ValueError):
+        audit.validate(good, "base")

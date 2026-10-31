@@ -110,9 +110,10 @@ class PhaseBudget:
             if any(r["request"] == request for r in reserves):
                 raise BudgetError("Request already reserved; no retries")
             completed = {r["request"]: r for r in rows if r["type"] == "complete"}
+            reviewed = {r["request"] for r in rows if r["type"] == "review"}
             if any(
                 r["request"] not in completed
-                or completed[r["request"]]["status"] != "ok"
+                or (completed[r["request"]]["status"] != "ok" and r["request"] not in reviewed)
                 for r in reserves
             ):
                 raise BudgetError("Unreconciled or failed request; review before more spending")
@@ -141,6 +142,20 @@ class PhaseBudget:
             })
             if status != "ok":
                 raise BudgetError(f"Request requires review: {status}")
+
+    def review(self, request: str, note: str):
+        """Record that a failed request was reviewed. Its full reservation stays in exposure;
+        the record only lifts the stop on further spending."""
+        if not note.strip():
+            raise BudgetError("A review needs a note explaining the failure")
+        with self.transaction() as (rows, append):
+            done = next((r for r in rows if r["type"] == "complete" and r["request"] == request),
+                        None)
+            if done is None or done["status"] == "ok":
+                raise BudgetError("Only completed, failed requests can be reviewed")
+            if any(r["type"] == "review" and r["request"] == request for r in rows):
+                raise BudgetError("Request already reviewed")
+            append({"type": "review", "request": request, "note": note})
 
     def summary(self):
         with self.transaction() as (rows, _):

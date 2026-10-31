@@ -11,7 +11,7 @@ TOTAL = re.compile(r"\((\d+) tests\)")
 
 def _claim_kind(report: dict) -> str:
     claim = report["claim"]
-    if "independent agent attempts" in claim:
+    if "recorded attempts" in claim or "independent agent attempts" in claim:
         return "attempt_rate"
     if "time limit" in claim:
         return "time_limit"
