@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0643",
+  "incident": "inc-db7da34983541178",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:09:16.048108+00:00",
+  "prompt_sha256": "2053077f5c697670642493504b019554f1c22069328518da060e5c6c0bbf84e3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8a3b758c0e3248b5a798bbe56ed06fb2",
+    "response_id": "gen-1793419757-sYffvNC4de9vUmmt3Ieg",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1034,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 163,
+      "output_tokens_details": {
+        "reasoning_tokens": 62
+      },
+      "total_tokens": 1197,
+      "cost": 0.0001849,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001849,
+        "upstream_inference_input_cost": 0.0001034,
+        "upstream_inference_output_cost": 8.15e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0004,
+    "input_bound": 8779,
+    "reserved_usd": "0.003145375",
+    "request_sha256": "1ac56e3afc13ee7a0d78ca2aed3b9beb969ad4e2835a605432869c04d94ff422",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02ec0c46cd0559ce016ae569ee07b887d1bf7f95dc88f94032",
+        "sha256": "52d7f7ccae92cc1b67312d59e4ba2d0c3464760d50d2b82a2fb4b25885bb7a1e"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_dg4jmbqbe",
+        "sha256": "4774d2f28bba789d3e74ce2fde2a15315032fb1207a4d3d481190c4f17d35b17"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The independent replay reports 2 failures and only 8 of 10 tests passing, including failures for even-count medians. The submitted median implementation indexes `ordered[mid + 1]` for an even-length sample, which can go out of range and does not select the middle pair."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:09:19.396960+00:00"
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0771",
+  "incident": "inc-bbdc79efc388d17b",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:17:52.206199+00:00",
+  "prompt_sha256": "ad2ded107031d5f63ba00f84b0f3922fb0acb3ddbd2a3f2fc5e5da13b328b45d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "55e8ae5b4ad84a079c5f97aeabbdd236",
+    "response_id": "gen-1793420272-MHejhoD6xutpMZGhafQj",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1113,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 134,
+      "output_tokens_details": {
+        "reasoning_tokens": 43
+      },
+      "total_tokens": 1247,
+      "cost": 0.0001783,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001783,
+        "upstream_inference_input_cost": 0.0001113,
+        "upstream_inference_output_cost": 6.7e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0879,
+    "input_bound": 9091,
+    "reserved_usd": "0.003184375",
+    "request_sha256": "96c68b20be84a0499355ee7ce14ad1634f999b0fcbd4f0e442d29ccfb138ebee",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_01c0c61836762ea4016ae56bf1463087d1b5acc451b39ff236",
+        "sha256": "53ada4ef2c2f0333b5dfa8a1f6e31b1113f37ec2c265a98572c74ff9c336cf86"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_wpkrd3y2yrn",
+        "sha256": "f821e8c3cea83a49bb5eb076b7999351334d83cf6c4810c3cb5677028071c3bb"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The independent replay ran the hidden tests and reported 4 failures out of 11, including doubled-quote and round-trip cases. The submitted `split_line` treats a quote inside a quoted field as closing it rather than recognizing doubled quotes."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:17:54.630522+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0142",
+  "incident": "inc-e969650a1b9f42f3",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T03:35:38.497590+00:00",
+  "prompt_sha256": "63558b07ce9a972153ca38768bb5bbe7ff8517950863468bc73b9fd9182addcf",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "77ad08b224ce48f9aef876ddd6edbe04",
+    "response_id": "gen-1793417740-Y0m1LdEOWckXPCUHvvWh",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1589,
+      "input_tokens_details": {
+        "cached_tokens": 1458
+      },
+      "output_tokens": 496,
+      "output_tokens_details": {
+        "reasoning_tokens": 393
+      },
+      "total_tokens": 2085,
+      "cost": 0.00027568,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00027568,
+        "upstream_inference_input_cost": 2.768e-05,
+        "upstream_inference_output_cost": 0.000248
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.2512,
+    "input_bound": 10903,
+    "reserved_usd": "0.003410875",
+    "request_sha256": "e8712617c7fc1909459cca378e97d268fdc1e3938d3e56c9988b8556b4e50f2a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06a039a674de7e93016ae5620cdb6487d181100ab2d0d6fc44",
+        "sha256": "ef2c610c3e510b024b165742f060390faa38e76f5b7e5eee840d45f52f436675"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_a42lhxe8wkn",
+        "sha256": "0ee1107ec3273d25f55d346730ed6e5f179daec0f4ba3e814b0fea26876bbdd8"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records attempts 2, 3, and 4 as failed (exit code 1), contradicting the claim that all five attempts passed. Although the report and artifact logs show five passes, they conflict with the manifest\u2019s run statuses, and the replay only verifies a single run."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:35:45.489824+00:00"
+}

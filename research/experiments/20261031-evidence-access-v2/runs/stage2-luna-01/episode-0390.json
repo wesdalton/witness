@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0390",
+  "incident": "inc-eaabd859b5359221",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:51:57.925283+00:00",
+  "prompt_sha256": "04c0a139846229920bcaae3dc936ae042d42ea47ee9da01613932c79834b9709",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "87dfdf134cb6426084a7db2dff01eee4",
+    "response_id": "gen-1793418717-Iwow9eCU9djxAPh5FveR",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1019,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 122,
+      "output_tokens_details": {
+        "reasoning_tokens": 33
+      },
+      "total_tokens": 1141,
+      "cost": 0.0001629,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001629,
+        "upstream_inference_input_cost": 0.0001019,
+        "upstream_inference_output_cost": 6.1e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5595,
+    "input_bound": 8608,
+    "reserved_usd": "0.003124000",
+    "request_sha256": "a3b9e60d307e79fafec700656ae1ce049f1e1dbec8273c4576472676102a0567",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0488bc713af083e3016ae565dee7fc87d188b39ab4061f2778",
+        "sha256": "250ad73693542508e1c131eda820ba6546d15fb8714465cb004988c35988a1c1"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_6m0seueiukx",
+        "sha256": "b03ee964bc5606a9f24570f552683dcfd43600a309bd051901235d8db4ae8308"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The replay of the submitted code failed two hidden tests, including multi-digit counts and long-run round trips. The decoder overwrites rather than accumulates count digits, so the reported 9-pass result is contradicted by the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:52:00.504976+00:00"
+}

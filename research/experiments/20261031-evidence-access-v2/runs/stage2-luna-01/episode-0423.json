@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0423",
+  "incident": "inc-4c4e2619333aad2c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T03:54:08.218241+00:00",
+  "prompt_sha256": "825e081a90c3e62f6573c2a984abc988c35309f696e6efa3437e701cb2d44c6b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3233661a4d314efd81cc03b1acaa568f",
+    "response_id": "gen-1793418848-5XFAtZOP1PWIKs1eXZP4",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1167,
+      "input_tokens_details": {
+        "cached_tokens": 1036
+      },
+      "output_tokens": 255,
+      "output_tokens_details": {
+        "reasoning_tokens": 148
+      },
+      "total_tokens": 1422,
+      "cost": 0.00015096,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00015096,
+        "upstream_inference_input_cost": 2.346e-05,
+        "upstream_inference_output_cost": 0.0001275
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.2323,
+    "input_bound": 9040,
+    "reserved_usd": "0.003178000",
+    "request_sha256": "a8855f11172e3e8283eeb0baee637dd5b1ea9883035b308853313abb32236279",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_05fa384824e15609016ae566629c2c87d1b19c8b09513d6041",
+        "sha256": "3b54779051906e7978a8909e250d6b08d4a561fcb020f4fffa1f68a3a505273c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qvrf3zbcec",
+        "sha256": "08c2a5aaacc259b5e8ce6567e24794c9d5c8faf4d12a12815016993b16b35e1c"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The replayed hidden tests failed 3 of 13 tests, including repeated symbols, subtractive pairs, and full-range round trips. The submitted parser subtracts equal adjacent symbols (`<=`), so canonical strings such as `XX` can produce an invalid total; the reported 13-pass result conflicts with the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:54:14.087576+00:00"
+}

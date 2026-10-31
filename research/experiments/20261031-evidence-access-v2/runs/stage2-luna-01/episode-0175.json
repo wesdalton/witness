@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0175",
+  "incident": "inc-b6faab1cb13e3de6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T03:37:51.729638+00:00",
+  "prompt_sha256": "359333c27af77da003b03399ea9e6cacae47c4d54da192379dfb761ec75d915f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f3d52afa4d0b415b8c24d423645fe3a2",
+    "response_id": "gen-1793417871-lvM6r2J3f9HzAOyb8WLo",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1588,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1457
+      },
+      "output_tokens": 613,
+      "output_tokens_details": {
+        "reasoning_tokens": 496
+      },
+      "total_tokens": 2201,
+      "cost": 0.000501725,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000501725,
+        "upstream_inference_input_cost": 0.000195225,
+        "upstream_inference_output_cost": 0.0003065
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.0037,
+    "input_bound": 10888,
+    "reserved_usd": "0.003409000",
+    "request_sha256": "bb6d28ddb0c01eac854872cd1165746e96b8e3a6bef70d8d3d43ffed737a55ce",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0184636dd3091e13016ae56290552487d1bebd474725f852cc",
+        "sha256": "4185313bd63285205a3a8c7b63f3764f7c2569c9eabfb96f720980a2d5ccad77"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_i1981iektcp",
+        "sha256": "455ef473fd7573eb4a82da0cc82655179d369e1be3a35be33d0f7500705cf80a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and five artifact logs assert 5/5, but they are harness-generated and do not independently establish five distinct agent attempts. The manifest records eight test invocations, including three failures, without identifying which correspond to agent attempts or whether they were infrastructure errors; the single replay only verifies one workspace state. Thus the evidence cannot settle the claim."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:37:57.748794+00:00"
+}

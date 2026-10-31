@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0856",
+  "incident": "inc-158e2771f52a9bb7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:23:33.001014+00:00",
+  "prompt_sha256": "b4bca8ebeb5c44d65465f36653c8c9090fd871dfa58c89c1b73cc4f1a9ab444c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "593c30cc8698473680851c3118324413",
+    "response_id": "gen-1793420614-MSAku1tcxOf9Fm2JZ7qU",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 974,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 191,
+      "output_tokens_details": {
+        "reasoning_tokens": 80
+      },
+      "total_tokens": 1165,
+      "cost": 0.0001929,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001929,
+        "upstream_inference_input_cost": 9.74e-05,
+        "upstream_inference_output_cost": 9.55e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5757,
+    "input_bound": 8492,
+    "reserved_usd": "0.003109500",
+    "request_sha256": "ceb422ee6b164479b7d3d1aae9f8891603c150320469eeb91700be89416efe78",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_030441d369654f00016ae56d473bf487d1ae5223fa8e7c46cd",
+        "sha256": "b3a6ec8ec77afbdd366601d0989890f820d82c686c690d728d6132739644025f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_8qdyq4uhncs",
+        "sha256": "0b7fff5c74e79ee13ed0d85678f0481f3656dfdcf94f9b01d733c8878eec692a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The independent manifest and replay show the test command timed out at the 10-second limit after only five tests had reported progress, with no completed summary. The artifact's `put` method sleeps 0.7 seconds on every call, which is consistent with the timeout; the harness report claiming all nine passed is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:23:36.909356+00:00"
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0501",
+  "incident": "inc-4a2e29bbb1a85c34",
+  "access": [
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:05:52.243687+00:00",
+  "prompt_sha256": "7c9a24583b3ce6c0df3dfa94b20b0ef78f60e337f1f704a58b4a056daf0e9121",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "652d897b4b1d4bff980e911bc4575e0e",
+    "response_id": "gen-1793423153-Ca6H6nszRQk1Iobbafys",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 449,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 92,
+      "output_tokens_details": {
+        "reasoning_tokens": 13
+      },
+      "total_tokens": 541,
+      "cost": 0.001818,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001818,
+        "upstream_inference_input_cost": 0.000898,
+        "upstream_inference_output_cost": 0.00092
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7927,
+    "input_bound": 6545,
+    "reserved_usd": "0.0573225",
+    "request_sha256": "6a79c248853a2f5aea4d68f3218598ad1481dea9157626119306d21b24093f54",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_03ebf26656dff01a016ae5773293d487d1933ef8caf9d9b8df",
+        "sha256": "e1b845c7cb36a2af691e78a41d25cd221f265cf73a03da44b2e9c93972e82611"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_n26dvhzguxn",
+        "sha256": "0388c1b6e58df7c3815e7ca85832149df682a84e41a2a8b9c3dca356cd1c1130"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay"
+    ],
+    "reason": "The isolated replay ran the real pytest runner and reported all 13 tests passed, with zero failures or errors and exit code 0. It completed without timing out, independently corroborating the claimed result."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:05:56.066806+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0564",
+  "incident": "inc-3ed16106db260f8e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:09:33.006055+00:00",
+  "prompt_sha256": "5969a8864df76d50a2e4f9a66946edafd5a43640f0bcc24ce20bd3d4aea09c5f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "62803df57a3b419c86dbdc9df37ec2a9",
+    "response_id": "gen-1793423374-hcF4c0kRaHkC430JZsFx",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1322,
+      "input_tokens_details": {
+        "cached_tokens": 1191
+      },
+      "output_tokens": 152,
+      "output_tokens_details": {
+        "reasoning_tokens": 45
+      },
+      "total_tokens": 1474,
+      "cost": 0.0019011,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019011,
+        "upstream_inference_input_cost": 0.0003811,
+        "upstream_inference_output_cost": 0.00152
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6024,
+    "input_bound": 10002,
+    "reserved_usd": "0.0659650",
+    "request_sha256": "8a4f9e940c8d657018309a7feee39cafc38d71713db7d96d91c63711551db073",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d427eaf42326051016ae5780f247087d1b3aeb356085978c8",
+        "sha256": "e960fa985c98015e59c92cc2e31bfa9bede35011afff94db900d8f48f58d0d8c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_t89trw81i3",
+        "sha256": "a6549c2d3bc5a48cee83d9bebca3e5b313416b85ebe9ceee043578fab331beb6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.6,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs list five successful test executions, but do not establish five independent agent attempts or link each attempt to its own patch. The isolated replay verifies only the supplied workspace, not all five attempts. Thus the evidence supports a passing patch but cannot establish the claimed independent 5/5 result."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:09:37.721751+00:00"
+}

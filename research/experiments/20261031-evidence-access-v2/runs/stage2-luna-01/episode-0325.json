@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0325",
+  "incident": "inc-158e2771f52a9bb7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:47:37.163678+00:00",
+  "prompt_sha256": "02e48a529d7e9b86875f34de430f31b65e36e18c6d752aad55bc215382c51bc5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "209d8c878d0e4dae9f315d6e87476113",
+    "response_id": "gen-1793418457-LpOxGjJiPofQhTlr1wCm",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 933,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 189,
+      "output_tokens_details": {
+        "reasoning_tokens": 95
+      },
+      "total_tokens": 1122,
+      "cost": 0.0001878,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001878,
+        "upstream_inference_input_cost": 9.33e-05,
+        "upstream_inference_output_cost": 9.45e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6413,
+    "input_bound": 8277,
+    "reserved_usd": "0.003082625",
+    "request_sha256": "6787e4e56061d6030da45e562e144a64eb7ba2462ba7508b8e565c3e8bd4cc1c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d49ef2a6779551f016ae564d9cc3887d19564b93fbd548045",
+        "sha256": "c11b5e83506f10e4e643eee2efcfe4793bbe17d90460070fe212147d5bedca25"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_d778rqqfqqa",
+        "sha256": "9b6a3aa3596084587fa0126d3a4c43fbd059ea532d26075639896cef3dff55ea"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The recorded pytest attempt exited with a timeout after the 10-second limit, and the replay likewise timed out after emitting only five test dots. Although the report says 9 passed, the execution evidence shows the suite did not finish within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:47:39.823692+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0819",
+  "incident": "inc-8d7cfedc1ea92235",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T05:24:15.209135+00:00",
+  "prompt_sha256": "61bebca06383ba9efba315fb8f8f965e17e9c2529d7aa4724a5e6e0898d454de",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6314631245f0498fb574ddeef4aed111",
+    "response_id": "gen-1793424255-FyVWlgYqb7j2SvXc6uxR",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1549,
+      "input_tokens_details": {
+        "cached_tokens": 1418
+      },
+      "output_tokens": 158,
+      "output_tokens_details": {
+        "reasoning_tokens": 32
+      },
+      "total_tokens": 1707,
+      "cost": 0.0019838,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019838,
+        "upstream_inference_input_cost": 0.0004038,
+        "upstream_inference_output_cost": 0.00158
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.261,
+    "input_bound": 10708,
+    "reserved_usd": "0.0677300",
+    "request_sha256": "3d954455439b3c03a5ebe7b8fad1706e5038e004b9a2e4ddcca7b4853b9ac540",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0af6d59f41de5ab0016ae57b81106487d197a01c9f6a8b5182",
+        "sha256": "5f724242a713155dbf2265b4e67b4d280348f951777ed021d478158bee5b1f80"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_7294znxcclr",
+        "sha256": "416fef4261ab78cf697870637ba1c9dc742e44477cb10c0c3d943409337defd9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with failures (exit code 1) on attempts 3, 7, and 8; even the first five include a failure, contradicting 5/5. The report and passing artifact logs conflict with these execution records, and no evidence establishes that the failures were infrastructure errors. The successful replay validates only the supplied patch, not five independent successful attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:24:19.169370+00:00"
+}

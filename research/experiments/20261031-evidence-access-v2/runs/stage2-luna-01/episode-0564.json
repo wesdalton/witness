@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0564",
+  "incident": "inc-3ed16106db260f8e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:03:47.480623+00:00",
+  "prompt_sha256": "5969a8864df76d50a2e4f9a66946edafd5a43640f0bcc24ce20bd3d4aea09c5f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "32a202f871ce43209930d2d02cacb695",
+    "response_id": "gen-1793419427-pn97tZwAzo4APFGTGTsD",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1322,
+      "input_tokens_details": {
+        "cached_tokens": 1191
+      },
+      "output_tokens": 257,
+      "output_tokens_details": {
+        "reasoning_tokens": 160
+      },
+      "total_tokens": 1579,
+      "cost": 0.00015351,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00015351,
+        "upstream_inference_input_cost": 2.501e-05,
+        "upstream_inference_output_cost": 0.0001285
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6811,
+    "input_bound": 10002,
+    "reserved_usd": "0.003298250",
+    "request_sha256": "10ee61c0496e96905986eb852da3548098d73ca819af20eabbf21c2e769146ab",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c694ab924c8f0a5016ae568a4992087d19c011236a7755cb4",
+        "sha256": "b8ae3e109d4c5df8b3cab74ac92f75daf3eeadcce69f3379cfe9d61ddcfa15d7"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_mwgqxnkgtvh",
+        "sha256": "ca8c998fe6fcfeb16f8d021957a7ab8241437c49470c5287615904e0d8a95379"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The artifacts and manifest report five passing runs, but they do not independently establish that these were five independent agent attempts or preserve each attempt's patch. The replay verifies only the currently available workspace once, so it cannot settle whether every attempt's patch passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:03:51.486778+00:00"
+}

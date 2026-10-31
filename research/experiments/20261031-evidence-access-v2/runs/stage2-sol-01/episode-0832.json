@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0832",
+  "incident": "inc-0d1da1420dd30a25",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:25:03.289023+00:00",
+  "prompt_sha256": "afa3d3bf6eb78538a8fad8fab56057fb8ddc0e27b573dc470cfd5460fc0a720a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "589e2042e9154880861e96a2ca170ab1",
+    "response_id": "gen-1793424303-Kji4PJL596NGsqjCQfIV",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1119,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 97,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1216,
+      "cost": 0.003208,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003208,
+        "upstream_inference_input_cost": 0.002238,
+        "upstream_inference_output_cost": 0.00097
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2593,
+    "input_bound": 8887,
+    "reserved_usd": "0.0631775",
+    "request_sha256": "51b97c287ab6802c9aefc6219c9ccfe851c47616e9acb1a9efbd37058e4643e5",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qmk1gvwpap",
+        "sha256": "b15b7cd3da0b9fb1a0080143ad90a51b5b9e4885b80f646fb95de793e5bfd1a3"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The isolated replay independently reports 13 passed, zero failures or errors, exit code 0, and no timeout under the 10-second limit. Its pytest output records 0.03 seconds, consistent with the submitted artifacts' log and the manifest's successful hidden-test invocation."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:25:06.020895+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0747",
+  "incident": "inc-4a12d51003f6c426",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:20:05.498865+00:00",
+  "prompt_sha256": "59254e0d08c65ba2126f78c815d8f2c88666f7b9a487d8800d6253b2b9a19a4f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "939146ae0bda420f8c4dad80bd5f79b3",
+    "response_id": "gen-1793424006-OYZtQzPgV17VeopZXcT9",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1075,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 111,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1186,
+      "cost": 0.00326,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00326,
+        "upstream_inference_input_cost": 0.00215,
+        "upstream_inference_output_cost": 0.00111
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6361,
+    "input_bound": 8668,
+    "reserved_usd": "0.0626300",
+    "request_sha256": "445170230b035cb3a9a17aac7de40692e1ec3b5700d88a9b41dda15482873ff5",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_tkdsvgci0m",
+        "sha256": "c6c5c20519db28e0cb282cd7707bedb3c3322775ce0b0517efee2798dc3c0a19"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records the hidden-suite attempt timing out at 10 seconds with exit code 137, and the isolated replay independently confirms that timeout without a completed test summary. The submitted parser also sleeps for 5 ms on every call, consistent with a timing failure. These execution results contradict the claim of passing all 13 tests within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:20:09.119914+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0366",
+  "incident": "inc-3ed16106db260f8e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:50:12.721440+00:00",
+  "prompt_sha256": "e92d672a64a0e99ae4d8a83062d3555225922b191789f3f1342a287dcf18dd7d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d6ae44d6a9ec481c9c843e73e81013ad",
+    "response_id": "gen-1793418612-UyW7FlxKxNF0tCwBYWY4",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1281,
+      "input_tokens_details": {
+        "cached_tokens": 1150
+      },
+      "output_tokens": 620,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 1901,
+      "cost": 0.0003346,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003346,
+        "upstream_inference_input_cost": 2.46e-05,
+        "upstream_inference_output_cost": 0.00031
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 10.6601,
+    "input_bound": 9787,
+    "reserved_usd": "0.003271375",
+    "request_sha256": "fee459aea4ed5c7688b11d4c93ae4aa31f3e95af3858a75df6e11b0bdc6394de",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_050cb70a8365a6f7016ae56577451887d1ab9f96d07dd61ecd",
+        "sha256": "d588aabb6550798834b96f7d966d2fee47e9d66808125babd140a8061cc8954b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_a10d92n75r4",
+        "sha256": "8ae0e2bf221b0b195b30babbbc870de9c9a5de34ec65b97f95d37d654a6a945f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.91,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The report and manifest list five attempts, each with the hidden-test command exiting 0 and marked passed; the five corresponding logs each show 8 passing tests. Replay also confirms a passing run, though it validates only the replayed workspace rather than independently tying each historical patch to its run."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:50:23.530321+00:00"
+}

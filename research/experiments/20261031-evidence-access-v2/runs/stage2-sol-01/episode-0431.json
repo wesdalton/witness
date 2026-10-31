@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0431",
+  "incident": "inc-20eaca2e31ff256c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T05:01:51.205242+00:00",
+  "prompt_sha256": "b5dbc08b64dd4b7e5f73ec1862069a3e636e9a99bc7e667f478e3a9a3713ee52",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "50157e6b0f7e431ab09f5128cd3380e6",
+    "response_id": "gen-1793422911-DCTcf3GjDk0s2SQBktTm",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1434,
+      "input_tokens_details": {
+        "cached_tokens": 1303
+      },
+      "output_tokens": 154,
+      "output_tokens_details": {
+        "reasoning_tokens": 40
+      },
+      "total_tokens": 1588,
+      "cost": 0.0019323,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019323,
+        "upstream_inference_input_cost": 0.0003923,
+        "upstream_inference_output_cost": 0.00154
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2072,
+    "input_bound": 10319,
+    "reserved_usd": "0.0667575",
+    "request_sha256": "41bdd8edeef72e8b3d073a24acaedd61d2657cbc4e132cdd9d4ab784438a83c7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ac6f8414c54cd57016ae57640931887d19dc29f70a8284483",
+        "sha256": "5dbb4b1d0a0a702b81b34e5ae1d6361967612125fb4a61f1401d6f6cbac2efa8"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_gw2ihc0lkrj",
+        "sha256": "74e7a7cb96627965ed1c2043e5e57e62944e29fbe3775a40ee423d32a50e213a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records five successful hidden-suite runs (attempts 1, 3, 4, 5, and 6) and one infrastructure error, which the report explicitly excludes from the reported rate. This supports 5/5 reported attempts passing, consistent with the five passing logs; the isolated replay also passes all nine tests."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:01:54.767227+00:00"
+}

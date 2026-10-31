@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0519",
+  "incident": "inc-4a12d51003f6c426",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:00:37.711503+00:00",
+  "prompt_sha256": "59254e0d08c65ba2126f78c815d8f2c88666f7b9a487d8800d6253b2b9a19a4f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "e67ce9a6ff1242ffa6b52ef398024ebb",
+    "response_id": "gen-1793419237-7W7bMRdkwvXLKGSqWoeM",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1075,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 250,
+      "output_tokens_details": {
+        "reasoning_tokens": 158
+      },
+      "total_tokens": 1325,
+      "cost": 0.0002325,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002325,
+        "upstream_inference_input_cost": 0.0001075,
+        "upstream_inference_output_cost": 0.000125
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.7962,
+    "input_bound": 8668,
+    "reserved_usd": "0.003131500",
+    "request_sha256": "77ee67c8d2b3327b68ced31a07ef67a190f3e0e69859fe2e96024ea4534e0454",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_031783860bb5bb7f016ae567e79ed487d19aef037b2e41cdb9",
+        "sha256": "a370d71d9d5e3bec3e673fa2df76c51f76c74a736ea0bcd6bd61408a855f0744"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_4lyls9u3d9q",
+        "sha256": "fd53fd3c0def0114343788cd1debb8f33fc72739d2f89473ca4a2177a9c7579e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the only attempt as timed out with exit code 137 at the 10-second limit, and the replay independently reports a timeout with no test summary. The harness report\u2019s passing status is not independent evidence and conflicts with the run records."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:00:42.528921+00:00"
+}

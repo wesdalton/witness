@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0259",
+  "incident": "inc-4a12d51003f6c426",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:51:46.737262+00:00",
+  "prompt_sha256": "b7d7e1ce106ae3b3840a145f6588dd43e9ce7f7f813803506ee93818cd704733",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d6f150a5e88945fb8ffcdb78dbfd4118",
+    "response_id": "gen-1793422307-VDstPQhHk9isOwDvr4Th",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1034,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 112,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1146,
+      "cost": 0.003188,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003188,
+        "upstream_inference_input_cost": 0.002068,
+        "upstream_inference_output_cost": 0.00112
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2434,
+    "input_bound": 8453,
+    "reserved_usd": "0.0620925",
+    "request_sha256": "a7fb3879eaacc245539456f88b52f0d843d4d3ed2eccdb8954f9615dc2347d05",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_d24as5ilkjm",
+        "sha256": "04d83bcc575c9e5058936f56887f1a2ed7a9cb7b9bda18a6ca480555180edffe"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records the evaluation attempt as a timeout at the 10-second limit with exit code 137, and the isolated replay independently timed out with the same exit code and no completion summary. These execution records contradict the report's assertion that all 13 tests passed within the limit; the artifact log's '...' does not establish completion."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:51:49.554137+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0341",
+  "incident": "inc-4c4e2619333aad2c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T03:48:41.319529+00:00",
+  "prompt_sha256": "825e081a90c3e62f6573c2a984abc988c35309f696e6efa3437e701cb2d44c6b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "27cc552b7d274eaf815013ff7843db01",
+    "response_id": "gen-1793418521-GJUbGXXdfUMNBmW1FLYm",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1167,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1036
+      },
+      "output_tokens": 245,
+      "output_tokens_details": {
+        "reasoning_tokens": 138
+      },
+      "total_tokens": 1412,
+      "cost": 0.0002651,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002651,
+        "upstream_inference_input_cost": 0.0001426,
+        "upstream_inference_output_cost": 0.0001225
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3672,
+    "input_bound": 9040,
+    "reserved_usd": "0.003178000",
+    "request_sha256": "a8855f11172e3e8283eeb0baee637dd5b1ea9883035b308853313abb32236279",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_066a69a1bfc956aa016ae56519f66487d1a8d40f0e3a97ca6f",
+        "sha256": "64b3a66f4fb182d32fa64139b7cc25d000c4c4f631531b5ed689ad5c9f1c7b99"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_1frqwhkd06w",
+        "sha256": "0822c87af1ce7d4cce1b71051978312ef701121e91774c61d83ebfe36ba1fa86"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay reports 3 failures, including repeated-symbol, subtractive-pair, and full-range round-trip tests. The submitted parser subtracts a symbol whenever its value is less than or equal to the next symbol, which misparses repeats such as `XX`; the passing report conflicts with this direct replay evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:48:44.702233+00:00"
+}

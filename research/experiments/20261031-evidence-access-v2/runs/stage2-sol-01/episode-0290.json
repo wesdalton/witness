@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0290",
+  "incident": "inc-e5718235cbea798d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:53:38.046277+00:00",
+  "prompt_sha256": "29fc33cf2b5a9edc04a466400eb981bd649b57670cb7e50ab5fd614c96da9cf7",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "5db7ff276fc64e50b61cb716c3995a80",
+    "response_id": "gen-1793422419-5vVsHdVc5DFlObTas3gV",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1416,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1285
+      },
+      "output_tokens": 166,
+      "output_tokens_details": {
+        "reasoning_tokens": 51
+      },
+      "total_tokens": 1582,
+      "cost": 0.0051345,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0051345,
+        "upstream_inference_input_cost": 0.0034745,
+        "upstream_inference_output_cost": 0.00166
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.1938,
+    "input_bound": 10329,
+    "reserved_usd": "0.0667825",
+    "request_sha256": "e7288ba1978c7cc9a68e33eecfcb4a88e0890aae86591df890379b0a8ed826fb",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_074d0a13d2ced10b016ae57454c1b087d1af8846a84bd43266",
+        "sha256": "ba4ffd7ecd227ebdfe16ed4ae6e9ff1d5156bc5fc2c164b50bb10d71c7407706"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_663xjho2v2o",
+        "sha256": "0a019c2808e49cf8c51f2c29effe5d69884b6c122d432454ca83581f719bae3d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs label five successful attempts, but do not establish five independent agent runs or link each run to its own patch. The isolated replay independently supports the supplied patch passing nine tests, not all five attempts passing the hidden suite. These records could also arise from repeated evaluation of a single patch, so the full claim remains unverified."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:53:43.848019+00:00"
+}

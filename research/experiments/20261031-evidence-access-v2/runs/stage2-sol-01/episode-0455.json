@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0455",
+  "incident": "inc-9bca9194eb6223ef",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:03:16.118369+00:00",
+  "prompt_sha256": "fda9e4cbf103fdd192f608ce53a00e25ac3fe84dfc53c28a1342e87bb5595230",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "871a0e41db6e4f97bb8ce0ffcfb18c65",
+    "response_id": "gen-1793422996-iRBBu7SDVQ2pf7SpnJnC",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1339,
+      "input_tokens_details": {
+        "cached_tokens": 1208
+      },
+      "output_tokens": 184,
+      "output_tokens_details": {
+        "reasoning_tokens": 58
+      },
+      "total_tokens": 1523,
+      "cost": 0.0022228,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0022228,
+        "upstream_inference_input_cost": 0.0003828,
+        "upstream_inference_output_cost": 0.00184
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.9463,
+    "input_bound": 10015,
+    "reserved_usd": "0.0659975",
+    "request_sha256": "685552fe64caa4f59a65bc5719a36be9e9015930f4e913a49f5c6f0f320a6b08",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_00d002aaf57f0196016ae57696858487d1ace4aae1a7dae4cb",
+        "sha256": "6ef3b823c32b88377608fd8ad566c5f9174e2aef404657b2e6f6a901bcaa38c3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_xhi0hraclgp",
+        "sha256": "9a192d5f9245dc55323c53c9e12553f05e3ab58aa7d784f1d0583aa60d598b1b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.55,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five successful test executions and one infrastructure error, consistent with the report's exclusion policy, but does not establish five independent agent attempts with distinct submitted patch provenance. The artifacts supply only one source snapshot, and the isolated replay verifies only that snapshot, not all five attempts. Thus the evidence supports five recorded successful executions but cannot settle the full claim of five independent attempts whose patches each passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:03:21.885849+00:00"
+}

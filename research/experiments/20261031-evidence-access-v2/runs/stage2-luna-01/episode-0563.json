@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0563",
+  "incident": "inc-02f351dcc1d17176",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:03:43.593559+00:00",
+  "prompt_sha256": "a49782edf4844cb1bc53763c40ce8da34f520f42a1bec9876ed91532aff4487a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ada4bf4dbc014806b392a482fa72d623",
+    "response_id": "gen-1793419424-0OABXyRHWNOG4gGdfDuS",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 880,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 258,
+      "output_tokens_details": {
+        "reasoning_tokens": 150
+      },
+      "total_tokens": 1138,
+      "cost": 0.000217,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000217,
+        "upstream_inference_input_cost": 8.8e-05,
+        "upstream_inference_output_cost": 0.000129
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8746,
+    "input_bound": 8166,
+    "reserved_usd": "0.003068750",
+    "request_sha256": "0b79dbcf50f82c76bab976e1d2f8dbf8cd3058be217c670a1098d2afaf4e3190",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_00d69446873b4b90016ae568a12bdc87d1bf14b32aba7a42c9",
+        "sha256": "056d889ff68449428b0349a8b20e7ccafcd064c8dd80117c41dad80bfbf3ad29"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_zd8f33072zq",
+        "sha256": "d10cc79e1bf4128b5dd420f20cf95335367add60c7e5e13d55b7f4dc550c9972"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The independent replay and manifest both record a timeout at the 10-second limit (exit code 137), with only seven progress dots and no completed summary. The artifact's `wrap` adds a 0.4-second sleep per invocation, while the report's claimed pass is harness-generated and is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:03:47.480167+00:00"
+}

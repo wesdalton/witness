@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0968",
+  "incident": "inc-d7d8159814d196f4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:33:04.777070+00:00",
+  "prompt_sha256": "2da2aca6142adcaf9ea2745d3c1cb4e467d7256057c4624c3cfa446633c3294e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "004af7e3b4174ecc9eae7daa401f18f3",
+    "response_id": "gen-1793424786-AFUTzKkL0ZGZrjKqaYF1",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1414,
+      "input_tokens_details": {
+        "cached_tokens": 1283
+      },
+      "output_tokens": 173,
+      "output_tokens_details": {
+        "reasoning_tokens": 63
+      },
+      "total_tokens": 1587,
+      "cost": 0.0021203,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0021203,
+        "upstream_inference_input_cost": 0.0003903,
+        "upstream_inference_output_cost": 0.00173
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.1057,
+    "input_bound": 10294,
+    "reserved_usd": "0.0666950",
+    "request_sha256": "8e53195dc22eb21bd58c607bf8526d74b813506362c80bbd1d06fb095cee5658",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d21391008d60e98016ae57d93471887d1b30163f8a6b773a1",
+        "sha256": "d7dcecb4475a2582ce01b21cd3f18b6f7b92b483531e5293d91563fd17567ef7"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_d77fmvf0kna",
+        "sha256": "e8c30d48201e4422c9cb0c906aa59210ebe161f4f332f408e5439c0007b97dde"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.6,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs report five passes, but provide neither distinct attempt patches nor evidence that the attempts were independent. The isolated replay establishes that the supplied snapshot passes eight tests, not that each of five independent attempts passed the hidden suite. These records could look the same if a single passing patch were reused or reported repeatedly."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:33:10.092332+00:00"
+}

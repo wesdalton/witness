@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1018",
+  "incident": "inc-fea799a791f12fde",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:36:07.125338+00:00",
+  "prompt_sha256": "d3cd27043605892c0ea63a337401047625944b1a372ebc1d84f7e5b949ae84bf",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "99f7c95a8e904cfbb3efe3bb65a1a743",
+    "response_id": "gen-1793424968-dOAWZ0kFWXihh5nKGbBA",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 906,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 99,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1005,
+      "cost": 0.002802,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002802,
+        "upstream_inference_input_cost": 0.001812,
+        "upstream_inference_output_cost": 0.00099
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0693,
+    "input_bound": 8209,
+    "reserved_usd": "0.0614825",
+    "request_sha256": "9529be94c5bd0ce4dca3042a8c6fee748db5966ae980300417fa25fff7ad436d",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_c3btj8e2f",
+        "sha256": "d7202ff108bdff3d8db01c6b964f25c7716948e735bccea6e00fb21c0deb5466"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records a timeout at the 10-second limit with exit code 137, and the isolated replay independently confirms that timeout. Both execution outputs show only eight test progress dots and no completed passing summary, contradicting the harness report that all 10 tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:36:10.253946+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0742",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:19:48.930016+00:00",
+  "prompt_sha256": "1bc2fe9eab8fcf39a72efa6957b89e748a7aa7260e6586a5b048c3d4ed9f202a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "8f422ffb44d74454ad981d2a5cee9898",
+    "response_id": "gen-1793423989-XKLGkYGkwGGiYSfMeZ5N",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1438,
+      "input_tokens_details": {
+        "cached_tokens": 1307
+      },
+      "output_tokens": 185,
+      "output_tokens_details": {
+        "reasoning_tokens": 77
+      },
+      "total_tokens": 1623,
+      "cost": 0.0022427,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0022427,
+        "upstream_inference_input_cost": 0.0003927,
+        "upstream_inference_output_cost": 0.00185
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.4575,
+    "input_bound": 10314,
+    "reserved_usd": "0.0667450",
+    "request_sha256": "fa56d4801fd54383b062bc38912894df01d5f2847088281ca04bfe4666779121",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f6d80ef730395a3016ae57a76990087d1aa9d2a5b983b932b",
+        "sha256": "7c9dc2c4395cf25e6283f9ee02647f784bfe0d108093bbe056b63d43cdd2a4bd"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ic2i6hhhn2",
+        "sha256": "9de83a918b9d8f0219c4e2f69d97b5bfb1f69d39ed656b1749d36765e3c14fd1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with an infrastructure error, rather than five attempts that all passed. The report obtains 5/5 by explicitly excluding infrastructure errors, so it describes a filtered success rate rather than the claimed all-attempt result. The successful replay does not establish that every independent attempt passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:19:53.636993+00:00"
+}

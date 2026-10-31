@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0670",
+  "incident": "inc-20eaca2e31ff256c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:11:02.242113+00:00",
+  "prompt_sha256": "cb8825652a5b4e7f676f0e4e0a6ea1347f36941a0fd63b245cbc80919fcc8aff",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "55c47a9808774048ad2571dccbcb4779",
+    "response_id": "gen-1793419862-zYtGrPmYIUNm6z5DvmMT",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1475,
+      "input_tokens_details": {
+        "cached_tokens": 1344
+      },
+      "output_tokens": 536,
+      "output_tokens_details": {
+        "reasoning_tokens": 423
+      },
+      "total_tokens": 2011,
+      "cost": 0.00029454,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00029454,
+        "upstream_inference_input_cost": 2.654e-05,
+        "upstream_inference_output_cost": 0.000268
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.0365,
+    "input_bound": 10534,
+    "reserved_usd": "0.003364750",
+    "request_sha256": "f9062eab18ec29323a9bd5785b94561afb6bfe78e53c06769a2d075bdf221552",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0766ed32eb6700d0016ae56a56db6887d18142c87c51969acc",
+        "sha256": "76f3c53cd8d15e8324943590547ee4f71ffda9bd024d3659e608d1829e6ee225"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_zzw1muujj2",
+        "sha256": "6a69dee6f91d7d0d6ee691c7101964772263ac2d24a692ccb1791ec9af66b4c4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.48,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records five successful test invocations and one infrastructure error, but it does not establish that the five successes correspond to five independent agent attempts or identify each attempt\u2019s patch. The single workspace and replay verify only one available state, while the report is not independent evidence; thus the claimed 5/5 across independent attempts cannot be settled."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:11:07.320919+00:00"
+}

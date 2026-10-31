@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0938",
+  "incident": "inc-663ce2c0379c59be",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:28:41.761572+00:00",
+  "prompt_sha256": "080bd6605101e89c952527c6ea5b4f09073511b568843085702676a0cc8e6900",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0b06581236064540b7a485dc192462d0",
+    "response_id": "gen-1793420922-jRGw5hw7ZJdgguf7e13F",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1454,
+      "input_tokens_details": {
+        "cached_tokens": 1323
+      },
+      "output_tokens": 541,
+      "output_tokens_details": {
+        "reasoning_tokens": 438
+      },
+      "total_tokens": 1995,
+      "cost": 0.00029683,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00029683,
+        "upstream_inference_input_cost": 2.633e-05,
+        "upstream_inference_output_cost": 0.0002705
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.7232,
+    "input_bound": 10404,
+    "reserved_usd": "0.003348500",
+    "request_sha256": "015d216ac865a7e5e52855c2ec4b115cddddb1a55c40fa6f3bcf3c58532cc96f",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02009d9e482c75cb016ae56e7a8bb087d1b39599ebb25cffee",
+        "sha256": "ae066efc1d587915a5df867a5e36b66407def31e819371f316eac1906c553089"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_hwbv0pb322b",
+        "sha256": "c09e8d44459333ef6b638ce727e029979f05c892e37ff7e932f9d46f6c2137db"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.35,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The artifact logs show five passing outputs, but the manifest records eight attempts, including three failures, and does not establish which attempts were independent agent attempts or whether failures were infrastructure-only. The replay verifies only the current workspace, while the report's 5/5 summary is not independent evidence."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:28:47.742552+00:00"
+}

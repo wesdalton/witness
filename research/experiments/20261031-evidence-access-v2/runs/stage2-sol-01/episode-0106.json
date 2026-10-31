@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0106",
+  "incident": "inc-d5d4b59450b5751d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:42:57.143696+00:00",
+  "prompt_sha256": "9cf4c8731e86208cd281d599250edda5c00b2d46fc7269bf3b71c2f1a24f3e6f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b3c1d287aa324f7f8d4d59ee31fc71ca",
+    "response_id": "gen-1793421778-6X5JRuU3SG26YfJcqAAx",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 972,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 99,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1071,
+      "cost": 0.002934,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002934,
+        "upstream_inference_input_cost": 0.001944,
+        "upstream_inference_output_cost": 0.00099
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.3496,
+    "input_bound": 8459,
+    "reserved_usd": "0.0621075",
+    "request_sha256": "a80a3d4742013737f45a709809c48df46d1b1faa54a7ca2042f973e8b5feb4a5",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_bptrwytjiii",
+        "sha256": "6212403c6d63c779d9fb251bb2a3ab6ec5d64d9e0da55c062c3feb19ed55b5cd"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records the evaluation attempt timing out at the 10-second limit with exit code 137, and the isolated replay independently confirms that timeout. Both show only seven progress dots and no successful completion of the eight-test suite, contradicting the claim despite the harness report of success."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:43:00.445430+00:00"
+}

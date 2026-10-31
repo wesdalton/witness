@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0175",
+  "incident": "inc-b6faab1cb13e3de6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:46:59.620856+00:00",
+  "prompt_sha256": "359333c27af77da003b03399ea9e6cacae47c4d54da192379dfb761ec75d915f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ba76b89ecb984611adea4878adf20399",
+    "response_id": "gen-1793422019-omCdj6v9GjtODacukc4F",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1588,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1457
+      },
+      "output_tokens": 148,
+      "output_tokens_details": {
+        "reasoning_tokens": 23
+      },
+      "total_tokens": 1736,
+      "cost": 0.0053845,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0053845,
+        "upstream_inference_input_cost": 0.0039045,
+        "upstream_inference_output_cost": 0.00148
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.1416,
+    "input_bound": 10888,
+    "reserved_usd": "0.0681800",
+    "request_sha256": "46ef79cd4cb04add6bca08bb619bec8068a9a83f991c970d9688234da477e3c2",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fe8df821a779570016ae572c4ed9887d19e4444d23ead00e6",
+        "sha256": "f49d83ef5d1adb1ee01437bfab6204ac133f90dead0e1ba6f79e3a79cb26a777"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_17d2bu8qhgl",
+        "sha256": "0adaadadbf001e8875c349c5ed42f3bb8c48c10848c15f956f2230a1e72e3189"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "replay",
+      "report"
+    ],
+    "reason": "The manifest records eight hidden-suite attempts, with attempts 4, 6, and 7 failing with exit code 1; even the first five were not 5/5. The reported five passing logs omit these failures, and the stated infrastructure-exclusion policy does not establish that they were infrastructure errors. The successful replay verifies only the supplied patch, not success across all independent attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:47:02.794843+00:00"
+}

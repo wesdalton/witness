@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0472",
+  "incident": "inc-f5ef88472aeeb86e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T03:57:23.579866+00:00",
+  "prompt_sha256": "c2434f63cd854c0cd87b218e3411a0c85cadd7f9d3bee8611f72851cf10d535b",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "93371049afd64e7f8964976026a72760",
+    "response_id": "gen-1793419045-EipCMMx37tM4jMud7yUe",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 931,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 182,
+      "output_tokens_details": {
+        "reasoning_tokens": 92
+      },
+      "total_tokens": 1113,
+      "cost": 0.0001841,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001841,
+        "upstream_inference_input_cost": 9.31e-05,
+        "upstream_inference_output_cost": 9.1e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.198,
+    "input_bound": 8355,
+    "reserved_usd": "0.003092375",
+    "request_sha256": "88a8344a4d1ae20256f2ccbd997a9635c4e45a7208737ad0b0dbcbcce2540df1",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_065b9515dcaa7a83016ae56725ac0887d1b954deba2bb1f31f",
+        "sha256": "725aad535df0cce1f32cf65bac3672a84492149c30820c05926f7fb4699bb7df"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_b6by22e772i",
+        "sha256": "4d66f5905acc4c4f8f39f65db56f0b46d3eb4d3a7203d3c2de5acca23761a3e4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The independent replay ran the isolated pytest verifier and recorded 10 passed, 0 failed, with exit code 0. The manifest records the hidden-test command as passed, and the submitted quantiles implementation is present in the artifacts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:57:27.248515+00:00"
+}

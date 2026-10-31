@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0615",
+  "incident": "inc-e5718235cbea798d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:07:39.966344+00:00",
+  "prompt_sha256": "29fc33cf2b5a9edc04a466400eb981bd649b57670cb7e50ab5fd614c96da9cf7",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "34760cc27be34ec78585ac4502ff96dd",
+    "response_id": "gen-1793419660-5tul3sopUBsWkoHvMCfJ",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1416,
+      "input_tokens_details": {
+        "cached_tokens": 1285
+      },
+      "output_tokens": 225,
+      "output_tokens_details": {
+        "reasoning_tokens": 122
+      },
+      "total_tokens": 1641,
+      "cost": 0.00013845,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00013845,
+        "upstream_inference_input_cost": 2.595e-05,
+        "upstream_inference_output_cost": 0.0001125
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3549,
+    "input_bound": 10329,
+    "reserved_usd": "0.003339125",
+    "request_sha256": "f65888c5cefd6c57890a3991a85729463e5a5e4033818fd15eafb757e53c86dd",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e95d15fd8104094016ae5698cdc6087d1b2db0824852e1312",
+        "sha256": "877236118b2ba44d0ac45779fb96a64215bb733cac05bf6d10a1c6f587e2fe81"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_b2qcpp9arbf",
+        "sha256": "5e32e08b112d5c41284a94e946e3a7a9e17a42f3a3712135abcdae9f1b500e89"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report, manifest, and logs indicate five passes, but they are harness-generated and do not independently establish that five independent attempts produced distinct patches. The replay verifies only the currently available workspace, not each attempt's patch, so the evidence cannot settle the 5/5 claim."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:07:43.347782+00:00"
+}

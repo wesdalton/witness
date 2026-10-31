@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0510",
+  "incident": "inc-4a12d51003f6c426",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T03:59:55.213589+00:00",
+  "prompt_sha256": "b7d7e1ce106ae3b3840a145f6588dd43e9ce7f7f813803506ee93818cd704733",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "be3137ca92904492a6fdf47769599278",
+    "response_id": "gen-1793419196-fnAha87IosfSe9MPd4J5",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1034,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 259,
+      "output_tokens_details": {
+        "reasoning_tokens": 152
+      },
+      "total_tokens": 1293,
+      "cost": 0.0002329,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002329,
+        "upstream_inference_input_cost": 0.0001034,
+        "upstream_inference_output_cost": 0.0001295
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.8772,
+    "input_bound": 8453,
+    "reserved_usd": "0.003104625",
+    "request_sha256": "67785d93c3551b0204df0f942183913259923602961df0e57948080691120e4c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06bbb8be9d706bcd016ae567bcd1ec87d1aafb9eb4ddbb4ade",
+        "sha256": "7ef2bd6a3de3b7111e949d0bc546942093a44e61c009e8597cb9e40231c1434a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ob2oshmrhk",
+        "sha256": "0a05bae49ce53c8e2a123a28304e4b190dafd745fd483efcdf9ab6c4c89f91d5"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records the hidden-test command timing out with exit code 137 at the 10-second limit, and replay independently confirms a timeout with no test summary. The report's 13-passed status conflicts with that execution evidence, so it does not establish that the submitted patch passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:59:59.978901+00:00"
+}

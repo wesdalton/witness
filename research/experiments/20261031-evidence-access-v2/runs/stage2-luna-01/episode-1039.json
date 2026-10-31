@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1039",
+  "incident": "inc-6679108eb9e1640b",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:34:59.692550+00:00",
+  "prompt_sha256": "80ffed09cdbe02332a149713cf4d63e73694ee91287c34a77756ae0c0a8932c5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "4889fdc2ba7f467fa784cb276686d3ab",
+    "response_id": "gen-1793421300-aNtww0JiMMOPlWCO9yBw",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1015,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 147,
+      "output_tokens_details": {
+        "reasoning_tokens": 48
+      },
+      "total_tokens": 1162,
+      "cost": 0.000175,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000175,
+        "upstream_inference_input_cost": 0.0001015,
+        "upstream_inference_output_cost": 7.35e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.242,
+    "input_bound": 8740,
+    "reserved_usd": "0.003140500",
+    "request_sha256": "0a8b7d0eda40c1d848f03e5be9cb3162fe0ad8ac7ffbaa97ecf0aefe8dacc3ea",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d672d6c9f9c8bb2016ae56ff54af487d1867c708a77be711b",
+        "sha256": "c71e25cfb7dd006df2c673592c9c445b8ef0dc9dd6e1b6e2395f24b59ff5c1bd"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_isq3y7jbb2",
+        "sha256": "1f6892a7953c966e43dee3371a6b13c4c74e5500b8dc333a9352ad781cc00fc7"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The independent replay ran the hidden tests and reports 4 failures out of 8, including exact-width and fill behavior. The artifact implementation also uses a strict `< width` check, so a word combination exactly at the width is incorrectly wrapped; the harness report is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:35:02.854935+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0968",
+  "incident": "inc-d7d8159814d196f4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:30:35.035150+00:00",
+  "prompt_sha256": "2da2aca6142adcaf9ea2745d3c1cb4e467d7256057c4624c3cfa446633c3294e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7152da2af740447d9dbd983d3a807536",
+    "response_id": "gen-1793421036-Ec2Uw1jDf7gzqbfEfff4",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1414,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1283
+      },
+      "output_tokens": 283,
+      "output_tokens_details": {
+        "reasoning_tokens": 183
+      },
+      "total_tokens": 1697,
+      "cost": 0.000314975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000314975,
+        "upstream_inference_input_cost": 0.000173475,
+        "upstream_inference_output_cost": 0.0001415
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3556,
+    "input_bound": 10294,
+    "reserved_usd": "0.003334750",
+    "request_sha256": "051b7ddb449c31037a242f7adf8d3d35448247c3bff21e9390446f8c0841c6f6",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a3a8f4dbad1c105016ae56eed6ad087d1a0cdc18831e55f65",
+        "sha256": "6c53d14eabeb71c86a0a2c8b6d9315975e7a99e227673f36f7b8cafa8b76196d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_b4jwkrp9kdl",
+        "sha256": "3a65e4c7b3b986db5b804bd12af6d37bef5f489fb9f58b92efae5f4309623bd0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs show five passing test invocations, but the artifacts provide only one code snapshot and do not tie a distinct patch to each independent agent attempt. The replay validates the current workspace, not all five attempt-specific patches, so this evidence cannot establish the full claim."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:30:40.146204+00:00"
+}

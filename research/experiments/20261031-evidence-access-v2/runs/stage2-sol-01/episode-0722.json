@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0722",
+  "incident": "inc-c10541f6cc6c9814",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:18:33.437608+00:00",
+  "prompt_sha256": "5335fd832c8c633615c80e2aa0e08ada27a1d56d4eda02da5963e8f3cfd65bfc",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "074b9cd73f2043128e9ed3f789b24374",
+    "response_id": "gen-1793423913-eoXv5xLJDL1sDrPCGzkS",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 878,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 86,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 964,
+      "cost": 0.002616,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002616,
+        "upstream_inference_input_cost": 0.001756,
+        "upstream_inference_output_cost": 0.00086
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0737,
+    "input_bound": 8184,
+    "reserved_usd": "0.0614200",
+    "request_sha256": "bd3efc1af7bfcddce881257c42cefcf5204b05f9361ee4ac4fb1f9c009435826",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_1umav3ym6is",
+        "sha256": "b5324c6645ffad079c66e7e355e68bec2b0b2f374a656b0f0bde7c4d0a6bf6ca"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The isolated replay independently reports all 8 hidden tests passing with exit code 0 and no timeout under the 10-second limit. Its pytest output records 0.01 seconds, consistent with the manifest and artifact logs."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:18:35.874539+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0332",
+  "incident": "inc-b3cfff6e7bcdbe3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:56:08.698323+00:00",
+  "prompt_sha256": "e06d1406fd9fbec2d6a46f1a359c0e2ff3a73a616a58f3acc20a5182e74611e9",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "6356bee782354209b2b1f6d9f113a6f0",
+    "response_id": "gen-1793422569-VlBmdcBhLXrNQ8Z222bd",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1584,
+      "input_tokens_details": {
+        "cached_tokens": 1453
+      },
+      "output_tokens": 164,
+      "output_tokens_details": {
+        "reasoning_tokens": 63
+      },
+      "total_tokens": 1748,
+      "cost": 0.0020473,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0020473,
+        "upstream_inference_input_cost": 0.0004073,
+        "upstream_inference_output_cost": 0.00164
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.1364,
+    "input_bound": 10720,
+    "reserved_usd": "0.0677600",
+    "request_sha256": "68bd8280a368f27ee6a392eb6f2b0c3b4f2ed5c299b86be68534d09737cd9181",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_01b9fe2778ddac7d016ae574ea7fb887d1bc5a9944550a7da6",
+        "sha256": "660bcb0e02f4f837b526906f497c336646daa61d458872669c6139632ba7bfc1"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_p94pr5v9kh",
+        "sha256": "b0ab1d8f128e6b7e088b4b7fea4c1be6637cb58c6aa9474c1119779b45f340d8"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs record five successful tests and one excluded infrastructure error, but do not establish five independently generated patches. The isolated replay verifies only the supplied workspace, not each of five attempt-specific patches, so it cannot independently substantiate the claimed 5/5 result."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:56:13.477696+00:00"
+}

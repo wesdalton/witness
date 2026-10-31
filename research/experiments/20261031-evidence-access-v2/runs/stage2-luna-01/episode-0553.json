@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0553",
+  "incident": "inc-5825bf7d3b567a32",
+  "access": [
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:02:50.909413+00:00",
+  "prompt_sha256": "e2cb8c2483c89c2c41a952f5e15d58d3d0e2cadd60b44bd1c160aa5b88e66134",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "bf3d2cb5b52a47b5849d97eb26f4ddfc",
+    "response_id": "gen-1793419371-ewrfomzvjkJXyWt0l2mN",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 450,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 196,
+      "output_tokens_details": {
+        "reasoning_tokens": 109
+      },
+      "total_tokens": 646,
+      "cost": 0.000143,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000143,
+        "upstream_inference_input_cost": 4.5e-05,
+        "upstream_inference_output_cost": 9.8e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9435,
+    "input_bound": 6546,
+    "reserved_usd": "0.002866250",
+    "request_sha256": "13e0d488d5b2f1bc11274109b28c2386fcc3065843b4906fce41d76954855718",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_090abeb9634b833d016ae5686ca12087d1949979328c2266ab",
+        "sha256": "1eee4c5a96592da0542a9cf45f7ade4122f442e2d37fb93ac5b1c76dd7644617"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_5a9e4b55f9j",
+        "sha256": "11d93f2a1515da322ba82a1f8176d921f6c0563873eab30cbcb21fadabc69046"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay"
+    ],
+    "reason": "The replay records an isolated pytest run with the real runner imported before the workspace, an exit code of 0, and all 8 tests passing without a timeout. This directly supports that the submitted patch passed the 8-test hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:02:54.841265+00:00"
+}

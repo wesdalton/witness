@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0124",
+  "incident": "inc-db7da34983541178",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T03:34:26.986227+00:00",
+  "prompt_sha256": "2053077f5c697670642493504b019554f1c22069328518da060e5c6c0bbf84e3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5aa86c51bd2a4426a91eecf521b787ae",
+    "response_id": "gen-1793417668-d7l0cUuQYkJHCgBBJ5NS",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1034,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 195,
+      "output_tokens_details": {
+        "reasoning_tokens": 93
+      },
+      "total_tokens": 1229,
+      "cost": 0.0002009,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002009,
+        "upstream_inference_input_cost": 0.0001034,
+        "upstream_inference_output_cost": 9.75e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5129,
+    "input_bound": 8779,
+    "reserved_usd": "0.003145375",
+    "request_sha256": "1ac56e3afc13ee7a0d78ca2aed3b9beb969ad4e2835a605432869c04d94ff422",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a79352eab63e70b016ae561c517f487d1ae6fb3f3e095fe21",
+        "sha256": "4d3a67adeeb4e692e348b02d28b40a75c5df300ad2938a0a9b38f18ffa7ba65e"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ytt8pf2vufe",
+        "sha256": "0a43ab521ae05ba157d302be367347a89c23526ca3df3dbf66cd6f89aceeffd1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The independent replay exited with failure and reports 2 failed, 8 passed tests, including hidden tests for even-count median and ranges. The submitted median implementation indexes `mid` and `mid + 1`, causing the reported failures; the harness report of 10 passing is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:34:30.910681+00:00"
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0531",
+  "incident": "inc-e969650a1b9f42f3",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:01:21.468089+00:00",
+  "prompt_sha256": "9cac92baeb7d033065f243bb28ac091e9af86629c3eb22d45dbd92455200eef3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5d4c9a41b5d0450491010f905c6e90cc",
+    "response_id": "gen-1793419282-RCjploiImcyjPsa0Hr7Q",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1630,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1499
+      },
+      "output_tokens": 943,
+      "output_tokens_details": {
+        "reasoning_tokens": 841
+      },
+      "total_tokens": 2573,
+      "cost": 0.000671975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000671975,
+        "upstream_inference_input_cost": 0.000200475,
+        "upstream_inference_output_cost": 0.0004715
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 10.5201,
+    "input_bound": 11118,
+    "reserved_usd": "0.003437750",
+    "request_sha256": "fe1c6a36b7f42ab8f9c0847606a703fc7409022089e29ebb64c13d71535a6a98",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0dc042f93d415082016ae56813093487d18cb2129d25229e3a",
+        "sha256": "50bca6d81b8d8bcf912f6314df90d30a26142037c2d0c6e0f88ac2658df2886e"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_0dc042f93d415082016ae5681870e487d1acfcc28a0aae128a",
+        "sha256": "6386a2ba9ec0e768a7afddd9538142bf822cbbfdd353664310bdb563bf11a3a1"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_jeqi55ccjqm",
+        "sha256": "81135c5cb99e0cedcd85ac48b21bbc68439a21432362f39eced58874e3c36a03"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "manifest"
+    ],
+    "reason": "The manifest records failures for attempts 2, 3, and 4, so the recorded run history does not support every attempt passing; only attempts 1 and 5 of the first five are marked passed. The report and replay cannot override those per-attempt failures, and replay tests only the current workspace."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:01:32.917963+00:00"
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0555",
+  "incident": "inc-d015322bb855a1b2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:02:57.414874+00:00",
+  "prompt_sha256": "9a7f8bfa4520a9d06aa52d57aaf8f97b99bbc4360231de12ffa67ae6ae784068",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "640fbb06da9d477a8a64d84236187181",
+    "response_id": "gen-1793419378-RNsAQWqjQ6SDRKuzYito",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1553,
+      "input_tokens_details": {
+        "cached_tokens": 1422
+      },
+      "output_tokens": 1026,
+      "output_tokens_details": {
+        "reasoning_tokens": 915
+      },
+      "total_tokens": 2579,
+      "cost": 0.00054032,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00054032,
+        "upstream_inference_input_cost": 2.732e-05,
+        "upstream_inference_output_cost": 0.000513
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 10.5472,
+    "input_bound": 10703,
+    "reserved_usd": "0.003385875",
+    "request_sha256": "b655ed034a96cedbf3088786cbc1fdfef297183eddcce631c16421ce9b6e1310",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_061b008935a7ab0c016ae5687309d887d18bdd618011e5a5ff",
+        "sha256": "a4f9d74050fa81dbe1a5a9d8a670277d33a22b7d9bf986539254b32f222f4e48"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_061b008935a7ab0c016ae56878102487d198984570b239430e",
+        "sha256": "b0e4a612119fbdde651800513e7601ba6b9101ff7bd8841572f0df2ba8edc13b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_au9kjg877n",
+        "sha256": "f271768af05b83ee6e8cf269735455fed311f9db7a2efbf144c93293e6459630"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.35,
+    "evidence_used": [
+      "artifacts",
+      "manifest"
+    ],
+    "reason": "The manifest records eight runs, including attempts 2, 4, and 8 with exit code 1, while the artifacts list five passing logs labeled 1\u20135, so the per-attempt evidence conflicts. The report's exclusion of infrastructure errors is not independently verified, and the single replay cannot establish the outcomes of five independent patches."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:03:08.845183+00:00"
+}

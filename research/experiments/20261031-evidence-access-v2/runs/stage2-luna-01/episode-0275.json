@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0275",
+  "incident": "inc-6679108eb9e1640b",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:44:21.382160+00:00",
+  "prompt_sha256": "80ffed09cdbe02332a149713cf4d63e73694ee91287c34a77756ae0c0a8932c5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0051aef2068c429496caab304c8cfbe7",
+    "response_id": "gen-1793418261-Q2wNWnyY6oiBQN79xIRd",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1015,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 159,
+      "output_tokens_details": {
+        "reasoning_tokens": 53
+      },
+      "total_tokens": 1174,
+      "cost": 0.000181,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000181,
+        "upstream_inference_input_cost": 0.0001015,
+        "upstream_inference_output_cost": 7.95e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1705,
+    "input_bound": 8740,
+    "reserved_usd": "0.003140500",
+    "request_sha256": "0a8b7d0eda40c1d848f03e5be9cb3162fe0ad8ac7ffbaa97ecf0aefe8dacc3ea",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f091a09ab9d26f8016ae5641649c087d1b452facab94e55fb",
+        "sha256": "8c2fd73a6bed41472cb9f446190dee9de7104670d53d555599ad08075fa19401"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_iit51t96u6b",
+        "sha256": "ee10a189724bf8740b35955a2182e41d6ae60ff46421f885b12efd69a92d7672"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The independent replay reports 4 failures out of 8, including tests for exact-width lines, and exits with code 1. The submitted implementation uses a strict `< width` check, so it rejects a word that would make a line exactly the allowed width; the harness report's pass result is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:44:23.818827+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0563",
+  "incident": "inc-02f351dcc1d17176",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:09:30.277277+00:00",
+  "prompt_sha256": "a49782edf4844cb1bc53763c40ce8da34f520f42a1bec9876ed91532aff4487a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "838ddbd664aa495a8def803b530ed511",
+    "response_id": "gen-1793423370-93gmX5DqAsZTlaq2ZcLo",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 880,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 96,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 976,
+      "cost": 0.00272,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00272,
+        "upstream_inference_input_cost": 0.00176,
+        "upstream_inference_output_cost": 0.00096
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0861,
+    "input_bound": 8166,
+    "reserved_usd": "0.0613750",
+    "request_sha256": "7221d5d514aa890a42d643be89573209747f039d7a98df4b6a6bfeda79efdf7e",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_l65uobbrc4",
+        "sha256": "bae74019a89ab5434db34aab3cb3257fe3be4045482d8ad1acb76e46066283ef"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records a timeout at the 10-second limit with exit code 137, and the isolated replay independently confirms the timeout. Both execution outputs show only seven progress dots and no completed test summary, contradicting the claim that all eight tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:09:33.005393+00:00"
+}

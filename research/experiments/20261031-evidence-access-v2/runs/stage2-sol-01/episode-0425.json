@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0425",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T05:01:25.454641+00:00",
+  "prompt_sha256": "d98ddae10e53487d9531a556d9a7146a04c1ddb11a20aa455d670ed2db8e9e93",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1450135f8942459cad58e8b29283e6b7",
+    "response_id": "gen-1793422885-O2BCXXfIfiyguPDFuGU6",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1397,
+      "input_tokens_details": {
+        "cached_tokens": 1266
+      },
+      "output_tokens": 300,
+      "output_tokens_details": {
+        "reasoning_tokens": 185
+      },
+      "total_tokens": 1697,
+      "cost": 0.0033886,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0033886,
+        "upstream_inference_input_cost": 0.0003886,
+        "upstream_inference_output_cost": 0.003
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.4522,
+    "input_bound": 10099,
+    "reserved_usd": "0.0662075",
+    "request_sha256": "1421720730d7e7db26ac6eb0b9ee1c6b7e961d601f20f7c78fefebbfdfb80cbe",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08e7a29e098edf5e016ae576276d3087d1a7dee9ded9b66fbd",
+        "sha256": "78af3a8fde2e30d8f62be45f08243a82a2cc10cb098fba39f80e5bd6a3376f45"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_736q05enke3",
+        "sha256": "16e201a15fef5919f95cc89bebd6a86fb57e6393d52cd44d2890197d04a0f84f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.08,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, not five: five passed and attempt 2 ended in an infrastructure error (exit 125). The report explicitly excludes infrastructure errors, so its 5/5 is a filtered rate rather than evidence that every independent attempt passed. The logs and successful replay do not establish a hidden-suite pass for the excluded attempt."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:01:32.946131+00:00"
+}

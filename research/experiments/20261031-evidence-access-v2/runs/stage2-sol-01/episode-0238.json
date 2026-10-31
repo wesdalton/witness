@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0238",
+  "incident": "inc-d5d4b59450b5751d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:50:33.027996+00:00",
+  "prompt_sha256": "9cf4c8731e86208cd281d599250edda5c00b2d46fc7269bf3b71c2f1a24f3e6f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "e6845bd6eb2a4f01ad92f3113b4f338c",
+    "response_id": "gen-1793422234-m7YX9VFDFzyN5i6ildBn",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 972,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 100,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1072,
+      "cost": 0.002944,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002944,
+        "upstream_inference_input_cost": 0.001944,
+        "upstream_inference_output_cost": 0.001
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6777,
+    "input_bound": 8459,
+    "reserved_usd": "0.0621075",
+    "request_sha256": "a80a3d4742013737f45a709809c48df46d1b1faa54a7ca2042f973e8b5feb4a5",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nza7ibmbmmn",
+        "sha256": "a4de66861b1d0a8bdb58bd5ee1e91c78e52a35b61554bc75f588596126445eb1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records that the hidden-test invocation timed out at the 10-second limit with exit code 137, and the isolated replay independently confirms that timeout. Both logs show only seven progress dots and no completed test summary, contradicting the claim that all eight tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:50:36.837223+00:00"
+}

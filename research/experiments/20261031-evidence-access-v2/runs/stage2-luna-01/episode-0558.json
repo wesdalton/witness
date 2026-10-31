@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0558",
+  "incident": "inc-0b284bb32f86a375",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:03:18.067216+00:00",
+  "prompt_sha256": "3e2efc775c2efd49aef3820ccf65a92bc134220a9490fb75a0acac6580addb59",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "ce2338f1c25c46c994a6a5760b1d295f",
+    "response_id": "gen-1793419399-XM2zLLY0JPVM3qL7kYg9",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 999,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 230,
+      "output_tokens_details": {
+        "reasoning_tokens": 138
+      },
+      "total_tokens": 1229,
+      "cost": 0.0002149,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002149,
+        "upstream_inference_input_cost": 9.99e-05,
+        "upstream_inference_output_cost": 0.000115
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9785,
+    "input_bound": 8639,
+    "reserved_usd": "0.003127875",
+    "request_sha256": "1e337867d1c9374dd6a51249072a2ffdb981187ed7899866b2c794961f3a346b",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e14829d45ebb2af016ae56888885087d1b93a6cbf8ce56798",
+        "sha256": "2d1ea8363515513755724ecd24fe034b2bdac1b0bd773d6d860739267314fbb6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_3be5vklg84d",
+        "sha256": "94530b71b3d6b954a7e5fb52c91b52ed153e5baeafb0c369ebc5c4931691c6b2"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "manifest"
+    ],
+    "reason": "The isolated replay reports all 9 tests passed with exit code 0, and the manifest identifies the evaluation command and a passed attempt. The replay is direct execution evidence for the submitted artifact, rather than relying only on the harness-generated report."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:03:22.662375+00:00"
+}

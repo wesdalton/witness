@@ -6,10 +6,10 @@ under [`archive/`](archive/) and linked below.
 
 ## Summary
 
-- **No confirmed behavioral finding yet.** The strongest candidate comes from the
-  29 October evidence-access pilot: both models tested accepted a passing report as
-  proof even when the evidence provably could not decide the claim. It needs
-  held-out confirmation.
+- **First confirmed behavioral result (31 October, held-out tasks, two models):**
+  LLM auditors accept a test report that provably cannot decide the claim, and
+  they treat a verifier's exit status 0 as proof even when no tests are shown to
+  have run. Scope: authored fixtures, one provider.
 - Two results hold up, and both are about measurement validity:
   1. A capable auditor exposed two wrong reference labels in our own benchmark.
   2. Agent-written probes can print different text on identical code because of
@@ -17,12 +17,12 @@ under [`archive/`](archive/) and linked below.
 - Every capability task built between 24 and 28 October hit a ceiling: every
   completed audit was correct.
 - The one treatment comparison, the allocation screen, could not have produced an
-  answer as designed (see [Why no finding emerged](#why-no-finding-emerged)).
+  answer as designed (see [Why the earlier studies found nothing](#why-the-earlier-studies-found-nothing)).
 - The active question is now the evidence-access benchmark
   ([directions.md](directions.md), Option 1); see the next section. AGENTS.md has
   the design rules.
 
-## Active study: evidence-access benchmark v1
+## Active study: evidence-access benchmark
 
 Frozen [protocol](experiments/20261029-evidence-access-v1/design/protocol.md),
 29 October 2026. The question: when the evidence an auditor holds provably
@@ -67,10 +67,37 @@ non-separating channel. That is the behavior H1 asks about in LLM auditors.
 - **H1 not observed.** Adding a non-separating channel never raised commitment;
   in 16 of 48 pairs it lowered it.
 
-With report-only commitment at 84% to 100%, H1 has no room to show an increase.
-Stage 2 will not run as frozen. The next step is a v2 protocol on at least six
-held-out tasks. It will test commitment under proven insufficiency by claim type,
-and the inherited exit-status mistake.## Spending
+With report-only commitment at 84% to 100%, H1 has no room to show an increase,
+so Stage 2 did not run as frozen. v2 below replaced it.
+
+**v2 held-out confirmation** (frozen protocol, 2,112 episodes, $2.685;
+[report](experiments/20261031-evidence-access-v2/reports/stage2-01/report.md)).
+This ran on 64 incidents from 8 tasks never used for design. Primary tests use
+Bonferroni-corrected cluster-bootstrap intervals.
+
+- **P1 confirmed for both models.** With only the byte-identical report, Luna
+  committed on 191/192 and Sol on 172/192. They accepted 96/96 and 85/96 invalid
+  claims.
+- **P3 confirmed for both models.** Given only the verifier record of an
+  early-exit run (exit code 0, no test summary), both accepted 48/48. Both refuted
+  48/48 runs whose replay showed failures. Sol often noted the missing summary
+  and accepted anyway.
+- **P2.** Confirmed for Sol: it committed on 120/120 single-run claims and 52/72
+  attempt-rate claims. Not for Luna, as predicted.
+- **Telling the auditor the rule** cut report-only commitment to 0/192 for both
+  models. It cut exit-status acceptance only for Luna (48 to 14 of 48); Sol stayed
+  at 43/48.
+- **A benchmark label defect surfaced.** Valid attempt-rate claims are not
+  actually established, because no per-attempt patch binding exists. It affects
+  only a secondary guard; see the
+  [adjudication](experiments/20261031-evidence-access-v2/adjudications/dropped-attempts-labels-01/adjudication.md).
+
+The closest prior work, [Trusting the Tool](https://arxiv.org/abs/2610.32876),
+found similar deference to unverified analyzer output. These results come from
+authored fixtures and two models from one provider. Testing model families from
+other providers is next.
+
+## Spending
 
 The current phase ledger is [`agent-study/budget.jsonl`](agent-study/budget.jsonl)
 ($25 ceiling). The 18 October pilot has its own ledger and is not included in
@@ -84,7 +111,8 @@ these phase totals.
 | Allocation screen (4 continuation batches) | 253 | $0.145384115 |
 | Query capability series (6 batches) | 217 | $0.060714225 |
 | Evidence-access Stage 1 (Luna 256, Sol 64) | 320 | $0.264261165 |
-| **Phase total** | **910** | **$0.714243375** |
+| Evidence-access v2 (Luna 1,056, Sol 1,056) | 2,112 | $2.685563065 |
+| **Phase total** | **3,022** | **$3.399806440** |
 
 Rows are summed from the ledger by batch. Phase exposure equals billed cost
 because every request settled.
@@ -184,7 +212,7 @@ An automated command guard rejected the setup command on 28 October. Under the
 user's standing instruction, it was not retried. No corpus was built.
 Record: [repository-audit-status-20261028.md](repository-audit-status-20261028.md).
 
-## Why no finding emerged
+## Why the earlier studies found nothing
 
 An external audit on 29 October 2026 found four design problems. The provenance
 was sound.

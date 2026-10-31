@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0217",
+  "incident": "inc-c25927e229d4d86a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:40:40.441464+00:00",
+  "prompt_sha256": "c47d0e3dbf8bcbd91f1250bf2ef99696f01e87a3834b52b71356b592d6b108dd",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d7e3e47cef3a4601b2c5082f6dbbe39b",
+    "response_id": "gen-1793418041-LzEQhAbF5kDjiiBNvJCa",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 797,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 218,
+      "output_tokens_details": {
+        "reasoning_tokens": 114
+      },
+      "total_tokens": 1015,
+      "cost": 0.0001887,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001887,
+        "upstream_inference_input_cost": 7.97e-05,
+        "upstream_inference_output_cost": 0.000109
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9536,
+    "input_bound": 7760,
+    "reserved_usd": "0.003018000",
+    "request_sha256": "8cdfab274103774b62d61aeb98b501678e63f10e1fe60df5742943654aa91ae9",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_05a7664c65ee57a8016ae56339ecf087d1a4d6b61f2fae7a83",
+        "sha256": "18ca4f6551f5f5b05772cb739cf44505577bac15c370956f76627933f537af72"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_jdmgcpz20x",
+        "sha256": "0bf66a50197cd09bce56e31abafb3aee4ad44fae7ae56eedda9219d6e430a19b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest and replay show the pytest run exited 137 and timed out at the 10-second limit, with only seven dots and no completed summary. Although the report claims 8 passed, the recorded execution did not complete within the limit; the submitted implementation also sleeps on every call."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:40:44.120105+00:00"
+}

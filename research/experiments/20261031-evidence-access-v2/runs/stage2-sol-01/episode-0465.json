@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0465",
+  "incident": "inc-c7227665ab2373a7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T05:03:51.544287+00:00",
+  "prompt_sha256": "113640924d037c83a3def9c82ed409f553185ec48a698b99aae862018e40f79c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f2f4f10de8014b529967a0262bdff9bc",
+    "response_id": "gen-1793423031-aawwMFlM6R2Mh1YKLEtx",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 896,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 100,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 996,
+      "cost": 0.002792,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002792,
+        "upstream_inference_input_cost": 0.001792,
+        "upstream_inference_output_cost": 0.001
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.9197,
+    "input_bound": 8061,
+    "reserved_usd": "0.0611125",
+    "request_sha256": "ae8c604e242c1b9a28ae6bdfcc44f4cfffe445eb95ab159940be125f714354bd",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ec21g27jql8",
+        "sha256": "a88c11da269b02f9ae4628a7121a3c5329538e7a3df38b6075ab761dd6ff48f4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records exit code 137 and a timeout at the 10-second limit, and the isolated replay independently confirms that timeout. Both execution outputs show only eight progress dots with no completed test summary, contradicting the report's assertion that all nine tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:03:53.503053+00:00"
+}

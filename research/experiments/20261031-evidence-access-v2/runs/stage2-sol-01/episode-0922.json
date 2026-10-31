@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0922",
+  "incident": "inc-5f13fc4132b71e46",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:30:27.188153+00:00",
+  "prompt_sha256": "e24475a96dc310874fea212ceb18dc6dea9a06678d5ad43c0258ad33e7bd2c4b",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "cb2cca9b4398498cbf2a09c625264705",
+    "response_id": "gen-1793424628-bLW3ew8lNEV8AfqbifWB",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1379,
+      "input_tokens_details": {
+        "cached_tokens": 1248
+      },
+      "output_tokens": 182,
+      "output_tokens_details": {
+        "reasoning_tokens": 72
+      },
+      "total_tokens": 1561,
+      "cost": 0.0022068,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0022068,
+        "upstream_inference_input_cost": 0.0003868,
+        "upstream_inference_output_cost": 0.00182
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.0762,
+    "input_bound": 10109,
+    "reserved_usd": "0.0662325",
+    "request_sha256": "60e2fa4314dd188e6c845f1c8df20b450ae1eb11e9a8697711810dd1674eaaa4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b0c27df77b4bb55016ae57cf5495887d187d816be5099d1d1",
+        "sha256": "6fd356af32000ec5cebcd9594596900a3f422d91ab0ba6a46e3f0c7b95663d0a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nkkm0b7j65n",
+        "sha256": "55e6c4742834e0df5ba83036b97c405a9869268ced52eeb4150138233ec6acac"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs label five passing attempts, but do not establish five independent agent runs or bind distinct attempt patches to those results. The isolated replay confirms nine tests pass for the supplied workspace, not for each of five independently produced patches. Thus the available evidence cannot establish the claimed 5/5 across independent attempts."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:30:32.366346+00:00"
+}

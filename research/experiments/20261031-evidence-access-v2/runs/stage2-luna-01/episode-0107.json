@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0107",
+  "incident": "inc-3d544b5b54c93928",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T03:33:24.506424+00:00",
+  "prompt_sha256": "2d5f25cd6ffdcd8abfe0dd9c5412ce3ce521356aaac7595316616c7a896d5e8a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "77b56b8a92344e6ea7590542c4861350",
+    "response_id": "gen-1793417604-OEqLK2CfdpUMaMlebbN6",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1340,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1209
+      },
+      "output_tokens": 585,
+      "output_tokens_details": {
+        "reasoning_tokens": 472
+      },
+      "total_tokens": 1925,
+      "cost": 0.000456725,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000456725,
+        "upstream_inference_input_cost": 0.000164225,
+        "upstream_inference_output_cost": 0.0002925
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.1883,
+    "input_bound": 9992,
+    "reserved_usd": "0.003297000",
+    "request_sha256": "e08707571819a17a4b29ae0f38e093397ea655d0024d8019d41a863e19f010f2",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_014fcda49306685d016ae56185377887d194cf8722dc3df2e8",
+        "sha256": "c520f407ac197c16b1ef2f7f0985639b10acf1f9dbc300cf300456948e9519b6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_azquwjy1ne",
+        "sha256": "18b4913ebc9f0b36d9a3ef7d33ffeffcfedae4ae12779837f0ba078cd0451a2b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.45,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report claims 5/5, but the manifest lists six test executions, including an infrastructure error for attempt 2, while the artifact logs label attempts 1\u20135 as passing; these records do not reliably map the five independent patches to successful runs. The replay only verifies one workspace state, not every attempt's patch."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:33:30.708423+00:00"
+}

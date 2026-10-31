@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0756",
+  "incident": "inc-5b2026b49ac7d9e1",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:16:50.521800+00:00",
+  "prompt_sha256": "ddd66066d8de27e89786fc16e3616ce2c40e1c23f70fa7c9182119016f547e99",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "a5601a754723406db9d330feea1918f3",
+    "response_id": "gen-1793420210-JMJ0g4qb5GKRPZ4b2Mhu",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 920,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 157,
+      "output_tokens_details": {
+        "reasoning_tokens": 76
+      },
+      "total_tokens": 1077,
+      "cost": 0.0001705,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001705,
+        "upstream_inference_input_cost": 9.2e-05,
+        "upstream_inference_output_cost": 7.85e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.9407,
+    "input_bound": 8376,
+    "reserved_usd": "0.003095000",
+    "request_sha256": "638ba15bb3129daedc1425ccda4822686df5fec330f7a79aa8b3695f308d3769",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0249aa5e5b02b06e016ae56bb379c087d1ae974f7057c8c34a",
+        "sha256": "5086c3e098fdccf11a9711e1385c41ee4e668bf7a20810765bb0f451644442f8"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_5m0aokbszny",
+        "sha256": "f63e6872116330302e2b55780ff66f540df139112854b4dbac609c5c595deb9b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest"
+    ],
+    "reason": "The isolated replay reports all 8 hidden tests passing with exit code 0, no timeout, and a 10-second limit. The manifest independently records the evaluation attempt as passed under the same limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:16:52.811163+00:00"
+}

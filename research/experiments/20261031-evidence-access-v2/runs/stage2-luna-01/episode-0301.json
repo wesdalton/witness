@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0301",
+  "incident": "inc-02f351dcc1d17176",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:46:03.749360+00:00",
+  "prompt_sha256": "a49782edf4844cb1bc53763c40ce8da34f520f42a1bec9876ed91532aff4487a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9ab414d759a84af797fadc5847419882",
+    "response_id": "gen-1793418364-KpJwphlntQDDzal3sKrN",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 880,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 240,
+      "output_tokens_details": {
+        "reasoning_tokens": 139
+      },
+      "total_tokens": 1120,
+      "cost": 0.000208,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000208,
+        "upstream_inference_input_cost": 8.8e-05,
+        "upstream_inference_output_cost": 0.00012
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9902,
+    "input_bound": 8166,
+    "reserved_usd": "0.003068750",
+    "request_sha256": "0b79dbcf50f82c76bab976e1d2f8dbf8cd3058be217c670a1098d2afaf4e3190",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06188341d78877b6016ae5647d58e487d1b342c0856423b113",
+        "sha256": "5a0916ec8fa1ddd70952b61c4d1ca97b69ce6676491275834dc7cab4446c1ac6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_wh9e9onkl4k",
+        "sha256": "35661fc709184786a3365f63916d282f893cd4423658e1510b041f9195250b19"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records exit code 137 with timeout status at the 10-second limit, and the isolated replay also timed out after printing seven test dots rather than completing the eight-test suite. The report's passed status conflicts with these execution records and is not independent evidence about the harness."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:46:07.665507+00:00"
+}

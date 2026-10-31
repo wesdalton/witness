@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0539",
+  "incident": "inc-02f351dcc1d17176",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T04:02:01.745775+00:00",
+  "prompt_sha256": "b07d40f2894eebdd6cfda72a7b1fbc0fa447aa5ce48af04c8fc06b7d6c1b7af6",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3368bdc5c1094754a6249c969cc63665",
+    "response_id": "gen-1793419322-N3imTYTyBfvH4HqylBUe",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 839,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 212,
+      "output_tokens_details": {
+        "reasoning_tokens": 105
+      },
+      "total_tokens": 1051,
+      "cost": 0.0001899,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001899,
+        "upstream_inference_input_cost": 8.39e-05,
+        "upstream_inference_output_cost": 0.000106
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.8384,
+    "input_bound": 7951,
+    "reserved_usd": "0.003041875",
+    "request_sha256": "57529e40717886d51e591e4e4cf7382f2560311ac11407e104f189c55f3cc207",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e82b6084115ca9b016ae5683e03c087d18dd2687a79a6551e",
+        "sha256": "0dd3082b98f7076175a2140ffcffa135dc9f10b7b01f1d63fac6c74412e4266a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_g4lbxr1ctnv",
+        "sha256": "0f58f32b5aa5c01b475b3870f8dfdc6796e8b9ee1ac40f5d640439475875c51f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Although the report says 8 tests passed, the manifest and replay show exit code 137 with a timeout at the 10-second limit and only seven progress dots, with no completed test summary. The submitted implementation also sleeps 0.4 seconds on every wrap call, consistent with the observed timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:02:08.615563+00:00"
+}

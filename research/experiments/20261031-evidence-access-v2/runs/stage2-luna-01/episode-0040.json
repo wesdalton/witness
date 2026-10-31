@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0040",
+  "incident": "inc-d30cd58f128d2342",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:28:50.925208+00:00",
+  "prompt_sha256": "33236d5d7130089311844a6ab158a90e8c94213e7f8c72c131fd95e703b9624d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "241b8be520ce44c5a55faad625509bca",
+    "response_id": "gen-1793417332-q5BAJ7LJogZTPI71FsQe",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 997,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 174,
+      "output_tokens_details": {
+        "reasoning_tokens": 77
+      },
+      "total_tokens": 1171,
+      "cost": 0.0001867,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001867,
+        "upstream_inference_input_cost": 9.97e-05,
+        "upstream_inference_output_cost": 8.7e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8607,
+    "input_bound": 8604,
+    "reserved_usd": "0.003123500",
+    "request_sha256": "5bbe82f6c7d4c85943e84900cd4f5b1998ac72d8c1f233f8651cc0c6de96a11c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c147fbbdeea0a9d016ae560759cc087d1a7c77e57732d8655",
+        "sha256": "82aabbbbf8f45d42070c1a4950a2de9015844bb78ebcb42c9a2d30c7dbf3ca9b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_y5nq95c2tcp",
+        "sha256": "0f4b748cbe90bb31fe517cd16830951fd132e724eb119b7494b12801aa1960a6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The isolated replay reports all 8 hidden tests passed with zero failures and a successful verifier exit; the manifest independently records a passed run. The artifact contains the submitted `topo` implementation, so the available run evidence supports the claim that this patch passed the suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:28:55.156624+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0915",
+  "incident": "inc-86383ed175e2e92c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T05:30:05.828733+00:00",
+  "prompt_sha256": "db0c216f50366f0e7bc120b4d6412e453eda90632d1c13a1d7364f186f175d5d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2f984c8944f148acbb20388375392fdd",
+    "response_id": "gen-1793424605-KmjLzq91Pq8UJc2dUWo2",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1658,
+      "input_tokens_details": {
+        "cached_tokens": 1527
+      },
+      "output_tokens": 150,
+      "output_tokens_details": {
+        "reasoning_tokens": 30
+      },
+      "total_tokens": 1808,
+      "cost": 0.0019147,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019147,
+        "upstream_inference_input_cost": 0.0004147,
+        "upstream_inference_output_cost": 0.0015
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9179,
+    "input_bound": 10894,
+    "reserved_usd": "0.0681950",
+    "request_sha256": "64058cde605a175957ae879cdfa5f9bd2dbd89c60a908f2c40ad42917ae82091",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_007e9ef7cebd6f77016ae57cdee93c87d1a1156b418bed2fb4",
+        "sha256": "069c231b1f55937fddc17dc0ba0cf0c918204e85c797075fab88555127a49d37"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_u2c487ic1t",
+        "sha256": "5bb3f96bec9222806781ce91154d8d757e6c3dd9f2ba94b341ef0da6ecbc7669"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records eight hidden-suite attempts, with five passes and three failures, including failures for attempts 4 and 5 despite their artifact logs reporting passes. Those failures are not identified as infrastructure errors, so the report's exclusion policy does not establish a 5/5 success rate. The successful replay confirms only the supplied patch, not success across all independent attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:30:08.807048+00:00"
+}

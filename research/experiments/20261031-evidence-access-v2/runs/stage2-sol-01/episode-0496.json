@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0496",
+  "incident": "inc-86383ed175e2e92c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T05:05:36.824262+00:00",
+  "prompt_sha256": "4a90177d95942cf4d32098bfde50ba382a2ad029bddbb6b54dcdad5a20397d92",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "1d96efbbb3e347a78f475fee15ab775d",
+    "response_id": "gen-1793423136-FJQ0gQSWQQqGpHYeAYZK",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1699,
+      "input_tokens_details": {
+        "cached_tokens": 1568
+      },
+      "output_tokens": 141,
+      "output_tokens_details": {
+        "reasoning_tokens": 24
+      },
+      "total_tokens": 1840,
+      "cost": 0.0018288,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0018288,
+        "upstream_inference_input_cost": 0.0004188,
+        "upstream_inference_output_cost": 0.00141
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5645,
+    "input_bound": 11109,
+    "reserved_usd": "0.0687325",
+    "request_sha256": "b43e7cf4581af73ea8cfef5d014b4f7dca6a764a0c6b4dae437cca9b920d00d2",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0eac502cdd81862d016ae57722e69087d1a9e5a34d02bc46d0",
+        "sha256": "d0685cfd542b31e27d2f0e9c27d65a952930b5ff2b9eee6c2564b73ad770ac00"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2tq1qeyeusf",
+        "sha256": "1b0747b820386dc169255bebe0a2cf17ce4ce9f45f71867757db915ad1d84c8b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The manifest records eight attempts, including failures with exit code 1 on attempts 4, 5, and 7, contradicting the claim of five attempts with no failures. The report excludes alleged infrastructure errors but provides no evidence that these failures were infrastructure-related. The successful isolated replay establishes only that the replayed patch passes, not that every independent attempt passed."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:05:40.432700+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1028",
+  "incident": "inc-663ce2c0379c59be",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:34:19.729994+00:00",
+  "prompt_sha256": "b1d8a594967bb93c509fd6ca5953c5c790eb08ff04695d5b93b3c3ee0277ed3b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f147af2764e74b608eb10e0eb4f10cfd",
+    "response_id": "gen-1793421260-QJQBYlsxvKsCKm7MZXHs",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1413,
+      "input_tokens_details": {
+        "cached_tokens": 1282
+      },
+      "output_tokens": 545,
+      "output_tokens_details": {
+        "reasoning_tokens": 437
+      },
+      "total_tokens": 1958,
+      "cost": 0.00029842,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00029842,
+        "upstream_inference_input_cost": 2.592e-05,
+        "upstream_inference_output_cost": 0.0002725
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.9405,
+    "input_bound": 10189,
+    "reserved_usd": "0.003321625",
+    "request_sha256": "eed0f09150ff9ce0b2563e3dae61975a655dda03282e03a3c5ab16615374cd8e",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_01038bafd3925d56016ae56fccec7487d182169e595f42e3c0",
+        "sha256": "fca5c8e4386d333bf582008c6c2d25cc21a9f6fb4a5da6b86a90f3117db1fb70"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ub8xjne198",
+        "sha256": "69fdd9498364cb143c44a50b4148e0a30a3e8706afb0292182d1673ef89674b0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records attempt 2 among the first five as failed with pytest exit code 1, contradicting the claim that all five attempts passed. Although the report and artifact logs say 5/5 passed, those records conflict with the manifest, and no evidence identifies attempt 2 as an infrastructure error eligible for exclusion."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:34:26.181492+00:00"
+}

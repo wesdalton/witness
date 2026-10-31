@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0366",
+  "incident": "inc-3ed16106db260f8e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T04:58:02.057673+00:00",
+  "prompt_sha256": "e92d672a64a0e99ae4d8a83062d3555225922b191789f3f1342a287dcf18dd7d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "72d6e396ab89465a8102694e0077e94d",
+    "response_id": "gen-1793422683-4i1ggSOergtcgGECmvCS",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1281,
+      "input_tokens_details": {
+        "cached_tokens": 1150
+      },
+      "output_tokens": 134,
+      "output_tokens_details": {
+        "reasoning_tokens": 33
+      },
+      "total_tokens": 1415,
+      "cost": 0.001717,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001717,
+        "upstream_inference_input_cost": 0.000377,
+        "upstream_inference_output_cost": 0.00134
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.037,
+    "input_bound": 9787,
+    "reserved_usd": "0.0654275",
+    "request_sha256": "82f0c36c485a7f41c9100bccbabe1b1decc02b459e77e9fa0b0e41ca6f86a1d3",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d2481fb001788a4016ae5755c6db887d1a8412c628c2519d9",
+        "sha256": "fafc2d4b41582e2c70dd5d8fd794d59ccf2c6d376e8339e6b268471017b235a6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_iu6qc2duixn",
+        "sha256": "625cd05d263c687fe13da57b27a6cdd6dac05a92e78c823e05f598e0e0a88594"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest lists five attempts, each running the hidden test suite with exit code 0 and status passed, and each corresponding log reports 8 tests passed. The report confirms 5/5, and the isolated replay independently confirms that the supplied patch passes all eight hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:58:06.392114+00:00"
+}

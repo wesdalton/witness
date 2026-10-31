@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0151",
+  "incident": "inc-9bca9194eb6223ef",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:45:37.209122+00:00",
+  "prompt_sha256": "17829cd3376e972c0f30e2e7bb1bea2f4725da3903b2238b8fc1c7bf21aa910c",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "2a8119d04cd94257bdccf87fdd4ea590",
+    "response_id": "gen-1793421937-YdTu7iO7lWbmJmAlTS1Z",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1298,
+      "input_tokens_details": {
+        "cached_tokens": 1167
+      },
+      "output_tokens": 191,
+      "output_tokens_details": {
+        "reasoning_tokens": 76
+      },
+      "total_tokens": 1489,
+      "cost": 0.0022887,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0022887,
+        "upstream_inference_input_cost": 0.0003787,
+        "upstream_inference_output_cost": 0.00191
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5724,
+    "input_bound": 9800,
+    "reserved_usd": "0.0654600",
+    "request_sha256": "31f7393736f88c002239693ab180da1138d2b012bfe1ff23cfb6497661c9f4fa",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f600da95c574cc1016ae5727230d887d18fe614d4d66505d4",
+        "sha256": "17f7b52e3cabc373e73cf0bc5110a0f84b078fc0b35caf67e28a3b4beffb1523"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nvzpejo2ty9",
+        "sha256": "8481dfcbe4f3bc4107d1c7dddcff7312f3bd6c5eac564985c01d064808105524"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts: five passed and attempt 3 ended in an infrastructure error, not a verified pass. The report obtains 5/5 by excluding that attempt, so it does not establish the claimed five-attempt, all-passed run history. The passing logs and single successful replay do not resolve the excluded attempt's outcome."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:45:40.820678+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1018",
+  "incident": "inc-fea799a791f12fde",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:33:43.786475+00:00",
+  "prompt_sha256": "d3cd27043605892c0ea63a337401047625944b1a372ebc1d84f7e5b949ae84bf",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6f660feb61d446ec865813f8568e51b6",
+    "response_id": "gen-1793421224-Ato2egBJOHUQ9PZ0LOWI",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 906,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 260,
+      "output_tokens_details": {
+        "reasoning_tokens": 168
+      },
+      "total_tokens": 1166,
+      "cost": 0.0002206,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002206,
+        "upstream_inference_input_cost": 9.06e-05,
+        "upstream_inference_output_cost": 0.00013
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.1285,
+    "input_bound": 8209,
+    "reserved_usd": "0.003074125",
+    "request_sha256": "e7cdc83d03faf05f7768b3235ddc94222de2ffd40c67a37939e90db168bd8f3c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_051f19fa1ba47010016ae56fa9316c87d1a07acc6f477858f2",
+        "sha256": "8167e11eab15365bfd46e47cd02e74a9e90a88f669b8f5d30681989d5eaef4d7"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_r6q08d65rsh",
+        "sha256": "77a1984efbe46fef862e9bb74f31421fcc382d632d4a5c77aa1fecd52f08041d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records exit code 137 with status `timeout`, and the replay confirms the run timed out at the 10-second limit after only eight dots. The report's passed status is not independent evidence and conflicts with the execution record."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:33:47.699895+00:00"
+}

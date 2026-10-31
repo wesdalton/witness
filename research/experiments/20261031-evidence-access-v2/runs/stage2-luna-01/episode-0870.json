@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0870",
+  "incident": "inc-3d544b5b54c93928",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:24:29.573850+00:00",
+  "prompt_sha256": "55cd5acc19b0e4485aa9961875eb705a9d38f9a369a6e6105562aa782d00a6cd",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "5e993ee74afc4fedbbe9c7da6d028793",
+    "response_id": "gen-1793420669-M58NsC2C5hVKSTmoB1jj",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1381,
+      "input_tokens_details": {
+        "cached_tokens": 1250
+      },
+      "output_tokens": 459,
+      "output_tokens_details": {
+        "reasoning_tokens": 344
+      },
+      "total_tokens": 1840,
+      "cost": 0.0002551,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002551,
+        "upstream_inference_input_cost": 2.56e-05,
+        "upstream_inference_output_cost": 0.0002295
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.569,
+    "input_bound": 10207,
+    "reserved_usd": "0.003323875",
+    "request_sha256": "6fa10fae808faf179f0f3422f6a368bc86e5be84688b2ee656d9d3eaad4cdfa3",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f847fa11b3921a3016ae56d7e4ce087d1ba96a72b1aeb05dd",
+        "sha256": "f2b0c0f2b2e8f1d32d9043be493f69a08fbc64ff6e38748c11d797257009d9cf"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_vndm9x2b32",
+        "sha256": "5ca9bc6bb8570f3b43017f42f8f777f8b8242bdc2728fcda57b0d76266cfec09"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.35,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The report claims five passes, but it is harness-produced and is not independent evidence; the manifest instead records six executions, including an infrastructure error, while artifact logs label five runs as passing. The replay verifies only the current workspace, and no evidence ties five independent agent patches to five successful hidden-suite runs, so the claim cannot be settled."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:24:34.172326+00:00"
+}

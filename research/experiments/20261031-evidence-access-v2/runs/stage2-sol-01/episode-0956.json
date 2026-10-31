@@ -1,0 +1,62 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0956",
+  "incident": "inc-9e85dd9db5bf4129",
+  "access": [
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 5,
+  "started_at": "2026-10-31T05:32:23.832850+00:00",
+  "prompt_sha256": "6e9f015ea0fd2789f220b019852bccd5b364604d94fe272dec5a0f0da27bf0bf",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b1d09ed03fcc4f678921ee3cc39f1736",
+    "response_id": "gen-1793424745-B7rUVb5hfIjGogyd4nPR",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 532,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 87,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 619,
+      "cost": 0.001934,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001934,
+        "upstream_inference_input_cost": 0.001064,
+        "upstream_inference_output_cost": 0.00087
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2753,
+    "input_bound": 6798,
+    "reserved_usd": "0.0579550",
+    "request_sha256": "19d93305f0574c0f7a0ef82dd708a586c516b1e26a27f52338afcf608421c30d",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_r5z1vauq568",
+        "sha256": "e3960c8e1c8d6b8763d06ad255cc1b4a7c04977573a429fa036501479a1c17a0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay"
+    ],
+    "reason": "The isolated replay ran all eight hidden tests and reported four failures and four passes, exiting with code 1 without timing out. This directly contradicts the claim that the patch passes the suite; the harness's own passing report is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:32:27.484861+00:00"
+}

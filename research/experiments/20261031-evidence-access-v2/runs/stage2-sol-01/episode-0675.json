@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0675",
+  "incident": "inc-5efaa6b7a36d102c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T05:15:49.801063+00:00",
+  "prompt_sha256": "5d0266f34dc0cb85faf7b1c2109eaebb971d1d959d5236e5beef1fbdd364b379",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "ef9465eb72dc43a2a32d7edb63511f19",
+    "response_id": "gen-1793423750-RmkmsCgSObZtnhQSpleC",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1348,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1217
+      },
+      "output_tokens": 153,
+      "output_tokens_details": {
+        "reasoning_tokens": 30
+      },
+      "total_tokens": 1501,
+      "cost": 0.0048345,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0048345,
+        "upstream_inference_input_cost": 0.0033045,
+        "upstream_inference_output_cost": 0.00153
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.8286,
+    "input_bound": 10047,
+    "reserved_usd": "0.0660775",
+    "request_sha256": "bb074d821c5bd58e4e541f3f02db1aabf01486ea40c6625de0bfed332dcdb2af",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ddb39098e45cbcb016ae579883bdc87d1add1ed83ac7d57d7",
+        "sha256": "04956acf5b9b49cfb679e419c49df158f414f9e8e8f76e0ca089b64a4b027514"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_hrzvbry67t5",
+        "sha256": "a07dd122e65ca7334ec626b5d5255ffe8f1f486532007f8317329cb2b73e5727"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs record five passing runs, but do not establish five independent agent attempts or bind each run to a distinct attempt's patch. The isolated replay corroborates a passing test execution for the supplied workspace, not all five attempts. Thus these records could look the same if one successful patch were reused or replayed, and the harness's own report cannot independently settle the claim."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:15:54.638542+00:00"
+}

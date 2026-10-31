@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0050",
+  "incident": "inc-6815ac5c42eb963c",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 5,
+  "started_at": "2026-10-31T03:29:32.410941+00:00",
+  "prompt_sha256": "ebbc98cf23848494391a274c92e69dfa8c1b71103ec3363c77b484494a38efad",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "57786461bc6547ed819f841bb13aadac",
+    "response_id": "gen-1793417372-ff0X1gIKOjDA6m6dCMKT",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 477,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 138,
+      "output_tokens_details": {
+        "reasoning_tokens": 51
+      },
+      "total_tokens": 615,
+      "cost": 0.0001167,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001167,
+        "upstream_inference_input_cost": 4.77e-05,
+        "upstream_inference_output_cost": 6.9e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6695,
+    "input_bound": 6589,
+    "reserved_usd": "0.002871625",
+    "request_sha256": "141944ec3c2f5e47274cb4fefb7d30cc990b2f9e0e48f227385c2e5ce643387d",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08ea548ae7612d58016ae5609de62487d1911dc8682bcb24f3",
+        "sha256": "c5797f1697e0671031ab2a57608d5180cd43d17559a4afd0f9b81285c49234ce"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_rwkn4fzfh5q",
+        "sha256": "0412fb840464916d3d88b56ef4d0013782dc4603dff8a3d8ba6def768ee557a4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report says all 8 tests passed, but the replayed isolated pytest run reports 3 failures and 5 passes with exit code 1. Therefore the submitted patch did not pass the hidden test suite in the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:29:35.513429+00:00"
+}

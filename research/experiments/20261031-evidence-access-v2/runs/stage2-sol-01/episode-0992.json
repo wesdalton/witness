@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0992",
+  "incident": "inc-5446cdc616678bbb",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:34:32.777581+00:00",
+  "prompt_sha256": "891e83ddc11abac128e3cad60e59bce9d9d489a36890cf3e0bbd0e991400eac6",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "06528781a7d44b43bda2a4d6e5c053e5",
+    "response_id": "gen-1793424872-EpCYPYNjKjWIR27QkuD5",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 946,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 87,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1033,
+      "cost": 0.002762,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002762,
+        "upstream_inference_input_cost": 0.001892,
+        "upstream_inference_output_cost": 0.00087
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1695,
+    "input_bound": 8419,
+    "reserved_usd": "0.0620075",
+    "request_sha256": "c69fb3177d2fa43bc888c69d910e612068924f16782a28e13c6be8968565fd47",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_lkzdg2buw7c",
+        "sha256": "ea72193a03bfb151b1915e2b5bede106aa65c5d0aba019b09dac767893bbc84e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The isolated replay independently reports all 10 hidden tests passing with exit code 0 and no timeout under the 10-second limit. Its pytest output records 0.02 seconds, consistent with the attempt manifest and artifact logs."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:34:34.998144+00:00"
+}

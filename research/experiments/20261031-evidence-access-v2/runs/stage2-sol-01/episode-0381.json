@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0381",
+  "incident": "inc-a79cdcda3b46425f",
+  "access": [
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 5,
+  "started_at": "2026-10-31T04:58:53.910287+00:00",
+  "prompt_sha256": "5ce3ba215c6361220cf453a81e8f062ad42c5d6cc46146ee0c475248d0420c60",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f2f6b3111ab0465eaa3dfb19c55f8dac",
+    "response_id": "gen-1793422734-EKTpkntaJgqmXN7Dp6TH",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 404,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 164,
+      "output_tokens_details": {
+        "reasoning_tokens": 75
+      },
+      "total_tokens": 568,
+      "cost": 0.002448,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002448,
+        "upstream_inference_input_cost": 0.000808,
+        "upstream_inference_output_cost": 0.00164
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.7666,
+    "input_bound": 6368,
+    "reserved_usd": "0.0568800",
+    "request_sha256": "fc69b75e09f9fae7590a4ddae5b1d778a3bcb78e5502637e94a9b4a1e90ff2ad",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08f7048743c223c1016ae57590ac7c87d183c8dab398afa74c",
+        "sha256": "e0ef9e7c6fbef6fcf4f6ae54eb8614011733073651b896e290afaa432ba3bd3b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_lr9uvnb68t",
+        "sha256": "850d3a86d530e27ed67411e1caff48f62609b54e56def421ff44fccf7150e88f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "replay",
+      "report"
+    ],
+    "reason": "The independent replay ran isolated pytest with the real runner imported before the workspace and exited successfully without timing out, supporting that the patch passes the suite. The report identifies 13 passing tests, although the replay provides no summary independently confirming that count."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:58:58.677213+00:00"
+}

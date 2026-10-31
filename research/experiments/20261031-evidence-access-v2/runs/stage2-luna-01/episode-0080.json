@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0080",
+  "incident": "inc-e969650a1b9f42f3",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:31:39.219341+00:00",
+  "prompt_sha256": "63558b07ce9a972153ca38768bb5bbe7ff8517950863468bc73b9fd9182addcf",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3f2a94a77d344c70879d62e5dcd73b9c",
+    "response_id": "gen-1793417499-WdboA73haWjT0UxBaN2F",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1589,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1458
+      },
+      "output_tokens": 598,
+      "output_tokens_details": {
+        "reasoning_tokens": 491
+      },
+      "total_tokens": 2187,
+      "cost": 0.00049435,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00049435,
+        "upstream_inference_input_cost": 0.00019535,
+        "upstream_inference_output_cost": 0.000299
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.3493,
+    "input_bound": 10903,
+    "reserved_usd": "0.003410875",
+    "request_sha256": "e8712617c7fc1909459cca378e97d268fdc1e3938d3e56c9988b8556b4e50f2a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_034feb3661c19347016ae5611c38fc87d1a58c3c897e36a0ea",
+        "sha256": "058f6af05aa960995da5ff89d85d3d1b17e5cf39e9c50630de6af0ec0c6fb38d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_15ciuq38ejp",
+        "sha256": "98d5f53f69c32908cd31a67d81213f8bffda3413aa0917482caacf660d43daad"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records attempts 2, 3, and 4 as failed (exit code 1), so it does not support every one of the five attempts passing. The report and per-attempt logs say 5/5 passed, but that conflicts with the manifest; the replay only verifies a single run."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:31:46.585011+00:00"
+}

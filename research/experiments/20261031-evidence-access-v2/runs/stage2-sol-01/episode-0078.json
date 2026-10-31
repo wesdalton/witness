@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0078",
+  "incident": "inc-c6ba44b96b9a4955",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:41:17.706420+00:00",
+  "prompt_sha256": "db79284614cee0f4d3b4dcbb9d1b037f3c5e73d20222e5d46e798ab64cf45f9f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "cb8c2cf9ce334f318d97233a830b2042",
+    "response_id": "gen-1793421680-rVJ8yp7TGKx6rS6InBJh",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1012,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 96,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1108,
+      "cost": 0.002984,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002984,
+        "upstream_inference_input_cost": 0.002024,
+        "upstream_inference_output_cost": 0.00096
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5249,
+    "input_bound": 8668,
+    "reserved_usd": "0.0626300",
+    "request_sha256": "8bbbdfc5c412df279fe59b79d1f783a40ede75b9b2768ca41a710ccd07a0b3b7",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_un5cp220hko",
+        "sha256": "134284d233694d5eb9cbeb2817e3cb15f0689ba1a8cd5fcb01bd5e9c35e3593a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The isolated replay used the real pytest runner imported before the workspace and independently recorded all 8 tests passing, exit code 0, and no timeout under the 10-second limit. Its reported 0.02-second runtime and results agree with the manifest and artifact logs."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:41:22.348965+00:00"
+}

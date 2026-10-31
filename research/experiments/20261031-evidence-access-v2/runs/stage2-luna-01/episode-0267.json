@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0267",
+  "incident": "inc-b4c026f64080f7cc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T03:43:52.713453+00:00",
+  "prompt_sha256": "42796534d78da949dc945ba95a8e5d79325743a0605f9cf0ee3e929c0dc10178",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b06e6cfccd9a406c993194ba23ffa64f",
+    "response_id": "gen-1793418233-xIC5JKQohmUk5fqkqJ4u",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1280,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1149
+      },
+      "output_tokens": 301,
+      "output_tokens_details": {
+        "reasoning_tokens": 205
+      },
+      "total_tokens": 1581,
+      "cost": 0.000307225,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000307225,
+        "upstream_inference_input_cost": 0.000156725,
+        "upstream_inference_output_cost": 0.0001505
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.4491,
+    "input_bound": 9810,
+    "reserved_usd": "0.003274250",
+    "request_sha256": "9c3e8092963edd6e2391b003d62e8ef08e2b51792672c28c6b8cfb0c91bdb5f1",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_053b06c06da8cf4a016ae563f9bc1c87d19085557ae83b468f",
+        "sha256": "7267e7e94c2e0be765ba75d2740716ea041e7bab62b630f98977ad6c98e74f10"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_tt7ldkn3gv9",
+        "sha256": "d97fd2786525a863aafec40bf60eecbbb1107c654f8a3b4dc1934eb58c8a4447"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The replay verifies a passing test run for the available workspace, but it does not establish that five independent attempts each had their own patch tested. The logs and manifest list five passes, yet provide no attempt-specific patches or independent verification tying each pass to one."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:43:56.565768+00:00"
+}

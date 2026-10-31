@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0337",
+  "incident": "inc-4c4e2619333aad2c",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:48:25.341998+00:00",
+  "prompt_sha256": "eb134a1424599abf2d18286176fd3683d767f3ff1ee7d4e80cf8119a4b915cd4",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7c2dfd49f6254dcab5800c0ba27dd633",
+    "response_id": "gen-1793418506-Gz1ahGGSfJq9yW3c0m24",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 476,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 136,
+      "output_tokens_details": {
+        "reasoning_tokens": 48
+      },
+      "total_tokens": 612,
+      "cost": 0.0001156,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001156,
+        "upstream_inference_input_cost": 4.76e-05,
+        "upstream_inference_output_cost": 6.8e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7818,
+    "input_bound": 6590,
+    "reserved_usd": "0.002871750",
+    "request_sha256": "28215b819e36c1008e56deb12ae6660daee1ae07b9071f938b7e95cf79b4b46a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_04846641b27c847c016ae5650b4d6487d19598fa47fbe3541f",
+        "sha256": "a5d2afbe0d70818e378481f6795a16f0789884257384db568dd36d02a9265d7e"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2d0bjfgkylv",
+        "sha256": "a60cccd15d2b2cfac9bf241fd2cbefb6e1f4f2b521a6573909eece319afc616e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report says all 13 tests passed, but the replay of the isolated pytest verifier records 3 failures and only 10 passes. Since the claim is that the patch passes the hidden suite, the replay directly contradicts it."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:48:28.951308+00:00"
+}

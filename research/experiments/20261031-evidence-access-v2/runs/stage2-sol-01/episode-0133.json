@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0133",
+  "incident": "inc-8754318966e0e57e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T04:44:34.589133+00:00",
+  "prompt_sha256": "474b4ec8fc23ae19430d6c2f6ff7942b99c2382409e1f91019fc0d60356250d9",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d8633cb81e0148209d4acd8d7f8f109a",
+    "response_id": "gen-1793421875-HRnqkBYicxvFH3mKQhDL",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1366,
+      "input_tokens_details": {
+        "cached_tokens": 1235
+      },
+      "output_tokens": 281,
+      "output_tokens_details": {
+        "reasoning_tokens": 163
+      },
+      "total_tokens": 1647,
+      "cost": 0.0031955,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0031955,
+        "upstream_inference_input_cost": 0.0003855,
+        "upstream_inference_output_cost": 0.00281
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.4024,
+    "input_bound": 10037,
+    "reserved_usd": "0.0660525",
+    "request_sha256": "29eb5a196f3b2e10422f08b16b7533d7b780be0f318babf96a30186c4e98f3b7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0358d51422634735016ae572342e4887d191c0d1d2ced1200d",
+        "sha256": "c7f29631235a1dd0213a731950aebac8f18589adeffb8d78a9445121fe40ef66"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_sn5lrsg6wn8",
+        "sha256": "d5d18903e483d14723f707a8b661bc9380d2e74f70a72ab57f9b15ce3fa17d88"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.4,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts: five passed and one ended in an infrastructure error, leaving that patch's hidden-test outcome unknown. The report explicitly excludes infrastructure errors, so its 5/5 establishes success among completed evaluations, not that every independent attempt's patch passed. The supplied logs and successful replay do not resolve the unevaluated attempt or establish independence."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:44:40.528136+00:00"
+}

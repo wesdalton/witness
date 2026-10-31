@@ -1,25 +1,28 @@
 # Witness
 
 A research prototype on how AI auditors verify claims about agent runs, and what
-evidence they need to do it. **No behavioral finding is established yet.** The
-current state of every study is in [research/findings.md](research/findings.md).
+evidence they need to do it. **First confirmed result (31 October 2026):** on
+held-out tasks, two LLM auditors accepted test reports that provably could not
+decide the claim. They also treated a verifier's exit status 0 as proof even when
+no tests were shown to have run. The current state of every study is in
+[research/findings.md](research/findings.md).
 
 ## Where things stand
 
 - **Active question:** the evidence-access benchmark ([research/directions.md](research/directions.md),
   Option 1). It uses paired valid and invalid runs that look identical under
   restricted access, and asks which added evidence lets an auditor tell them apart.
-  The 48-incident corpus passed every free gate. In the Stage 1 pilot, both models
-  tested accepted a byte-identical passing report as proof (84% to 100% commitment)
-  even though it could not decide the claim. Held-out confirmation is next. Code:
-  `swarm_lab/evidence_access/`.
+  A frozen v2 protocol confirmed the Stage 1 pilot on 64 held-out incidents:
+  GPT-6 Luna and GPT-6.1 Sol committed on 99.5% and 89.6% of uncheckable reports,
+  and both accepted 48/48 early-exit runs from the verifier's exit code alone.
+  Code: `swarm_lab/evidence_access/`.
 - **Closed studies:** the swarm pilot, single-claim auditor, portfolio allocation
   screen, and query capability series. They hit ceilings or were underpowered.
   Their runners are kept under `swarm_lab/legacy/` and refuse paid runs.
 - **Validated results:** a capable auditor exposed two wrong labels in our own
   benchmark, and replayed probe output can differ for incidental reasons such as
   memory addresses. Both are about measurement, not agent behavior.
-- **Budget:** $25 phase ceiling. 910 requests, $0.714243375 billed
+- **Budget:** $25 phase ceiling. 3,022 requests, $3.399806440 billed
   (`research/agent-study/budget.jsonl`).
 
 Operating rules for research work are in [AGENTS.md](AGENTS.md).

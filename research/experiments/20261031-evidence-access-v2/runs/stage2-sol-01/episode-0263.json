@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0263",
+  "incident": "inc-9bca9194eb6223ef",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:51:59.466895+00:00",
+  "prompt_sha256": "fda9e4cbf103fdd192f608ce53a00e25ac3fe84dfc53c28a1342e87bb5595230",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "4bf768b3ca7a4bbb892e01900a369fca",
+    "response_id": "gen-1793422320-E5HvcLaQ2K1YxIPCK6TG",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1339,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1208
+      },
+      "output_tokens": 186,
+      "output_tokens_details": {
+        "reasoning_tokens": 72
+      },
+      "total_tokens": 1525,
+      "cost": 0.005142,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005142,
+        "upstream_inference_input_cost": 0.003282,
+        "upstream_inference_output_cost": 0.00186
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.3011,
+    "input_bound": 10015,
+    "reserved_usd": "0.0659975",
+    "request_sha256": "685552fe64caa4f59a65bc5719a36be9e9015930f4e913a49f5c6f0f320a6b08",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06ca27f0c1d59383016ae573f17a0487d1b0ace70be52dee13",
+        "sha256": "6cb823b8e61295ba07c349447641bdec85ad55e30977fb8b33714ee0daf64a19"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_xf72rt7vbvp",
+        "sha256": "8d2f5d81d9acb2f6a8705fbe71e7d1b5906e54269b37fa37491c627945f700a4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.45,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including one infrastructure error excluded from the reported 5/5 rate; it does not establish that all attempted patches passed. The logs and single successful replay do not establish five independent agent attempts or link each attempt's patch to an independently verified hidden-suite result. The report's assertion alone cannot resolve these gaps."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:52:04.521587+00:00"
+}

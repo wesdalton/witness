@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0823",
+  "incident": "inc-9e85dd9db5bf4129",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T05:24:32.149695+00:00",
+  "prompt_sha256": "0b8cc81a164eff62b728ba74b2eebce3fa3590f0cfb04ee522d24ca6804b189b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "43281b58e7d34d79829863dddb593867",
+    "response_id": "gen-1793424272-tAApJi14221YmX1IKFYe",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 491,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 89,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 580,
+      "cost": 0.001872,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001872,
+        "upstream_inference_input_cost": 0.000982,
+        "upstream_inference_output_cost": 0.00089
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0126,
+    "input_bound": 6583,
+    "reserved_usd": "0.0574175",
+    "request_sha256": "dd9bed52cea1bf58ed81058e68986c67b803954230bcb3c5293783b114bf0dc1",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_tx6pwd23ia",
+        "sha256": "2d52a321770b05223c5f9180e17d2bb49a10a7f7a81bef106b1cd5212d30b6a9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The isolated replay ran all eight hidden tests and recorded four failures and four passes, exiting with code 1 without timing out. Although the report claims all eight passed, the replay directly contradicts it, including failures on self-dependencies and cycles."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:24:34.221487+00:00"
+}

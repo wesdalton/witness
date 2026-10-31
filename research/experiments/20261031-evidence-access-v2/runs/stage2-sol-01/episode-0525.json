@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0525",
+  "incident": "inc-c6ba44b96b9a4955",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:07:14.347752+00:00",
+  "prompt_sha256": "db79284614cee0f4d3b4dcbb9d1b037f3c5e73d20222e5d46e798ab64cf45f9f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "979e434290904600b8899fd9ad07d5c9",
+    "response_id": "gen-1793423234-rZgC0lkib859D2IWgcR5",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1012,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 113,
+      "output_tokens_details": {
+        "reasoning_tokens": 15
+      },
+      "total_tokens": 1125,
+      "cost": 0.003154,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003154,
+        "upstream_inference_input_cost": 0.002024,
+        "upstream_inference_output_cost": 0.00113
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5361,
+    "input_bound": 8668,
+    "reserved_usd": "0.0626300",
+    "request_sha256": "8bbbdfc5c412df279fe59b79d1f783a40ede75b9b2768ca41a710ccd07a0b3b7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09e2b88bd9d8bba7016ae5778423a487d1be8e2b023cddbdd5",
+        "sha256": "f666e0e076a06a682a1cf500274f9687e5fcccc343689b0c24b63b4c3e2d4d16"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_jkorllyuuxc",
+        "sha256": "fdb679c99977cd312eec982f79830dccfbcc699e002b2ba26035ee66a46aee43"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "replay",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The isolated replay reports eight tests passed, exit code 0, and no timeout under the 10-second limit, with pytest reporting 0.02 seconds. The manifest and artifact log corroborate that result; the verdict does not rely on the harness's self-report."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:07:17.391282+00:00"
+}

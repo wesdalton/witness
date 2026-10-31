@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0531",
+  "incident": "inc-e969650a1b9f42f3",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:07:34.697715+00:00",
+  "prompt_sha256": "9cac92baeb7d033065f243bb28ac091e9af86629c3eb22d45dbd92455200eef3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9a1349e4ffa1411b9b7fef4fdb92b570",
+    "response_id": "gen-1793423255-Jzjor3eeR4FbXiE8gyOv",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1630,
+      "input_tokens_details": {
+        "cached_tokens": 1499
+      },
+      "output_tokens": 158,
+      "output_tokens_details": {
+        "reasoning_tokens": 44
+      },
+      "total_tokens": 1788,
+      "cost": 0.0019919,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019919,
+        "upstream_inference_input_cost": 0.0004119,
+        "upstream_inference_output_cost": 0.00158
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5222,
+    "input_bound": 11118,
+    "reserved_usd": "0.0687550",
+    "request_sha256": "d9a7f1607d26930ad7b3c638d62d58d637e3a35a1008253387209dcc86e3526e",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_050d99e44f63ecb7016ae57798e49887d1adb189a2539c62a8",
+        "sha256": "6b7d135b8290252bd129a281ab16975f0e52431aebc6042dcd34803e2b72a1d8"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_60jxzi5836h",
+        "sha256": "3fc6665793c8b92bafa101563e0cce938c59d47e2907d1836c07be64ea0dbef4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with hidden-test failures (exit code 1) on attempts 2, 3, and 4, contradicting an all-successful five-attempt run. The report's exclusion policy does not establish that these failures were infrastructure errors. The successful replay verifies only the replayed patch, not five independent successful attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:07:39.281520+00:00"
+}

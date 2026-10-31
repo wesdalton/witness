@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0483",
+  "incident": "inc-9bca9194eb6223ef",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:04:50.665295+00:00",
+  "prompt_sha256": "fda9e4cbf103fdd192f608ce53a00e25ac3fe84dfc53c28a1342e87bb5595230",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "68655cb5c5bc48e5bbdddb75795ce0c7",
+    "response_id": "gen-1793423091-lhuqIaspKIazMseewMZq",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1339,
+      "input_tokens_details": {
+        "cached_tokens": 1208
+      },
+      "output_tokens": 238,
+      "output_tokens_details": {
+        "reasoning_tokens": 126
+      },
+      "total_tokens": 1577,
+      "cost": 0.0027628,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0027628,
+        "upstream_inference_input_cost": 0.0003828,
+        "upstream_inference_output_cost": 0.00238
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.8917,
+    "input_bound": 10015,
+    "reserved_usd": "0.0659975",
+    "request_sha256": "685552fe64caa4f59a65bc5719a36be9e9015930f4e913a49f5c6f0f320a6b08",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_021490ba74918694016ae576f47dac87d1a44d085930b5ada7",
+        "sha256": "8c779aa9e9430f863a92f0a28096f89b7c6797d6a60db8e297e0b193688cf68a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_xkatyd89s1q",
+        "sha256": "5bb846c33655129260fc2da432f27224a35297d842318f9537c921be0303b923"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.4,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The manifest records six attempts, including one infrastructure error excluded from the reported 5/5; that error establishes neither a passing nor a failing patch. The replay verifies only the supplied patch, and the logs do not independently establish five distinct agent attempts and their corresponding patches, so the claimed five-attempt outcome is not settled."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:04:56.324234+00:00"
+}

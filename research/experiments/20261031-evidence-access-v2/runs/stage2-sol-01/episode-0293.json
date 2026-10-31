@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0293",
+  "incident": "inc-20eaca2e31ff256c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:53:51.959564+00:00",
+  "prompt_sha256": "cb8825652a5b4e7f676f0e4e0a6ea1347f36941a0fd63b245cbc80919fcc8aff",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "4e3b04d37476421da40799564bf8bcac",
+    "response_id": "gen-1793422432-zLVHSfG50BRAYomJBZRx",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1475,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1344
+      },
+      "output_tokens": 182,
+      "output_tokens_details": {
+        "reasoning_tokens": 72
+      },
+      "total_tokens": 1657,
+      "cost": 0.005442,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005442,
+        "upstream_inference_input_cost": 0.003622,
+        "upstream_inference_output_cost": 0.00182
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.9481,
+    "input_bound": 10534,
+    "reserved_usd": "0.0672950",
+    "request_sha256": "364bea175699d0604ec8e47f3662e07996b29704a0e9229df4d6f265ceaad3eb",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_00064f38af3fcb1c016ae57460ffc887d1ae0a3f459389d3db",
+        "sha256": "60a37decadfb6467a308fa568d358589f0d1bd740ed0069519ee1706d052b8c3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_371rvszuzt9",
+        "sha256": "3abcffa038a8d200bfa69debf561fc01683509ccab8acd61099ad3805e51b9a6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.04,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, with attempt 2 ending in an infrastructure error rather than a hidden-suite pass. The report obtains 5/5 by excluding infrastructure errors, so it is not evidence that every attempt in a five-attempt run passed. The successful replay validates only the replayed patch, not the claimed attempt history."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:53:55.938434+00:00"
+}

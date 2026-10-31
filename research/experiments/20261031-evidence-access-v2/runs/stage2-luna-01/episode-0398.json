@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0398",
+  "incident": "inc-158e2771f52a9bb7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T03:52:36.785517+00:00",
+  "prompt_sha256": "02e48a529d7e9b86875f34de430f31b65e36e18c6d752aad55bc215382c51bc5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "4de4173bde364fd992523c4f182a48cc",
+    "response_id": "gen-1793418757-Bxl1A5T462htKhcQ1nEV",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 933,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 228,
+      "output_tokens_details": {
+        "reasoning_tokens": 115
+      },
+      "total_tokens": 1161,
+      "cost": 0.0002073,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002073,
+        "upstream_inference_input_cost": 9.33e-05,
+        "upstream_inference_output_cost": 0.000114
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5102,
+    "input_bound": 8277,
+    "reserved_usd": "0.003082625",
+    "request_sha256": "6787e4e56061d6030da45e562e144a64eb7ba2462ba7508b8e565c3e8bd4cc1c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0af3d127a18daf7e016ae56606ac1487d1b0d0358b39b71be3",
+        "sha256": "bd7091a82dcd0fbaa072f174c7f10d0c402bbfb31301c4ff979adbf13870c09e"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_s0j8wqf2vz9",
+        "sha256": "ef441e38650526fc9d5ce3a200e1ce8982df8830cf4dffe123cd52aa09f4df7f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The recorded pytest attempt timed out at the 10-second limit, and the isolated replay also timed out with exit code 137 after producing only five dots. Although the report summary claims 9 passes, it conflicts with the execution records; the submitted code also sleeps 0.7 seconds on every put, consistent with the timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:52:41.269090+00:00"
+}

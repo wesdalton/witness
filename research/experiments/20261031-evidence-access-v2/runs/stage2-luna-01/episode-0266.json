@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0266",
+  "incident": "inc-334a7d89e6e376f1",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:43:48.030270+00:00",
+  "prompt_sha256": "bce829af0ceb0f9119bc9417e7e2b4aca390d4aea5f360816ebe3d7532d8d027",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "25375d891aa847fda4bd1b681579acd4",
+    "response_id": "gen-1793418229-8pr9KwoCbKMUY1Yrn80F",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1014,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 174,
+      "output_tokens_details": {
+        "reasoning_tokens": 82
+      },
+      "total_tokens": 1188,
+      "cost": 0.0001884,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001884,
+        "upstream_inference_input_cost": 0.0001014,
+        "upstream_inference_output_cost": 8.7e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7963,
+    "input_bound": 8703,
+    "reserved_usd": "0.003135875",
+    "request_sha256": "ee56eaf609392a82f00b350bdc181a783ebd4b2983ce8f84637a54217422296f",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_00082bdeadd1c115016ae563f7355487d184cf88a1bbab2050",
+        "sha256": "704027d906856511f7a07448512500b67345d71d907b84835da7ed79c0fcc36b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_9gdpwu4na6u",
+        "sha256": "6c49215a242b656b830b44e0beaaee42f8181232ef169cd2aa7c42b84d003a0f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest"
+    ],
+    "reason": "The replay reports 9 passed tests, exit code 0, and no timeout under the 10-second limit; it also identifies an isolated verifier that imported the real runner before the workspace. The manifest independently records the attempt as passed within the same limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:43:52.712779+00:00"
+}

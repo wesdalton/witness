@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0040",
+  "incident": "inc-d30cd58f128d2342",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:38:58.332114+00:00",
+  "prompt_sha256": "33236d5d7130089311844a6ab158a90e8c94213e7f8c72c131fd95e703b9624d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "ad0db86b8591442dbe32435f4932d5cb",
+    "response_id": "gen-1793421539-AgMXVcQAiVZugoLEvRiM",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 997,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 99,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1096,
+      "cost": 0.002984,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002984,
+        "upstream_inference_input_cost": 0.001994,
+        "upstream_inference_output_cost": 0.00099
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.4333,
+    "input_bound": 8604,
+    "reserved_usd": "0.0624700",
+    "request_sha256": "eacecb28d7f43b0dd0413d7c51bdf4fe88167ee21277af94800b49793f0d905e",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_rmaxc3f6a7i",
+        "sha256": "36068b69dd41a3b87f2553a693218bd82e856b643d0fa50ca48c5f63a0dcb012"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "manifest"
+    ],
+    "reason": "The isolated replay independently records all 8 hidden tests passing, with zero failures or errors, exit code 0, and no timeout. The manifest and test log corroborate that result, and the submitted implementation uses dependency indegrees and an alphabetical heap with cycle detection consistent with the specification."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:39:01.522008+00:00"
+}

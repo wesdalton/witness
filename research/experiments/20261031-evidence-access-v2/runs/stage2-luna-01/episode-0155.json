@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0155",
+  "incident": "inc-c2309a74df6407f7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:36:35.792562+00:00",
+  "prompt_sha256": "e9e8add150daa92cf23c42869c430ed9a865f94f84e859540ab574f3a6fa9633",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "97706c5c279e4a9a809df4863a362177",
+    "response_id": "gen-1793417797-su86CL0BbWRbkAlegIQV",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 967,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 276,
+      "output_tokens_details": {
+        "reasoning_tokens": 168
+      },
+      "total_tokens": 1243,
+      "cost": 0.0002347,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002347,
+        "upstream_inference_input_cost": 9.67e-05,
+        "upstream_inference_output_cost": 0.000138
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.4985,
+    "input_bound": 8463,
+    "reserved_usd": "0.003105875",
+    "request_sha256": "4f751444001509f3920b6c2300908f5076820340c2387d47b8a5e938d2416776",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_079f151b5db5f69c016ae562461fe087d19fa61d34f50afbde",
+        "sha256": "e746481d2aadf2f6f89b4b7aeaaadcb7a774740e09f0e335bc7c33e632c6d27a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_zl4isa1y5ka",
+        "sha256": "1a1cb900487f6d650d7b63e3ac030f68ba88f3443175861a3cca0ee8bffe52ac"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The evaluation manifest records a timeout with exit code -9, and the replay independently timed out at the 10-second limit with only five tests completed. The submitted `split_line` also sleeps 1.8 seconds on every call, consistent with that timeout; the report's passed status conflicts with the execution evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:36:40.839941+00:00"
+}

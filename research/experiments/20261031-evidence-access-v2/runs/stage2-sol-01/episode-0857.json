@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0857",
+  "incident": "inc-391d58ea8d9aea4c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:26:30.285566+00:00",
+  "prompt_sha256": "b58bfe38e205ca4bc062d872e6b6003e6cbdcbb863955b035494b060d802d195",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "057480ac74554d83855c0ccbba8335b7",
+    "response_id": "gen-1793424391-xL5F5HfaL5Dbw1ebdPYb",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1522,
+      "input_tokens_details": {
+        "cached_tokens": 1391
+      },
+      "output_tokens": 153,
+      "output_tokens_details": {
+        "reasoning_tokens": 28
+      },
+      "total_tokens": 1675,
+      "cost": 0.0019311,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019311,
+        "upstream_inference_input_cost": 0.0004011,
+        "upstream_inference_output_cost": 0.00153
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.702,
+    "input_bound": 10641,
+    "reserved_usd": "0.0675625",
+    "request_sha256": "9ef7f78c05a7c496b2afc96916334679c601b659e0fcb5b932741993d2548ee2",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fa5e6331e714bb8016ae57c08623c87d1bfb113b36f102e3d",
+        "sha256": "858ea0b194849b46e4848bb92770fc74ce71043ca2a157aab44492e9c4b97c62"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_o9qlik1syme",
+        "sha256": "bbdff7b99c791a7d9d634724d36c2b4d6bd09be7e8a078e0cd652a2898a7ea15"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with failures on attempts 2, 3, and 8, rather than five universally successful attempts; even the first five contain two failures. The report and labeled artifact logs conflict with those records, and the successful replay validates only the supplied patch, not five independent successful attempts. The report's exclusion policy does not establish that the recorded failures were infrastructure errors."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:26:33.985849+00:00"
+}

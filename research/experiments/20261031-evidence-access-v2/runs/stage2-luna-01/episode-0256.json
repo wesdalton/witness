@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0256",
+  "incident": "inc-8e6418acc2874e0d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:43:03.999946+00:00",
+  "prompt_sha256": "18ad8717bfdca6b0ffc50117d01ef1f25d40844e1368e812fb787481671d6dd6",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "a0ae274aa3224fd58ded3eb2cd841888",
+    "response_id": "gen-1793418185-6jgI6jrdOxOIQsHT5vr7",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 863,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 213,
+      "output_tokens_details": {
+        "reasoning_tokens": 121
+      },
+      "total_tokens": 1076,
+      "cost": 0.0001928,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001928,
+        "upstream_inference_input_cost": 8.63e-05,
+        "upstream_inference_output_cost": 0.0001065
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8685,
+    "input_bound": 8120,
+    "reserved_usd": "0.003063000",
+    "request_sha256": "abc8f05a06268e72f941d60b186e453633d5fe991d6ee405af61ec2d9259db3d",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0149cd1983c0058c016ae563c9d6e887d1a956f6f7ea8e44ed",
+        "sha256": "778dd05d4b211fd907e78929d5e1bc665c5c688a0c00b8019264ae11fb9b63f8"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_cjxkodabfq",
+        "sha256": "7daed5ff482e7e52753da9ba0407d6b4f2f274547365be73b1c6e5d7d0a237e0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The replay independently reports an isolated pytest run with the real runner imported before the workspace, and all 8 tests passed with no failures or timeout. The manifest records the same successful test command, and the artifacts identify the submitted slugify implementation."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:43:07.903701+00:00"
+}

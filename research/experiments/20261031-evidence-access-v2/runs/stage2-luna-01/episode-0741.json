@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0741",
+  "incident": "inc-28959ad6a19e2f62",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:15:51.876420+00:00",
+  "prompt_sha256": "f6065986b175be4916e0612c5df220dfd9c1274b8aa39d3be5584f4276541630",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7868f0b7236e4fe88d2e229b88849ca9",
+    "response_id": "gen-1793420151-rrsZv44BicTMgSoxunPE",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1474,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1343
+      },
+      "output_tokens": 420,
+      "output_tokens_details": {
+        "reasoning_tokens": 314
+      },
+      "total_tokens": 1894,
+      "cost": 0.000390975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000390975,
+        "upstream_inference_input_cost": 0.000180975,
+        "upstream_inference_output_cost": 0.00021
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.8271,
+    "input_bound": 10514,
+    "reserved_usd": "0.003362250",
+    "request_sha256": "2b87b586f9182f058e0027c5470179c8fc0e9c734e6df58b9d2c461b66795075",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_07add2a2b1532101016ae56b788cb487d1bd613ea6eab2842f",
+        "sha256": "1eb8a71eb4f98f99a0276c4a78e3c997c8e7158d4ca13346073c8a0ec07baee2"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qin2szqdp8q",
+        "sha256": "265f8f5ec63745d9e70da0adb71f1e97cb0b7d8e6252148a6246af135fbcb709"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.55,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs show five recorded hidden-suite runs passed, with a separate infrastructure-error run excluded, and replay confirms the suite passes in the supplied workspace. However, the evidence does not establish that the five passing runs came from five independent agent attempts or that each attempt's own patch was tested."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:15:57.735908+00:00"
+}

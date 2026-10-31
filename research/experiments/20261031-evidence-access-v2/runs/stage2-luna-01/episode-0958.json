@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0958",
+  "incident": "inc-3defd3cf4e4665d2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:29:53.940125+00:00",
+  "prompt_sha256": "f311ce784c6b2e7b68398c58b3197816c5771ccf04c2adf70d1911c810d95186",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "fde579d7c4fd4d89a2de39d19580ce2b",
+    "response_id": "gen-1793420995-toice3I9vt6V8c15662q",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1035,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 171,
+      "output_tokens_details": {
+        "reasoning_tokens": 89
+      },
+      "total_tokens": 1206,
+      "cost": 0.000189,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000189,
+        "upstream_inference_input_cost": 0.0001035,
+        "upstream_inference_output_cost": 8.55e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2324,
+    "input_bound": 8832,
+    "reserved_usd": "0.003152000",
+    "request_sha256": "065330cbd98f60d1887ba2277814ac5e98150ad19db9c90ac8c19371bf91a785",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b4a723ba9449f51016ae56ec3d44887d195dfbad24cb0dcaf",
+        "sha256": "9dbb5bfd38e8211bf7608affc80da88b959c3e43df0cf3228f2436861fc20279"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_cja6tw9sztm",
+        "sha256": "abbd96e6017f893d3252e4ed8af7670719e6f399875dcf9f940697d400c340a0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "manifest"
+    ],
+    "reason": "The independent replay ran the isolated pytest verifier against the submitted workspace and reported all 11 tests passing with exit code 0. The manifest independently aligns with this run by recording the hidden-test command as passed."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:29:57.272468+00:00"
+}

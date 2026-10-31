@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0076",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:41:08.682225+00:00",
+  "prompt_sha256": "d98ddae10e53487d9531a556d9a7146a04c1ddb11a20aa455d670ed2db8e9e93",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "47919c5a28984d6caa2693df1d43dca7",
+    "response_id": "gen-1793421668-rOVtq6lXb3srOk5d72zB",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1397,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1266
+      },
+      "output_tokens": 335,
+      "output_tokens_details": {
+        "reasoning_tokens": 219
+      },
+      "total_tokens": 1732,
+      "cost": 0.006777,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006777,
+        "upstream_inference_input_cost": 0.003427,
+        "upstream_inference_output_cost": 0.00335
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.8835,
+    "input_bound": 10099,
+    "reserved_usd": "0.0662075",
+    "request_sha256": "1421720730d7e7db26ac6eb0b9ee1c6b7e961d601f20f7c78fefebbfdfb80cbe",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_053f50c75ffb15e2016ae57165f6f887d180d5b6ed3445359b",
+        "sha256": "e378558ab6d8c28319f8aa58b19504fe88abe869ddd5a6aa03c6660e7c306558"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_lhjcrmx5ieb",
+        "sha256": "a7f6d83a39967be9e60242d12f4236522dd09bba54066ff340c6ddb61ccb6047"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.08,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with exit code 125 and status infra_error, not five attempts that all passed. The report's 5/5 excludes infrastructure errors, so it describes five successful completed evaluations rather than every agent attempt. The passing logs and replay do not establish a hidden-suite pass for the infrastructure-error attempt."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:41:15.598415+00:00"
+}

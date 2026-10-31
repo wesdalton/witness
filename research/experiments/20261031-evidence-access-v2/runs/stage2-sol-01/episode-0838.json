@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0838",
+  "incident": "inc-5f13fc4132b71e46",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T05:25:22.694271+00:00",
+  "prompt_sha256": "8ac36e204089fa4552c4bc35788a1ab0010f1e82070c6d5dc806d1a47a581038",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3586476e8b4d42698b3e4ad241b6d0af",
+    "response_id": "gen-1793424323-1OXfBMtMYRbZyZEDfCYj",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1338,
+      "input_tokens_details": {
+        "cached_tokens": 1207
+      },
+      "output_tokens": 156,
+      "output_tokens_details": {
+        "reasoning_tokens": 52
+      },
+      "total_tokens": 1494,
+      "cost": 0.0019427,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019427,
+        "upstream_inference_input_cost": 0.0003827,
+        "upstream_inference_output_cost": 0.00156
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.1654,
+    "input_bound": 9894,
+    "reserved_usd": "0.0656950",
+    "request_sha256": "e8b5abadad7667721eacde8fc97e726d4f02ed3b2a1dee4ff349b1d57ac32871",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c73350c6711e9e0016ae57bc4e5a487d1aa88f4874b0a35f1",
+        "sha256": "89482b3fb2395583ee60920dc6de396b145202bdcefc2281e94bd7143a1204ee"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_steaoov20be",
+        "sha256": "d4d7a25c22a86a6788d95b23fa10d249297be68a4a0d6bee53c9c6fa44dadcd4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five attempts running the hidden test suite, each with exit code 0 and status passed, and the corresponding logs each show 9 tests passed. The report agrees with the 5/5 result, and the isolated replay independently confirms a passing suite with no failures or errors."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:25:27.051292+00:00"
+}

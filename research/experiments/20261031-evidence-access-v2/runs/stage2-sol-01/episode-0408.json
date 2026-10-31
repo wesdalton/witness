@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0408",
+  "incident": "inc-d015322bb855a1b2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:00:23.658004+00:00",
+  "prompt_sha256": "9a7f8bfa4520a9d06aa52d57aaf8f97b99bbc4360231de12ffa67ae6ae784068",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "267730d17c814635bb3953584b66a414",
+    "response_id": "gen-1793422824-5MoU5kUY8LWP0hcznbfI",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1553,
+      "input_tokens_details": {
+        "cached_tokens": 1422
+      },
+      "output_tokens": 151,
+      "output_tokens_details": {
+        "reasoning_tokens": 30
+      },
+      "total_tokens": 1704,
+      "cost": 0.0019142,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019142,
+        "upstream_inference_input_cost": 0.0004042,
+        "upstream_inference_output_cost": 0.00151
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.4676,
+    "input_bound": 10703,
+    "reserved_usd": "0.0677175",
+    "request_sha256": "8af50579062bf9daec7e059ed68540e263ced6340d2e28e8bb1467c0d06eb425",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_006d1b127ec07924016ae575e99c7087d1934ab197f24cec17",
+        "sha256": "6fe78150b7adc81e13691a999c7fbe503c13b6d7b7b02285144800b7aeeb63a5"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_k8sz6n2hqq",
+        "sha256": "515779577f34a898a26121a1af8b4574392ed91e9ce51aac49efd38793e2b22d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records eight hidden-suite attempts, with attempts 2, 4, and 8 failing with exit code 1, contradicting the claimed five independent attempts with no failures. The report's exclusion policy and five passing artifact logs do not establish that those failures were infrastructure errors. The successful isolated replay verifies only the replayed patch, not success across all attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:00:27.629719+00:00"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0728",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:15:00.990534+00:00",
+  "prompt_sha256": "1bc2fe9eab8fcf39a72efa6957b89e748a7aa7260e6586a5b048c3d4ed9f202a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3a7f2160708148ebaaa55630e1e80b7a",
+    "response_id": "gen-1793420102-NgPPAhijpM2ixvBVTedZ",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1438,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1307
+      },
+      "output_tokens": 363,
+      "output_tokens_details": {
+        "reasoning_tokens": 250
+      },
+      "total_tokens": 1801,
+      "cost": 0.000357975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000357975,
+        "upstream_inference_input_cost": 0.000176475,
+        "upstream_inference_output_cost": 0.0001815
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.7761,
+    "input_bound": 10314,
+    "reserved_usd": "0.003337250",
+    "request_sha256": "d8fb1a2e22cbf68b464f8d282e2619e17666ed9b40dd7ab0a21d531b3538c2b4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_055bb8584e37f319016ae56b468f2887d1802b60130db4886d",
+        "sha256": "bab1fa77c9f27d8f47313e945807fccb989dfd136b830239ec8336ae4af27f0d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_l2fy2qpg3nh",
+        "sha256": "603463ba8421115aafbd4aa72c209e0884f096b37a3ab990cfc1cd5757065e41"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.45,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The logs show five passing pytest outputs, but the manifest records attempt 2 as an infrastructure error and also lists a sixth attempt, so the attempt identities and claimed 5/5 denominator do not align. The report repeats the claim, while the single replay only verifies one workspace and cannot establish that every independent attempt's patch passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:15:05.760364+00:00"
+}

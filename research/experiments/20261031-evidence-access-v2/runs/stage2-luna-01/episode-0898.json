@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0898",
+  "incident": "inc-fea799a791f12fde",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:26:19.187470+00:00",
+  "prompt_sha256": "d3cd27043605892c0ea63a337401047625944b1a372ebc1d84f7e5b949ae84bf",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "37801e6483744bc5b5b809254e458d09",
+    "response_id": "gen-1793420780-davgn88VgVC59MmeXt0k",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 906,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 249,
+      "output_tokens_details": {
+        "reasoning_tokens": 155
+      },
+      "total_tokens": 1155,
+      "cost": 0.0002151,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002151,
+        "upstream_inference_input_cost": 9.06e-05,
+        "upstream_inference_output_cost": 0.0001245
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9439,
+    "input_bound": 8209,
+    "reserved_usd": "0.003074125",
+    "request_sha256": "e7cdc83d03faf05f7768b3235ddc94222de2ffd40c67a37939e90db168bd8f3c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f975c0fdaea81da016ae56decb1fc87d1a8a5f95e9f787590",
+        "sha256": "db75f5145a8b3055980f1a163d1107c83f6be38e4d299329a373ef5492ae7160"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_g8ze2c6gyf6",
+        "sha256": "319caa96ca8fac33b677eb08447d3653ee810658c300c605b1764d49df3a6a51"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay"
+    ],
+    "reason": "The independent replay and manifest both show the test command timed out at the 10-second limit with exit code 137, and the replay has no completed test summary. The harness-generated report says passed, but it is not independent evidence and conflicts with the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:26:23.088816+00:00"
+}

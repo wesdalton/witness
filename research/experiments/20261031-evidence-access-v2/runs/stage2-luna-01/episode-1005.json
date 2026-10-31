@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1005",
+  "incident": "inc-13416dfb6f0c0103",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:32:56.437684+00:00",
+  "prompt_sha256": "2d9c128e751a512629f40929407d989c7d2c5f3b1aafeb3061c5fbc9757f70ce",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "e95415ad942740b1aed3db81bb739f91",
+    "response_id": "gen-1793421177-n9i3InzplGaV9nDBwJcm",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1108,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 137,
+      "output_tokens_details": {
+        "reasoning_tokens": 43
+      },
+      "total_tokens": 1245,
+      "cost": 0.0001793,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001793,
+        "upstream_inference_input_cost": 0.0001108,
+        "upstream_inference_output_cost": 6.85e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.8548,
+    "input_bound": 9055,
+    "reserved_usd": "0.003179875",
+    "request_sha256": "b7a9cc4d279bdf8b2e25a979fbea15546c79f91224f4e6997924c43f86c9d925",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ba03159f098a143016ae56f7a46e087d188b9785a5af3f6ab",
+        "sha256": "67ea7f03c993a60dc77a52093b548b6553e2777daf6d162db916239a2584d981"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_sqca981gsmp",
+        "sha256": "b0d16cdb856e2395eb50000de5f1c45a165d63ed729abafc0b1e7c0ce1bedf65"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The isolated replay ran the hidden tests and failed 2 of 9, including tests for `get` refreshing recency. The submitted `get` implementation returns the value without moving the key to most-recently-used position, consistent with those failures."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:32:59.553539+00:00"
+}

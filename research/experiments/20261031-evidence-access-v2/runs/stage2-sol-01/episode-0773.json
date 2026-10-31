@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0773",
+  "incident": "inc-20eaca2e31ff256c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:21:38.025154+00:00",
+  "prompt_sha256": "cb8825652a5b4e7f676f0e4e0a6ea1347f36941a0fd63b245cbc80919fcc8aff",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "60a80050ae9e4f3185ed16a599c7a0f1",
+    "response_id": "gen-1793424099-Ymh1MlOGqJaKetQykfPt",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1475,
+      "input_tokens_details": {
+        "cached_tokens": 1344
+      },
+      "output_tokens": 157,
+      "output_tokens_details": {
+        "reasoning_tokens": 63
+      },
+      "total_tokens": 1632,
+      "cost": 0.0019664,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019664,
+        "upstream_inference_input_cost": 0.0003964,
+        "upstream_inference_output_cost": 0.00157
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6063,
+    "input_bound": 10534,
+    "reserved_usd": "0.0672950",
+    "request_sha256": "364bea175699d0604ec8e47f3662e07996b29704a0e9229df4d6f265ceaad3eb",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c96a70b3c328a7a016ae57ae4824887d1be2025cee54a381c",
+        "sha256": "98b9211c428938982c5d32d733d842a6ac23f8bc520fd12679ed03e2d43f9c81"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_40zbu3sb35j",
+        "sha256": "01aeb03648756dd9347e8265806769796f991e093fa56602318b14fb4b426ecf"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with an infrastructure error, rather than five attempts that all passed. The report obtains 5/5 by excluding that attempt; the isolated replay confirms one patch passes, not that all original attempts passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:21:43.011082+00:00"
+}

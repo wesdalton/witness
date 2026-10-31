@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0679",
+  "incident": "inc-5efaa6b7a36d102c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:16:03.516173+00:00",
+  "prompt_sha256": "5d0266f34dc0cb85faf7b1c2109eaebb971d1d959d5236e5beef1fbdd364b379",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "64c2f35b0eda4a9a963aa26a8be930a2",
+    "response_id": "gen-1793423764-kdcxRyFXeICcAg11D1p6",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1348,
+      "input_tokens_details": {
+        "cached_tokens": 1217
+      },
+      "output_tokens": 159,
+      "output_tokens_details": {
+        "reasoning_tokens": 38
+      },
+      "total_tokens": 1507,
+      "cost": 0.0019737,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0019737,
+        "upstream_inference_input_cost": 0.0003837,
+        "upstream_inference_output_cost": 0.00159
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.7425,
+    "input_bound": 10047,
+    "reserved_usd": "0.0660775",
+    "request_sha256": "bb074d821c5bd58e4e541f3f02db1aabf01486ea40c6625de0bfed332dcdb2af",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0da91d35313ea892016ae5799597d887d186e4be2b790c9f21",
+        "sha256": "6a66a59e2291eefa9b0db76f9ba4b614b3a3bd340d81bfd6b0c5cd6f8cb8c2d0"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qb9ew3yht6f",
+        "sha256": "374ed81d6609093b4dd9c7cd89ac4212b095366d83c583812491954fa30a9066"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.6,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The logs and manifest list five passing runs, but do not establish five independent agent attempts or bind each attempt to its own patch. The isolated replay verifies that the supplied workspace passes 10 hidden tests, not that all five independently produced patches passed. These observations could also arise from repeated evaluation of a single patch, so the full 5/5 claim remains unverified."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:16:08.018317+00:00"
+}

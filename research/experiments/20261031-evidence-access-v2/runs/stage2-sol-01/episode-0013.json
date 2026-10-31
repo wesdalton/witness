@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0013",
+  "incident": "inc-9bca9194eb6223ef",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T04:37:18.802313+00:00",
+  "prompt_sha256": "17829cd3376e972c0f30e2e7bb1bea2f4725da3903b2238b8fc1c7bf21aa910c",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "f73cd86cb0794b92a3e1d52aaecc9811",
+    "response_id": "gen-1793421439-7bS5Pk62rZMRYugfONg5",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1298,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1167
+      },
+      "output_tokens": 177,
+      "output_tokens_details": {
+        "reasoning_tokens": 57
+      },
+      "total_tokens": 1475,
+      "cost": 0.0049495,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0049495,
+        "upstream_inference_input_cost": 0.0031795,
+        "upstream_inference_output_cost": 0.00177
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.9729,
+    "input_bound": 9800,
+    "reserved_usd": "0.0654600",
+    "request_sha256": "31f7393736f88c002239693ab180da1138d2b012bfe1ff23cfb6497661c9f4fa",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0702c1d18ff9546a016ae57080b86087d18e862aeec527c934",
+        "sha256": "c2dbbb83a2b7057df9984f601ab01b399e86fd18cbbdf583ac257e9637f4bcfb"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_juytlc51whk",
+        "sha256": "0545f83d4a23264cf37be644373f73f1c5bea842b3ed99bea61cfcca2e72e463"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts: five passed and attempt 3 ended with an infrastructure error, not a verified hidden-suite pass. The report obtains 5/5 by explicitly excluding infrastructure errors, so it does not establish the claimed unqualified five-attempt perfect record. The artifact logs and successful replay do not resolve that discrepancy or verify a pass for the excluded attempt."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:37:23.596013+00:00"
+}

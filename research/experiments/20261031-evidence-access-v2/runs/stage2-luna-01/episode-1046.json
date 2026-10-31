@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1046",
+  "incident": "inc-e5718235cbea798d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:35:25.130611+00:00",
+  "prompt_sha256": "1e3c348f07d3f7cefb3c064f81ac624c78a413ca3f2d05bdf002105df638d359",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "149847c3f49c487fb2dcf5dfb63ecd40",
+    "response_id": "gen-1793421326-iVTFNdczaylifpq9DMgc",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1375,
+      "input_tokens_details": {
+        "cached_tokens": 1244
+      },
+      "output_tokens": 455,
+      "output_tokens_details": {
+        "reasoning_tokens": 350
+      },
+      "total_tokens": 1830,
+      "cost": 0.00025304,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00025304,
+        "upstream_inference_input_cost": 2.554e-05,
+        "upstream_inference_output_cost": 0.0002275
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.352,
+    "input_bound": 10114,
+    "reserved_usd": "0.003312250",
+    "request_sha256": "59afd9f6721b4bf191aae7b16f5bf3293174c4dae4d689da50bded7c10ce86c9",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_015f62c7fa50f132016ae5700f42f487d1a78a109f56e84885",
+        "sha256": "faac4091b83cfc6ac561263d611888f2720c3228ffa9b58386f8e1a146bcfd9c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_bonx6r95ggk",
+        "sha256": "f60ff655c0a142fbb16a64269a0046284c1b78944238deb0e547cf52e9bceee5"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The report and manifest enumerate five attempts, each with a successful hidden-suite run and exit code 0; the artifact logs likewise show 9 tests passed for each attempt. The replay independently confirms the suite passes in the available workspace, though it does not by itself validate each attempt's separate patch."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:35:32.064961+00:00"
+}

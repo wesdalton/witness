@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0070",
+  "incident": "inc-158e2771f52a9bb7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T03:30:51.794567+00:00",
+  "prompt_sha256": "02e48a529d7e9b86875f34de430f31b65e36e18c6d752aad55bc215382c51bc5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5d441fd8ab4949bc94dac798ff57f9cb",
+    "response_id": "gen-1793417453-urYHQoajEAemnPB0ulYR",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 933,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 222,
+      "output_tokens_details": {
+        "reasoning_tokens": 120
+      },
+      "total_tokens": 1155,
+      "cost": 0.0002043,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002043,
+        "upstream_inference_input_cost": 9.33e-05,
+        "upstream_inference_output_cost": 0.000111
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6609,
+    "input_bound": 8277,
+    "reserved_usd": "0.003082625",
+    "request_sha256": "6787e4e56061d6030da45e562e144a64eb7ba2462ba7508b8e565c3e8bd4cc1c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08662efe642490a3016ae560eda2e887d1b2ea8ced6c05100e",
+        "sha256": "9bb1e9d708e6b7208f4f751364faab9414923377f93f03259a991958c535de4b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_albrls29akm",
+        "sha256": "358e4935e6c6afe373a5ffa27f25d8b7639f36c15ea5364e12d4911098980cc2"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records a timeout with exit code -9 at the 10-second limit, and replay likewise timed out after only five tests. The implementation sleeps 0.7 seconds on every put, making the report's claim of 9 passing tests inconsistent with the execution evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:30:55.749945+00:00"
+}

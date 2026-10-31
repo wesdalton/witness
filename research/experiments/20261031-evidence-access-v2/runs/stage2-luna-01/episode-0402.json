@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0402",
+  "incident": "inc-fea799a791f12fde",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T03:52:49.660154+00:00",
+  "prompt_sha256": "b0791ca503d141694b4b9c9f900f928397234fbdd4b9ecdadf1088a193b55c17",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2d93de683b3f43b98087d013ce596bd0",
+    "response_id": "gen-1793418770-97ExYfkCq16U21mLKdmM",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 865,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 196,
+      "output_tokens_details": {
+        "reasoning_tokens": 96
+      },
+      "total_tokens": 1061,
+      "cost": 0.0001845,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001845,
+        "upstream_inference_input_cost": 8.65e-05,
+        "upstream_inference_output_cost": 9.8e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6357,
+    "input_bound": 7994,
+    "reserved_usd": "0.003047250",
+    "request_sha256": "b0dd757f5955f98ac23e2a34fd59f9b9c33bd028047bbc362fb61443e35bca17",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fe12bb421ee58de016ae56613929487d189c1ad5df7dfcaa8",
+        "sha256": "332a38cfaefbb559a1bdbe0b5deda382fd328ab02e5f19063ef3a8bbe92f5100"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_vewl34f3dbj",
+        "sha256": "6d40978fccf3bd164c02f43ec7d955d398925990564689a5a5c0a590305d4b9a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest and replay show the pytest run exited with code 137 after timing out at the 10-second limit, with only eight progress dots and no completed summary. Although the report says 10 tests passed, the execution evidence does not show the suite finishing within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:52:53.522232+00:00"
+}

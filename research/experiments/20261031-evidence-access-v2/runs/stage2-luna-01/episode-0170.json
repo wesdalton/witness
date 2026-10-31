@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0170",
+  "incident": "inc-5825bf7d3b567a32",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:37:33.647664+00:00",
+  "prompt_sha256": "9152060cbde87ff280ac73fb47da493efd71992000046da81d34c7e448cccba9",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "bdb758b0ae384b13ad032202e9ec65ca",
+    "response_id": "gen-1793417853-9NbV5wWkRCU7pPVKYfm5",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 905,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 186,
+      "output_tokens_details": {
+        "reasoning_tokens": 101
+      },
+      "total_tokens": 1091,
+      "cost": 0.0001835,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001835,
+        "upstream_inference_input_cost": 9.05e-05,
+        "upstream_inference_output_cost": 9.3e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7604,
+    "input_bound": 8312,
+    "reserved_usd": "0.003087000",
+    "request_sha256": "be3c8e31d41f339f4df7e7d9ad653d2d4da824859631c00a3c1a9810e9246162",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e6fc31c7a9fef28016ae5627e913887d1b46e23fbfbdb9e4c",
+        "sha256": "cc18a46b6921bab239aa46c05568627b39860b54f302770d2ba184cbae6d5567"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_d5soehk7n3r",
+        "sha256": "6e22b6b9b5dd8cb618176f3c4cd12d3894a53cedbdb31e4ab8bf3e07c74ca642"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay reports all 8 hidden tests passing with exit code 0 and no failures, using the real runner imported before the workspace. The supplied artifact contains the `wordwrap` implementation evaluated in that run."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:37:36.420757+00:00"
+}

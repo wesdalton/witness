@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0405",
+  "incident": "inc-2cf6c7fcd1bf1703",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:00:13.377405+00:00",
+  "prompt_sha256": "1f939791ab6a61cf03f549214775cad53fdf97c49c747976c5d78274cf85d041",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "52b08a899318466cb819376e8930a892",
+    "response_id": "gen-1793422814-efn2KLafq8AYCydQcBJr",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1525,
+      "input_tokens_details": {
+        "cached_tokens": 1394
+      },
+      "output_tokens": 163,
+      "output_tokens_details": {
+        "reasoning_tokens": 42
+      },
+      "total_tokens": 1688,
+      "cost": 0.0020314,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0020314,
+        "upstream_inference_input_cost": 0.0004014,
+        "upstream_inference_output_cost": 0.00163
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6865,
+    "input_bound": 10515,
+    "reserved_usd": "0.0672475",
+    "request_sha256": "01263b313aa1036fd756c5c6a858bc6126351e9928b7534ee7eb2efc674c0fa1",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09c84295fb45ac2a016ae575df3c2c87d1b90d97b6f0fe318c",
+        "sha256": "f90fc6e084eab3b90b301aaad57034ddf57f7159cd7f824251ba07b4b46e3c81"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_4p712d0qdg",
+        "sha256": "5e5b3f5090d5ed6b5662ec095212585f84c172c3b3ac69aef0ab9c9cc0e15d78"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The logs and manifest label five successful attempts, but provide no distinct per-attempt patches or provenance establishing independent agent attempts. The isolated replay confirms that the supplied workspace passes 13 tests, not that five independent patches each passed the hidden suite. These observations are also compatible with repeated evaluation of a single patch, so they cannot establish the claimed 5/5 independent result."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:00:17.715796+00:00"
+}

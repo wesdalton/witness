@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1000",
+  "incident": "inc-4bb22e45c713b0a9",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:35:02.698913+00:00",
+  "prompt_sha256": "16c3871ca461dcdbefd654db8225fbc42d74229ae7336866f310b285a20aae88",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "8948e734669a4d6aa317f801b15279e0",
+    "response_id": "gen-1793424902-IgRzuiFKMdAUNWngm70f",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1473,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1342
+      },
+      "output_tokens": 194,
+      "output_tokens_details": {
+        "reasoning_tokens": 79
+      },
+      "total_tokens": 1667,
+      "cost": 0.005557,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005557,
+        "upstream_inference_input_cost": 0.003617,
+        "upstream_inference_output_cost": 0.00194
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.5795,
+    "input_bound": 10499,
+    "reserved_usd": "0.0672075",
+    "request_sha256": "e58164ae6415e24ef950e727e0980e7e6a9b393b219dd5c12d052ab4f9913d68",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0dc52177ba04d715016ae57e0828bc87d1aeeb294084bf6fa1",
+        "sha256": "ecac03cecad5031c522f239f8ef22b33ee0559c3f520f8bceb9c8b18b340a97f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_yn7dejo0nxk",
+        "sha256": "32a38e042031d25846230262bcf9ef6771f4735569223d7d6f9e98dcc50443d0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.04,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, with five passes and one infrastructure error (attempt 4, exit code 125), rather than five attempts that all passed. The report obtains 5/5 by excluding infrastructure errors, so it does not establish the claimed all-attempt success rate. The successful replay verifies the supplied patch, not five independent successful agent attempts."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:35:07.398492+00:00"
+}

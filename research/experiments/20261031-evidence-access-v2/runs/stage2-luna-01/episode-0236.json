@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0236",
+  "incident": "inc-9e85dd9db5bf4129",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:41:44.712003+00:00",
+  "prompt_sha256": "28c579c81abdd63776000be96c82bac2daaa4289ddf7ea14c21532547e1759ed",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f81ee77933784c9a95b963ecd21274a6",
+    "response_id": "gen-1793418105-M0IRs9i1scTklGDvqWNJ",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1073,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 169,
+      "output_tokens_details": {
+        "reasoning_tokens": 50
+      },
+      "total_tokens": 1242,
+      "cost": 0.0001918,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001918,
+        "upstream_inference_input_cost": 0.0001073,
+        "upstream_inference_output_cost": 8.45e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7045,
+    "input_bound": 8818,
+    "reserved_usd": "0.003150250",
+    "request_sha256": "4a7743840d78d050d9adc687116a140bd0e30d199398338ddeb57636222d3d6f",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a3865d6a9762d4d016ae5637a165c87d1adea0da6040c9337",
+        "sha256": "89f72651318bb7d26173606d9caf856dd283cc7acd37cd4cbce2f5b3b33ee92f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_7ka2nolrk8w",
+        "sha256": "9181bd477d51a63a48464a2d22c7ba09980128cca83e4d095d1b9d652428f7a0"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "manifest",
+      "report"
+    ],
+    "reason": "The isolated replay of the hidden suite reports 4 failures, including tests for self-dependencies and cycles, so the patch did not pass all 8 tests. The submitted implementation also checks whether the result is longer than the node set rather than shorter, allowing cyclic graphs to return without raising CycleError; the report's 8-pass result conflicts with the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:41:48.056740+00:00"
+}

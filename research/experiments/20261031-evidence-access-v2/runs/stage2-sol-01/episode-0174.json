@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0174",
+  "incident": "inc-b3cfff6e7bcdbe3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:46:55.299176+00:00",
+  "prompt_sha256": "e06d1406fd9fbec2d6a46f1a359c0e2ff3a73a616a58f3acc20a5182e74611e9",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "587487effb3b426489ed509416d110ee",
+    "response_id": "gen-1793422015-ZbpbQgPUaQ7YS1QAmKVk",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1584,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1453
+      },
+      "output_tokens": 184,
+      "output_tokens_details": {
+        "reasoning_tokens": 67
+      },
+      "total_tokens": 1768,
+      "cost": 0.0057345,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0057345,
+        "upstream_inference_input_cost": 0.0038945,
+        "upstream_inference_output_cost": 0.00184
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.2856,
+    "input_bound": 10720,
+    "reserved_usd": "0.0677600",
+    "request_sha256": "68bd8280a368f27ee6a392eb6f2b0c3b4f2ed5c299b86be68534d09737cd9181",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0df62c45b865ce49016ae572c0810087d1bd8f91a80db06fec",
+        "sha256": "370fdb18dd1605531f8c7d6b8b5e611393505c08f16ff72eb835481816d09249"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_hkyhtw7qpd",
+        "sha256": "40d8a6c7afac65c4db9aff1c9b3b6797199f17e8306d7f99c89836af85ad4b66"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and logs record five passing runs and one infrastructure error, which the report excludes under its stated policy. However, the artifacts contain only one code snapshot and the independent replay verifies only that snapshot; neither establishes five independent agent attempts or verifies each attempt's patch. The reported 5/5 result is therefore not independently settled by the supplied evidence."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:46:59.620387+00:00"
+}

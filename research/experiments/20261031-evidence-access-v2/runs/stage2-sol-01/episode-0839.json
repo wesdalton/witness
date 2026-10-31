@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0839",
+  "incident": "inc-158e2771f52a9bb7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:25:27.051694+00:00",
+  "prompt_sha256": "b4bca8ebeb5c44d65465f36653c8c9090fd871dfa58c89c1b73cc4f1a9ab444c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7df0bc5feeed402d91171c51cd7edcda",
+    "response_id": "gen-1793424327-wUGUR2CqrGJSep8DhcHb",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 974,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 125,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1099,
+      "cost": 0.003198,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003198,
+        "upstream_inference_input_cost": 0.001948,
+        "upstream_inference_output_cost": 0.00125
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.857,
+    "input_bound": 8492,
+    "reserved_usd": "0.0621900",
+    "request_sha256": "7952b7114cf98cd1165cf40d2f2c7e29a6bfac3b959e656bc733f6bf01fb7d11",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_y84s2eckgb",
+        "sha256": "7291f5cf3b65c551d7441c0e9f3cfa417e6e2b8504421ac1f99509e18e85b08d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the hidden-test run timing out at 10 seconds with exit code -9, and the independent replay likewise timed out with exit code 137 and no completion summary. Both runs show only five progress dots, not completion of all nine tests; the submitted implementation also sleeps 0.7 seconds on every put. These execution results contradict the harness report's claim of nine passing tests within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:25:29.951010+00:00"
+}

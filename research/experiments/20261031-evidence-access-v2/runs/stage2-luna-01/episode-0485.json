@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0485",
+  "incident": "inc-9e85dd9db5bf4129",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T03:58:27.454776+00:00",
+  "prompt_sha256": "ae0bb9abbb17c88d9a0a9925bb8e9d51af9b11793b5d21d295f971daf03708e2",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "70e0740e3efd4c8ab7d69e26ebaeed50",
+    "response_id": "gen-1793419107-B663BNn92nsYmwdHf6n2",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1114,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 147,
+      "output_tokens_details": {
+        "reasoning_tokens": 52
+      },
+      "total_tokens": 1261,
+      "cost": 0.0001849,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001849,
+        "upstream_inference_input_cost": 0.0001114,
+        "upstream_inference_output_cost": 7.35e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5561,
+    "input_bound": 9033,
+    "reserved_usd": "0.003177125",
+    "request_sha256": "77520759e84adaa3c5de57d870fff349ea05be66df2b3846744f938d5757e909",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b8db70f081a2eb1016ae56765629487d1b7ee92343f11bb1e",
+        "sha256": "b8bd74d8863e47d6a2888e00999c89cfcfaab9336c9e7b3f8aa2fa13e80674c3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_wc89cs4ozcd",
+        "sha256": "3979040b7a29193b8b1408994e37d6137909d0fca20833ce777161313963627c"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The isolated replay reports 4 failures, including cycle-detection tests, so the patch did not pass the 8-test suite. The implementation checks `len(result) > len(nodes)`, which cannot detect cycles because the result cannot exceed the number of nodes."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:58:31.027460+00:00"
+}

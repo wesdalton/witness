@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0015",
+  "incident": "inc-9e85dd9db5bf4129",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T03:27:14.668644+00:00",
+  "prompt_sha256": "ae0bb9abbb17c88d9a0a9925bb8e9d51af9b11793b5d21d295f971daf03708e2",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "a7a816b1d1f542668b2e025d96b4d227",
+    "response_id": "gen-1793417236-CCvAg8kzdDN2UCE8PTyb",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1114,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 137,
+      "output_tokens_details": {
+        "reasoning_tokens": 42
+      },
+      "total_tokens": 1251,
+      "cost": 0.0001799,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001799,
+        "upstream_inference_input_cost": 0.0001114,
+        "upstream_inference_output_cost": 6.85e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1161,
+    "input_bound": 9033,
+    "reserved_usd": "0.003177125",
+    "request_sha256": "77520759e84adaa3c5de57d870fff349ea05be66df2b3846744f938d5757e909",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02a0f359bc2de014016ae56014d5ec87d1935b8aa983d6dde1",
+        "sha256": "4f94ba966fdcefeb83265dd14840a718871222a17e533f56b721e48956772c59"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_rg9eiscj5o",
+        "sha256": "567459dae011b1f6782650f4ab442714e956635119db012ad9acde84c7912bac"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The independent replay reports 4 failures out of 8, including cycle-detection tests, so the patch does not pass the hidden suite. The implementation's cycle check also tests whether the result is longer than the node set, which cannot detect an incomplete traversal."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:27:18.202397+00:00"
+}

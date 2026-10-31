@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0870",
+  "incident": "inc-3d544b5b54c93928",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:27:21.291872+00:00",
+  "prompt_sha256": "55cd5acc19b0e4485aa9961875eb705a9d38f9a369a6e6105562aa782d00a6cd",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "c9ffa0a17a984d8f9df8e9d1d47bb0a1",
+    "response_id": "gen-1793424441-23bXV1yz0QwZkVAjzvbk",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1381,
+      "input_tokens_details": {
+        "cached_tokens": 1250
+      },
+      "output_tokens": 237,
+      "output_tokens_details": {
+        "reasoning_tokens": 123
+      },
+      "total_tokens": 1618,
+      "cost": 0.002757,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002757,
+        "upstream_inference_input_cost": 0.000387,
+        "upstream_inference_output_cost": 0.00237
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.1525,
+    "input_bound": 10207,
+    "reserved_usd": "0.0664775",
+    "request_sha256": "676b8afab163efc9e3f2346fe6375e2862a82cad92eaef76b7285e5491e1ae58",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f7c1dbf191f2be7016ae57c3ada4087d1ad686620f5724b1c",
+        "sha256": "f4d1e499890fafd81368277549c1311b5d0d00f37aa201177fb76b31fe5665a6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_n05iblqc1jq",
+        "sha256": "60d4b2b697698c292944a86acdf8f5534d9b991ffa03365bbbc4471e316c5578"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.06,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with exit code 125 and status infra_error, rather than five attempts that all passed. The report obtains 5/5 by excluding the infrastructure-error attempt, so it is a filtered completion rate, not the claimed all-attempt result. The successful replay does not establish that every independent attempt passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:27:26.485270+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0426",
+  "incident": "inc-4bb22e45c713b0a9",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T05:01:32.946696+00:00",
+  "prompt_sha256": "16c3871ca461dcdbefd654db8225fbc42d74229ae7336866f310b285a20aae88",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "f56417083bdd40d89652e2e41a830211",
+    "response_id": "gen-1793422893-ge20rsxWQebPP46K4kq6",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1473,
+      "input_tokens_details": {
+        "cached_tokens": 1342
+      },
+      "output_tokens": 189,
+      "output_tokens_details": {
+        "reasoning_tokens": 87
+      },
+      "total_tokens": 1662,
+      "cost": 0.0022862,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0022862,
+        "upstream_inference_input_cost": 0.0003962,
+        "upstream_inference_output_cost": 0.00189
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.4828,
+    "input_bound": 10499,
+    "reserved_usd": "0.0672075",
+    "request_sha256": "e58164ae6415e24ef950e727e0980e7e6a9b393b219dd5c12d052ab4f9913d68",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e5a6fe5f08a2bd2016ae5762e53a487d1bb91b2b7896cdd84",
+        "sha256": "2471787dea84e5488e1e9ab3b0860302547014647d102471dbacc5cfd6502340"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_37kkvl1t4vo",
+        "sha256": "176362032de2dce41d753e836de49c990872a3f77f984e88ccff6f4e44235b8c"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 4 with exit code 125 and status infra_error, rather than five attempts that all passed. The report obtains 5/5 by excluding infrastructure errors; the successful replay verifies only the available patch, not a passing result for every independent attempt."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:01:37.461423+00:00"
+}

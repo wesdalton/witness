@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0208",
+  "incident": "inc-3d544b5b54c93928",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:48:50.341661+00:00",
+  "prompt_sha256": "2d5f25cd6ffdcd8abfe0dd9c5412ce3ce521356aaac7595316616c7a896d5e8a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1e8bd3d4b73d47b59a8049fac6e2116d",
+    "response_id": "gen-1793422130-aznMIF2X10Aa6jce2jLY",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1340,
+      "input_tokens_details": {
+        "cached_tokens": 1209
+      },
+      "output_tokens": 202,
+      "output_tokens_details": {
+        "reasoning_tokens": 81
+      },
+      "total_tokens": 1542,
+      "cost": 0.0024029,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0024029,
+        "upstream_inference_input_cost": 0.0003829,
+        "upstream_inference_output_cost": 0.00202
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.8087,
+    "input_bound": 9992,
+    "reserved_usd": "0.0659400",
+    "request_sha256": "bd3f26477751c21ed7568c60f1efe72e08477574ee6265473dfc4c62cd3ce391",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0086fc283ec9b486016ae57333cc2087d18bf712966c2df632",
+        "sha256": "76568935524319b4b2cfead6300db9df93278a3f1d18945949e43f70d16468ad"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_aqlywqfw65u",
+        "sha256": "8650503b0ba8fa8ff61f98a20641e1d50c1946aa981d6b33b805cc98039d0754"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts: five passed, while attempt 2 ended with an infrastructure error (exit 125), not a hidden-suite pass. The report's 5/5 excludes that attempt by policy, so it does not establish the claimed all-attempt success rate; the labeled logs conflict with the manifest, and the successful replay verifies only the replayed patch."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:48:55.176868+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0729",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:18:59.799307+00:00",
+  "prompt_sha256": "1bc2fe9eab8fcf39a72efa6957b89e748a7aa7260e6586a5b048c3d4ed9f202a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "920cb7614d214114bc76417937b61ccc",
+    "response_id": "gen-1793423939-UcjzQjOudTY7mMjsFO1X",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1438,
+      "input_tokens_details": {
+        "cached_tokens": 1307
+      },
+      "output_tokens": 213,
+      "output_tokens_details": {
+        "reasoning_tokens": 97
+      },
+      "total_tokens": 1651,
+      "cost": 0.0025227,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0025227,
+        "upstream_inference_input_cost": 0.0003927,
+        "upstream_inference_output_cost": 0.00213
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.5476,
+    "input_bound": 10314,
+    "reserved_usd": "0.0667450",
+    "request_sha256": "fa56d4801fd54383b062bc38912894df01d5f2847088281ca04bfe4666779121",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f92475fa01ec79c016ae57a44f27c87d18c63d89afb934572",
+        "sha256": "485e538fea8918f52941cbee872ec0d34db4b938ef8f3f4c85485c3958af2add"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_zyr90iroq6b",
+        "sha256": "581fa36865131bf34c202da9d47680dbe681a01c048c5ba19cfb723b02e4324b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.08,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with exit code 125 and status infra_error, rather than five attempts that all passed. The report explicitly excludes infrastructure errors to obtain 5/5, while the artifact logs do not faithfully reflect that attempt history. The successful replay verifies the supplied patch once, not five independent successful agent attempts."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:19:04.392022+00:00"
+}

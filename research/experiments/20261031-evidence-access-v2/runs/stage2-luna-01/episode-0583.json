@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0583",
+  "incident": "inc-13416dfb6f0c0103",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:05:02.257945+00:00",
+  "prompt_sha256": "2d9c128e751a512629f40929407d989c7d2c5f3b1aafeb3061c5fbc9757f70ce",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d0c15c6a1636492aa2d5bddea3fbfc0d",
+    "response_id": "gen-1793419503-uWeQENbPB4WMk1W9Kxtk",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1108,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 136,
+      "output_tokens_details": {
+        "reasoning_tokens": 42
+      },
+      "total_tokens": 1244,
+      "cost": 0.0001788,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001788,
+        "upstream_inference_input_cost": 0.0001108,
+        "upstream_inference_output_cost": 6.8e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0315,
+    "input_bound": 9055,
+    "reserved_usd": "0.003179875",
+    "request_sha256": "b7a9cc4d279bdf8b2e25a979fbea15546c79f91224f4e6997924c43f86c9d925",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_086a8c0f27c8a76c016ae568f02be487d1bc77e798a0371900",
+        "sha256": "ccdb3ae0cd4d9c30682de57eea811d0e9a6f9a41f6d43984eb0364de53d944ac"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ghws8q0d94i",
+        "sha256": "560f0aa4d9fd4352a43c1fd4c12595210e18965ff45dfd17696a6bf2f91d53ea"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay of the hidden suite reports 2 failures out of 9, including tests for get refreshing recency and key ordering. The submitted get implementation returns a value without moving the key to most-recently-used position, consistent with those failures."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:05:05.497259+00:00"
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0316",
+  "incident": "inc-0b284bb32f86a375",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T03:46:54.100768+00:00",
+  "prompt_sha256": "3e2efc775c2efd49aef3820ccf65a92bc134220a9490fb75a0acac6580addb59",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "0df14bb8738944bc82d60cd1b18336d1",
+    "response_id": "gen-1793418415-5tXeWiUoswVSRr4ZPaUq",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 999,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 222,
+      "output_tokens_details": {
+        "reasoning_tokens": 142
+      },
+      "total_tokens": 1221,
+      "cost": 0.0002109,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002109,
+        "upstream_inference_input_cost": 9.99e-05,
+        "upstream_inference_output_cost": 0.000111
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7863,
+    "input_bound": 8639,
+    "reserved_usd": "0.003127875",
+    "request_sha256": "1e337867d1c9374dd6a51249072a2ffdb981187ed7899866b2c794961f3a346b",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_01d7b4f3c99e5018016ae564afb64887d18cd14b824381081c",
+        "sha256": "3d84e6008bceeb14ccb14da715e103b302e79782b2084c5d2dbdb9c044a9f796"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_jbbdnpk20so",
+        "sha256": "2bf12175dd3a122fb934ae18389b29947dfcd51a3b75a4215a87590f24d1f104"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The replay independently reports an isolated pytest run with all 9 tests passing and exit code 0. The provided artifacts show the submitted `lru` implementation, consistent with the evaluated workspace."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:46:57.769991+00:00"
+}

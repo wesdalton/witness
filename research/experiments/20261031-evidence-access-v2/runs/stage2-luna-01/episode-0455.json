@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0455",
+  "incident": "inc-9bca9194eb6223ef",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T03:56:24.071368+00:00",
+  "prompt_sha256": "fda9e4cbf103fdd192f608ce53a00e25ac3fe84dfc53c28a1342e87bb5595230",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7b2fe0859ea64da0af4a8d812d83f731",
+    "response_id": "gen-1793418985-DgDgvyKilLRhjbIMjyXb",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1339,
+      "input_tokens_details": {
+        "cached_tokens": 1208
+      },
+      "output_tokens": 591,
+      "output_tokens_details": {
+        "reasoning_tokens": 482
+      },
+      "total_tokens": 1930,
+      "cost": 0.00032068,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00032068,
+        "upstream_inference_input_cost": 2.518e-05,
+        "upstream_inference_output_cost": 0.0002955
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.7499,
+    "input_bound": 10015,
+    "reserved_usd": "0.003299875",
+    "request_sha256": "8c4376a8244254d09771a53afe3bcb475936270b5667751e216c681b0b3c51a4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09a3f3f3d0ffe5b6016ae566ea173887d1b50c3afc9f6e4ae0",
+        "sha256": "b0ab55609ca735e90bbe3b6ff81f1f3041a69e51aaa2f7a5263877761a62efff"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_3134fqo2e1",
+        "sha256": "aa5bd6a1424855ccdac3e75ba957645f54378e0fbb3a787b52d9b0a860419ec9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.45,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six test executions, including one infrastructure error with no test result; it does not establish which executions correspond to five independent agent attempts. The artifact logs and replay show passing tests for a workspace, but do not verify that each of five independent patches passed, and the report's aggregate assertion is not independent evidence."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:56:31.214300+00:00"
+}

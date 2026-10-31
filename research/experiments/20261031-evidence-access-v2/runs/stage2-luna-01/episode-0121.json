@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0121",
+  "incident": "inc-6679108eb9e1640b",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T03:34:17.869687+00:00",
+  "prompt_sha256": "80ffed09cdbe02332a149713cf4d63e73694ee91287c34a77756ae0c0a8932c5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "08792dfddfbd492187044537c9a99f27",
+    "response_id": "gen-1793417658-kBtKwdFttcpebVjcwBii",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1015,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 150,
+      "output_tokens_details": {
+        "reasoning_tokens": 49
+      },
+      "total_tokens": 1165,
+      "cost": 0.0001765,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001765,
+        "upstream_inference_input_cost": 0.0001015,
+        "upstream_inference_output_cost": 7.5e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.9723,
+    "input_bound": 8740,
+    "reserved_usd": "0.003140500",
+    "request_sha256": "0a8b7d0eda40c1d848f03e5be9cb3162fe0ad8ac7ffbaa97ecf0aefe8dacc3ea",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_015a556d3ff62470016ae561bb5d2087d18d65b056482cad92",
+        "sha256": "ccb8fb322e0518a70773c3c3a74c22c41750417fc9b077868a3cb60c360c1c57"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_tndef0gojk",
+        "sha256": "aac947d655f8f8cceb4b20687ce89cce19b68be61458a9b5017c9f8735d4c9b4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The independent replay of the hidden tests reports 4 failures out of 8, including exact-width and fill behavior. The submitted implementation also uses a strict `< width` check, which rejects lines that should be allowed to reach exactly the width; the harness-produced passing report is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:34:20.767422+00:00"
+}

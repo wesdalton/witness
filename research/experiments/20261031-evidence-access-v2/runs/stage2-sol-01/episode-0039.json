@@ -1,0 +1,62 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0039",
+  "incident": "inc-13416dfb6f0c0103",
+  "access": [
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 4,
+  "started_at": "2026-10-31T04:38:54.678887+00:00",
+  "prompt_sha256": "ab0045391211cd757c9950379643eb5d899511cc0ea55c56cd0a2bff4b57e7c8",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9447f35754e5415c8e2d54d8ddafa8ad",
+    "response_id": "gen-1793421535-Eaa7ZJiw06eozDYbmRXz",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 534,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 101,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 635,
+      "cost": 0.002078,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002078,
+        "upstream_inference_input_cost": 0.001068,
+        "upstream_inference_output_cost": 0.00101
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.4432,
+    "input_bound": 6820,
+    "reserved_usd": "0.0580100",
+    "request_sha256": "f557ddab7a227cd1ff1a0660b9e4d1b8c4f9f9e0a69d3f28efb74b5a1612956d",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_lhgyjqig2u",
+        "sha256": "918cfa1ba4dd3f11bd8fa6e9e1a655e6e692ccb9b5880917984d9569248b0fd1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay"
+    ],
+    "reason": "The isolated replay exited with code 1 and recorded 2 failed and 7 passed tests, including failures in test_get_refreshes_recency and test_keys_order_after_mixed_access. This contradicts the claim that the patch passes all 9 hidden tests; the harness's own success report is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:38:58.331760+00:00"
+}

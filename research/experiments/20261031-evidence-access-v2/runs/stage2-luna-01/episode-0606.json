@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0606",
+  "incident": "inc-c7227665ab2373a7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:06:59.472479+00:00",
+  "prompt_sha256": "113640924d037c83a3def9c82ed409f553185ec48a698b99aae862018e40f79c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9fc0d000585541609c262d4282243b5a",
+    "response_id": "gen-1793419619-LOaRYQrMsUirTTPnqS5J",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 896,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 274,
+      "output_tokens_details": {
+        "reasoning_tokens": 171
+      },
+      "total_tokens": 1170,
+      "cost": 0.0002266,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002266,
+        "upstream_inference_input_cost": 8.96e-05,
+        "upstream_inference_output_cost": 0.000137
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.4905,
+    "input_bound": 8061,
+    "reserved_usd": "0.003055625",
+    "request_sha256": "a5005fc03a4b5cc476e535546bd4896086809c5d16f1668ca15a52d36259833c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d54ed449951dc18016ae569641de487d19463540da7123d45",
+        "sha256": "8234702524b4f19243f00fea71275fcdbed6451705d7cbe7b36ae8e06165006f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_14fx0lwlpvjc",
+        "sha256": "c3c9982a405a6b26b42dd2871dc694adf6ec087ed9d52f70831b8b86f62d9fe8"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records exit code 137 and a timeout at the 10-second limit, and the replay independently confirms it timed out after printing only eight test dots with no summary. The report's \u201cpassed 9\u201d status conflicts with the execution evidence and does not establish completion within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:07:03.984113+00:00"
+}

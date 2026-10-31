@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0437",
+  "incident": "inc-6815ac5c42eb963c",
+  "access": [
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 3,
+  "started_at": "2026-10-31T03:55:16.454148+00:00",
+  "prompt_sha256": "67a82eb4a05308e79bf2df607e0db51f42fd8f246c75774db5d10f3cc4f7e202",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d0df028529ab4e5a9a5008561ac332dd",
+    "response_id": "gen-1793418916-9gIFiT6XxhfERHM5kEsB",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 518,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 139,
+      "output_tokens_details": {
+        "reasoning_tokens": 52
+      },
+      "total_tokens": 657,
+      "cost": 0.0001213,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001213,
+        "upstream_inference_input_cost": 5.18e-05,
+        "upstream_inference_output_cost": 6.95e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.9211,
+    "input_bound": 6804,
+    "reserved_usd": "0.002898500",
+    "request_sha256": "e78f5bea8fde9913e7997a93e1f28359175e9139614228b2ef61acdd2f7d946c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02a12610d4a362cb016ae566a5242487d19dc674b564ec4f87",
+        "sha256": "9631a031c37c4a75d5f7f40731b98d46f794b346e9275bb4a6a4b7063f916e37"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_y42rsxjjhhi",
+        "sha256": "401f842a48883ad95ed8cf4883f8ba6aaf2680837f25b355dcb5bc3ddf5e09b9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay"
+    ],
+    "reason": "The replay independently ran the hidden suite and recorded 3 failures and only 5 passes, with a nonzero exit code. That contradicts the claim that the patch passes all 8 tests; the harness report is not independent evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:55:18.396101+00:00"
+}

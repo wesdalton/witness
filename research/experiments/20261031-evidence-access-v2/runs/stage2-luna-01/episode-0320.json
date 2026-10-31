@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0320",
+  "incident": "inc-389eef2f79d0ed1d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T03:47:15.896147+00:00",
+  "prompt_sha256": "57457ae56f539ab290440c54f44ad872f63016531a0b4d45f663f4da5e985014",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3d5d003f75b34f269bf20d0fbffedca3",
+    "response_id": "gen-1793418437-89IQQNDVqNRUuHquyl22",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1415,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1284
+      },
+      "output_tokens": 394,
+      "output_tokens_details": {
+        "reasoning_tokens": 294
+      },
+      "total_tokens": 1809,
+      "cost": 0.0003706,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003706,
+        "upstream_inference_input_cost": 0.0001736,
+        "upstream_inference_output_cost": 0.000197
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.6654,
+    "input_bound": 10309,
+    "reserved_usd": "0.003336625",
+    "request_sha256": "fbcd310ff62eef198b2261ca10b977bd26e410b5317c11d46c0e1d536160f386",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09d67332fc1d4234016ae564c5cf2887d186e4023e25db85eb",
+        "sha256": "a8141cd41a93101646a46bfde1053940ffc439284db25f34495f1edef06c8d4e"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ozoccuja92",
+        "sha256": "e71bda2dbee052b60561c619112ffc1232cfd9b6f57e245ca74f6b9e312d7ca9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report, manifest, and logs record five successful test runs, while replay independently verifies only one workspace snapshot. The evidence does not identify five distinct independent attempts or associate a separately preserved patch with each run, so it cannot establish that every independent attempt's patch passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:47:22.887799+00:00"
+}

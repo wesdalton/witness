@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0100",
+  "incident": "inc-28959ad6a19e2f62",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:42:37.543719+00:00",
+  "prompt_sha256": "12510ab44fad74d2018038144f550d0d1e79369023b945704b4b77412397ddf5",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "6ba2c79046ab4a2b93a43b3366bbbf7e",
+    "response_id": "gen-1793421758-EkDDxaJ42IRLcTD7riMY",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1515,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1384
+      },
+      "output_tokens": 145,
+      "output_tokens_details": {
+        "reasoning_tokens": 29
+      },
+      "total_tokens": 1660,
+      "cost": 0.005172,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005172,
+        "upstream_inference_input_cost": 0.003722,
+        "upstream_inference_output_cost": 0.00145
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.4081,
+    "input_bound": 10729,
+    "reserved_usd": "0.0677825",
+    "request_sha256": "4a26d6c0fb215ae3a917728f718822274385332b9ea0ad07c5d335121c02427f",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c821a71b39d2fde016ae571bf41c887d1b4f69e7d40fe2497",
+        "sha256": "a714d0eceba5daa18d1bdbc4260dcd2d069008cedc6eacfb9120491788d69e17"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_43cgmk1vqfo",
+        "sha256": "021948077b253c6164a2c1bb42a8b497fdb8cc9520c352603ddc0539f175517d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The logs and manifest record five passing runs and one infrastructure error excluded by the reporting policy, while the isolated replay confirms one available workspace passes 11 tests. However, no per-attempt patches or independent provenance establish that the five passing records represent independent agent attempts with separately tested patches. The evidence therefore cannot settle the full 5/5 claim."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:42:41.604816+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0534",
+  "incident": "inc-02f351dcc1d17176",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:01:39.192929+00:00",
+  "prompt_sha256": "b07d40f2894eebdd6cfda72a7b1fbc0fa447aa5ce48af04c8fc06b7d6c1b7af6",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0f6e3d7dc7814f71b7a4683ff55cafdb",
+    "response_id": "gen-1793419299-uRIIrXd093urbkHDjQgS",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 839,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 270,
+      "output_tokens_details": {
+        "reasoning_tokens": 170
+      },
+      "total_tokens": 1109,
+      "cost": 0.0002189,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002189,
+        "upstream_inference_input_cost": 8.39e-05,
+        "upstream_inference_output_cost": 0.000135
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.6927,
+    "input_bound": 7951,
+    "reserved_usd": "0.003041875",
+    "request_sha256": "57529e40717886d51e591e4e4cf7382f2560311ac11407e104f189c55f3cc207",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0523b118bed56845016ae56824102087d1a7f9c482db19469c",
+        "sha256": "5925c6d8744a59d9a1628c1924b07ad23526b6315743adddb103b98c34bc09b1"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_0xfo05bmbgy",
+        "sha256": "18c7adc8c33dfef2765833d46a06c4136c351cef201aa990a67af6c3464dd324"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records the attempt as timed out with exit code 137, and the replay confirms a timeout at 10 seconds with no test summary and only seven dots. Although the report says eight passed, the execution evidence does not show the suite completing within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:01:44.029046+00:00"
+}

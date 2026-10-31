@@ -20,6 +20,11 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261029-evidence-access-v1 | report | [Stage 1: auditors commit on evidence that cannot decide the claim](../experiments/20261029-evidence-access-v1/reports/stage1-01/report.md) | 20261029-evidence-access-v1.report-stage1-01 |
 | 20261031-evidence-access-v2 | design | [Evidence-access benchmark v2 (held-out confirmation)](../experiments/20261031-evidence-access-v2/design/protocol.md) | 20261031-evidence-access-v2.design |
 | 20261031-evidence-access-v2 | gate | [Corpus v2 (12 tasks, 8 held out) built and free gates passed](../experiments/20261031-evidence-access-v2/gates/corpus-v2/manifest.json) | 20261031-evidence-access-v2.gate-corpus-v2 |
+| 20261031-evidence-access-v2 | run | [Stage 2, GPT-6 Luna, 1,056 held-out episodes](../experiments/20261031-evidence-access-v2/runs/stage2-luna-01/manifest.json) | 20261031-evidence-access-v2.run-stage2-luna-01 |
+| 20261031-evidence-access-v2 | run | [Stage 2, GPT-6.1 Sol, 1,056 held-out episodes](../experiments/20261031-evidence-access-v2/runs/stage2-sol-01/manifest.json) | 20261031-evidence-access-v2.run-stage2-sol-01 |
+| 20261031-evidence-access-v2 | analysis | [Stage 2 frozen analysis (P1-P3, S1)](../experiments/20261031-evidence-access-v2/analyses/stage2-01) | 20261031-evidence-access-v2.analysis-stage2-01 |
+| 20261031-evidence-access-v2 | adjudication | [Dropped-attempts supported labels not established; S1 guard sensitivity](../experiments/20261031-evidence-access-v2/adjudications/dropped-attempts-labels-01) | 20261031-evidence-access-v2.adjudication-dropped-attempts-01 |
+| 20261031-evidence-access-v2 | report | [Held-out confirmation: auditors accept reports they cannot check and trust exit 0](../experiments/20261031-evidence-access-v2/reports/stage2-01/report.md) | 20261031-evidence-access-v2.report-stage2-01 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |
@@ -144,6 +149,9 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-a1973f7aaeb8.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-a1973f7aaeb8 |
 | legacy-recovered | ledger-snapshot | [research/agent-study/budget.jsonl](../archive/recovered/recovered-808ff53d0fce-0e0bb9c130a8.jsonl) ([living original](../../research/agent-study/budget.jsonl)) | recovered-808ff53d0fce-0e0bb9c130a8 |
 | legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-a0c737e3e48f.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-a0c737e3e48f |
+| legacy-recovered | ledger-snapshot | [research/agent-study/budget.jsonl](../archive/recovered/recovered-808ff53d0fce-da673724b8bb.jsonl) ([living original](../../research/agent-study/budget.jsonl)) | recovered-808ff53d0fce-da673724b8bb |
+| legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-3578649e5f77.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-3578649e5f77 |
+| legacy-recovered | legacy-artifact | [research/findings.md](../archive/recovered/recovered-3a5867ffc435-5111b666fbcc.md) ([living original](../../research/findings.md)) | recovered-3a5867ffc435-5111b666fbcc |
 | legacy-swarm | run | [luna-calibration-01](../swarm/luna-calibration-01/manifest.json) | legacy-swarm-luna-calibration-01 |
 | legacy-swarm | run | [luna-honest-reports-attempt02](../swarm/luna-honest-reports-attempt02/manifest.json) | legacy-swarm-luna-honest-reports-attempt02 |
 | legacy-swarm | run | [luna-honest-reports-attempt03](../swarm/luna-honest-reports-attempt03/manifest.json) | legacy-swarm-luna-honest-reports-attempt03 |

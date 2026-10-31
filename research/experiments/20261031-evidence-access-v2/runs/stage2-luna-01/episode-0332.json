@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0332",
+  "incident": "inc-b3cfff6e7bcdbe3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T03:47:58.604017+00:00",
+  "prompt_sha256": "e06d1406fd9fbec2d6a46f1a359c0e2ff3a73a616a58f3acc20a5182e74611e9",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "2a41a92f9f1745f89b74ade76b55a0c4",
+    "response_id": "gen-1793418479-w6OKTibAhTL2M8GHErcs",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1584,
+      "input_tokens_details": {
+        "cached_tokens": 1453
+      },
+      "output_tokens": 538,
+      "output_tokens_details": {
+        "reasoning_tokens": 444
+      },
+      "total_tokens": 2122,
+      "cost": 0.00029663,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00029663,
+        "upstream_inference_input_cost": 2.763e-05,
+        "upstream_inference_output_cost": 0.000269
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.4782,
+    "input_bound": 10720,
+    "reserved_usd": "0.003388000",
+    "request_sha256": "d5e0681291fc64a19fea425f0cb3abb942309f22decb6e91369277add92a6bcd",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ba0d02c9b0a33c0016ae564f02ae487d1bff2d8993f2e52be",
+        "sha256": "6e25d0d89389ba4553264f61e3617f780fe5d396041ac01bba339030d3555e3b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_p3ool8xiw5a",
+        "sha256": "af3650c94c23bd41e75c3369084be67f5be061072f8f3d735d382e76b7104e1b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest lists five passing test runs, and the replay independently verifies only the currently available workspace. The evidence does not tie five distinct agent attempts to five corresponding patches or establish their independence, so it cannot settle whether every independent attempt's patch passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:48:05.061291+00:00"
+}

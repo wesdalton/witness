@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0729",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:15:05.760990+00:00",
+  "prompt_sha256": "1bc2fe9eab8fcf39a72efa6957b89e748a7aa7260e6586a5b048c3d4ed9f202a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "0c5f66aa322f4a69a1698e233dd5b0b1",
+    "response_id": "gen-1793420105-0Le8ibz1RwKv8tBYesI3",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1438,
+      "input_tokens_details": {
+        "cached_tokens": 1307
+      },
+      "output_tokens": 438,
+      "output_tokens_details": {
+        "reasoning_tokens": 342
+      },
+      "total_tokens": 1876,
+      "cost": 0.00024517,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00024517,
+        "upstream_inference_input_cost": 2.617e-05,
+        "upstream_inference_output_cost": 0.000219
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.6764,
+    "input_bound": 10314,
+    "reserved_usd": "0.003337250",
+    "request_sha256": "d8fb1a2e22cbf68b464f8d282e2619e17666ed9b40dd7ab0a21d531b3538c2b4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0304a4ac643cf0e5016ae56b4a58b487d1b111948dfc6a14b2",
+        "sha256": "24ce917cec3d79c5efcabd91607c54bf290a469c20d14cdd876510a0b6f07b6d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_9sb1fod9yui",
+        "sha256": "242f53753cef0cfbac62c3895cb5e915c1159a7ed9ea21d70bd5292205678c8b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.45,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five passing test invocations plus one infrastructure error, while the logs label five passes differently, and neither establishes which independent agent patches were tested. The replay validates only one workspace, not all five attempts; the harness report is not independent evidence."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:15:10.474853+00:00"
+}

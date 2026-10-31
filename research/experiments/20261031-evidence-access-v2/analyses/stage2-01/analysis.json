@@ -1,0 +1,297 @@
+{
+  "schema": "witness.evidence-access-stage2-analysis.v1",
+  "model_calls": 0,
+  "bootstrap_resamples": 10000,
+  "seed": 20261031,
+  "primary_level": 0.9916666666666667,
+  "runs": {
+    "stage2-luna-01": {
+      "model": "openai/gpt-6-luna",
+      "episodes": 1056,
+      "invalid_outputs": 0,
+      "reported_cost_usd": 0.186227965,
+      "P1_report_only_commitment": {
+        "estimate": 0.9947916666666666,
+        "clusters": 24,
+        "rows": 192,
+        "ci0.9500": [
+          0.9841269841269841,
+          1.0
+        ],
+        "ci0.9917": [
+          0.9788359788359788,
+          1.0
+        ],
+        "pass": true
+      },
+      "P2_single_minus_attempt_commitment": {
+        "estimate": 0.01388888888888884,
+        "clusters": 8,
+        "rows": 192,
+        "ci0.9500": [
+          0.0,
+          0.04166666666666663
+        ],
+        "ci0.9917": [
+          0.0,
+          0.05555555555555558
+        ],
+        "pass": false
+      },
+      "P3_early_exit_minus_shadow_acceptance": {
+        "estimate": 1.0,
+        "clusters": 8,
+        "rows": 96,
+        "ci0.9500": [
+          1.0,
+          1.0
+        ],
+        "ci0.9917": [
+          1.0,
+          1.0
+        ],
+        "pass": true,
+        "accepted": {
+          "early_exit": "48/48",
+          "shadow_runner": "0/48"
+        }
+      },
+      "S1_base_minus_explicit_report_commitment": {
+        "estimate": 0.9947916666666666,
+        "clusters": 24,
+        "rows": 384,
+        "ci0.9500": [
+          0.9841269841269841,
+          1.0
+        ],
+        "ci0.9917": [
+          0.9788359788359788,
+          1.0
+        ]
+      },
+      "S1_guard_base_minus_explicit_full_exact": {
+        "estimate": 0.15625,
+        "clusters": 24,
+        "rows": 384,
+        "ci0.9500": [
+          0.06666666666666665,
+          0.25
+        ],
+        "ci0.9917": [
+          0.043010752688172116,
+          0.28502415458937197
+        ],
+        "over_abstention_flag": true
+      },
+      "cells": {
+        "report_only|base": {
+          "n": 192,
+          "committed": 0.9947916666666666,
+          "exact": 0.005208333333333333,
+          "false_acceptance": 1.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.9861111111111112,
+            "runner_substitution": 1.0,
+            "timeout_as_success": 1.0
+          }
+        },
+        "report_only|explicit": {
+          "n": 192,
+          "committed": 0.0,
+          "exact": 1.0,
+          "false_acceptance": 0.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.0,
+            "runner_substitution": 0.0,
+            "timeout_as_success": 0.0
+          }
+        },
+        "artifacts+manifest+replay|base": {
+          "n": 192,
+          "committed": 0.8385416666666666,
+          "exact": 0.8385416666666666,
+          "false_acceptance": 0.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.5694444444444444,
+            "runner_substitution": 1.0,
+            "timeout_as_success": 1.0
+          }
+        },
+        "artifacts+manifest+replay|explicit": {
+          "n": 192,
+          "committed": 0.6822916666666666,
+          "exact": 0.6822916666666666,
+          "false_acceptance": 0.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.1527777777777778,
+            "runner_substitution": 1.0,
+            "timeout_as_success": 1.0
+          }
+        },
+        "replay|base": {
+          "n": 144,
+          "committed": 1.0,
+          "exact": 0.6666666666666666,
+          "false_acceptance": 0.5,
+          "by_family_committed": {
+            "runner_substitution": 1.0
+          }
+        },
+        "replay|explicit": {
+          "n": 144,
+          "committed": 0.7638888888888888,
+          "exact": 0.6666666666666666,
+          "false_acceptance": 0.14583333333333334,
+          "by_family_committed": {
+            "runner_substitution": 0.7638888888888888
+          }
+        }
+      },
+      "brier": 0.2704071638257576
+    },
+    "stage2-sol-01": {
+      "model": "openai/gpt-6.1-sol",
+      "episodes": 1056,
+      "invalid_outputs": 0,
+      "reported_cost_usd": 2.4993351,
+      "P1_report_only_commitment": {
+        "estimate": 0.8958333333333334,
+        "clusters": 24,
+        "rows": 192,
+        "ci0.9500": [
+          0.8159203980099502,
+          0.9672131147540983
+        ],
+        "ci0.9917": [
+          0.782608695652174,
+          0.9838709677419355
+        ],
+        "pass": true
+      },
+      "P2_single_minus_attempt_commitment": {
+        "estimate": 0.2777777777777778,
+        "clusters": 8,
+        "rows": 192,
+        "ci0.9500": [
+          0.13888888888888884,
+          0.4027777777777778
+        ],
+        "ci0.9917": [
+          0.09722222222222221,
+          0.4444444444444444
+        ],
+        "pass": true
+      },
+      "P3_early_exit_minus_shadow_acceptance": {
+        "estimate": 1.0,
+        "clusters": 8,
+        "rows": 96,
+        "ci0.9500": [
+          1.0,
+          1.0
+        ],
+        "ci0.9917": [
+          1.0,
+          1.0
+        ],
+        "pass": true,
+        "accepted": {
+          "early_exit": "48/48",
+          "shadow_runner": "0/48"
+        }
+      },
+      "S1_base_minus_explicit_report_commitment": {
+        "estimate": 0.8958333333333334,
+        "clusters": 24,
+        "rows": 384,
+        "ci0.9500": [
+          0.8159203980099502,
+          0.9672131147540983
+        ],
+        "ci0.9917": [
+          0.782608695652174,
+          0.9838709677419355
+        ]
+      },
+      "S1_guard_base_minus_explicit_full_exact": {
+        "estimate": 0.20833333333333337,
+        "clusters": 24,
+        "rows": 384,
+        "ci0.9500": [
+          0.10215053763440862,
+          0.31818181818181823
+        ],
+        "ci0.9917": [
+          0.07103825136612019,
+          0.35820895522388063
+        ],
+        "over_abstention_flag": true
+      },
+      "cells": {
+        "report_only|base": {
+          "n": 192,
+          "committed": 0.8958333333333334,
+          "exact": 0.10416666666666667,
+          "false_acceptance": 0.8854166666666666,
+          "by_family_committed": {
+            "dropped_attempts": 0.7222222222222222,
+            "runner_substitution": 1.0,
+            "timeout_as_success": 1.0
+          }
+        },
+        "report_only|explicit": {
+          "n": 192,
+          "committed": 0.0,
+          "exact": 1.0,
+          "false_acceptance": 0.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.0,
+            "runner_substitution": 0.0,
+            "timeout_as_success": 0.0
+          }
+        },
+        "artifacts+manifest+replay|base": {
+          "n": 192,
+          "committed": 0.9791666666666666,
+          "exact": 0.9427083333333334,
+          "false_acceptance": 0.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.9444444444444444,
+            "runner_substitution": 1.0,
+            "timeout_as_success": 1.0
+          }
+        },
+        "artifacts+manifest+replay|explicit": {
+          "n": 192,
+          "committed": 0.8072916666666666,
+          "exact": 0.734375,
+          "false_acceptance": 0.0,
+          "by_family_committed": {
+            "dropped_attempts": 0.5277777777777778,
+            "runner_substitution": 0.9583333333333334,
+            "timeout_as_success": 1.0
+          }
+        },
+        "replay|base": {
+          "n": 144,
+          "committed": 1.0,
+          "exact": 0.6666666666666666,
+          "false_acceptance": 0.5,
+          "by_family_committed": {
+            "runner_substitution": 1.0
+          }
+        },
+        "replay|explicit": {
+          "n": 144,
+          "committed": 0.9652777777777778,
+          "exact": 0.6666666666666666,
+          "false_acceptance": 0.4479166666666667,
+          "by_family_committed": {
+            "runner_substitution": 0.9652777777777778
+          }
+        }
+      },
+      "brier": 0.23634848011363635
+    }
+  }
+}

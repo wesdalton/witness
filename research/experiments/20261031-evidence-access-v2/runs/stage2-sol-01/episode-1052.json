@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1052",
+  "incident": "inc-9e85dd9db5bf4129",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 5,
+  "started_at": "2026-10-31T05:38:02.017440+00:00",
+  "prompt_sha256": "0b8cc81a164eff62b728ba74b2eebce3fa3590f0cfb04ee522d24ca6804b189b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "215484d2679d4035a550ac262f2e4c3d",
+    "response_id": "gen-1793425083-xOsWsu6kyaGoaNcuEEBQ",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 491,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 96,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 587,
+      "cost": 0.001942,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001942,
+        "upstream_inference_input_cost": 0.000982,
+        "upstream_inference_output_cost": 0.00096
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.8508,
+    "input_bound": 6583,
+    "reserved_usd": "0.0574175",
+    "request_sha256": "dd9bed52cea1bf58ed81058e68986c67b803954230bcb3c5293783b114bf0dc1",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_z387twzv42n",
+        "sha256": "85223c3aa3a391f3f5c00b760fd415853395c0c3003bff858733cb423ad9b319"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Although the report claims all 8 tests passed, the isolated replay recorded 4 failed and 4 passed, with exit code 1 and no timeout. Failures include self-dependency and cycle-rejection tests, directly contradicting the claim that the patch passes the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:38:05.103820+00:00"
+}

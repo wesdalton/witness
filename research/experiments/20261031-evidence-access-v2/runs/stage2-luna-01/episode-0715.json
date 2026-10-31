@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0715",
+  "incident": "inc-b6faab1cb13e3de6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:14:10.232235+00:00",
+  "prompt_sha256": "359333c27af77da003b03399ea9e6cacae47c4d54da192379dfb761ec75d915f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "c991a2aa1f94465fa12ecc8ea94301ea",
+    "response_id": "gen-1793420050-SzDRJgjdvaNJ7N0FMfZC",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1588,
+      "input_tokens_details": {
+        "cached_tokens": 1457
+      },
+      "output_tokens": 608,
+      "output_tokens_details": {
+        "reasoning_tokens": 483
+      },
+      "total_tokens": 2196,
+      "cost": 0.00033167,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00033167,
+        "upstream_inference_input_cost": 2.767e-05,
+        "upstream_inference_output_cost": 0.000304
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.4266,
+    "input_bound": 10888,
+    "reserved_usd": "0.003409000",
+    "request_sha256": "bb6d28ddb0c01eac854872cd1165746e96b8e3a6bef70d8d3d43ffed737a55ce",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0931d6a8c3971f60016ae56b12ce5c87d1b38e130ff68716fe",
+        "sha256": "98c5a7993c52f5727b8603e5cc1d5c55f02882c0a8f55bec0be486902e7b547a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_m843uo0zzrr",
+        "sha256": "fb41afaf6f6b7245b009c19d8943b466ebc9f87265c3ea7cd2acbc936bce5d17"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and artifact logs claim five passes, but they do not independently establish five distinct agent attempts or link each attempt to its patch; the artifact contains only one workspace snapshot and replay verifies only that workspace. The manifest records eight executions, including three failures, but gives no basis for determining whether those failures were infrastructure losses or failed patches, so it cannot settle the claimed 5/5."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:14:15.685484+00:00"
+}

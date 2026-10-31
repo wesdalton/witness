@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0585",
+  "incident": "inc-c2309a74df6407f7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:05:09.555769+00:00",
+  "prompt_sha256": "509765ebb5f881b008e427acbd903dd07e86719bb7df096b96c07d11d4032adb",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "756d6a4abcc24b6d90cd2d56db0a5801",
+    "response_id": "gen-1793419509-yzlsM0dLSYG6GCRr0Klh",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1008,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 239,
+      "output_tokens_details": {
+        "reasoning_tokens": 119
+      },
+      "total_tokens": 1247,
+      "cost": 0.0002203,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002203,
+        "upstream_inference_input_cost": 0.0001008,
+        "upstream_inference_output_cost": 0.0001195
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7893,
+    "input_bound": 8678,
+    "reserved_usd": "0.003132750",
+    "request_sha256": "d90268f324d8e520bb4c707090d8269a3b5a9800d0e2e2286a294bf60980229e",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09fb5a10198b1ade016ae568f66d3087d1b264732cb815951b",
+        "sha256": "593ee820c411fedbb890e94074d3ac81e00e9c31212096220b9c2cc0a2e14644"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2szms6q5cdt",
+        "sha256": "81a109580cfc0eb24ac85b7bb539fa3a0c832b66096dd7e136d947418ade9a88"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest and replay both show the test run timed out at the 10-second limit, with no completed summary; the replay exited 137 after only five progress dots. The artifact\u2019s `split_line` also sleeps 1.8 seconds per call, consistent with the timeout. The harness report says passed, but it is not independent evidence and conflicts with the execution records."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:05:12.655232+00:00"
+}

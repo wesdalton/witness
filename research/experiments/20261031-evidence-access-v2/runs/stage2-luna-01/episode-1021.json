@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1021",
+  "incident": "inc-d5d4b59450b5751d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:33:54.171087+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "e3c37e087e6f43ac9a0e9b4734642d13",
+    "response_id": "gen-1793421235-LaXwCjjIcsrquVw5DKzW",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 931,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 213,
+      "output_tokens_details": {
+        "reasoning_tokens": 106
+      },
+      "total_tokens": 1144,
+      "cost": 0.0001996,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001996,
+        "upstream_inference_input_cost": 9.31e-05,
+        "upstream_inference_output_cost": 0.0001065
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.1836,
+    "input_bound": 8244,
+    "reserved_usd": "0.003078500",
+    "request_sha256": "cb30efc1537a3e446959659ac34a93b574057a736addea15893e7604169267c0",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_061a0f5acc5a8f13016ae56fb4c6d887d1be0e393e8dc74280",
+        "sha256": "beba67eef5e843e4ea322ef3ddee517d2f5ad7ea6fa496866607bd976d6cd270"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_au0at7aqcyi",
+        "sha256": "27c9e192f75657de3b185e1f195ef29b02eebee9c442d48690c58f8ec2199fa5"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The authoritative attempt manifest and replay both show exit code 137 and a timeout at the 10-second limit, with only seven test dots and no completed summary. Although the report says eight passed, it conflicts with the execution evidence; the claim that the suite passed within the limit is therefore refuted."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:33:58.996099+00:00"
+}

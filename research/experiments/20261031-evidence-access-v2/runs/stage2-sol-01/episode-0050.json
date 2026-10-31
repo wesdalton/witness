@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0050",
+  "incident": "inc-6815ac5c42eb963c",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 5,
+  "started_at": "2026-10-31T04:39:32.393176+00:00",
+  "prompt_sha256": "ebbc98cf23848494391a274c92e69dfa8c1b71103ec3363c77b484494a38efad",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "47edac02e6ea4b5d853781f6608a5b49",
+    "response_id": "gen-1793421573-4o6lXbASsptC0DOOi6jT",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 477,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 90,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 567,
+      "cost": 0.001854,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001854,
+        "upstream_inference_input_cost": 0.000954,
+        "upstream_inference_output_cost": 0.0009
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2494,
+    "input_bound": 6589,
+    "reserved_usd": "0.0574325",
+    "request_sha256": "b30a4ae0667d8b1e87cb6b49502567866155d9e452fb421e31913ffa751915e0",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_si5sb1zfmae",
+        "sha256": "73939f7558adc7c8014d18877737340a342050d244dfb6c8aa7e03ad910244a6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The isolated replay ran all eight hidden tests and returned exit code 1, with three failures and five passes. Although the report claims eight passes, the direct replay contradicts it and shows failures in punctuation handling, hyphen collapsing, and length limits."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:39:36.749022+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0111",
+  "incident": "inc-c7227665ab2373a7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:43:16.648624+00:00",
+  "prompt_sha256": "f4fc739917c6a4095984114552805b5b37dace327307626207a8459ebe8993bc",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "52ea9d66a0ef4715bb0f4d539b2d5aea",
+    "response_id": "gen-1793421797-JuOLQNERkz4ME0FRS5l7",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 937,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 95,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1032,
+      "cost": 0.002824,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002824,
+        "upstream_inference_input_cost": 0.001874,
+        "upstream_inference_output_cost": 0.00095
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1243,
+    "input_bound": 8276,
+    "reserved_usd": "0.0616500",
+    "request_sha256": "d391efb2ba88c2662c1266b3bdb112d1a93d4d666b6e12dc110fbe21f09b9836",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_4fh2ai19j25",
+        "sha256": "a6f6e6dfe0119cb737a121142315f4d82003cf6264bb8f0303afe1dbbb1dccb1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records a timeout at the 10-second limit with exit code 137, and the isolated replay independently confirms that timeout. Both logs show only eight progress dots and no completed test summary, contradicting the claim that all nine tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:43:19.418446+00:00"
+}

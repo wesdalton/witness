@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0169",
+  "incident": "inc-86383ed175e2e92c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 1,
+  "started_at": "2026-10-31T04:46:37.387247+00:00",
+  "prompt_sha256": "4a90177d95942cf4d32098bfde50ba382a2ad029bddbb6b54dcdad5a20397d92",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2232f69a61a549719b93c2384ef88a61",
+    "response_id": "gen-1793421998-39TE2D7Z3Zv5v4J2A7YB",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1699,
+      "input_tokens_details": {
+        "cached_tokens": 1568
+      },
+      "output_tokens": 159,
+      "output_tokens_details": {
+        "reasoning_tokens": 47
+      },
+      "total_tokens": 1858,
+      "cost": 0.0020088,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0020088,
+        "upstream_inference_input_cost": 0.0004188,
+        "upstream_inference_output_cost": 0.00159
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6175,
+    "input_bound": 11109,
+    "reserved_usd": "0.0687325",
+    "request_sha256": "b43e7cf4581af73ea8cfef5d014b4f7dca6a764a0c6b4dae437cca9b920d00d2",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06ff26c3e617bf7e016ae572af789087d18c2e68b3637bf5d8",
+        "sha256": "e0606cd0086828fb0567fb8fa8ad2b3f7f7beb76bb58a85824f3eab862ddce4f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_6gp6nztoioo",
+        "sha256": "90e22be6d53dbb51f49e64fdc06088d19fdcf647074bc757d7b99d3e46897d51"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with five passing and three failing, including failures on attempts 4 and 5; this contradicts five independent attempts all passing. The report's exclusion policy does not establish that these failures were infrastructure errors. The successful isolated replay verifies only the replayed patch, not a 5/5 historical success rate."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:46:41.655370+00:00"
+}

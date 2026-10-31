@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0111",
+  "incident": "inc-c7227665ab2373a7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T03:33:42.623742+00:00",
+  "prompt_sha256": "f4fc739917c6a4095984114552805b5b37dace327307626207a8459ebe8993bc",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3e36116f8be64193a2a4082b4fc3876c",
+    "response_id": "gen-1793417624-LkaEL2ZER4DwAhOVtEUt",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 937,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 198,
+      "output_tokens_details": {
+        "reasoning_tokens": 100
+      },
+      "total_tokens": 1135,
+      "cost": 0.0001927,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001927,
+        "upstream_inference_input_cost": 9.37e-05,
+        "upstream_inference_output_cost": 9.9e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7422,
+    "input_bound": 8276,
+    "reserved_usd": "0.003082500",
+    "request_sha256": "ca8d80e7615285e8fde5ff4491b37f03a6792a960ac6f96e004727c9b8a5c5ba",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02e92b57617dbd22016ae56198b37087d1aa2a1e80159ecc35",
+        "sha256": "9fbe8c16342baaa710d0b672777c218f55b5a6134c11718dc1d261fcca8682dd"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_peu94aokv1f",
+        "sha256": "a4377243885246adbc4014eaa3681fa9f6fef775c0fdf64c7ea496178a45c27d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records a timeout with exit code 137 at the 10-second limit, and the replay independently confirms the run timed out after producing only eight dots, with no test summary. The report's passed status is not independent evidence from the evaluated harness and conflicts with the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T03:33:46.826260+00:00"
+}

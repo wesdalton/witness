@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0648",
+  "incident": "inc-b3cfff6e7bcdbe3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:09:33.084280+00:00",
+  "prompt_sha256": "9c745d1fafaefc3d27c469c47cb16c1b9219a3442f3e36ed014570933859b337",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "4df14df65127486ba2ec2a2114c04563",
+    "response_id": "gen-1793419774-Fu1GlY32izbMeC5y5dPr",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1543,
+      "input_tokens_details": {
+        "cached_tokens": 1412
+      },
+      "output_tokens": 504,
+      "output_tokens_details": {
+        "reasoning_tokens": 386
+      },
+      "total_tokens": 2047,
+      "cost": 0.00027922,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00027922,
+        "upstream_inference_input_cost": 2.722e-05,
+        "upstream_inference_output_cost": 0.000252
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.7637,
+    "input_bound": 10505,
+    "reserved_usd": "0.003361125",
+    "request_sha256": "8f5c609e66a06e3393151b662c6029d55558a5b0cb2a9b38f6662cf092c06585",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08c8c412bcb678f1016ae569ffe06087d184c6071304eef2bb",
+        "sha256": "e6f65eba5a87095d1cbdb4a6d942e9d90dbcdc3b2e4ac1e6c8be0955674f6ebf"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2pv7jyh9gbq",
+        "sha256": "b11f4c5ddc5b0d8a6d7b9caa88ccac0700676997062c7bde2741a17163c73c07"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report identifies five reported attempts and says all five passed; the manifest independently lists attempts 1\u20135 as passed with exit code 0, and their logs show 13 tests passing. Attempt 6 is explicitly an infrastructure error and is excluded under the stated policy; the replay also confirms the verifier passes, though it does not itself validate each attempt separately."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:09:41.941477+00:00"
+}

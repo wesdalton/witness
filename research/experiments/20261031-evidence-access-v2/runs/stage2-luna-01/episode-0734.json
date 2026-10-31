@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0734",
+  "incident": "inc-db7da34983541178",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T04:15:22.034956+00:00",
+  "prompt_sha256": "dde7ddb24e1293ee57f225b7cbddd0a8ac21051a3bc69cbbe17e3353bfdad1ac",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "839cfc617fb444beb6c090e0157eb8da",
+    "response_id": "gen-1793420123-BJxtp0Vjz5EPDxEQADDA",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 993,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 246,
+      "output_tokens_details": {
+        "reasoning_tokens": 140
+      },
+      "total_tokens": 1239,
+      "cost": 0.0002223,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002223,
+        "upstream_inference_input_cost": 9.93e-05,
+        "upstream_inference_output_cost": 0.000123
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.0618,
+    "input_bound": 8564,
+    "reserved_usd": "0.003118500",
+    "request_sha256": "6409ea63c0da116e3087d53311507efb48f8ee3c1f7e1b3ccbc5193679fe7366",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_01d95a161ba8491c016ae56b5c487c87d1a17efaec0b4cb9e4",
+        "sha256": "af74530908ec71245932f04e946037a87c9781bc5d9dcd70ff98a7f3cbda6e58"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_h4j8n5tegq4",
+        "sha256": "2b73907c05e44b33db86f6b21b3af5bb13d7a1254ee0bf12fb79a918f21d86a2"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The replay using the isolated verifier reports 2 failed and 8 passed, including two median tests, so the submitted patch does not pass all 10 hidden tests. The displayed implementation also indexes `ordered[mid + 1]` for even-length medians, causing an out-of-range error."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:15:27.369295+00:00"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0639",
+  "incident": "inc-8d7cfedc1ea92235",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T04:09:00.736538+00:00",
+  "prompt_sha256": "61bebca06383ba9efba315fb8f8f965e17e9c2529d7aa4724a5e6e0898d454de",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0d628773f1d54bec994a47140643bafc",
+    "response_id": "gen-1793419741-SqraLpVwUbH6i69mLBzq",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1549,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1418
+      },
+      "output_tokens": 394,
+      "output_tokens_details": {
+        "reasoning_tokens": 293
+      },
+      "total_tokens": 1943,
+      "cost": 0.00038735,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00038735,
+        "upstream_inference_input_cost": 0.00019035,
+        "upstream_inference_output_cost": 0.000197
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.0991,
+    "input_bound": 10708,
+    "reserved_usd": "0.003386500",
+    "request_sha256": "70fc33290cefac64986f1868d201d4e0ca9de6d4908916e6aa84bdc7ae0db252",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_00df7975ff0981ab016ae569de515487d19ef4b9d689a84779",
+        "sha256": "cf8053305d75bbdb859de217bc3676938def15dd93e3933e59384e73736b492d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_wrh3m1ehoz",
+        "sha256": "63433ab86d22478c2bdb0fb29193bd35f23e90afa906d2dc49472e7dcba833f3"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records attempt 3 as failed (exit code 1), contradicting the claim that all five attempts passed; the report and logs asserting five passes do not resolve this discrepancy. The replay only confirms a current workspace run passed, not that every independent patch passed."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:09:07.768468+00:00"
+}

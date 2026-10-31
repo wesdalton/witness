@@ -1,0 +1,78 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0024",
+  "incident": "inc-8d7cfedc1ea92235",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T03:27:45.710017+00:00",
+  "prompt_sha256": "61bebca06383ba9efba315fb8f8f965e17e9c2529d7aa4724a5e6e0898d454de",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d01a55d90a664b4d8d80b23d51f7aa97",
+    "response_id": "gen-1793417266-53t0PM2Yu5kJcDKhuXgA",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1549,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1418
+      },
+      "output_tokens": 729,
+      "output_tokens_details": {
+        "reasoning_tokens": 606
+      },
+      "total_tokens": 2278,
+      "cost": 0.00055485,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00055485,
+        "upstream_inference_input_cost": 0.00019035,
+        "upstream_inference_output_cost": 0.0003645
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.591,
+    "input_bound": 10708,
+    "reserved_usd": "0.003386500",
+    "request_sha256": "70fc33290cefac64986f1868d201d4e0ca9de6d4908916e6aa84bdc7ae0db252",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ee6d9128ccb44b2016ae560330b6487d1965739875a52058c",
+        "sha256": "8488c4ae49ea718796da5cb59790b4791b7fbdd9752c960c706f732eaeb93f18"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_0ee6d9128ccb44b2016ae56038350887d1b920a10bb9553964",
+        "sha256": "a5300061907f10cbbab485196e99bcda299c74852fde741a50275c5194b8ee34"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_aq7ies7koy",
+        "sha256": "00aff69693b12faee974e8eceb26622552072c22751319d5a9edbece93838c6a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and five artifact logs say 5/5 passed, but the manifest lists eight suite runs and records attempts 3, 7, and 8 as failed; attempt 3 directly conflicts with its passing log. The successful replay only verifies one current workspace, and the evidence does not reconcile which runs correspond to the claimed five independent attempts or why the failures are excluded."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T03:27:54.024202+00:00"
+}

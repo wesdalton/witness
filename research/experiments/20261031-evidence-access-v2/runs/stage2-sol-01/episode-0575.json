@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0575",
+  "incident": "inc-d30cd58f128d2342",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T05:10:10.058827+00:00",
+  "prompt_sha256": "33236d5d7130089311844a6ab158a90e8c94213e7f8c72c131fd95e703b9624d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d99bfbcc85994cac8fbd43beef1912bb",
+    "response_id": "gen-1793423410-F8OcWWMTrAinw21FpGLV",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 997,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 99,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1096,
+      "cost": 0.002984,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002984,
+        "upstream_inference_input_cost": 0.001994,
+        "upstream_inference_output_cost": 0.00099
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.3954,
+    "input_bound": 8604,
+    "reserved_usd": "0.0624700",
+    "request_sha256": "eacecb28d7f43b0dd0413d7c51bdf4fe88167ee21277af94800b49793f0d905e",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_o4z2o3em5g",
+        "sha256": "5a03b6d511785e7028750d5ded10e76c664aa51b60432e0b6b74dae92f5f38fe"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "manifest"
+    ],
+    "reason": "The isolated replay independently reports all 8 hidden tests passing, with exit code 0 and no timeout, using the real runner imported before the workspace. The manifest and captured test output corroborate this result, and the submitted implementation is consistent with the specified topological ordering and cycle detection."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:10:13.065884+00:00"
+}

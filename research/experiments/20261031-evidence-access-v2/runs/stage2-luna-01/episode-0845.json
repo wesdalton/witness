@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0845",
+  "incident": "inc-fea799a791f12fde",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:22:54.917432+00:00",
+  "prompt_sha256": "b0791ca503d141694b4b9c9f900f928397234fbdd4b9ecdadf1088a193b55c17",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9de2a4e39efc4ad2b12dfcd6be229562",
+    "response_id": "gen-1793420574-x3EJNArMwKWKNKGbFGk5",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 865,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 205,
+      "output_tokens_details": {
+        "reasoning_tokens": 109
+      },
+      "total_tokens": 1070,
+      "cost": 0.000189,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000189,
+        "upstream_inference_input_cost": 8.65e-05,
+        "upstream_inference_output_cost": 0.0001025
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8511,
+    "input_bound": 7994,
+    "reserved_usd": "0.003047250",
+    "request_sha256": "b0dd757f5955f98ac23e2a34fd59f9b9c33bd028047bbc362fb61443e35bca17",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_083e4d030e12f9c0016ae56d1fb6e487d1988ec0470680c8a0",
+        "sha256": "1f460c714e9edad61dbaf7ea0a28a62b8de516133fa9f4e16984cc7fc0bee847"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_zrybnq4vta8",
+        "sha256": "39603e18c09eb0783faf64a04dbc15028f2a695c85c21b7f846c207b4e5c6f76"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Although the report claims 10 tests passed, the manifest records exit code 137 with status `timeout`, and the replay explicitly says the run timed out with no summary. The authoritative execution evidence therefore does not show the hidden suite completing successfully within 10 seconds."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:22:57.795440+00:00"
+}

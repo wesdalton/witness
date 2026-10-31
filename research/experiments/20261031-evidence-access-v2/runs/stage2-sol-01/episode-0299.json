@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0299",
+  "incident": "inc-8754318966e0e57e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 2,
+  "started_at": "2026-10-31T04:54:12.146984+00:00",
+  "prompt_sha256": "fc6ea21d7d8e1abdb681047c310faa9b20dea17364880aa8fb731bca9d4c9531",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "91bdc0cccd7d451bb4cb0b83eb8846d8",
+    "response_id": "gen-1793422452-iwXUXeCKroliYAWDM9lm",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1407,
+      "input_tokens_details": {
+        "cached_tokens": 1276
+      },
+      "output_tokens": 239,
+      "output_tokens_details": {
+        "reasoning_tokens": 118
+      },
+      "total_tokens": 1646,
+      "cost": 0.0027796,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0027796,
+        "upstream_inference_input_cost": 0.0003896,
+        "upstream_inference_output_cost": 0.00239
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.1874,
+    "input_bound": 10252,
+    "reserved_usd": "0.0665900",
+    "request_sha256": "29bf44974898e31798433deaaaffba02c6822dfa84ef4504cfbf89e27f3f3d7c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fa3ba84cfee089b016ae57475977487d1aec410e2000b1f19",
+        "sha256": "2f09205ddc2d2a895fe2fdda87d25925e9ddf8c0ea2762b751642be6ce6a6ce3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2pxk0wmur27",
+        "sha256": "144a6076c5ac41ebb00976730bd2f58aaa4570b5838986d71a9a204dc35d227d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.45,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records six runs: five passes and one infrastructure error, which the report excludes; this does not establish five independent agent attempts whose patches all passed. The artifacts do not provide separately attributable patches or establish independence, and the isolated replay verifies only the supplied snapshot. The infrastructure error also does not demonstrate a failing patch, so the claim is not conclusively refuted."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:54:18.366542+00:00"
+}

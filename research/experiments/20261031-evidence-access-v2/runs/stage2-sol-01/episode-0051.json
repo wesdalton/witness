@@ -1,0 +1,66 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0051",
+  "incident": "inc-c2309a74df6407f7",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T04:39:36.749393+00:00",
+  "prompt_sha256": "509765ebb5f881b008e427acbd903dd07e86719bb7df096b96c07d11d4032adb",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "cba39c9579af4773b828452f1ad3871d",
+    "response_id": "gen-1793421576-cXDhJ9qTOISA5sUYuvuP",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1008,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 118,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1126,
+      "cost": 0.003196,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003196,
+        "upstream_inference_input_cost": 0.002016,
+        "upstream_inference_output_cost": 0.00118
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.248,
+    "input_bound": 8678,
+    "reserved_usd": "0.0626550",
+    "request_sha256": "d44f5d6668c159cb1946b4a242a09687fff11ff2c64903277c37b6229b4485a8",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_l56nrmn49vk",
+        "sha256": "de19ddac5048039fae06fb80169d4f55a30b87b7cb492f58fba3017f146c42e4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the hidden-suite run timing out at 10 seconds with exit code -9, and the isolated replay independently timed out with exit code 137 and only five progress dots, not 11 completed tests. The submitted split_line also sleeps 1.8 seconds per call, consistent with the timeout; the harness's reported pass is contradicted by the execution evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T04:39:39.028551+00:00"
+}

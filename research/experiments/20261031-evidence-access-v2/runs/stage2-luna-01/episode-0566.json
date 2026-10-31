@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0566",
+  "incident": "inc-d015322bb855a1b2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T04:03:54.569313+00:00",
+  "prompt_sha256": "1e4693800109b47bab84fff000edb5da6ed6c4e94dab35fb7c2d9979a78f1115",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2ec16fd293de46f491db23e826fd8e11",
+    "response_id": "gen-1793419434-xUQ6y1DSwzRFxpxWnxFr",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1512,
+      "input_tokens_details": {
+        "cached_tokens": 1381
+      },
+      "output_tokens": 624,
+      "output_tokens_details": {
+        "reasoning_tokens": 503
+      },
+      "total_tokens": 2136,
+      "cost": 0.00033891,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00033891,
+        "upstream_inference_input_cost": 2.691e-05,
+        "upstream_inference_output_cost": 0.000312
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 10.1986,
+    "input_bound": 10488,
+    "reserved_usd": "0.003359000",
+    "request_sha256": "a1b952e6fc9f7890d683f92698a034e2f8a1bfc5f27e5b8add0e4e7c322da7cd",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ccd4f2bf213981c016ae568abf30487d193bd4bb6f99ba9a9",
+        "sha256": "a7f2a63883f23c9b00657bd8fccb377a825b84a747e14289b7ddc6c9f0b7b04a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_c0doqz23f1k",
+        "sha256": "494fb5398f42fc5b12e01c0f6cb91cd881068631bdc2345e073c31c834565fed"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.4,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and five artifact logs say 5/5 passed, but the manifest lists eight runs with failures at attempts 2, 4, and 8, conflicting with those logs. The report says infrastructure-error attempts are excluded, but the evidence does not identify which manifest failures were infrastructure errors or reconcile the differing attempt records; the replay verifies only one workspace state."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T04:04:04.904952+00:00"
+}

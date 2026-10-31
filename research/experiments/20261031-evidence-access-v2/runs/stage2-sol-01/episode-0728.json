@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0728",
+  "incident": "inc-e34aa0dd3d2e26ec",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "explicit",
+  "sample": 0,
+  "started_at": "2026-10-31T05:18:54.423457+00:00",
+  "prompt_sha256": "1bc2fe9eab8fcf39a72efa6957b89e748a7aa7260e6586a5b048c3d4ed9f202a",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "9e0d998929084607a6de2dc06c97ce12",
+    "response_id": "gen-1793423935-x6ErQKWD8ue46ar5o0P7",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1438,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1307
+      },
+      "output_tokens": 190,
+      "output_tokens_details": {
+        "reasoning_tokens": 77
+      },
+      "total_tokens": 1628,
+      "cost": 0.0054295,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0054295,
+        "upstream_inference_input_cost": 0.0035295,
+        "upstream_inference_output_cost": 0.0019
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.0066,
+    "input_bound": 10314,
+    "reserved_usd": "0.0667450",
+    "request_sha256": "fa56d4801fd54383b062bc38912894df01d5f2847088281ca04bfe4666779121",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f4dfcb611854930016ae57a40e28487d19ca908f083b95ab5",
+        "sha256": "adb85392ffd16aa8de2d4577da6cb530240e415f81996e6daa130a960cb8c02c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ar6q2sep83",
+        "sha256": "f951e16b9802c97b02c5f1d91668fb510fcf2f482d73bafd170ac4c9573012ad"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with exit code 125 and status infra_error, rather than five attempts that all passed. The report obtains 5/5 by excluding the infrastructure-error attempt; that is a filtered success rate, not an all-attempts result. The successful replay does not establish that every independent attempt passed."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:18:59.798831+00:00"
+}

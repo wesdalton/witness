@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0587",
+  "incident": "inc-8754318966e0e57e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T05:10:49.968885+00:00",
+  "prompt_sha256": "474b4ec8fc23ae19430d6c2f6ff7942b99c2382409e1f91019fc0d60356250d9",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "2ee8f3444a834882a77cd85f2041b350",
+    "response_id": "gen-1793423451-v33tLSIBse2nVyIVUHc0",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1366,
+      "input_tokens_details": {
+        "cached_tokens": 1235
+      },
+      "output_tokens": 252,
+      "output_tokens_details": {
+        "reasoning_tokens": 136
+      },
+      "total_tokens": 1618,
+      "cost": 0.0029055,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0029055,
+        "upstream_inference_input_cost": 0.0003855,
+        "upstream_inference_output_cost": 0.00252
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.4411,
+    "input_bound": 10037,
+    "reserved_usd": "0.0660525",
+    "request_sha256": "29eb5a196f3b2e10422f08b16b7533d7b780be0f318babf96a30186c4e98f3b7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_021802791742ea34016ae5785c410c87d1ba645c25fbd21fb8",
+        "sha256": "b6893127dbccbc0bf5f351f18a20044997f8b476c6375c6aeb6f3e8132010df8"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_bsco4n6o87k",
+        "sha256": "7b6dbc565e66ccd227d7c1ee265d7ac3bc1fc2513cf8912379152d1fa3b19ba3"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five successful test executions and one infrastructure error, which the report excludes from its denominator. However, the evidence does not map those executions to five independent agent attempts and their distinct patches; the artifact numbering also labels attempt 2 as passing despite its manifest infrastructure error. The successful replay verifies the supplied patch, not all five independent attempts."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T05:10:57.640290+00:00"
+}

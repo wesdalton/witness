@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0939",
+  "incident": "inc-28959ad6a19e2f62",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T05:31:26.873569+00:00",
+  "prompt_sha256": "f6065986b175be4916e0612c5df220dfd9c1274b8aa39d3be5584f4276541630",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "110175752ca94da09154aa5316df1bd1",
+    "response_id": "gen-1793424686-ryNeyKI9STmf0s6ggq4h",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1474,
+      "input_tokens_details": {
+        "cached_tokens": 1343
+      },
+      "output_tokens": 150,
+      "output_tokens_details": {
+        "reasoning_tokens": 29
+      },
+      "total_tokens": 1624,
+      "cost": 0.0018963,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0018963,
+        "upstream_inference_input_cost": 0.0003963,
+        "upstream_inference_output_cost": 0.0015
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3054,
+    "input_bound": 10514,
+    "reserved_usd": "0.0672450",
+    "request_sha256": "ad46781cb99f66435b939a629b02da69a65d8626348c7c5ef09409115549b3ea",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0833f10b2f6c2e68016ae57d301c0c87d19fd087fb31e6e835",
+        "sha256": "d0b18e22d43029cecd8ddfdbcb24dd975ae4d122a9771a174c714ee7e619cedf"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_kwczy6770nr",
+        "sha256": "eef09e005494a56d44fff75a6905a851b94149bd6dcf143e658b3c6a90957db4"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five successful hidden-suite attempts, each corroborated by an artifact log showing 11 tests passed; the isolated replay also passes all 11 tests. A sixth entry is an infrastructure error, not a patch test failure, and the report explicitly excludes infrastructure-lost attempts from its reported rate. Thus the reported 5/5 is consistent with the available run evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T05:31:30.219891+00:00"
+}
