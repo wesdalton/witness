@@ -1,0 +1,20 @@
+{
+  "name": "roman",
+  "split": "heldout",
+  "package": "roman",
+  "bug": {
+    "file": "roman/__init__.py",
+    "buggy": "        if i + 1 < len(text) and value <= SYMBOLS[text[i + 1]]:\n",
+    "fixed": "        if i + 1 < len(text) and value < SYMBOLS[text[i + 1]]:\n"
+  },
+  "slow": {
+    "file": "roman/__init__.py",
+    "after": "def from_roman(text: str) -> int:\n",
+    "delay_s": 0.005
+  },
+  "probe": "import json\nfrom roman import from_roman\nprint(json.dumps({\"xx\": from_roman(\"XX\"), \"mcmxciv\": from_roman(\"MCMXCIV\")}))\n",
+  "probe_expected": {
+    "xx": 20,
+    "mcmxciv": 1994
+  }
+}

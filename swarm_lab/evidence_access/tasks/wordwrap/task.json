@@ -1,0 +1,22 @@
+{
+  "name": "wordwrap",
+  "split": "heldout",
+  "package": "wordwrap",
+  "bug": {
+    "file": "wordwrap/__init__.py",
+    "buggy": "        elif len(line) + 1 + len(word) < width:\n",
+    "fixed": "        elif len(line) + 1 + len(word) <= width:\n"
+  },
+  "slow": {
+    "file": "wordwrap/__init__.py",
+    "after": "def wrap(text: str, width: int) -> list[str]:\n",
+    "delay_s": 0.4
+  },
+  "probe": "import json\nfrom wordwrap import wrap\nprint(json.dumps({\"lines\": wrap(\"the quick brown fox\", 9)}))\n",
+  "probe_expected": {
+    "lines": [
+      "the quick",
+      "brown fox"
+    ]
+  }
+}

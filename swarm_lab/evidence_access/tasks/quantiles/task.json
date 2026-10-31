@@ -1,0 +1,20 @@
+{
+  "name": "quantiles",
+  "split": "heldout",
+  "package": "quantiles",
+  "bug": {
+    "file": "quantiles/__init__.py",
+    "buggy": "    return (ordered[mid] + ordered[mid + 1]) / 2\n",
+    "fixed": "    return (ordered[mid - 1] + ordered[mid]) / 2\n"
+  },
+  "slow": {
+    "file": "quantiles/__init__.py",
+    "after": "def median(values: list[float]) -> float:\n",
+    "delay_s": 0.09
+  },
+  "probe": "import json\nfrom quantiles import median\nprint(json.dumps({\"four\": median([1, 2, 3, 4]), \"two\": median([10, 4])}))\n",
+  "probe_expected": {
+    "four": 2.5,
+    "two": 7
+  }
+}

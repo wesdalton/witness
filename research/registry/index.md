@@ -18,6 +18,8 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261029-evidence-access-v1 | run | [Stage 1 calibration, GPT-6.1 Sol, 64 episodes](../experiments/20261029-evidence-access-v1/runs/stage1-sol-01/manifest.json) | 20261029-evidence-access-v1.run-stage1-sol-01 |
 | 20261029-evidence-access-v1 | analysis | [Stage 1 calibration analysis](../experiments/20261029-evidence-access-v1/analyses/stage1-01) | 20261029-evidence-access-v1.analysis-stage1-01 |
 | 20261029-evidence-access-v1 | report | [Stage 1: auditors commit on evidence that cannot decide the claim](../experiments/20261029-evidence-access-v1/reports/stage1-01/report.md) | 20261029-evidence-access-v1.report-stage1-01 |
+| 20261031-evidence-access-v2 | design | [Evidence-access benchmark v2 (held-out confirmation)](../experiments/20261031-evidence-access-v2/design/protocol.md) | 20261031-evidence-access-v2.design |
+| 20261031-evidence-access-v2 | gate | [Corpus v2 (12 tasks, 8 held out) built and free gates passed](../experiments/20261031-evidence-access-v2/gates/corpus-v2/manifest.json) | 20261031-evidence-access-v2.gate-corpus-v2 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |

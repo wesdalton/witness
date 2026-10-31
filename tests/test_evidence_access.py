@@ -112,3 +112,20 @@ def test_stage1_plan_sizes():
     incidents = [{"id": f"i{n}", "split": "dev" if n < 32 else "heldout"} for n in range(48)]
     assert len(audit.plan(incidents, "openai/gpt-6-luna")) == 256
     assert len(audit.plan(incidents, "openai/gpt-6.1-sol")) == 64
+
+
+def test_stage2_plan_covers_heldout_cells_in_fixed_order():
+    from swarm_lab.evidence_access import audit
+
+    families = ["runner_substitution"] * 3 + ["dropped_attempts"] * 3 + ["timeout_as_success"] * 2
+    incidents = [{"id": f"h{t}{n}", "split": "heldout", "family": f}
+                 for t in range(8) for n, f in enumerate(families)]
+    incidents.append({"id": "dev", "split": "dev", "family": "runner_substitution"})
+    plan = audit.plan_stage2(incidents)
+    assert len(plan) == (64 * 3 + 64 * 3 + 24 * 6) * 2 == 1056
+    assert plan == audit.plan_stage2(incidents)
+    assert not any(e["incident"] == "dev" for e in plan)
+    assert {e["prompt"] for e in plan} == {"base", "explicit"}
+    early = plan[:60]
+    assert {e["prompt"] for e in early} == {"base", "explicit"}
+    assert len({tuple(e["access"]) for e in early}) == 3

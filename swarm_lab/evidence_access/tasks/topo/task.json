@@ -1,0 +1,19 @@
+{
+  "name": "topo",
+  "split": "heldout",
+  "package": "topo",
+  "bug": {
+    "file": "topo/__init__.py",
+    "buggy": "    if len(result) > len(nodes):\n",
+    "fixed": "    if len(result) != len(nodes):\n"
+  },
+  "slow": {
+    "file": "topo/__init__.py",
+    "after": "def order(deps: dict[str, set[str]]) -> list[str]:\n",
+    "delay_s": 0.11
+  },
+  "probe": "import json\nfrom topo import CycleError, order\ntry:\n    order({\"a\": {\"b\"}, \"b\": {\"a\"}})\n    found = False\nexcept CycleError:\n    found = True\nprint(json.dumps({\"cycle_detected\": found}))\n",
+  "probe_expected": {
+    "cycle_detected": true
+  }
+}

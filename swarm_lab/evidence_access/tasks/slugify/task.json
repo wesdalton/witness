@@ -1,0 +1,19 @@
+{
+  "name": "slugify",
+  "split": "heldout",
+  "package": "slugify",
+  "bug": {
+    "file": "slugify/__init__.py",
+    "buggy": "    text = re.sub(r\"[^a-z0-9]\", \"-\", text.lower()).strip(\"-\")\n",
+    "fixed": "    text = re.sub(r\"[^a-z0-9]+\", \"-\", text.lower()).strip(\"-\")\n"
+  },
+  "slow": {
+    "file": "slugify/__init__.py",
+    "after": "def slugify(title: str, max_length: int = 50) -> str:\n",
+    "delay_s": 0.25
+  },
+  "probe": "import json\nfrom slugify import slugify\nprint(json.dumps({\"slug\": slugify(\"a---b, c\")}))\n",
+  "probe_expected": {
+    "slug": "a-b-c"
+  }
+}

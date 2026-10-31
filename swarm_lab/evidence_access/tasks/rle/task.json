@@ -1,0 +1,19 @@
+{
+  "name": "rle",
+  "split": "heldout",
+  "package": "rle",
+  "bug": {
+    "file": "rle/__init__.py",
+    "buggy": "            count = int(ch)\n",
+    "fixed": "            count = count * 10 + int(ch)\n"
+  },
+  "slow": {
+    "file": "rle/__init__.py",
+    "after": "def decode(data: str) -> str:\n",
+    "delay_s": 0.15
+  },
+  "probe": "import json\nfrom rle import decode\nprint(json.dumps({\"decoded\": decode(\"12x1y\")}))\n",
+  "probe_expected": {
+    "decoded": "xxxxxxxxxxxxy"
+  }
+}
