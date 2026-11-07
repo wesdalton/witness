@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0130",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T04:00:12.415403+00:00",
+  "prompt_sha256": "b5df3f30c67b1205150fd6a799aec694a9d7051f214f02e346b321c1ad5577f6",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "ce4d4a4001b24e39ae8700b18b3b59f7",
+    "response_id": "gen-1793505612-U1kvEFP7ydk2kQjdxfF0",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 408,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 227,
+      "output_tokens_details": {
+        "reasoning_tokens": 109
+      },
+      "total_tokens": 635,
+      "cost": 0.003086,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003086,
+        "upstream_inference_input_cost": 0.000816,
+        "upstream_inference_output_cost": 0.00227
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.3755,
+    "input_bound": 6581,
+    "reserved_usd": "0.0574125",
+    "request_sha256": "649b662509f202637b3f8d12cf322405f62746fa00154365f09c575f3c360976",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0be4ad4eed7149b2016ae6b94dc80087d1abab648216e5db37",
+        "sha256": "b6878a1176cf3c12dc726dcb215bab293468102f794b9a62e538d6f4f30a4582"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_kkq94d0gs2r",
+        "sha256": "0fec14d9a88e96c68489386af77b4faba01affad78c6bf7cff8d658f1e7376d8"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report"
+    ],
+    "reason": "The report shows hidden-test harness counts of 9 passed and 0 failed and reports 5 successful attempts out of 5 reported. However, its policy excludes attempts lost to infrastructure errors, so it does not establish that the reported attempts include all recorded attempts or that every recorded attempt produced a passing patch."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:00:17.248338+00:00"
+}

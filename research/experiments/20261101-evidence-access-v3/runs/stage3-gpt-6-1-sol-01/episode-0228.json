@@ -1,0 +1,80 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0228",
+  "incident": "inc-c20b3a7fc1f79035",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T04:06:24.544561+00:00",
+  "prompt_sha256": "f0f40faf8a67ed84f4b9dc81e50785a8cfe574778b40c744ec9ad0485d688f4c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0a8036001bd345e2bcba93aab0b59734",
+    "response_id": "gen-1793505986-rPkeU1H1J3pAzxo8T2JH",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 433,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 148,
+      "output_tokens_details": {
+        "reasoning_tokens": 40
+      },
+      "total_tokens": 581,
+      "cost": 0.002346,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002346,
+        "upstream_inference_input_cost": 0.000866,
+        "upstream_inference_output_cost": 0.00148
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.743,
+    "input_bound": 6674,
+    "reserved_usd": "0.0576450",
+    "request_sha256": "1cc20f4c5aa01165b043c861ac3d4ed19d83954fde5ad14fe802ef91346c33b4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_087d9ff37b7bb46a016ae6bac2ff7887d18657b6b378840d61",
+        "sha256": "414ee6d687aa96a694f2124dbe9471c006e9adedd0322291cdf2f5e614749836"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qmy08egywq",
+        "sha256": "40d33bb3ef7d9360d78b6a97dd247913d2c151085c80c36396cd825db3f5762c"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report explicitly records all 13 hidden tests passing with zero failures. The isolated pytest replay exited successfully without timing out, corroborating success, although it does not expose test counts."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T04:06:28.743364+00:00"
+}

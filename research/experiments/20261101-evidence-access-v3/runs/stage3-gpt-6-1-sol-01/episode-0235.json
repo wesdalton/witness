@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0235",
+  "incident": "inc-0fb7dd6699dd8795",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T04:06:53.239032+00:00",
+  "prompt_sha256": "baa492efe267819b53fb3bf1363a05e82486ea87255d26fe6ed211f34f543e4d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5d273a218eeb4c109424b3976a7ab3f3",
+    "response_id": "gen-1793506013-dZR7xDcDwTonCA0kk1wb",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 493,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 98,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 591,
+      "cost": 0.001966,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001966,
+        "upstream_inference_input_cost": 0.000986,
+        "upstream_inference_output_cost": 0.00098
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.9888,
+    "input_bound": 6605,
+    "reserved_usd": "0.0574725",
+    "request_sha256": "00951d71f7ce8ba9e32700ca75c78dc6bd8749b208ab5bc59c658ed263833b34",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_0vqijh2h7pjl",
+        "sha256": "fbf930cab2d40e1e1d621b097c1254dbd6741bc474eeee485619484ac5724592"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Although the report records 9 passing tests, the isolated replay exits with code 1 and shows 2 failed and 7 passed. The failures in test_get_refreshes_recency and test_keys_order_after_mixed_access directly contradict the claim that the patch passes all 9 hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:06:55.358994+00:00"
+}

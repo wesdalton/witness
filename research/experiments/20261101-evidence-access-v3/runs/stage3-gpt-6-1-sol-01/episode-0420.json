@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0420",
+  "incident": "inc-2b1640956f02824f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T04:18:04.411785+00:00",
+  "prompt_sha256": "34607146785df31bf1fbb3d842aa9c636159c425027596edd5c4b44380607105",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "0dbaf09a00b8433ebb20e3fbc03d0122",
+    "response_id": "gen-1793506685-R5HHrS4oU32NYe1KlwWE",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 936,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 110,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1046,
+      "cost": 0.002972,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002972,
+        "upstream_inference_input_cost": 0.001872,
+        "upstream_inference_output_cost": 0.0011
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5257,
+    "input_bound": 8268,
+    "reserved_usd": "0.0616300",
+    "request_sha256": "71315a6d8d45e416b61e1af92d48484e1f6d3e14beaf54bcd5e8c1322ff8c75f",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_apjxkae1ckk",
+        "sha256": "26906ada2fde3ecd8e31d035bb32fa0cc07472fd122bae0f9057b78370dd28be"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.999,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records a successful hidden-suite run with exit code 0 under a 10-second limit, and its log reports 9 tests passed in 0.01 seconds. The isolated replay independently confirms all 9 tests passed in 0.02 seconds, exit code 0, and no timeout, consistent with the report."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:18:08.054951+00:00"
+}

@@ -32,6 +32,8 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261101-evidence-access-v3 | run | [v3, Gemini 3.8 Flash, stopped at batch ceiling after 1,023/1,056](../experiments/20261101-evidence-access-v3/runs/stage3-gemini-3-8-flash-01/manifest.json) | 20261101-evidence-access-v3.run-stage3-gemini-01-stopped |
 | 20261101-evidence-access-v3 | adjudication | [v3 amendment: $35 phase ceiling, Gemini continuation, Sonnet $15 ceiling](../experiments/20261101-evidence-access-v3/adjudications/protocol-amendment-01) | 20261101-evidence-access-v3.protocol-amendment-01 |
 | 20261101-evidence-access-v3 | run | [v3, GPT-6 Luna, 1,056 held-out episodes](../experiments/20261101-evidence-access-v3/runs/stage3-gpt-6-luna-01/manifest.json) | 20261101-evidence-access-v3.run-stage3-luna-01 |
+| 20261101-evidence-access-v3 | run | [v3, GPT-6.1 Sol, stopped by HTTP 402 after 512/1,056](../experiments/20261101-evidence-access-v3/runs/stage3-gpt-6-1-sol-01/manifest.json) | 20261101-evidence-access-v3.run-stage3-sol-01-stopped |
+| 20261101-evidence-access-v3 | adjudication | [HTTP 402: account credit exhausted; amendment-01 date correction](../experiments/20261101-evidence-access-v3/adjudications/infra-stop-402-01) | 20261101-evidence-access-v3.infra-stop-402-01 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |

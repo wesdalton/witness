@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0377",
+  "incident": "inc-2f34a6e4cc964fc4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T04:15:32.495642+00:00",
+  "prompt_sha256": "7ffef986488860011c29de65332c30440980ee6907205126ddb82ffd0970f406",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "0920dfc80c494ddfafa547605e350bfc",
+    "response_id": "gen-1793506533-rHjbXgJXmURqjc4QoUYy",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1821,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1690
+      },
+      "output_tokens": 121,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1942,
+      "cost": 0.005697,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005697,
+        "upstream_inference_input_cost": 0.004487,
+        "upstream_inference_output_cost": 0.00121
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8022,
+    "input_bound": 11078,
+    "reserved_usd": "0.0686550",
+    "request_sha256": "7593e3432d682d455b747ae47944ca8ec515301b17958798ef4621473b17046b",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_g3stfht6kfo",
+        "sha256": "7becaa587092ddf737ce0b2904ecff3f47dcba7fb6277d4f86d78b6e8b2dd35b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts running the hidden test suite with exit code 0 and status passed, and their corresponding logs each show nine tests passed. All five attempts reference the same artifact hash, and an isolated replay independently reports nine passing tests with no failures or errors. This supports the claimed 5/5 rate for recorded attempts, without making any claim about excluded infrastructure-error attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:15:36.423408+00:00"
+}

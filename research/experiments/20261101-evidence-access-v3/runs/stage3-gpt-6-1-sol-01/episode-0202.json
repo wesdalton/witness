@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0202",
+  "incident": "inc-849c812d81852b2a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T04:04:49.021901+00:00",
+  "prompt_sha256": "06c17251a11c9cecc072d8fe623df7fa3d8f1acd12656819900d8bb69f51bc08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ae10cd2a7cf84ef0b29f451374a62b0b",
+    "response_id": "gen-1793505889-yhQhwbkDzfATwpNDDPTO",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2204,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2073
+      },
+      "output_tokens": 156,
+      "output_tokens_details": {
+        "reasoning_tokens": 27
+      },
+      "total_tokens": 2360,
+      "cost": 0.0070045,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0070045,
+        "upstream_inference_input_cost": 0.0054445,
+        "upstream_inference_output_cost": 0.00156
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5466,
+    "input_bound": 12146,
+    "reserved_usd": "0.0713250",
+    "request_sha256": "1b55ab439f4c1d81f01931c9f9a4e03edfbeb1dfb8685495bad535a964a83e02",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_047cb8f7d63225af016ae6ba626c9087d1b758af0a8cfd7142",
+        "sha256": "13b2ca4930ea8d65a81ede8338368b29289650ec3a1be16ae81e5359be163e8f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_v6xcqp7592",
+        "sha256": "19147319424cbf343a545d09fbd5bc3ec2778995085b84ab52c37fa0eeaec138"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts: five passed and three failed with exit code 1, not infrastructure errors; even among attempts 1\u20135, attempt 3 failed. The reported attempt-3 log references a different artifact hash from the manifest, so the five passing logs do not establish five successful recorded attempts. The successful replay confirms only the replayed patch, not a 5/5 historical success rate."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:04:52.998923+00:00"
+}

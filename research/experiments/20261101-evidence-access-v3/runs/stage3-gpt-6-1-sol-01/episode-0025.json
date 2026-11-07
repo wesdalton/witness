@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0025",
+  "incident": "inc-d94e40b56056f070",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:53:48.469908+00:00",
+  "prompt_sha256": "c9a0856704b9bed85d9c43b9bd6ac8c7a8dd540e5ce6f3df89fe90230448a3d8",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7ba027be2c2744b2aea88474a16e5db5",
+    "response_id": "gen-1793505229-Fm7I9yDZuTJYRmocA4Ri",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 973,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 110,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1083,
+      "cost": 0.003046,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003046,
+        "upstream_inference_input_cost": 0.001946,
+        "upstream_inference_output_cost": 0.0011
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.523,
+    "input_bound": 8488,
+    "reserved_usd": "0.0621800",
+    "request_sha256": "118a581ced49fd130880bc13dd5f0bc41770ce2225c8f1be9dd7ef3aa88905f7",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ro8d2u5cxgb",
+        "sha256": "a5a02d0fbcf5293c922a152d802637bb0914e49c4bf48e7b12dbeecdfedade6c"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.999,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records a successful hidden-test run with exit code 0 under a 10-second limit, and the artifact log reports 9 tests passed in 0.02 seconds. The isolated replay independently reports all 9 tests passing in 0.01 seconds with exit code 0 and no timeout, consistent with the report."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:53:53.262779+00:00"
+}

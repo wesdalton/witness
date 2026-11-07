@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0256",
+  "incident": "inc-7d58b740f1f886e6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T04:08:15.344566+00:00",
+  "prompt_sha256": "60669b9bb1071ffa7b9efd51789446a26e26294fa860f14f27439fbcefd98847",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "61024e2421d741569dd0bb11940f3d93",
+    "response_id": "gen-1793506096-HVTSPMGiW0sSzGqHoicV",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1869,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1738
+      },
+      "output_tokens": 107,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1976,
+      "cost": 0.005677,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005677,
+        "upstream_inference_input_cost": 0.004607,
+        "upstream_inference_output_cost": 0.00107
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.4499,
+    "input_bound": 11043,
+    "reserved_usd": "0.0685675",
+    "request_sha256": "79fc674472df0ab5ab115f4942c1f2fe2051832fb596a3bdd39bee97cadbf535",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nvx5kdhuv0n",
+        "sha256": "92484922e94c43faa30bcda7ea026232b41d67a986fcf70753bff2f06546cb0b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts running the hidden suite with exit code 0 and passed status, and each matching artifact log reports 8 passed. All attempts reference the same artifact hash, and the isolated replay independently confirms 8 passed with no failures or errors, consistent with the report's 5/5 result."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:08:19.085211+00:00"
+}

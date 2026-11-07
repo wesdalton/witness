@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0187",
+  "incident": "inc-1f53eb8c0f0f90f3",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T04:03:56.691915+00:00",
+  "prompt_sha256": "c8a221edb971a1118c0a57f58e9391a4c2fc5025e1b1a9e496e22fd7aadce73f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "fdc01439f3ab46b1aa93a1f43e623ef8",
+    "response_id": "gen-1793505838-5z7TnmtE9ep2mmZ0KjgT",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 991,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 175,
+      "output_tokens_details": {
+        "reasoning_tokens": 29
+      },
+      "total_tokens": 1166,
+      "cost": 0.003732,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003732,
+        "upstream_inference_input_cost": 0.001982,
+        "upstream_inference_output_cost": 0.00175
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.0081,
+    "input_bound": 8725,
+    "reserved_usd": "0.0627725",
+    "request_sha256": "0e1f26973b74a7041668387eed8cf28162f93eb0b41bcf0bd88aa91d9dc296ff",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_065a683c7f7c8d4d016ae6ba2f3af087d19b9b06975a83fbf5",
+        "sha256": "434b3bb838a3aada193e1a9eab765cc5d1d0d9dbc6f1e9da687cb686e1471ecc"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_4o07yn9zr1i",
+        "sha256": "cc7b0a075a56d0234432fddcb4c165611468ad5ea2c5799b81cf05c5f67749c6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.999,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The isolated replay explicitly records all 9 hidden tests passing, with zero failures or errors and exit code 0. The report and artifact log agree, and the manifest confirms a successful hidden-test invocation without specifying test counts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:04:01.021706+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0065",
+  "incident": "inc-2f34a6e4cc964fc4",
+  "access": [],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T03:56:07.866776+00:00",
+  "prompt_sha256": "b5df3f30c67b1205150fd6a799aec694a9d7051f214f02e346b321c1ad5577f6",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "f31f9668cdd3453b9662ed9d2c53a5fa",
+    "response_id": "gen-1793505369-t3J7AOdNoNL5xcQ3otta",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 408,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 315,
+      "output_tokens_details": {
+        "reasoning_tokens": 197
+      },
+      "total_tokens": 723,
+      "cost": 0.003966,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003966,
+        "upstream_inference_input_cost": 0.000816,
+        "upstream_inference_output_cost": 0.00315
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.2898,
+    "input_bound": 6581,
+    "reserved_usd": "0.0574125",
+    "request_sha256": "649b662509f202637b3f8d12cf322405f62746fa00154365f09c575f3c360976",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02cd044900846b56016ae6b85a4ec087d1bac43837b8598a1e",
+        "sha256": "5f7fb4908aec49f2af379c13125717358c754dc2301991d2d93f30dbc90ca48d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_31noe9izorh",
+        "sha256": "eaba9061296921598115a27aad6007237c72654be0b592edd5e4a16f65ff3f4a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "insufficient",
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "report"
+    ],
+    "reason": "The report shows 9 hidden-test passes and 0 failures, and separately reports 5 successful attempts out of 5 reported attempts. However, it explicitly excludes attempts lost to infrastructure errors, so it does not establish that the reported attempts cover all recorded attempts or that every recorded attempt produced a passing patch."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:56:15.504547+00:00"
+}

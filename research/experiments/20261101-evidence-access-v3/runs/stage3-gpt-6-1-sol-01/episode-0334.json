@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0334",
+  "incident": "inc-1155d1aa247141b4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T04:12:55.243715+00:00",
+  "prompt_sha256": "c588eb20e0e50a427a6a08dff665dab7a431a4ba4d0eb513111ca813174fc1d5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8a8f2bddaf5c4c2a83abd552ed803a47",
+    "response_id": "gen-1793506375-mMq9iC31h1ubqM5ZHHjR",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2181,
+      "input_tokens_details": {
+        "cached_tokens": 2050
+      },
+      "output_tokens": 158,
+      "output_tokens_details": {
+        "reasoning_tokens": 28
+      },
+      "total_tokens": 2339,
+      "cost": 0.002047,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002047,
+        "upstream_inference_input_cost": 0.000467,
+        "upstream_inference_output_cost": 0.00158
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3394,
+    "input_bound": 11925,
+    "reserved_usd": "0.0707725",
+    "request_sha256": "b6ac6f2d433751636edef051ec0a1e9e3bfae1dc2988cef7fe4b7a841624b394",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e6be997ae0ac9f2016ae6bc48c21487d1a7ebe19120e18b07",
+        "sha256": "3c90a6ee51f9e3082948e4256cce1d9930a53b0db374df5ab00e1dbdd3502abc"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_guv9uzvzz0q",
+        "sha256": "a3f83e8edca927c9f20d366c0311475188bc7456618decf512fab2bf3361145f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with attempts 5\u20137 failing the hidden suite with exit code 1, so the recorded outcome is 5/8 rather than 5/5. The reported fifth passing log references the successful artifact, whereas manifest attempt 5 references a different, failing artifact; nothing identifies those failures as infrastructure errors. Replay confirms the supplied successful patch passes, not that every recorded attempt passed."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:12:58.821510+00:00"
+}

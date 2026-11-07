@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0336",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T04:13:02.728094+00:00",
+  "prompt_sha256": "99039e198d78218b0a47f4c4e74e24711f16c28d6dc757bb2da9468e3cfee30d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5bf36aaa428c4eed85a8544bd50b8c6f",
+    "response_id": "gen-1793506382-j3BPW6LzNDXHTnRXwsAc",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2123,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1992
+      },
+      "output_tokens": 164,
+      "output_tokens_details": {
+        "reasoning_tokens": 23
+      },
+      "total_tokens": 2287,
+      "cost": 0.006882,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006882,
+        "upstream_inference_input_cost": 0.005242,
+        "upstream_inference_output_cost": 0.00164
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2025,
+    "input_bound": 11678,
+    "reserved_usd": "0.0701550",
+    "request_sha256": "a628fcf0c2218128fc0920ce1f4695b66a412d571b81c5c1afff5261f2079a57",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_07131b86f0903f7d016ae6bc500ac887d191246ccbcfab0042",
+        "sha256": "934542bf3ed17c112db95e36df21659680cbe29fbb6e22cc9317318fb5f0e192"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2408s7w4gqa",
+        "sha256": "663726c3a9e07e124a4bd7f3d658eb26d2d5e2cf751cd6b65e8c3b175e382951"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with attempts 2, 3, and 8 failing the hidden suite with exit code 1; even the first five attempts passed only 3/5. The five passing artifact logs all reference the same successful artifact, conflicting with the manifest's artifact hashes for attempts 2 and 3. The successful replay establishes that the supplied patch passes, not that all recorded attempts passed, and no evidence identifies the failed attempts as infrastructure errors."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:13:06.070519+00:00"
+}

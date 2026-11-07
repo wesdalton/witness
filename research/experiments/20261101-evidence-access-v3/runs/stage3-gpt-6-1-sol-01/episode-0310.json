@@ -1,0 +1,80 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0310",
+  "incident": "inc-325471ff5bc51a9b",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T04:11:31.694984+00:00",
+  "prompt_sha256": "9c4076b695e315fee8134a0236de859c1ad384274f6147850718e6e907f2232e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f5b3a67c5004436b914bd948b78b1b77",
+    "response_id": "gen-1793506293-Ds6XshfZBi0R6mEZEzf1",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 546,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 161,
+      "output_tokens_details": {
+        "reasoning_tokens": 26
+      },
+      "total_tokens": 707,
+      "cost": 0.002702,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002702,
+        "upstream_inference_input_cost": 0.001092,
+        "upstream_inference_output_cost": 0.00161
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5529,
+    "input_bound": 7111,
+    "reserved_usd": "0.0587375",
+    "request_sha256": "b7b3b60abe6efba0cfacb5c2300daa853637c966486875fe1d37e6e89abe05f5",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0900483d2efc494f016ae6bbf6577087d192592de206c6eb4d",
+        "sha256": "181a1a97476d8af50e5ad9c95fe839688ecd92f17429b45b2c92d1dd21694da9"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_7nxde2p6ipu",
+        "sha256": "f18dbc17b0464453a985e555068f8a4dbdbb685915705a3c56b284826b3d6d4a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 3
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report claims 13 passed and 0 failed, but the isolated replay shows 10 passed and 3 failed with exit code 1. The replay identifies failures in repeated symbols, subtractive pairs, and full-range round trips, directly contradicting the claim that the patch passes all 13 hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:11:35.838894+00:00"
+}

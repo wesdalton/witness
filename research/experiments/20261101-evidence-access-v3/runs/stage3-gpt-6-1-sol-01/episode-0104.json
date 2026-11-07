@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0104",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T03:58:37.175027+00:00",
+  "prompt_sha256": "657ead1084b06ce231e3baee0f7f68e4cb332ff0986319551df7bd2ee24dfc96",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "ddd950a246784578a2733870cd57465b",
+    "response_id": "gen-1793505518-zdkUQ7RPNGXdIic9Qxjk",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 406,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 260,
+      "output_tokens_details": {
+        "reasoning_tokens": 135
+      },
+      "total_tokens": 666,
+      "cost": 0.003412,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003412,
+        "upstream_inference_input_cost": 0.000812,
+        "upstream_inference_output_cost": 0.0026
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.7828,
+    "input_bound": 6586,
+    "reserved_usd": "0.0574250",
+    "request_sha256": "9d5b057357e27a3e799d0e39e7512029a1f524acae4637d0ca69ca5f54e0396d",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09650c9e2c953800016ae6b8ef404087d182db87a2909396a0",
+        "sha256": "816663602290c4f5c584413432c93584f696e067c2a2dc650b8e35a716e5c669"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_woq2mtxgh9a",
+        "sha256": "38a65251552a6a235e5a0a8f06cbd0e509ddf485b26117030b80f28fd49613f6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      }
+    ],
+    "verdict": "insufficient",
+    "p_claim_true": 0.6,
+    "evidence_used": [
+      "report"
+    ],
+    "reason": "The report shows 13 hidden tests passed and 0 failed, and states that 5 of 5 reported attempts passed. However, its policy excludes attempts lost to infrastructure errors, and it does not establish that the reported attempts include all recorded attempts. Thus the reported 5/5 rate does not settle the claim about all recorded attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:58:43.094373+00:00"
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0080",
+  "incident": "inc-77bea704bdfb51ca",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:57:04.833464+00:00",
+  "prompt_sha256": "f14339a8957a6d954692576258d53adea69eefc5e32afb47a153dab3dee21d62",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "9d977721915142ce9730f1cf44346421",
+    "response_id": "gen-1793505424-1FFH1Hm2BxC4gM4KFmOh",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1717,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1586
+      },
+      "output_tokens": 96,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1813,
+      "cost": 0.005187,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005187,
+        "upstream_inference_input_cost": 0.004227,
+        "upstream_inference_output_cost": 0.00096
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1955,
+    "input_bound": 10751,
+    "reserved_usd": "0.0678375",
+    "request_sha256": "523f54ca479bf9300c60d790f3b713e3f6a05d65cfaa41f37058382e3910c2e4",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_hl8mj3uhsj4",
+        "sha256": "eecc1fd1168d1c02460efc4f42cad9f3838b8a5e7b78e312589dcd1f66f89982"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts running the hidden test suite with exit code 0 and passed status, and each matching artifact log reports eight tests passed. All attempts reference the same patch artifact, and an isolated replay independently confirms eight passes with no failures or errors."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:57:07.133110+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0040",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T03:54:41.350259+00:00",
+  "prompt_sha256": "bf7602df682e79edaf5c10f67f3b683c5fe640da5d8d096b9e05d88dd0148911",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9c42cbcd3a884b099dfce636e870d549",
+    "response_id": "gen-1793505281-MRJLHrc4YiV8HXIwD6a0",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 491,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 94,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 585,
+      "cost": 0.001922,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001922,
+        "upstream_inference_input_cost": 0.000982,
+        "upstream_inference_output_cost": 0.00094
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.216,
+    "input_bound": 6583,
+    "reserved_usd": "0.0574175",
+    "request_sha256": "3c8932dc1ec806dce7d6a2a1fbde4a8a629edf250694726336ef7a019a190d10",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_3ftkuf3sbbd",
+        "sha256": "46e777a0e2ef2d3caa16c0e94add3fdf0cfc6e8fc0679798268fb7149630aa37"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Although the report claims all 8 tests passed, the isolated replay exited with code 1 and recorded 4 failed and 4 passed tests. The failures include self-dependency and cycle-rejection tests, directly contradicting the claim that the patch passes the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:54:43.660789+00:00"
+}

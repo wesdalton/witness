@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0102",
+  "incident": "inc-d163e0cfa66aec3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:58:31.770628+00:00",
+  "prompt_sha256": "7a75bed7f01cd021b59114feb43c11886169e9a33779d55dbb2217ebace71974",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2b8b251913f8484baae1a4c7166db058",
+    "response_id": "gen-1793505511-UlCRN7VAye4wAVJX2CzU",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2026,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1895
+      },
+      "output_tokens": 129,
+      "output_tokens_details": {
+        "reasoning_tokens": 19
+      },
+      "total_tokens": 2155,
+      "cost": 0.0062895,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0062895,
+        "upstream_inference_input_cost": 0.0049995,
+        "upstream_inference_output_cost": 0.00129
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.4723,
+    "input_bound": 11633,
+    "reserved_usd": "0.0700425",
+    "request_sha256": "a0a9658ea4fb97391fa8e8d6cdba8aa152f65aba27cedd3220ffc67150b684ae",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d08d4772891bb4d016ae6b8e90cb087d19e6780067a7ba3e6",
+        "sha256": "fcac422d619da577017321fd9cf89f3c4715a8bd51d825e4728a71506b5ee08d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_ut4xdkqxqkl",
+        "sha256": "8366e6ebfef57ddd0f5ffb9b4a159621f55317aa43ee477bbab208165ff19569"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts: five passed and three failed with exit code 1, so the recorded success rate is 5/8, not 5/5. The report omits attempts 6\u20138 without evidence that they were infrastructure errors; the successful logs and replay do not negate those recorded failures."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:58:34.383512+00:00"
+}

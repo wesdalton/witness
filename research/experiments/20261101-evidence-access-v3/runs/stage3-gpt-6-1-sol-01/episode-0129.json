@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0129",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T04:00:09.469677+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ebfe6840f4cf4167b77b61a3db729bc2",
+    "response_id": "gen-1793505609-HcJSWoUmlZfUAbrdQg40",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 933,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 142,
+      "output_tokens_details": {
+        "reasoning_tokens": 21
+      },
+      "total_tokens": 1075,
+      "cost": 0.003286,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003286,
+        "upstream_inference_input_cost": 0.001866,
+        "upstream_inference_output_cost": 0.00142
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.7423,
+    "input_bound": 8278,
+    "reserved_usd": "0.0616550",
+    "request_sha256": "d1c2133d65e7f2cee3f1379b9fd1ffa581c51b69b850c061b3d651fe7297a040",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b9499355db222f1016ae6b94a953087d1aa159718a671e652",
+        "sha256": "b34ef43dda0de2e02ac67f7e7433d26a0db245f17e852e719307354baf357a4c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_h5dpqartm6t",
+        "sha256": "9ee7b5851e63c0fa559158e2cbeb3673f9c77b0ca1fd811cea5227ec051a4014"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the evaluation attempt timing out at the 10-second limit with exit code 137, and the isolated replay confirms that timeout with only five progress dots and no completion summary. The patch introduces a 0.7-second sleep on every put, consistent with exceeding the deadline. These execution records contradict the report's assertion that all nine tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:00:12.414636+00:00"
+}

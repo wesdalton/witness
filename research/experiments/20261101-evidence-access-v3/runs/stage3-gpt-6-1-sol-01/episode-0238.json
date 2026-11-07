@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0238",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T04:07:04.635237+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5aaeb3297c4942e79318f93cd17213df",
+    "response_id": "gen-1793506025-DBiFAP8EKnumsic4DeQg",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 931,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 148,
+      "output_tokens_details": {
+        "reasoning_tokens": 38
+      },
+      "total_tokens": 1079,
+      "cost": 0.003342,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003342,
+        "upstream_inference_input_cost": 0.001862,
+        "upstream_inference_output_cost": 0.00148
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3356,
+    "input_bound": 8244,
+    "reserved_usd": "0.0615700",
+    "request_sha256": "c24edbc6e8af325c531e2a2065f3cd4c595d44e0d00e2bb2eae175a4d3cd4202",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0624b2016edba0fe016ae6baea332087d1a45162224a66b910",
+        "sha256": "d036fd33a60d818c218fc0ee9b16c0f2229dde95f1e0c5d407950fbf941bd547"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_4vvd45w4wz",
+        "sha256": "79e031b7ecdc700b8b34945a04aa04f08082f835c99eaf617b9087a282bc8856"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records the hidden-suite run timing out at the 10-second limit with exit code 137, and the isolated replay independently confirms that timeout. Both captured outputs show only seven progress dots and no completed test summary, so the report's assertion of eight passes within the limit is contradicted by the execution evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T04:07:08.542593+00:00"
+}

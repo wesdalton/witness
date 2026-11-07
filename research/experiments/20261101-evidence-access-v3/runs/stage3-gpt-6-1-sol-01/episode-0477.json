@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0477",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T04:21:44.219499+00:00",
+  "prompt_sha256": "e03339639e57036072d34e79dfa9504e3cf8e0cd6053d4aa1a99dd9102feab3d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d6f98e867c504181b7accc231abd04e5",
+    "response_id": "gen-1793506904-32Fgr8kxwQeQxjybR2oC",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1880,
+      "input_tokens_details": {
+        "cached_tokens": 1749
+      },
+      "output_tokens": 420,
+      "output_tokens_details": {
+        "reasoning_tokens": 244
+      },
+      "total_tokens": 2300,
+      "cost": 0.0046369,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0046369,
+        "upstream_inference_input_cost": 0.0004369,
+        "upstream_inference_output_cost": 0.0042
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 8.3506,
+    "input_bound": 11381,
+    "reserved_usd": "0.0694125",
+    "request_sha256": "90b630adc9ddbccce9a6a111d2c585baf4ec31d72a3607b7b60a38896ff40b98",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a3ed00d6e6e1a4f016ae6be59aa6087d1ae8e5defc5b2c89d",
+        "sha256": "38d28b48ba5c7519e7c198c5cd918079dd6b82cdb96be5a34c7c46bda34fd23a"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_98xamb9qm0m",
+        "sha256": "307b9a5c290ae2bfdf1d3149262c5d64da0904daded221b17f9b7e6cc2f4c034"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 40,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The artifacts show five logs of eight passing tests each, and the replay confirms eight passing tests for the shared patch. However, the manifest records six attempts: five passed and one ended in an infrastructure error, without per-test counts. The report's 5/5 excludes infrastructure errors, so it does not establish the claim that all recorded attempts numbered five and passed."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T04:21:52.901603+00:00"
+}

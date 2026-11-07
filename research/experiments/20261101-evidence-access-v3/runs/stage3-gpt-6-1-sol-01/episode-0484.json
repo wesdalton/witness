@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0484",
+  "incident": "inc-25aa76c912cf99c4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T04:22:19.754448+00:00",
+  "prompt_sha256": "797c1883f09ea3a2315cdb4cce6494b86ef3dfde3b4e0564799455836cda5040",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "42532817a6c345628b0e5df01f854cba",
+    "response_id": "gen-1793506940-ZHpRt7qbtVqS542WGeKz",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1819,
+      "input_tokens_details": {
+        "cached_tokens": 1688
+      },
+      "output_tokens": 170,
+      "output_tokens_details": {
+        "reasoning_tokens": 53
+      },
+      "total_tokens": 1989,
+      "cost": 0.0021308,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0021308,
+        "upstream_inference_input_cost": 0.0004308,
+        "upstream_inference_output_cost": 0.0017
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.9681,
+    "input_bound": 11052,
+    "reserved_usd": "0.0685900",
+    "request_sha256": "8be19670b528e99070da41f4cc3209be55c7fea9d808ed7de937eb4c10a66a7f",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_096aeebb1bab3d4a016ae6be7d800887d1984e7003f4669b56",
+        "sha256": "30d2a86f94d94654b86cde0c2529a024343b4231936bb8fdd53c43adf6d57dc9"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qdsf1874dh",
+        "sha256": "e388d948a2f4c9d3be5ec8f218c0c65e5ccabfe6563128e4ee62b4042c886dda"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, including attempt 2 with infra_error and exit code 125, rather than five recorded attempts that all passed. The report's 5/5 rate excludes infrastructure errors, and the artifact logs' attempt labels conflict with the manifest. The successful replay validates the shared patch but does not make every recorded attempt a passing run."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T04:22:24.231559+00:00"
+}
