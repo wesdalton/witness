@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0488",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T03:10:38.822301+00:00",
+  "prompt_sha256": "f9f7d748baa433f4dbcfb1c01a4d60ab97c5e4b4d4e99ba79527eadcb4e33a77",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1e3166c64b5645c8857274b6f7ffb1ac",
+    "response_id": "gen-1793502638-zwUPiH6pxIoaefyPe37I",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2081,
+      "input_tokens_details": {
+        "cached_tokens": 1950
+      },
+      "output_tokens": 356,
+      "output_tokens_details": {
+        "reasoning_tokens": 189
+      },
+      "total_tokens": 2437,
+      "cost": 0.0002106,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002106,
+        "upstream_inference_input_cost": 3.26e-05,
+        "upstream_inference_output_cost": 0.000178
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.4206,
+    "input_bound": 12086,
+    "reserved_usd": "0.003558750",
+    "request_sha256": "ed046f1c1844d709546b0fb6f053f13ef1f6a80000e8ed37e1adda5aef42bff4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_02300cee5a1525e0016ae6adaff73487d1a32e4a5c9804cc0d",
+        "sha256": "8d0a8a346cef6e4bfc5555f011751b419faadd7014a582be75f3ba953891b79b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_g6wtvy2570o",
+        "sha256": "78c5010555cec21a80b0ca0e23b429b3eae74321434a11c61793a9a02c2e7676"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 13,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report says 5 of 5 recorded attempts passed, and the manifest independently lists attempts 1\u20135 as passed with exit code 0; each has corresponding logs showing 13 tests passed. Attempt 6 is explicitly an infrastructure error, not one of the five recorded attempts, and is excluded by the stated policy."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:10:43.356780+00:00"
+}

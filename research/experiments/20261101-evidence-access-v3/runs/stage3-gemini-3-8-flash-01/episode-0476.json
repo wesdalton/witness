@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0476",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T01:27:57.970019+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f19af97cbae3439298dc216d2625dde5",
+    "response_id": "gen-1793496478-c19PJpB1T2ET1cBoTgFl",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1100,
+      "completion_tokens": 368,
+      "total_tokens": 1468,
+      "cost": 0.002205,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002205,
+        "upstream_inference_prompt_cost": 0.000825,
+        "upstream_inference_completions_cost": 0.00138
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 252,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 4.5314,
+    "input_bound": 8285,
+    "reserved_usd": "0.02157375",
+    "request_sha256": "4605f0c7fc51afddf253c7af927944cfc69146a057c78c678ff99a24be7b16fa"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "Although the report claims the run passed, the manifest and replay logs show that the test execution timed out (exit code 137, status timeout) after printing only 5 test passes due to a 0.7-second sleep inserted into `put`. Thus, the patch did not pass within the 10-second limit.",
+    "p_claim_true": 0
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:28:02.697625+00:00"
+}

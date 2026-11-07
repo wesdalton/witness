@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0195",
+  "incident": "inc-78513033587e8f7e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T02:50:49.931359+00:00",
+  "prompt_sha256": "f9b66f9e1856e5593c00e98bd8e098a0ce74f0cc7f7e2173dfcdbb3c44005098",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "dd122e4adfa14b1cbdd048b40a312878",
+    "response_id": "gen-1793501450-aakjcCesYt5hOcmd1teE",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1843,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1712
+      },
+      "output_tokens": 626,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 2469,
+      "cost": 0.0005401,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0005401,
+        "upstream_inference_input_cost": 0.0002271,
+        "upstream_inference_output_cost": 0.000313
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.6601,
+    "input_bound": 11159,
+    "reserved_usd": "0.003442875",
+    "request_sha256": "d34bbae482ce6df36c3dd1c64c2e392f02673384e08f49dc28da5172d157d379",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a949b758fd816ec016ae6a90a9a7087d1b927180271ad753e",
+        "sha256": "b7bb48f2043768821a31d55d1608590c42694c2d519a120a138f629e19c062d9"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_3b0rqs54fmx",
+        "sha256": "daa562a97ec4ec326ec28afdf8c3fa0799b1d4101c135643cae3c6a4e95cc241"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.58,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and attempt logs indicate five reported attempts with 9 passing tests, but the manifest records reported attempt 4 as an infrastructure error (exit 125), so it does not establish that all five attempts completed successfully. A sixth passing execution appears in the manifest, making the report\u2019s five-attempt denominator ambiguous."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T02:50:55.660879+00:00"
+}

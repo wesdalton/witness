@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0355",
+  "incident": "inc-08e8765adb0bf2a2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:46:35.474518+00:00",
+  "prompt_sha256": "113640924d037c83a3def9c82ed409f553185ec48a698b99aae862018e40f79c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "1615bab6bba543baa08b7c99e925380f",
+    "response_id": "gen-1793490397-7bEtCW68072Qv3kGS10k",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1204,
+      "completion_tokens": 411,
+      "total_tokens": 1615,
+      "cost": 0.000515712,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1152,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000515712,
+        "upstream_inference_prompt_cost": 2.2512e-05,
+        "upstream_inference_completions_cost": 0.0004932
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 239,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.3419,
+    "input_bound": 8063,
+    "reserved_usd": "0.0073341",
+    "request_sha256": "c7df1b7e7a3a7155eff970f218e5bec0c75365e4b978e35cabc36f4dd285d535"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay both show the evaluation run exiting with code 137 and timing out at the 10-second limit, with only 8 of 9 test dots printed, so the suite did not complete in time. The report's \"passed 9/9\" appears inconsistent with the actual runner evidence and is contradicted by the observed timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:46:38.318068+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0462",
+  "incident": "inc-336d81a260e4feaa",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-10-31T23:52:23.043809+00:00",
+  "prompt_sha256": "c0117d2f80d529dbd65cd7a5b1899f2e5689bc84a7822eab16d3682916a532e3",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "9ba44a2ff9774168a98122965efc3aca",
+    "response_id": "gen-1793490745-ZBGp0VGMsf9l1yoNY4Xg",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 282,
+      "total_tokens": 1121,
+      "cost": 0.000364308,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000364308,
+        "upstream_inference_prompt_cost": 2.5908e-05,
+        "upstream_inference_completions_cost": 0.0003384
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 72,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.6447,
+    "input_bound": 6854,
+    "reserved_usd": "0.0069714",
+    "request_sha256": "3b200353059d0716c4e8fab0a594a1d4dfe175c54a83bda39ca0f7b87cd64b35"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Both granted channels show 8 passed and 0 failed. The report harness status is \"passed\" and the replay runs an isolated pytest with exit code 0, stdout \"8 passed\", no errors, and no timeout. Together they confirm the patch passes the 8-test hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:52:25.842202+00:00"
+}

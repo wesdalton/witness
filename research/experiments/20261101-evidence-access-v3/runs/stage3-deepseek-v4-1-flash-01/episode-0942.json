@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0942",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T00:19:58.135744+00:00",
+  "prompt_sha256": "e484085e700a29f6c91db9cd37f1a3f9728fd4eed5a045910cc0760cf395ac8f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "c4764f1620a7494e8d45a5b25bd48fc9",
+    "response_id": "gen-1793492400-AShleF3qUSGf4gmKev3s",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2649,
+      "completion_tokens": 2847,
+      "total_tokens": 5496,
+      "cost": 0.00345846,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2560,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00345846,
+        "upstream_inference_prompt_cost": 4.206e-05,
+        "upstream_inference_completions_cost": 0.0034164
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2533,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 5.2524,
+    "input_bound": 12483,
+    "reserved_usd": "0.0086601",
+    "request_sha256": "c559d8d5289f9c9c03a1d70b3a74cfa707b23b1f5f7bf239e6c9d4be39e292e8"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 45,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 8 attempts, not 5, and attempts 4, 5, and 8 failed (exit_code 1) using a different patch hash (123eca...), directly contradicting the claim that every recorded attempt passed. The artifacts logs only list 5 attempts and even claim attempts 4-5 passed with hash 1688d1e6..., conflicting with the manifest's authoritative record. The report's 5/5 and the single passing replay do not cover the failed attempts, so the 5/5 claim is not supported."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:20:05.667750+00:00"
+}

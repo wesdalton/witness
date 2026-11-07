@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1022",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:49:31.313389+00:00",
+  "prompt_sha256": "adc85ac70c01ce3a2f35150d35278d6a993bbd37066f2f50a9d01ea9e38ca1e5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "821e5f3bc32f402fb07376d2a0312552",
+    "response_id": "gen-1793504971-FVjKIbIwBh5pQunF8FQt",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1073,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 150,
+      "output_tokens_details": {
+        "reasoning_tokens": 61
+      },
+      "total_tokens": 1223,
+      "cost": 0.0001823,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001823,
+        "upstream_inference_input_cost": 0.0001073,
+        "upstream_inference_output_cost": 7.5e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9246,
+    "input_bound": 8818,
+    "reserved_usd": "0.003150250",
+    "request_sha256": "9033f0079506363643633b35865f29709931aa9565cda19a123b6c89a187047a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06a03ce79fb920ab016ae6b6cc824c87d1927cce6a98c0d134",
+        "sha256": "da9d0c137ce2fcbbc9673d3465fd15db5a2e8b11594637d5565edeb75f337255"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_txfnymriepa",
+        "sha256": "38c178c8a7d5ac7e125abb3bc74e4fd2d7f4dc924f6bf031ad13292518972073"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay reports 4 failures among the 8 hidden tests, including tests requiring cycles to be rejected. The submitted implementation checks `len(result) > len(nodes)`, which cannot detect the shorter result produced by a cycle."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:49:34.354214+00:00"
+}

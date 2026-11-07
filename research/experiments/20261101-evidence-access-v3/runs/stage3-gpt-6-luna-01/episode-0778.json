@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0778",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:29:45.307016+00:00",
+  "prompt_sha256": "adc85ac70c01ce3a2f35150d35278d6a993bbd37066f2f50a9d01ea9e38ca1e5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "fcd555052f55439286c9345fa85e6c0c",
+    "response_id": "gen-1793503786-gJhkEbZhqkv7alEHiwC3",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1073,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 124,
+      "output_tokens_details": {
+        "reasoning_tokens": 33
+      },
+      "total_tokens": 1197,
+      "cost": 0.0001693,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001693,
+        "upstream_inference_input_cost": 0.0001073,
+        "upstream_inference_output_cost": 6.2e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1844,
+    "input_bound": 8818,
+    "reserved_usd": "0.003150250",
+    "request_sha256": "9033f0079506363643633b35865f29709931aa9565cda19a123b6c89a187047a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_077d5e54e76f4ad5016ae6b22b201487d1ad6b3006cc5006eb",
+        "sha256": "66894c204f57857530dc99f763c192e7a3f3b6b26668dc07ac0e8f27879effa8"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_zh8i60em0m",
+        "sha256": "730f6b007f4a38d81ae5f73a57f6047fdb8067c3c8195dffae45a19004588553"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay of the hidden suite reports 4 failures, including cycle-rejection tests. The submitted implementation checks whether the result length is greater than the node count, which cannot detect a cycle because the produced result cannot exceed the node count."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:29:48.482745+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0876",
+  "incident": "inc-7c9505c09afdc7a6",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T02:18:15.085591+00:00",
+  "prompt_sha256": "ac847edad7a87cdfd0a395299f66973d563fd587347436faad3d01aa22ca97e7",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6e3735a740ef4ac892f7543186b4c6e1",
+    "response_id": "gen-1793499495-0AP9l2vaZbGvDswLULGQ",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 580,
+      "completion_tokens": 1589,
+      "total_tokens": 2169,
+      "cost": 0.00639375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00639375,
+        "upstream_inference_prompt_cost": 0.000435,
+        "upstream_inference_completions_cost": 0.00595875
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1465,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 14.1717,
+    "input_bound": 6676,
+    "reserved_usd": "0.02036700",
+    "request_sha256": "9239103329e5dd7c0472e24d34c1fe41fb8d57c434fa7a683688d48bc42733ed"
+  },
+  "status": "completed",
+  "submission": {
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "p_claim_true": 0.95,
+    "reason": "The report records 8 passed tests and 0 failures, which is corroborated by the replay execution completing successfully with exit code 0. Although the replay stdout summary is null, its clean exit without timeout supports the report's passing result.",
+    "verdict": "supported",
+    "observed_counts": [
+      {
+        "passed": 8,
+        "failed": 0,
+        "channel": "report"
+      },
+      {
+        "passed": null,
+        "channel": "replay",
+        "failed": null
+      }
+    ]
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T02:18:29.754486+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0017",
+  "incident": "inc-bdf543ef827e5fd5",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:27:17.366547+00:00",
+  "prompt_sha256": "b7d7e1ce106ae3b3840a145f6588dd43e9ce7f7f813803506ee93818cd704733",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9d355365ab734c678fa36b2dcd12d6c3",
+    "response_id": "gen-1793489240-zKgeGHXpykLzmVyD1zXs",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1344,
+      "completion_tokens": 936,
+      "total_tokens": 2280,
+      "cost": 0.001413504,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001413504,
+        "upstream_inference_prompt_cost": 0.000290304,
+        "upstream_inference_completions_cost": 0.0011232
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 747,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.2348,
+    "input_bound": 8455,
+    "reserved_usd": "0.0074517",
+    "request_sha256": "d8bc6e45b0cdebc7a1a15ed8e4012c16465b10b03e0125015e1a9b54ac5e4a84"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest and replay both show attempt 1 hit the evaluation's 10-second limit (exit 137, timed_out true), contradicting the claim that the hidden suite passes within that limit. The artifacts also show from_roman sleeps 0.005s per call, which can accumulate past 10 seconds across the 13 tests. The report's unverified \"passed 13\" does not overcome the timeout records."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:27:22.244087+00:00"
+}

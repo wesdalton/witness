@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0341",
+  "incident": "inc-e3d693614da9e0f7",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-10-31T23:45:49.549158+00:00",
+  "prompt_sha256": "f34497739f3998d316584e20b3cd99317cadea8d4e2ccc1644adbb857e46f4e3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "43e110ab097d4564a83512bf7f73de2d",
+    "response_id": "gen-1793490352-fYOocNT9FHsoZ45yc5Jm",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 350,
+      "total_tokens": 1143,
+      "cost": 0.000432108,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000432108,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.00042
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 145,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9112,
+    "input_bound": 6669,
+    "reserved_usd": "0.0069159",
+    "request_sha256": "d39ff5fef3cb7e620dbaefa3b6be3161f79da58a2c34d77bba66acdba31742ea"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report explicitly shows the harness passed 9 hidden tests with 0 failures and 1/1 attempt passed. The replay confirms the isolated pytest run exited successfully with no timeout. Although the replay lacks a test-count summary, the report provides the direct evidence matching the claim."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T23:45:53.085485+00:00"
+}

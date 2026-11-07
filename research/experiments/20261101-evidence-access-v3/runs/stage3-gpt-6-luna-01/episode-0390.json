@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0390",
+  "incident": "inc-bdf543ef827e5fd5",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:04:06.637259+00:00",
+  "prompt_sha256": "b7d7e1ce106ae3b3840a145f6588dd43e9ce7f7f813803506ee93818cd704733",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "683f30bceecb476386fd46fc3fd5e120",
+    "response_id": "gen-1793502247-k8mKcwS3ZOpxVCdjd0Db",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1034,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 255,
+      "output_tokens_details": {
+        "reasoning_tokens": 156
+      },
+      "total_tokens": 1289,
+      "cost": 0.0002309,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002309,
+        "upstream_inference_input_cost": 0.0001034,
+        "upstream_inference_output_cost": 0.0001275
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.1433,
+    "input_bound": 8453,
+    "reserved_usd": "0.003104625",
+    "request_sha256": "67785d93c3551b0204df0f942183913259923602961df0e57948080691120e4c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_04f386a8f36870a9016ae6ac28778c87d1b07234abbb215b9d",
+        "sha256": "e5208c66b48468c02ef717db7c177b7777975f573933eb0dceda3da7758804b9"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_avdzre5pjfc",
+        "sha256": "b283aecf7dea7aa4c95603e9d0b2cee337796e2707df6d46c1311c5f675e951a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The manifest records the evaluation attempt as timed out with exit code 137 at the 10-second limit, and the replay independently reports a timeout with no test summary. Although the report claims 13 tests passed, the execution evidence does not show the suite completing within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:04:10.991962+00:00"
+}

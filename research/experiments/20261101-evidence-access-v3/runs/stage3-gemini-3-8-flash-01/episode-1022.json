@@ -1,0 +1,83 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1022",
+  "incident": "inc-df4e2166ede18709",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T02:35:30.308715+00:00",
+  "prompt_sha256": "625363897155cf18ce975b5968bb7481bd53245f3f5014ce7d21e13d8697dc3a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "779a19475d0c45199ef3d53276f31d71",
+    "response_id": "gen-1793500530-CWWShZ8DbW8sav7SYiAl",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2868,
+      "completion_tokens": 4090,
+      "total_tokens": 6958,
+      "cost": 0.0174885,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0174885,
+        "upstream_inference_prompt_cost": 0.002151,
+        "upstream_inference_completions_cost": 0.0153375
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3932,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "length",
+    "native_finish_reason": "MAX_TOKENS",
+    "elapsed_seconds": 31.1207,
+    "input_bound": 12268,
+    "reserved_usd": "0.02456100",
+    "request_sha256": "e09789d45d03f5110f363fe44960e48a2e27698c6fbf8b24543a4a816e847296"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0,
+    "evidence_used": [
+      "manifest"
+    ],
+    "observed_counts": [
+      {
+        "failed": 0,
+        "passed": 9,
+        "channel": "report"
+      },
+      {
+        "failed": 0,
+        "passed": 9,
+        "channel": "artifacts"
+      },
+      {
+        "passed": null,
+        "channel": "manifest",
+        "failed": null
+      },
+      {
+        "failed": 0,
+        "passed": 9,
+        "channel": "replay"
+      }
+    ],
+    "verdict": "refuted",
+    "reason": "The manifest records a total of 8 attempts rather than 5, with attempts 2, 4, and 7 failing the hidden test suite. Only 5 of the 8 recorded attempts succeeded (exit code 0), contradicting the claim of 5/5 successful attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:36:01.510920+00:00"
+}

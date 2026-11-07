@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0680",
+  "incident": "inc-7bd38a8435b20681",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:23:33.127926+00:00",
+  "prompt_sha256": "b0791ca503d141694b4b9c9f900f928397234fbdd4b9ecdadf1088a193b55c17",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8afc73c4e0d4454ba93f1d9cbd06b250",
+    "response_id": "gen-1793503413-pAI4DzaNbcAOHQqtlBqf",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 865,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 324,
+      "output_tokens_details": {
+        "reasoning_tokens": 213
+      },
+      "total_tokens": 1189,
+      "cost": 0.0002485,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002485,
+        "upstream_inference_input_cost": 8.65e-05,
+        "upstream_inference_output_cost": 0.000162
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.182,
+    "input_bound": 7994,
+    "reserved_usd": "0.003047250",
+    "request_sha256": "b0dd757f5955f98ac23e2a34fd59f9b9c33bd028047bbc362fb61443e35bca17",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_00b7bf4b5db7892a016ae6b0b5f4e887d183e7e6259be4e03f",
+        "sha256": "e548f8bb144e6ea557a953e4253c9dd680cd9738fc2ad06cf6a7866809b4e33f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_c6hl1xq11ma",
+        "sha256": "f24746b718f986e5af77d226dbdc3ad74adf40bd9dd944e892ad112323866013"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The authoritative attempt record shows exit code 137 with status `timeout` at the 10-second limit, and replay confirms the run timed out after only eight progress dots. Although the report says 10 tests passed, that conflicts with the timeout evidence, so the submitted patch did not complete the hidden suite within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:23:37.406483+00:00"
+}

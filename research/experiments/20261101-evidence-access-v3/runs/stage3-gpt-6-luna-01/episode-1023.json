@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1023",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:49:34.354630+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ac38a79a03774db2a33c22eaf090b8de",
+    "response_id": "gen-1793504974-86gn2dn98VnFng1rAGLF",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 931,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 210,
+      "output_tokens_details": {
+        "reasoning_tokens": 98
+      },
+      "total_tokens": 1141,
+      "cost": 0.0001981,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001981,
+        "upstream_inference_input_cost": 9.31e-05,
+        "upstream_inference_output_cost": 0.000105
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.665,
+    "input_bound": 8244,
+    "reserved_usd": "0.003078500",
+    "request_sha256": "cb30efc1537a3e446959659ac34a93b574057a736addea15893e7604169267c0",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_05ac72e8a6a25f81016ae6b6cf80d887d19d12c62c7a7cccd0",
+        "sha256": "1a47be65299ee2a14114e8ef02b1a63b66356bf23e727208c4a9f55d66638aa3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_wd3zpntnge",
+        "sha256": "2fd8f23e43b76f0aa96f8697bf2e21c0cf1b4c9d3c9f48b050179b2b065ab3ae"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Although the report says 8 tests passed, the authoritative attempt record and isolated replay both show exit code 137 and a timeout at the 10-second limit, with only seven progress dots and no completed summary. The submitted implementation also sleeps 0.11 seconds on every order() call, consistent with the timed-out run."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:49:38.294790+00:00"
+}

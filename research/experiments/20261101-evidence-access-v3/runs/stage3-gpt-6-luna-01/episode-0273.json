@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0273",
+  "incident": "inc-1f53eb8c0f0f90f3",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T02:56:03.168165+00:00",
+  "prompt_sha256": "61a7c189ae02b29a3e3952effe946b5c4f97fa149715ab7d897bb10b8ad7e89f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "958570e6a0164c159a1c3bfaca4521e2",
+    "response_id": "gen-1793501763-6rKZfPscxuWvwtYY1mTt",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 921,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 169,
+      "output_tokens_details": {
+        "reasoning_tokens": 89
+      },
+      "total_tokens": 1090,
+      "cost": 0.0001766,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001766,
+        "upstream_inference_input_cost": 9.21e-05,
+        "upstream_inference_output_cost": 8.45e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2488,
+    "input_bound": 8204,
+    "reserved_usd": "0.003073500",
+    "request_sha256": "33a947b7ee617af972e284aef2ed5e2670f04b823a4ab0ef4216906b0a0c0598",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_04b2e9195bd12530016ae6aa448cb487d1b4f055b781a25aea",
+        "sha256": "8c88d758b2dde1d58961c195b891cfe917d0fe797cef1a95a30538aa4bf8808d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_5xniglb0v4k",
+        "sha256": "c49af7dbe9eacb06abf7c1534f0671a9f5a5e71b248115a349eb97a0b2ca7a0d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the hidden-test command completing with exit code 0 and status passed. The isolated replay independently reports all 9 tests passed with no failures or timeout, matching the report."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:56:06.165467+00:00"
+}

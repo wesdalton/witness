@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0067",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:30:12.978557+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "64aa9a8d7e1548868d7639ccefb648fd",
+    "response_id": "gen-1793489415-pELRiJIVsiHCFqvqcSUs",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1246,
+      "completion_tokens": 422,
+      "total_tokens": 1668,
+      "cost": 0.000767304,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000767304,
+        "upstream_inference_prompt_cost": 0.000260904,
+        "upstream_inference_completions_cost": 0.0005064
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 224,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.2134,
+    "input_bound": 8280,
+    "reserved_usd": "0.0073992",
+    "request_sha256": "39d3f7994f23a5b3931707a43606abbc78e1dceeb7e60179aff77724ba630963"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay both show exit code 137 with the run marked timed out at the 10-second limit, and the stdout tail (only 5 of 9 dots) confirms only a few tests finished. The artifact's `put` contains `_time.sleep(0.7)`, so repeated puts easily blow the 10s budget, refuting the \"within time limit\" part of the claim despite the report's self-reported pass."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:30:16.798566+00:00"
+}

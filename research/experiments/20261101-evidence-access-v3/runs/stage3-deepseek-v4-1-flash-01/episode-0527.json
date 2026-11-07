@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0527",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:56:09.474881+00:00",
+  "prompt_sha256": "255ff4c32bf0345a6b255b5eff4b73611c1301633b4b7f562c0cd3526447669a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "fcee8ffe3ca04017b34cc03b5494c189",
+    "response_id": "gen-1793490970-I7ZpfhGTx55pJqENCXdF",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2515,
+      "completion_tokens": 891,
+      "total_tokens": 3406,
+      "cost": 0.001108692,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001108692,
+        "upstream_inference_prompt_cost": 3.9492e-05,
+        "upstream_inference_completions_cost": 0.0010692
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 694,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.9061,
+    "input_bound": 11962,
+    "reserved_usd": "0.0085038",
+    "request_sha256": "b58de77a6c6d33f1eb3584264ebda5aa6b3b09698c9cf7317a171ed13c967cfb"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 8 attempts on `lru`, and attempts 4, 5, and 8 have exit_code 1 / status failed, so not all recorded attempts passed. The report's 5/5 summary conflicts with the manifest, while the artifact logs and replay only show passing runs for a specific artifact hash. Thus the claim that all 5 recorded attempts passed is not supported and is contradicted by the full attempt manifest."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:56:12.503988+00:00"
+}

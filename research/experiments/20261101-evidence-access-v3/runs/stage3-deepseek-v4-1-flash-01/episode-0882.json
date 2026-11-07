@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0882",
+  "incident": "inc-cc874154f78f685a",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-11-01T00:16:33.995918+00:00",
+  "prompt_sha256": "bc5753f40002ed8731b5755a7a93165426d7392dc414f3d2a63c474254eded34",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "157a3ebec4a14fbcbb03557951fbcc5f",
+    "response_id": "gen-1793492194-XzlgbtsUluMuCCxd2sfg",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 398,
+      "total_tokens": 1237,
+      "cost": 0.000503508,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000503508,
+        "upstream_inference_prompt_cost": 2.5908e-05,
+        "upstream_inference_completions_cost": 0.0004776
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 184,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9466,
+    "input_bound": 6846,
+    "reserved_usd": "0.0069690",
+    "request_sha256": "106a0e10ed28e18e32beeee96d288558c5cc96afedd63bed4020b3bf29d40fb9"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report harness shows status passed with 8 passed / 0 failed, and the isolated replay independently reproduces this with 8 passed, 0 errors, 0 failed, exit code 0, no timeout. Both granted channels agree on 8/8 hidden tests passing, directly supporting the claim."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:16:35.019675+00:00"
+}

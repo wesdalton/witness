@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0970",
+  "incident": "inc-c20b3a7fc1f79035",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T00:21:42.199095+00:00",
+  "prompt_sha256": "f0f40faf8a67ed84f4b9dc81e50785a8cfe574778b40c744ec9ad0485d688f4c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "28f0e32d3a1d4320b376d3b84ccb4321",
+    "response_id": "gen-1793492504-cCoFRbusCVEDH5r14xpU",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 791,
+      "completion_tokens": 274,
+      "total_tokens": 1065,
+      "cost": 0.000340308,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000340308,
+        "upstream_inference_prompt_cost": 1.1508e-05,
+        "upstream_inference_completions_cost": 0.0003288
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 66,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9751,
+    "input_bound": 6676,
+    "reserved_usd": "0.0069180",
+    "request_sha256": "efa0131123204c19a46e86e79fd2bc079d0be3be3d4f702fa2cca4a8306654ce"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report shows the harness passed 13 of 13 hidden tests with status \"passed\", directly matching the claim's 13-test suite. The replay channel confirms the run completed cleanly (exit_code 0, no timeout), though it provides no pass/fail counts of its own."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:21:45.486200+00:00"
+}

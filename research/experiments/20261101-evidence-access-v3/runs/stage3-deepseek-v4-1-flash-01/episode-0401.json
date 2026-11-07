@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0401",
+  "incident": "inc-d94e40b56056f070",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-10-31T23:49:03.466784+00:00",
+  "prompt_sha256": "48002c75c260ac5a7bdf14494b78ee22b45ed523b6be54761acd2bc90a354869",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "cc4c8a008b7e4b8db8fa2b1ed50dbe61",
+    "response_id": "gen-1793490545-wyazPuy3aIOzEruJXSKC",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1421,
+      "completion_tokens": 422,
+      "total_tokens": 1843,
+      "cost": 0.000518748,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1408,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000518748,
+        "upstream_inference_prompt_cost": 1.2348e-05,
+        "upstream_inference_completions_cost": 0.0005064
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 141,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.8242,
+    "input_bound": 9011,
+    "reserved_usd": "0.0076185",
+    "request_sha256": "235c839693c1fffda0fb9b104a8b41c3285f24b2640d17ae7fcfcd9a03cea7f4"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All four channels agree: report shows 9 passed/0 failed, artifacts' log shows \"9 passed in 0.02s\", manifest records attempt 1 as passed with exit 0, and replay shows 9 passed/0 failed with timed_out=false under the 10s limit. The runtimes (~0.01\u20130.02s) are far inside the limit, so the claim is supported."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:49:06.353807+00:00"
+}

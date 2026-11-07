@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0228",
+  "incident": "inc-08e8765adb0bf2a2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:39:28.722338+00:00",
+  "prompt_sha256": "113640924d037c83a3def9c82ed409f553185ec48a698b99aae862018e40f79c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "410f11f1c9c44ee3b6b444872223fbc5",
+    "response_id": "gen-1793489971-Fpy8Ac3T3mh5Kq934lCe",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1204,
+      "completion_tokens": 438,
+      "total_tokens": 1642,
+      "cost": 0.000773904,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000773904,
+        "upstream_inference_prompt_cost": 0.000248304,
+        "upstream_inference_completions_cost": 0.0005256
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 241,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.0495,
+    "input_bound": 8063,
+    "reserved_usd": "0.0073341",
+    "request_sha256": "c7df1b7e7a3a7155eff970f218e5bec0c75365e4b978e35cabc36f4dd285d535"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.08,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay both record exit_code 137 with status \"timeout\" and timed_out true under the 10-second limit, so the run did not finish in time. Although the report claims 9/9 passed, that harness result conflicts with the actual time-limited execution, and the decode's per-call 0.15s sleep makes exceeding 10s plausible. The claim of passing within the time limit is therefore not supported."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:39:32.149306+00:00"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0094",
+  "incident": "inc-7c9505c09afdc7a6",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T00:39:57.081757+00:00",
+  "prompt_sha256": "ac847edad7a87cdfd0a395299f66973d563fd587347436faad3d01aa22ca97e7",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3efa0734bda045e993c449dc87845fa4",
+    "response_id": "gen-1793493597-OikjlgcRCgqPZmmQiGn3",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 580,
+      "completion_tokens": 4061,
+      "total_tokens": 4641,
+      "cost": 0.01566375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01566375,
+        "upstream_inference_prompt_cost": 0.000435,
+        "upstream_inference_completions_cost": 0.01522875
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3928,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 38.2993,
+    "input_bound": 6676,
+    "reserved_usd": "0.02036700",
+    "request_sha256": "9239103329e5dd7c0472e24d34c1fe41fb8d57c434fa7a683688d48bc42733ed"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "report"
+    ],
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "insufficient",
+    "reason": "The report indicates that all 8 hidden tests passed successfully with 0 failures. However, the replay channel has an empty stdout and a null summary, providing no independent test count verification despite exiting with code 0. Therefore, the available evidence is insufficient to conclusively settle whether the hidden test suite passed."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:40:35.459075+00:00"
+}

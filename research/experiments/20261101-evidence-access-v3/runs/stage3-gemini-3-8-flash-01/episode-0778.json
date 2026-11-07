@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0778",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T02:03:40.262079+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "eb27cd2837404fcd9f9cddac88af3bcc",
+    "response_id": "gen-1793498620-NcXuTxTfdCwLCDRW3su4",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1100,
+      "completion_tokens": 274,
+      "total_tokens": 1374,
+      "cost": 0.0018525,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0018525,
+        "upstream_inference_prompt_cost": 0.000825,
+        "upstream_inference_completions_cost": 0.0010275
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 164,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 2.8961,
+    "input_bound": 8285,
+    "reserved_usd": "0.02157375",
+    "request_sha256": "4605f0c7fc51afddf253c7af927944cfc69146a057c78c678ff99a24be7b16fa"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "reason": "Both the manifest and replay logs confirm that the evaluation timed out with exit code 137 after executing only 5 tests. The patch introduced an artificial sleep of 0.7s per put operation in lru/__init__.py, causing the test suite to exceed the 10-second limit.",
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:03:43.271143+00:00"
+}

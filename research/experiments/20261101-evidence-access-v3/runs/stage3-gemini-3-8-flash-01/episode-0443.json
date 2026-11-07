@@ -1,0 +1,83 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0443",
+  "incident": "inc-f6e5148b72485191",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T01:22:47.329074+00:00",
+  "prompt_sha256": "dcbe1238ba56e4535567242d96f2fad1e5f47c59b74624e522da2c8da83dbafe",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "80a36965b1d94b9a808b9ae7961d0308",
+    "response_id": "gen-1793496167-05M1dwolb0Vx9bVGm1T3",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2892,
+      "completion_tokens": 4081,
+      "total_tokens": 6973,
+      "cost": 0.01747275,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01747275,
+        "upstream_inference_prompt_cost": 0.002169,
+        "upstream_inference_completions_cost": 0.01530375
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3931,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 28.4105,
+    "input_bound": 12683,
+    "reserved_usd": "0.02487225",
+    "request_sha256": "50905a976ca56b57a0dc7345f3e7874846a6a4d3f1e66e85d4644259f36f5784"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0,
+    "verdict": "refuted",
+    "observed_counts": [
+      {
+        "passed": 11,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "passed": 11,
+        "channel": "artifacts",
+        "failed": 0
+      },
+      {
+        "passed": null,
+        "failed": null,
+        "channel": "manifest"
+      },
+      {
+        "passed": 11,
+        "failed": 0,
+        "channel": "replay"
+      }
+    ],
+    "reason": "The run manifest records 8 total attempts on csvline, of which 3 failed (exit code 1) and 5 passed. Because not all recorded attempts succeeded, the claim that all 5 recorded attempts passed is refuted.",
+    "evidence_used": [
+      "manifest"
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:23:16.318734+00:00"
+}

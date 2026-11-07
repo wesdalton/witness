@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0188",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T02:50:06.026971+00:00",
+  "prompt_sha256": "bddde165807c4aada3f800f4ad0882b9ceaa37c450e083202d001dd28ea4888f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2cdd5123df044de69e1676042fce970c",
+    "response_id": "gen-1793501407-cnuWZMtTQ16YnBG3tHX8",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2193,
+      "input_tokens_details": {
+        "cached_tokens": 2062
+      },
+      "output_tokens": 645,
+      "output_tokens_details": {
+        "reasoning_tokens": 492
+      },
+      "total_tokens": 2838,
+      "cost": 0.00035622,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00035622,
+        "upstream_inference_input_cost": 3.372e-05,
+        "upstream_inference_output_cost": 0.0003225
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.366,
+    "input_bound": 12199,
+    "reserved_usd": "0.003572875",
+    "request_sha256": "2e0173ca48a497144a90ebd6cb886473245a00cdafd39f0c891fec1a8bed03a3",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0bff3c9ee16c83f7016ae6a8e01c1087d1867077bc9eac706b",
+        "sha256": "135d38df69e0ebc7d0e36ced4eef9ccf0b6d1c9d9a777980cadfa1610814e8d2"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_1xtqy1oc9r5",
+        "sha256": "bcc0118348928ec2a4e83e99340cb76bea8ec29fc3fecb18c1f68284b5671aa1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records eight runs, including failed attempts 2, 3, and 8; thus it does not support that all recorded attempts passed. The report and artifact logs show five successful runs, but they conflict with the manifest\u2019s attempt outcomes."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:50:13.812038+00:00"
+}

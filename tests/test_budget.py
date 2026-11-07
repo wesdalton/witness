@@ -85,3 +85,23 @@ def test_review_lifts_stop_but_keeps_failed_reservation(tmp_path):
     assert budget.summary()["exposure_usd"] == "0.5"
     with pytest.raises(BudgetError, match="Only completed, failed"):
         budget.review("two", "outstanding")
+
+
+def test_amendment_raises_ceiling_and_is_append_only(tmp_path):
+    path = tmp_path / "budget.jsonl"
+    budget = PhaseBudget(path)
+    budget.reserve("one", "batch", Decimal("20"), Decimal("25"))
+    budget.complete("one", "ok", cost="20", usage={})
+    with pytest.raises(BudgetError, match="ceiling"):
+        budget.reserve("two", "batch", Decimal("6"), Decimal("25"))
+    with pytest.raises(BudgetError, match="ceiling"):
+        budget.reserve("two", "batch", Decimal("1"), Decimal("30"))
+    with pytest.raises(BudgetError, match="source"):
+        budget.amend_limit(Decimal("35"), " ")
+    budget.amend_limit(Decimal("35"), "User approved $35 on 2026-11-01")
+    with pytest.raises(BudgetError, match="raise"):
+        budget.amend_limit(Decimal("30"), "lower")
+    budget.reserve("two", "batch2", Decimal("6"), Decimal("30"))
+    assert budget.summary()["phase_limit_usd"] == "35"
+    first = json.loads(path.read_text().splitlines()[0])
+    assert first["limit_usd"] == "25"

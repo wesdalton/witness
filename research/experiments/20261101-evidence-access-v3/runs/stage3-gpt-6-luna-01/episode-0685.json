@@ -1,0 +1,69 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0685",
+  "incident": "inc-b6c35a209175b880",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:23:49.308319+00:00",
+  "prompt_sha256": "0ad58c63ba9f1e0d17bef37fab19ce41685fde69f29b684ea061a2ffe885454c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "edab0dd6bcb44766bf8969751073e994",
+    "response_id": "gen-1793503430-Z8xN6fx7Yqv6aPfE990c",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 925,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 161,
+      "output_tokens_details": {
+        "reasoning_tokens": 68
+      },
+      "total_tokens": 1086,
+      "cost": 0.000173,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000173,
+        "upstream_inference_input_cost": 9.25e-05,
+        "upstream_inference_output_cost": 8.05e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.4089,
+    "input_bound": 8334,
+    "reserved_usd": "0.003089750",
+    "request_sha256": "666f4373f1a6e7f0887c35bb90d1e69baa127f5f4d65f4974610ce97aac61282",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a350aab81b99765016ae6b0c6e54487d18cda35a70787cea1",
+        "sha256": "74ef13da7199330557b01f750b24a4fdd6779ff3076aab7315261c810ed5a593"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_1kqu40l4tbn",
+        "sha256": "b1cc237106826faaf7dc976af06d93bb74d23ebc33a67e089ecca5f46e71089d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay"
+    ],
+    "reason": "The replayed isolated test run reports 3 failures and only 5 passes, including failures for punctuation normalization, hyphen-run collapsing, and length limits. This directly contradicts the claim that the patch passes all 8 hidden tests, despite the report saying otherwise."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:23:52.713730+00:00"
+}

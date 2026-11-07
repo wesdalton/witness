@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0836",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:34:34.483296+00:00",
+  "prompt_sha256": "a0bef81b2517c07222942de52ef5fc1011ee70723635ea2d4583d06122bfaa3e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "cb2777806c3547d484391032bd930e0b",
+    "response_id": "gen-1793504075-H9QIkKY3Wd9prZloW2AY",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1810,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1679
+      },
+      "output_tokens": 650,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 2460,
+      "cost": 0.000547975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000547975,
+        "upstream_inference_input_cost": 0.000222975,
+        "upstream_inference_output_cost": 0.000325
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.3313,
+    "input_bound": 10860,
+    "reserved_usd": "0.003405500",
+    "request_sha256": "8841d85ab522e76db887a5c6311ed713d22816572831fb430fb9eefe651e2126",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_048916a7d6ea70c4016ae6b34c7b8487d18832dc3946b0db30",
+        "sha256": "1bb48608bffeced032c57244d5343ab39ccfbe0460fb34aae201ac8428295792"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_7oogkdc60nc",
+        "sha256": "fd8fde02d70a052c899794b46db5f4cf0291159d40a820750760c3917b71145b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report records five eligible attempts, and the manifest shows five passed runs (attempts 1, 2, 4, 5, and 6), with attempt 3 excluded as an infrastructure error under the stated policy. Each passed run has exit code 0; the replay also passes all eight tests. The attempt-3 log/manifest labeling differs, but it is marked as an infrastructure error rather than a failed patch."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:34:43.001185+00:00"
+}

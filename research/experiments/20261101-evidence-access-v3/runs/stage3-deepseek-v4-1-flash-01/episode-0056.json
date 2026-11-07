@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0056",
+  "incident": "inc-08e8765adb0bf2a2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-10-31T23:29:38.078413+00:00",
+  "prompt_sha256": "14af8ae1d50e98ec338064983b430f25376516d687055fe0fed1c9e5a3c069cc",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "49ee12cd701948d589df1063c8ed371d",
+    "response_id": "gen-1793489380-Q1Y6iAl3xxTeDoi6UYds",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1338,
+      "completion_tokens": 1236,
+      "total_tokens": 2574,
+      "cost": 0.001658808,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001658808,
+        "upstream_inference_prompt_cost": 0.000175608,
+        "upstream_inference_completions_cost": 0.0014832
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 963,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.2439,
+    "input_bound": 8584,
+    "reserved_usd": "0.0074904",
+    "request_sha256": "b5a3e0fc7d6bc8ec6857fb1159b368148c23629384aeb4e58fb5c9a97e6979aa"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": null
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": null
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay channels both show the run killed with exit code 137 and timed_out=true at the 10-second limit, with only 8 progress dots emitted before the kill. This directly contradicts the claim that the 9-test suite completes within the time limit, even though the report's harness summary asserts 9/9 passed. The actual execution evidence therefore refutes the claim."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:29:42.381927+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0905",
+  "incident": "inc-849c812d81852b2a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:17:58.583127+00:00",
+  "prompt_sha256": "06c17251a11c9cecc072d8fe623df7fa3d8f1acd12656819900d8bb69f51bc08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d986df638b8b4226ad67ae047101979b",
+    "response_id": "gen-1793492278-C68obBc2HaLOmWFiZsxS",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2575,
+      "completion_tokens": 1403,
+      "total_tokens": 3978,
+      "cost": 0.00170346,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2560,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00170346,
+        "upstream_inference_prompt_cost": 1.986e-05,
+        "upstream_inference_completions_cost": 0.0016836
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1196,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 3.1551,
+    "input_bound": 12148,
+    "reserved_usd": "0.0085596",
+    "request_sha256": "c9555c5ab1195d0da2d8484af40cda1218deb2e48318c2629b7a56aec24ea8c5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records 8 attempts on this task, of which attempts 3, 6, and 8 have exit_code 1 / status \"failed\" with a different artifact hash; only 5 pass. Since these are genuine test failures (exit code 1), not infrastructure errors, they cannot be excluded under the stated policy, so the true rate is 5/8, not 5/5. The report's \"5/5\" figure is contradicted by the manifest."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:18:01.811982+00:00"
+}

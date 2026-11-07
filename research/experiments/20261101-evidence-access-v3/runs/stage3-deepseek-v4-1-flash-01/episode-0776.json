@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0776",
+  "incident": "inc-bdf543ef827e5fd5",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:10:32.827475+00:00",
+  "prompt_sha256": "b7d7e1ce106ae3b3840a145f6588dd43e9ce7f7f813803506ee93818cd704733",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "08a0a5bf5c4c42ae8ae374d2b3b5abe7",
+    "response_id": "gen-1793491835-wl89Sjpz0C03urWoQ5fR",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1344,
+      "completion_tokens": 358,
+      "total_tokens": 1702,
+      "cost": 0.00045648,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00045648,
+        "upstream_inference_prompt_cost": 2.688e-05,
+        "upstream_inference_completions_cost": 0.0004296
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 173,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9987,
+    "input_bound": 8455,
+    "reserved_usd": "0.0074517",
+    "request_sha256": "d8bc6e45b0cdebc7a1a15ed8e4012c16465b10b03e0125015e1a9b54ac5e4a84"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "report"
+    ],
+    "reason": "The manifest records attempt 1 with exit_code 137 and status \"timeout\", and the replay confirms timed_out=true under the same 10-second limit, so the patch did not finish within the time limit. The report's \"passed 13\" is contradicted by these direct runtime records, and the artifact's per-call time.sleep(0.005) is a plausible cause of the overrun."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:10:36.147216+00:00"
+}

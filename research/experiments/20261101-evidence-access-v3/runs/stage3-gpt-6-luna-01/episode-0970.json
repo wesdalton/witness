@@ -1,0 +1,80 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0970",
+  "incident": "inc-084136b064500272",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T03:45:12.716368+00:00",
+  "prompt_sha256": "264762463fcd0911cd2a79c11a0555b9762796e6dfe3a53eb0ee8eb312371370",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b79a63cf5a2b4efca3711dce37290c27",
+    "response_id": "gen-1793504713-Ya9HyjqYPYDw1uyjCiaq",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 435,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 189,
+      "output_tokens_details": {
+        "reasoning_tokens": 76
+      },
+      "total_tokens": 624,
+      "cost": 0.000138,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000138,
+        "upstream_inference_input_cost": 4.35e-05,
+        "upstream_inference_output_cost": 9.45e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.3379,
+    "input_bound": 6677,
+    "reserved_usd": "0.002882625",
+    "request_sha256": "ff0f3e649cd3f4820872c7f2d3e80805d287d9712f00448a137e9712617e4850",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0bd6ddb39d21d42f016ae6b5ca652487d1940ab907ed48ab89",
+        "sha256": "f785328c18c8b32d418611ee18f1db4c1d072befe97e4efa959928840ed85254"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_18sn119iemn",
+        "sha256": "aee5c3552bf39e4026ef7ec54e8b0baa398d0977f225376cd9939843d1cbb812"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report explicitly records the hidden-test harness as passed, with 8 passed and 0 failed, matching the claim. The replay exited successfully without timing out, though it does not itself expose test counts."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T03:45:17.013209+00:00"
+}

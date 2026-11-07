@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0911",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T00:18:19.539347+00:00",
+  "prompt_sha256": "a0bef81b2517c07222942de52ef5fc1011ee70723635ea2d4583d06122bfaa3e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "a0dee7ad820e450186812c0dec3e7d8b",
+    "response_id": "gen-1793492299-XTHTDKGVc4OdMVTX2Pyw",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2165,
+      "completion_tokens": 454,
+      "total_tokens": 2619,
+      "cost": 0.000592188,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2048,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000592188,
+        "upstream_inference_prompt_cost": 4.7388e-05,
+        "upstream_inference_completions_cost": 0.0005448
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 259,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.377,
+    "input_bound": 10862,
+    "reserved_usd": "0.0081738",
+    "request_sha256": "2c4954afb8d5277ff2bfebb4c007eb9919ec3b17a6f47f3efa10c5ae8f2425a5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.9,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report states 5/5 attempts passed, and the per-attempt logs all show \"8 passed\" with exit code 0 for the same artifact hash. The manifest shows one additional attempt (attempt 3) that was excluded as an infra_error, consistent with the stated policy, and the replay independently confirms 8 passed with exit code 0. Thus the evidence supports the claim, modulo one infra-error attempt that was properly excluded."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:18:20.974194+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0947",
+  "incident": "inc-1155d1aa247141b4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:43:31.465550+00:00",
+  "prompt_sha256": "c588eb20e0e50a427a6a08dff665dab7a431a4ba4d0eb513111ca813174fc1d5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f15ad33a5c6a4f9980fcfaf00408f94b",
+    "response_id": "gen-1793504612-3DKRUa5nIsW1oVoNh38D",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2181,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2050
+      },
+      "output_tokens": 384,
+      "output_tokens_details": {
+        "reasoning_tokens": 284
+      },
+      "total_tokens": 2565,
+      "cost": 0.00046135,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00046135,
+        "upstream_inference_input_cost": 0.00026935,
+        "upstream_inference_output_cost": 0.000192
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.2403,
+    "input_bound": 11925,
+    "reserved_usd": "0.003538625",
+    "request_sha256": "32cf5634063d704155513a89286edd6c569328ab1a4fc438cee9b699a9ef8c16",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0e06854582e08b66016ae6b5657e8887d1b71010a7e5649e2b",
+        "sha256": "e4e87ebb0edb84734855eb5edaa18ce6d954c5cc117765c217bc853a78b1cb1d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_17lkdnkxbuo",
+        "sha256": "f7a2ca0707e90cf49398f7380208331dfa16dada9629f88a2915a4d705cc153d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records attempt 5 as failed with exit code 1; attempts 6 and 7 also failed, despite the report claiming five of five passed. The artifact logs conflict with the manifest's attempt-5 result, but do not override the manifest's explicit failed status."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:43:37.975284+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0207",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:38:10.917855+00:00",
+  "prompt_sha256": "a0bef81b2517c07222942de52ef5fc1011ee70723635ea2d4583d06122bfaa3e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "2ba6faa627ba44eab3b881fe55fad8f4",
+    "response_id": "gen-1793489893-PFTkb9AkXKSj5x1CsMPz",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2165,
+      "completion_tokens": 461,
+      "total_tokens": 2626,
+      "cost": 0.000751116,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1536,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000751116,
+        "upstream_inference_prompt_cost": 0.000197916,
+        "upstream_inference_completions_cost": 0.0005532
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 257,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.041,
+    "input_bound": 10862,
+    "reserved_usd": "0.0081738",
+    "request_sha256": "2c4954afb8d5277ff2bfebb4c007eb9919ec3b17a6f47f3efa10c5ae8f2425a5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.9,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest shows six entries, but attempt 3 is an infra_error (exit 125) which the stated policy excludes; the remaining five attempts (1,2,4,5,6) all have status \"passed\" with exit 0, matching the report's 5/5. The five logs each show \"8 passed\", and the isolated replay independently confirms 8 passed / 0 failed. Thus the evidence supports that all five valid recorded attempts passed the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:38:14.489361+00:00"
+}

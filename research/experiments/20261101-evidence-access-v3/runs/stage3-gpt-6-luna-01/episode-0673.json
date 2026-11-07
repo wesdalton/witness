@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0673",
+  "incident": "inc-7bd38a8435b20681",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:22:58.890837+00:00",
+  "prompt_sha256": "b0791ca503d141694b4b9c9f900f928397234fbdd4b9ecdadf1088a193b55c17",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "dc9b94839e7545999a85f04c6e86215e",
+    "response_id": "gen-1793503379-UVeDdOQ1uM1mYSaKtNZT",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 865,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 188,
+      "output_tokens_details": {
+        "reasoning_tokens": 64
+      },
+      "total_tokens": 1053,
+      "cost": 0.0001805,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001805,
+        "upstream_inference_input_cost": 8.65e-05,
+        "upstream_inference_output_cost": 9.4e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9569,
+    "input_bound": 7994,
+    "reserved_usd": "0.003047250",
+    "request_sha256": "b0dd757f5955f98ac23e2a34fd59f9b9c33bd028047bbc362fb61443e35bca17",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_04f4951eb794d035016ae6b094994c87d1a000fad77a6fd47f",
+        "sha256": "fe4ade33f7a8d3e0ff008511324073992656993c88f7603330753c783f187599"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_sf7sot6r1kr",
+        "sha256": "e80c150ecf8bcec0f9e28cd7758aabb11ec1e8397972caeacf516f5989b980d1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The report says 10 tests passed, but the recorded evaluation attempt exited with code 137 and timed out at the 10-second limit; replay likewise confirms a timeout with only eight progress dots and no summary. The artifact also includes a 0.09-second sleep in `median`, consistent with the observed timeout, so the claim that the suite passed within the limit is contradicted."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:23:02.598244+00:00"
+}

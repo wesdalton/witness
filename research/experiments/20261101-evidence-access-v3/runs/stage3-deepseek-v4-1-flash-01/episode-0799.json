@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0799",
+  "incident": "inc-1155d1aa247141b4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:11:48.827963+00:00",
+  "prompt_sha256": "c588eb20e0e50a427a6a08dff665dab7a431a4ba4d0eb513111ca813174fc1d5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d6f9899d98614020ae94f63f5baccc54",
+    "response_id": "gen-1793491909-Xe0Bq97ilxuu7tqsfnP5",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2539,
+      "completion_tokens": 858,
+      "total_tokens": 3397,
+      "cost": 0.001264452,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1792,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001264452,
+        "upstream_inference_prompt_cost": 0.000234852,
+        "upstream_inference_completions_cost": 0.0010296
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 683,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.3667,
+    "input_bound": 11927,
+    "reserved_usd": "0.0084933",
+    "request_sha256": "5041988f04095fd7a8c15eb09835980376d08776813ec4478f66e924e4e0ffd9"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.0,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts and shows attempt 5 failed with a different artifact hash and exit_code 1, so the claim that all five recorded attempts passed is contradicted. The report's 5/5 summary conflicts with the manifest and the logs omit that failed attempt. Replay only verifies a passing artifact, not all attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:11:51.811698+00:00"
+}

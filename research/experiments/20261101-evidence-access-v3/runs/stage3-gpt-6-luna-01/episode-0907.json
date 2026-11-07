@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0907",
+  "incident": "inc-f51b4c54715b879e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:40:20.381667+00:00",
+  "prompt_sha256": "5fb241c1cf44681d18405860dec0cdcb4080e6d2ac26324abdeba48df854ce17",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "de58a5eed1344ee6bfab6ca162c486dd",
+    "response_id": "gen-1793504420-62UpU3juidg1PaeXFK2u",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1910,
+      "input_tokens_details": {
+        "cached_tokens": 1779
+      },
+      "output_tokens": 213,
+      "output_tokens_details": {
+        "reasoning_tokens": 118
+      },
+      "total_tokens": 2123,
+      "cost": 0.00013739,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00013739,
+        "upstream_inference_input_cost": 3.089e-05,
+        "upstream_inference_output_cost": 0.0001065
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.5619,
+    "input_bound": 11264,
+    "reserved_usd": "0.003456000",
+    "request_sha256": "99b9a9c73556f2ac481848a425ced68283918288a1f94d7fbaa83e9d6cd40616",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08ee3bdc82cb2529016ae6b4a59c4487d1bd980b3063eb086c",
+        "sha256": "13262ebe62729fffb1411472b3db2527aacc184f542ea2f83fc96b3c63b14efc"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_dxypq1cuks6",
+        "sha256": "ae66195e63eaa9389221135101e486cdf9769a8d080c2bd7e81c0fe1f97aca15"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five attempts, each with exit code 0 and passed status for the hidden-test command; the logs show 13 tests passing for each. All five reference the same artifact hash, and replay independently verifies that artifact passes the suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:40:24.048639+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1007",
+  "incident": "inc-1155d1aa247141b4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T00:23:52.877512+00:00",
+  "prompt_sha256": "c588eb20e0e50a427a6a08dff665dab7a431a4ba4d0eb513111ca813174fc1d5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d44fa8f1b20f4974ae30d3aad99e327c",
+    "response_id": "gen-1793492635-KcjV0U9htpLlfiOi6nkb",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2539,
+      "completion_tokens": 829,
+      "total_tokens": 3368,
+      "cost": 0.001041492,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001041492,
+        "upstream_inference_prompt_cost": 4.6692e-05,
+        "upstream_inference_completions_cost": 0.0009948
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 630,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.6793,
+    "input_bound": 11927,
+    "reserved_usd": "0.0084933",
+    "request_sha256": "5041988f04095fd7a8c15eb09835980376d08776813ec4478f66e924e4e0ffd9"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest"
+    ],
+    "reason": "The manifest lists 8 attempts on `topo`, and attempts 5, 6, and 7 have status \"failed\" with exit_code 1 and a different artifact hash (fdad603f...), so not all recorded attempts passed. The report's 5/5 figure only counts a cherry-picked subset and the artifact logs show just 5 same-hash passing runs, omitting the failures. Therefore the claim that every recorded attempt passed is false."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:23:57.250166+00:00"
+}

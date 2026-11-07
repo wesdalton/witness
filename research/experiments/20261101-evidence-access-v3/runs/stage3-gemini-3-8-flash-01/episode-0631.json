@@ -1,0 +1,85 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0631",
+  "incident": "inc-5a9f34a7d7450532",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T01:46:18.755360+00:00",
+  "prompt_sha256": "83a9327bd8c6c2f6e79efede8d8578379666ae6ed6ff6fc26810aa9b196f6d54",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6fa84f78b22a45c1a435eefdb09502d0",
+    "response_id": "gen-1793497578-iLm9QVkuYOOx9qKqTZPX",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1119,
+      "completion_tokens": 786,
+      "total_tokens": 1905,
+      "cost": 0.00378675,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00378675,
+        "upstream_inference_prompt_cost": 0.00083925,
+        "upstream_inference_completions_cost": 0.0029475
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 617,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 7.5753,
+    "input_bound": 8479,
+    "reserved_usd": "0.02171925",
+    "request_sha256": "1ca8704a2dae6a262932a284df9f16efb214f43c1a08ec10f5ce8517dee44b0c"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "observed_counts": [
+      {
+        "passed": 8,
+        "failed": 0,
+        "channel": "report"
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "artifacts"
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "manifest"
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "replay"
+      }
+    ],
+    "reason": "The manifest and replay show that the test execution timed out (exit code 137) after reaching the 10-second limit without completing. Although the report claims 8 tests passed, the replay confirms that the run timed out before completing the test suite. Therefore, the claim is refuted.",
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:46:26.402773+00:00"
+}

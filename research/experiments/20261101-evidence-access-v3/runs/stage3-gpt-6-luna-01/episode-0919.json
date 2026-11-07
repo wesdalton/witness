@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0919",
+  "incident": "inc-0fb7dd6699dd8795",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:41:24.631852+00:00",
+  "prompt_sha256": "e833e9df90e20e909da3f80bac7b838be9d9826be7727e61f05a15ebf2fd4e50",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b5ac3ea8e3384709b1da04b2b4243a47",
+    "response_id": "gen-1793504485-5usYn9dTQXzyXjF8Osfa",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1067,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 156,
+      "output_tokens_details": {
+        "reasoning_tokens": 56
+      },
+      "total_tokens": 1223,
+      "cost": 0.0001847,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001847,
+        "upstream_inference_input_cost": 0.0001067,
+        "upstream_inference_output_cost": 7.8e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8141,
+    "input_bound": 8840,
+    "reserved_usd": "0.003153000",
+    "request_sha256": "27afbef5561e31a3b2af55606617222fe126666a4c95c0bf9dd147e4b2a504f7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f60b816cda49ce6016ae6b4e6a0f087d18f83a5fdeb42340e",
+        "sha256": "103f449c5e00861df9933653b5664b15d7ddc25e9652e5bb75acea61098a06ea"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_z0rfzwsro4",
+        "sha256": "41ca28f17d42d148c116ddc9d4617a6189dda95a2aef1d00c7bbc3d198f27c46"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "manifest",
+      "report"
+    ],
+    "reason": "The isolated replay of the hidden suite exited with failure: 2 tests failed, including tests that verify get() refreshes recency. The reported 9-pass result is contradicted by the replay, and the provided implementation's get() does not update recency."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:41:28.479570+00:00"
+}

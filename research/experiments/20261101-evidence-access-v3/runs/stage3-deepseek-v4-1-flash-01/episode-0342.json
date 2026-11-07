@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0342",
+  "incident": "inc-7d58b740f1f886e6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:45:53.086039+00:00",
+  "prompt_sha256": "60669b9bb1071ffa7b9efd51789446a26e26294fa860f14f27439fbcefd98847",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "c446587551d246779681463f3227fbd7",
+    "response_id": "gen-1793490355-4eJMZtIpH8x0PCHXvcGg",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2218,
+      "completion_tokens": 393,
+      "total_tokens": 2611,
+      "cost": 0.000610152,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1792,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000610152,
+        "upstream_inference_prompt_cost": 0.000138552,
+        "upstream_inference_completions_cost": 0.0004716
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 231,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9609,
+    "input_bound": 11045,
+    "reserved_usd": "0.0082287",
+    "request_sha256": "b2676025868be193287c98d1e4c681b8c9ad16832e1ca735eb01833a5e73cd24"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.92,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all 5 attempts with exit_code 0 and status \"passed\", and the per-attempt logs each show \"8 passed\". An independent isolated replay also exits 0 with 8 passed and no failures, corroborating the report's attempts_passed=5."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:45:56.335338+00:00"
+}

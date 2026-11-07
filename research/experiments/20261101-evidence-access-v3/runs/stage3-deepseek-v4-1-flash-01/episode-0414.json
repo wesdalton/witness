@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0414",
+  "incident": "inc-0fb7dd6699dd8795",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:49:44.610426+00:00",
+  "prompt_sha256": "e833e9df90e20e909da3f80bac7b838be9d9826be7727e61f05a15ebf2fd4e50",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8c1187b472424c01903b937f20d6fd8d",
+    "response_id": "gen-1793490587-lT02xhD7fH9rX1JwRrXl",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1397,
+      "completion_tokens": 258,
+      "total_tokens": 1655,
+      "cost": 0.000465276,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 896,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000465276,
+        "upstream_inference_prompt_cost": 0.000155676,
+        "upstream_inference_completions_cost": 0.0003096
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 74,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.8351,
+    "input_bound": 8842,
+    "reserved_usd": "0.0075678",
+    "request_sha256": "f9bb6233dff210c446b028f490b0f8b4712c4e5a3feb556e291d4d1572ebf974"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and manifest claim 9/9 passed, but the isolated replay of the same hidden suite shows 2 failed, 7 passed (test_get_refreshes_recency, test_keys_order_after_mixed_access). The artifact confirms the bug: get() never calls move_to_end(key), so reads do not refresh recency. The replay directly refutes the claim."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:49:47.966483+00:00"
+}

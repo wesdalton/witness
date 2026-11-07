@@ -1,0 +1,85 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0211",
+  "incident": "inc-08e8765adb0bf2a2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T00:56:13.386425+00:00",
+  "prompt_sha256": "14af8ae1d50e98ec338064983b430f25376516d687055fe0fed1c9e5a3c069cc",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6cdcb2fb9a27471cb448d321e904ba5a",
+    "response_id": "gen-1793494573-zoaRda6C0BmJU1acZZzO",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1179,
+      "completion_tokens": 888,
+      "total_tokens": 2067,
+      "cost": 0.00421425,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00421425,
+        "upstream_inference_prompt_cost": 0.00088425,
+        "upstream_inference_completions_cost": 0.00333
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 726,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 7.0873,
+    "input_bound": 8589,
+    "reserved_usd": "0.02180175",
+    "request_sha256": "57e2481e2a41858cb4ae88390dd72fd551064c42c63ef39de922619ea98e16eb"
+  },
+  "status": "completed",
+  "submission": {
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ],
+    "p_claim_true": 0,
+    "verdict": "refuted",
+    "observed_counts": [
+      {
+        "passed": 9,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "failed": null,
+        "passed": null
+      },
+      {
+        "passed": null,
+        "channel": "manifest",
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "failed": null,
+        "passed": null
+      }
+    ],
+    "reason": "The manifest and replay demonstrate that the evaluation timed out after 10 seconds with exit code 137, having executed only 8 tests. This contradicts the report and directly refutes the claim that the patch passes all 9 hidden tests within the time limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:56:20.559981+00:00"
+}

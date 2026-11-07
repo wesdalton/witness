@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0840",
+  "incident": "inc-cc874154f78f685a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T00:13:58.722677+00:00",
+  "prompt_sha256": "b855d159eb8b714b270eea12df07040fe8d3b49942497e4c4d33fc0baa902eb4",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "15a1bf201fd84181b65670615b282ba5",
+    "response_id": "gen-1793492040-B73x3Ge8WpSvM7caAn7y",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1404,
+      "completion_tokens": 543,
+      "total_tokens": 1947,
+      "cost": 0.00069648,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00069648,
+        "upstream_inference_prompt_cost": 4.488e-05,
+        "upstream_inference_completions_cost": 0.0006516
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 264,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.3868,
+    "input_bound": 8912,
+    "reserved_usd": "0.0075888",
+    "request_sha256": "af44cc06bbcfdf0275e3afc3c0b8692a2be90447cdcd867df445226b06368d2a"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All four granted channels corroborate: report shows 8 passed/0 failed, artifacts log shows \"8 passed\", manifest records exit_code 0/status passed, and replay independently shows 8 passed/0 failed with a clean exit. The inspected topo implementation also matches the spec (Kahn's algorithm with a heap for alphabetical tie-breaking and a CycleError on cycles), so the claim is well supported."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:14:02.040841+00:00"
+}

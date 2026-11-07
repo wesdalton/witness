@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0646",
+  "incident": "inc-262ced5d895e3e73",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:03:10.814781+00:00",
+  "prompt_sha256": "eaa27ff9edac30cc87dcbff304df5a13a261984e343a45ff1bc4f4e43f079314",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "6d08643aa8ff44238b9a6c80da661a83",
+    "response_id": "gen-1793491391-Jh71L2p1l6KI2BlPorci",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2285,
+      "completion_tokens": 1635,
+      "total_tokens": 3920,
+      "cost": 0.002007756,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2176,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002007756,
+        "upstream_inference_prompt_cost": 4.5756e-05,
+        "upstream_inference_completions_cost": 0.001962
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1442,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 3.6883,
+    "input_bound": 11099,
+    "reserved_usd": "0.0082449",
+    "request_sha256": "a82635009eda2e0dafd47982a173aec45b38ac7f92c5b977f4ab6945ae405364"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.85,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report records 5/5 attempts passed, the manifest marks 5 attempts as \"passed\" (attempt 2 is exit 125/infra_error and excluded by the stated policy), and the logs plus isolated replay show the hidden suite at 10/10 passed. The only ambiguity is a sixth manifest entry not counted in the report, but the substantive claim of 5 passing attempts is corroborated by both logs and replay."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:03:15.350504+00:00"
+}

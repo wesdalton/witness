@@ -1,0 +1,71 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0184",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T02:49:50.633415+00:00",
+  "prompt_sha256": "255ff4c32bf0345a6b255b5eff4b73611c1301633b4b7f562c0cd3526447669a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "dff8a92c527b447c9f031c1da73424de",
+    "response_id": "gen-1793501392-7YxNwBTcf5JILmYHCdR8",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2127,
+      "input_tokens_details": {
+        "cached_tokens": 1996
+      },
+      "output_tokens": 520,
+      "output_tokens_details": {
+        "reasoning_tokens": 420
+      },
+      "total_tokens": 2647,
+      "cost": 0.00029306,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00029306,
+        "upstream_inference_input_cost": 3.306e-05,
+        "upstream_inference_output_cost": 0.00026
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.2924,
+    "input_bound": 11960,
+    "reserved_usd": "0.003543000",
+    "request_sha256": "a11349b2f85dffdb563e6e88bd2837b43ea714acc1706d4fa6fd18e5a21579c7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_06f997a74e58072a016ae6a8d1535c87d1b3c9ffebcefd70e3",
+        "sha256": "e9fbd64e89c16f7bc162e651f02f29db297c83129a3f245b317c4f67d90a8078"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_go2omyq1lce",
+        "sha256": "f28724361be9c0b272babb27e3cd67955b91c630a252f63195e8350016ee5f5e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records attempts 4 and 5 as failed with exit code 1, using a different artifact hash from the passing logs; it also records a later failure at attempt 8. Thus the report's 5/5 summary does not establish that all recorded attempts passed."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:49:57.767673+00:00"
+}

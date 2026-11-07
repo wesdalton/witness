@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0241",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:40:10.111553+00:00",
+  "prompt_sha256": "255ff4c32bf0345a6b255b5eff4b73611c1301633b4b7f562c0cd3526447669a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0c0e7edfbc654a3c90b27ac0071a1492",
+    "response_id": "gen-1793490012-bW639BY6nNRUkuQi7WCo",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2515,
+      "completion_tokens": 712,
+      "total_tokens": 3227,
+      "cost": 0.001119684,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1664,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001119684,
+        "upstream_inference_prompt_cost": 0.000265284,
+        "upstream_inference_completions_cost": 0.0008544
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 518,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.3964,
+    "input_bound": 11962,
+    "reserved_usd": "0.0085038",
+    "request_sha256": "b58de77a6c6d33f1eb3584264ebda5aa6b3b09698c9cf7317a171ed13c967cfb"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The manifest records 8 attempts on lru, of which attempts 4, 5, and 8 have exit_code 1 / status \"failed\" (artifact sha 123eca...), so only 5 of 8 passed. The report's \"5/5\" is achieved only by dropping the failing attempts, which are genuine test failures (exit 1), not infrastructure errors, so the claim that all recorded attempts passed is false."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:40:14.099340+00:00"
+}

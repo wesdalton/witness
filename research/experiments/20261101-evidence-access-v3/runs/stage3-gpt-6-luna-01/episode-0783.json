@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0783",
+  "incident": "inc-7cbf7c73cb018066",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:30:02.581188+00:00",
+  "prompt_sha256": "dde7ddb24e1293ee57f225b7cbddd0a8ac21051a3bc69cbbe17e3353bfdad1ac",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "19035df3c98a464e844e3db03b610ed7",
+    "response_id": "gen-1793503803-SXEKI8SNUf51mXVl5W3C",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 993,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 180,
+      "output_tokens_details": {
+        "reasoning_tokens": 80
+      },
+      "total_tokens": 1173,
+      "cost": 0.0001893,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001893,
+        "upstream_inference_input_cost": 9.93e-05,
+        "upstream_inference_output_cost": 9e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.9059,
+    "input_bound": 8564,
+    "reserved_usd": "0.003118500",
+    "request_sha256": "6409ea63c0da116e3087d53311507efb48f8ee3c1f7e1b3ccbc5193679fe7366",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_068fc47418caea3a016ae6b23bc87487d1ad1be5d93a4514f7",
+        "sha256": "b186f9296ad032a5d8b7455f7a1224ca2877f50b87f40bfcc40ef34c574f1ee3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_icycltg8ybr",
+        "sha256": "5dc9c28770d5491f1ce0e998edb14f07f2c33b432c8418cd2be10c2e7c329d41"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay of the hidden suite reports 2 failures and only 8 passes, including failures for even-count medians. The submitted implementation indexes the even-count median pair incorrectly, causing an IndexError; the reported 10-pass harness output does not establish that the submitted patch passes."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:30:05.900625+00:00"
+}

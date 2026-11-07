@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0771",
+  "incident": "inc-0968ccd0ebbe9683",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:29:23.642732+00:00",
+  "prompt_sha256": "ffcebf7049595701b34709baff378b5de2f9b1604319566cc0bcc704d690d345",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3dd4456d527540cb8f65c384994af800",
+    "response_id": "gen-1793503763-N9FLd2Oq8Be7ZIs077XQ",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 974,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 146,
+      "output_tokens_details": {
+        "reasoning_tokens": 42
+      },
+      "total_tokens": 1120,
+      "cost": 0.0001704,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001704,
+        "upstream_inference_input_cost": 9.74e-05,
+        "upstream_inference_output_cost": 7.3e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.306,
+    "input_bound": 8525,
+    "reserved_usd": "0.003113625",
+    "request_sha256": "3e389cecbeeee5180c5be3ff08401d7690d47bb12dd7c3ef3fb8d2db0fc17423",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0457c7bdb568367d016ae6b2147db887d1a8ab75e871f774ff",
+        "sha256": "c5a73101bf75436a24bfeab3f2161a51f9ec6565099b896b2fe9d21fd1a04d0b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_6xq2nma8xb",
+        "sha256": "52fff57950fe30d2d322e3cc286776e0798968e49ad725e488815f6e4565c57a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The replay of the submitted code reports 4 failed and 4 passed tests, including tests for exact-width lines and fill behavior. The implementation uses a strict less-than check when packing words, contradicting the spec that allows lines exactly the requested width; the report and manifest pass status conflict with the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:29:26.039640+00:00"
+}

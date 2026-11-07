@@ -1,0 +1,80 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0799",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T03:31:18.255419+00:00",
+  "prompt_sha256": "7e92dc396a4691fdc39488ad0cbf03720ff1fa969ea5104176c482189ee5f98b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0c06cf9faa9c4011bf7b266838a16638",
+    "response_id": "gen-1793503879-a5YkOSMH2LpRIFSZdCy6",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 547,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 181,
+      "output_tokens_details": {
+        "reasoning_tokens": 58
+      },
+      "total_tokens": 728,
+      "cost": 0.0001452,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001452,
+        "upstream_inference_input_cost": 5.47e-05,
+        "upstream_inference_output_cost": 9.05e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8153,
+    "input_bound": 7089,
+    "reserved_usd": "0.002934125",
+    "request_sha256": "9019548dc3acecc592dc23993358cf591fd7e88d575b3ad8305e3ffa26a523d5",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_088074388363b39a016ae6b288853487d1b8957f98fbb2df03",
+        "sha256": "3f720604c30a54170825020c8fe1fa0561b9633389533e6947c6c4f5b8d8447f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_oqlodawz8p",
+        "sha256": "1e9d2be3e7c34c6c73bbd0a05e6ad82213b02402913c77786ae01c02fe732fdd"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 7,
+        "failed": 2
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report records a 9/9 pass, but the replay of the hidden suite shows 7 passed and 2 failed, with a nonzero exit code. The replay therefore refutes the claim that this submitted patch passes all nine hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:31:22.681976+00:00"
+}

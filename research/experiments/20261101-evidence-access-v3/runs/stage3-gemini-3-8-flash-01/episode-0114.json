@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0114",
+  "incident": "inc-7d58b740f1f886e6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T00:43:01.065683+00:00",
+  "prompt_sha256": "42780030d32b90c289eb29c5e00fc7ade79cfcac94a9fa25043a9efe873df8dd",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "e713e9298f024253953cc2097eb61fdd",
+    "response_id": "gen-1793493781-bywfcVduVVVXCuX6PCSu",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2437,
+      "completion_tokens": 3164,
+      "total_tokens": 5601,
+      "cost": 0.01369275,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01369275,
+        "upstream_inference_prompt_cost": 0.00182775,
+        "upstream_inference_completions_cost": 0.011865
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2998,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 22.1367,
+    "input_bound": 11571,
+    "reserved_usd": "0.02403825",
+    "request_sha256": "481288d62944292926bef7c64798e592b9d541c34cf3da9fe4f9b9492995adde"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 1,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All 5 attempts in the manifest and artifact logs completed with exit code 0 and 8 hidden tests passing. The replay verification independently confirmed the patch passes all 8 hidden tests with 0 failures. The evaluation report also documents 5 out of 5 attempts passing.",
+    "observed_counts": [
+      {
+        "failed": 0,
+        "passed": 8,
+        "channel": "report"
+      },
+      {
+        "failed": 0,
+        "passed": 8,
+        "channel": "replay"
+      },
+      {
+        "passed": null,
+        "failed": null,
+        "channel": "manifest"
+      },
+      {
+        "channel": "artifacts",
+        "failed": null,
+        "passed": null
+      }
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:43:23.296277+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0048",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-10-31T23:29:08.911453+00:00",
+  "prompt_sha256": "78235d67f81674406c70120832f97761c347109b59d8b715f0f19a758c9c7d90",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "150c198cefee4f6583dc4eff094f7303",
+    "response_id": "gen-1793489351-xGotcwrseYkapuHuH4IV",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1380,
+      "completion_tokens": 861,
+      "total_tokens": 2241,
+      "cost": 0.001296672,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 512,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001296672,
+        "upstream_inference_prompt_cost": 0.000263472,
+        "upstream_inference_completions_cost": 0.0010332
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 548,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.6858,
+    "input_bound": 8801,
+    "reserved_usd": "0.0075555",
+    "request_sha256": "2cc700f7eff1719a169033d25ac5f535bd1f6d6f98d82e8b608a4c815d6d10bf"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report asserts 9/9 passed, but the manifest and replay both record the single attempt as exit_code 137 with status/timed_out=true at the 10-second limit, meaning the suite was killed before finishing. The artifacts/replay stdout shows only 5 dots (5 tests), consistent with a mid-run kill, and the submitted code's `put` contains a 0.7s `sleep` per call that would push 9 tests past 10s. The harness's claimed 9 passes is contradicted by the actual run records, so the claim does not hold."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:29:13.020192+00:00"
+}

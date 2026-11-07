@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0271",
+  "incident": "inc-27ae538783dfe579",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:41:52.931058+00:00",
+  "prompt_sha256": "1d169d5bcc60dcb96cccfc501a21baa4f9aac05e1a68df203f409ed27c5e12fb",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1968621c01d14a02a52f8ab3e609cf23",
+    "response_id": "gen-1793490115-fdg8OUKVZfm9ndcpGS7g",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2330,
+      "completion_tokens": 959,
+      "total_tokens": 3289,
+      "cost": 0.001172424,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001172424,
+        "upstream_inference_prompt_cost": 2.1624e-05,
+        "upstream_inference_completions_cost": 0.0011508
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 731,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.1922,
+    "input_bound": 11346,
+    "reserved_usd": "0.0083190",
+    "request_sha256": "4ff8ecdaaf80785fcb6e0d2b9ce43fb209b44828439863f0a66412d661f1506a"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.85,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest lists 6 attempt records with 5 exit_code=0 \"passed\" runs and one exit_code=125 \"infra_error\" (attempt 4); the artifacts logs show 5 attempts each with \"8 passed,\" and the isolated replay confirms 8/8 passing for the same artifact hash. The report states the exclusion policy for infrastructure errors, giving attempts_passed=5 of attempts_reported=5, matching the claim's 5/5 framing. The only non-passing entry is an infrastructure error, not a substantive test failure, so the evidence supports the claim as stated."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:41:57.733694+00:00"
+}

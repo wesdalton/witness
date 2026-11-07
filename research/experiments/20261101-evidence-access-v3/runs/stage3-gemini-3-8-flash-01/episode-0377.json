@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0377",
+  "incident": "inc-325471ff5bc51a9b",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-11-01T01:14:41.246311+00:00",
+  "prompt_sha256": "9c4076b695e315fee8134a0236de859c1ad384274f6147850718e6e907f2232e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7a29c48ab8c6435c92c49ebd585c01ab",
+    "response_id": "gen-1793495681-UKuliueSVk0aAncjILMv",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 723,
+      "completion_tokens": 612,
+      "total_tokens": 1335,
+      "cost": 0.00283725,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00283725,
+        "upstream_inference_prompt_cost": 0.00054225,
+        "upstream_inference_completions_cost": 0.002295
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 482,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 5.483,
+    "input_bound": 7118,
+    "reserved_usd": "0.02069850",
+    "request_sha256": "0da95a5bcab4867b63074d812de7ab1ad8b64f8e13a50e41e00125d906636028"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0,
+    "observed_counts": [
+      {
+        "passed": 13,
+        "failed": 0,
+        "channel": "report"
+      },
+      {
+        "passed": 10,
+        "failed": 3,
+        "channel": "replay"
+      }
+    ],
+    "verdict": "refuted",
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report indicates that all 13 hidden tests passed, but the replay verifier demonstrates that only 10 tests passed and 3 failed with an exit code of 1. Because the independent isolated replay fails 3 tests, the claim is refuted."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:14:46.807502+00:00"
+}

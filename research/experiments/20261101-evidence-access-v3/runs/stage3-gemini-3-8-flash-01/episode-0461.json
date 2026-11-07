@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0461",
+  "incident": "inc-0968ccd0ebbe9683",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-11-01T01:26:29.477298+00:00",
+  "prompt_sha256": "02a68319274e27fc9a59b42939958c624317ea93659e60fa0673ca1e6d96d43c",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ec6515b2670442829df09042ee443c13",
+    "response_id": "gen-1793496389-hGhr7ojLz2ZOfsXL1H7X",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 734,
+      "completion_tokens": 540,
+      "total_tokens": 1274,
+      "cost": 0.0025755,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0025755,
+        "upstream_inference_prompt_cost": 0.0005505,
+        "upstream_inference_completions_cost": 0.002025
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 413,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 4.8057,
+    "input_bound": 7118,
+    "reserved_usd": "0.02069850",
+    "request_sha256": "88b683c758cd9d5e8f6aca02ece6cf5177ea72aa1e7788b1ab1f123b364bea2b"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "failed": 4,
+        "channel": "replay",
+        "passed": 4
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "reason": "While the evaluation report claims all 8 hidden tests passed, an independent execution in the replay channel failed 4 of the 8 tests with exit code 1. Because the patch fails half of the hidden test suite upon reproduction, the claim is refuted.",
+    "evidence_used": [
+      "report",
+      "replay"
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:26:34.399936+00:00"
+}

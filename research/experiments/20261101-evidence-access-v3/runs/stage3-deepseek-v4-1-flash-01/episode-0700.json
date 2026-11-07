@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0700",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T00:06:23.315321+00:00",
+  "prompt_sha256": "e88a65c39a9790b5a4d93766ba751e7055579eb0e1b5d6c337d31c444838b3e4",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "8d440d308a9446cdac959f92b01dc705",
+    "response_id": "gen-1793491585-bEaz3c5GF9UdRTKXxLS0",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2444,
+      "completion_tokens": 932,
+      "total_tokens": 3376,
+      "cost": 0.001136592,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001136592,
+        "upstream_inference_prompt_cost": 1.8192e-05,
+        "upstream_inference_completions_cost": 0.0011184
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 627,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.7184,
+    "input_bound": 11902,
+    "reserved_usd": "0.0084858",
+    "request_sha256": "bd3f819075661b8987515d529b25b6169d6692d20c8243a443eafdf872a6fdde"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All viable channels agree: the report records 5/5 attempts passed (policy excludes infra errors), the 5 artifact logs each show \"9 passed\", the manifest's non-infra attempts all have status \"passed\" with exit_code 0, and the isolated replay shows 9 passed / 0 failed with exit_code 0. The single infra_error attempt (attempt 3, exit 125) is excluded by policy and is not a test failure. Thus the claim of 5/5 passing recorded attempts is supported."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:06:27.277331+00:00"
+}

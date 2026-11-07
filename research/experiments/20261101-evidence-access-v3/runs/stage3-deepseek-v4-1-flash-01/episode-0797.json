@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0797",
+  "incident": "inc-262ced5d895e3e73",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T00:11:40.952891+00:00",
+  "prompt_sha256": "3a509c689eda8b73cf4cd402b377abc9c603e3b00647bcf6f54f22554a4c2246",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "62eb4757b9dd4436a45ed134b1b8f43b",
+    "response_id": "gen-1793491902-QfB7hORlC5iGqK3qKpfJ",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2419,
+      "completion_tokens": 1429,
+      "total_tokens": 3848,
+      "cost": 0.001763124,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001763124,
+        "upstream_inference_prompt_cost": 4.8324e-05,
+        "upstream_inference_completions_cost": 0.0017148
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1113,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 3.4522,
+    "input_bound": 11620,
+    "reserved_usd": "0.0084012",
+    "request_sha256": "ac35631b2a85f72c64f58b645952bad77f96d9eee6a739889cc298de376a6a81"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 50,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.88,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report records 5 attempted and 5 passed, and the artifact logs for all five reported attempts show 10/10 hidden tests passing with the same patch SHA, independently confirmed by the replay (10 passed, exit 0). The manifest lists a sixth attempt that hit an infra_error (exit 125), which the stated policy excludes from the reported rate, so the \"5/5\" figure is consistent once that invalid run is excluded. The only caveat is that the claim counts 5 rather than all 6 recorded runs, but the passing rate for valid attempts holds."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:11:46.182848+00:00"
+}

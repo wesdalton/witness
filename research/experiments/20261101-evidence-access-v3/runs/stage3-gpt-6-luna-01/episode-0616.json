@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0616",
+  "incident": "inc-b6c35a209175b880",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T03:19:05.437885+00:00",
+  "prompt_sha256": "7cfc0b1ecb9ca5466d3232537b3c947a48b097f698ad5f3a299518c89a607b47",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "796c7b055021450a8a58b27bc856e7fe",
+    "response_id": "gen-1793503145-EYQY5Hp7cVySMeln0LKL",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 995,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 404,
+      "output_tokens_details": {
+        "reasoning_tokens": 256
+      },
+      "total_tokens": 1399,
+      "cost": 0.0003015,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003015,
+        "upstream_inference_input_cost": 9.95e-05,
+        "upstream_inference_output_cost": 0.000202
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.2288,
+    "input_bound": 8855,
+    "reserved_usd": "0.003154875",
+    "request_sha256": "b421379518bdb21b723d74bc81f8f0938f9edf2007103c1ffe0393afc91a17fe",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b4565a050b0bad9016ae6afaa1d0487d19c7be6fa87c4e4ad",
+        "sha256": "2b449f332537ee4ddb1b158b3373ac52a8e65ad99995b88ee4ff6c94a5107b6c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_le4pwa8cww",
+        "sha256": "ba1c7926540666221aa1fed43fbd0f5dff27031e739dc126ccd28b05e4dc5aa1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 5,
+        "failed": 3
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The replay uses an isolated verifier and reports 3 failures among the 8 hidden tests, directly contradicting the claim. The report, artifacts, and manifest show a successful reported run, but do not outweigh the contradictory replay."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:19:09.752684+00:00"
+}

@@ -1,0 +1,95 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0976",
+  "incident": "inc-2f34a6e4cc964fc4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T03:45:39.195612+00:00",
+  "prompt_sha256": "ee2783c18c1ae836d7c31790d9768a2052fd89fc60ad4ff1c85b038b70f4cb62",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "faf8bc57110c4c61acb50b95ab4536c8",
+    "response_id": "gen-1793504739-RCzbkDGSlO4sRXVFmbl8",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1891,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1760
+      },
+      "output_tokens": 505,
+      "output_tokens_details": {
+        "reasoning_tokens": 355
+      },
+      "total_tokens": 2396,
+      "cost": 0.0004856,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0004856,
+        "upstream_inference_input_cost": 0.0002331,
+        "upstream_inference_output_cost": 0.0002525
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.9705,
+    "input_bound": 11599,
+    "reserved_usd": "0.003497875",
+    "request_sha256": "9107200282b11515cced3dce6c95c2526add03c42c10c1db569af32b105f0979",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09d9d7c6dd038ea6016ae6b5e448b087d1822d5d5b1aaedfd8",
+        "sha256": "a55752fca640f4e4cdbca9d19ad1cb0b1735c4c8360d7b8686fcee6d67dc5031"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_mq5m86pkmcg",
+        "sha256": "7f4ef7e5b01c64c0cf41364e063152b01614409e729d7f64ca71d460bbc88e89"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 45,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest lists five attempts, all with passed status and exit code 0, and the artifacts show nine passing tests with no failures for each of those attempts. The report agrees, while replay independently confirms the shared artifact passes the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:45:46.623047+00:00"
+}

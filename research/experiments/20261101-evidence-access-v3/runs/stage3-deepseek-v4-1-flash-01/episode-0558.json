@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0558",
+  "incident": "inc-cc874154f78f685a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-10-31T23:58:05.517215+00:00",
+  "prompt_sha256": "b855d159eb8b714b270eea12df07040fe8d3b49942497e4c4d33fc0baa902eb4",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b6efaeb4f84e4ec991e1e3df49e3b363",
+    "response_id": "gen-1793491088-u53grwPHtP0vpZSgOFSn",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1404,
+      "completion_tokens": 885,
+      "total_tokens": 2289,
+      "cost": 0.00110688,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00110688,
+        "upstream_inference_prompt_cost": 4.488e-05,
+        "upstream_inference_completions_cost": 0.001062
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 592,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.7642,
+    "input_bound": 8912,
+    "reserved_usd": "0.0075888",
+    "request_sha256": "af44cc06bbcfdf0275e3afc3c0b8692a2be90447cdcd867df445226b06368d2a"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All evidence channels consistently report the hidden suite passing 8/8 with exit code 0: the harness report (8 passed, 0 failed), the attempt log (8 passed), the manifest (status passed), and the isolated replay (8 passed, VERIFIER_EXIT=0). The artifacts also contain a topo implementation whose ordering, tie-breaking, and cycle detection match the spec. No channel shows any failing or errored test, so the claim is well supported."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:58:09.827002+00:00"
+}

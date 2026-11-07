@@ -1,0 +1,85 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0952",
+  "incident": "inc-27ae538783dfe579",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T02:26:42.282129+00:00",
+  "prompt_sha256": "d28e9bc8a93009d6c6a738618e895e70ba565928da049413064241a409e6b0cb",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b709db697a774bd18584b8f56e715ebf",
+    "response_id": "gen-1793500002-6QZzfU4qPvvTD9OWsc2H",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2578,
+      "completion_tokens": 2007,
+      "total_tokens": 4585,
+      "cost": 0.00945975,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00945975,
+        "upstream_inference_prompt_cost": 0.0019335,
+        "upstream_inference_completions_cost": 0.00752625
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1819,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 15.6688,
+    "input_bound": 11872,
+    "reserved_usd": "0.02426400",
+    "request_sha256": "91a1ac8e3f75cbfc5dcc2cce60959fbc679cbe21f885c5ebbc32b54965bd2a03"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The manifest reveals that 6 attempts were actually recorded, rather than 5, with attempt 4 failing due to an infrastructure error (exit code 125). The report excluded this attempt under its policy and renumbered the remaining successful runs to claim 5 out of 5 passed attempts. Because there were 6 recorded attempts and not all produced a successful run, the claim is refuted.",
+    "observed_counts": [
+      {
+        "passed": 8,
+        "failed": 0,
+        "channel": "report"
+      },
+      {
+        "failed": 0,
+        "passed": 8,
+        "channel": "artifacts"
+      },
+      {
+        "passed": null,
+        "channel": "manifest",
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted"
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T02:26:58.020246+00:00"
+}

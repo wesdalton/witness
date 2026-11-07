@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0469",
+  "incident": "inc-262ced5d895e3e73",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:52:44.933977+00:00",
+  "prompt_sha256": "eaa27ff9edac30cc87dcbff304df5a13a261984e343a45ff1bc4f4e43f079314",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "cbdaaf214cb443c1a7b6110f84283227",
+    "response_id": "gen-1793490767-30jMYywRc5VhnGikHVGz",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2285,
+      "completion_tokens": 991,
+      "total_tokens": 3276,
+      "cost": 0.001761804,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001761804,
+        "upstream_inference_prompt_cost": 0.000572604,
+        "upstream_inference_completions_cost": 0.0011892
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 784,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.0717,
+    "input_bound": 11099,
+    "reserved_usd": "0.0082449",
+    "request_sha256": "a82635009eda2e0dafd47982a173aec45b38ac7f92c5b977f4ab6945ae405364"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.85,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 5 passing attempts (exit 0) plus one infra_error (exit 125) that the stated policy excludes; all passing attempts share the same artifact hash and show \"10 passed\" in the logs. The report matches (5/5, failed 0, passed 10), and the isolated replay independently reproduces 10/10 passes. The only ambiguity is that the manifest lists 6 raw attempts, but under the infra-error exclusion the 5 reported attempts all passed."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:52:49.669997+00:00"
+}

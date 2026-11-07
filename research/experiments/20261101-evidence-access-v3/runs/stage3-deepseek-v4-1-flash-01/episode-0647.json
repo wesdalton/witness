@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0647",
+  "incident": "inc-f51b4c54715b879e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:03:15.351092+00:00",
+  "prompt_sha256": "5fb241c1cf44681d18405860dec0cdcb4080e6d2ac26324abdeba48df854ce17",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "06bc0ee3cd064668a9f85a8a951f1a2e",
+    "response_id": "gen-1793491395-gDv8JqAPRwyGLqDtpCyh",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2266,
+      "completion_tokens": 551,
+      "total_tokens": 2817,
+      "cost": 0.00077652,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1920,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00077652,
+        "upstream_inference_prompt_cost": 0.00011532,
+        "upstream_inference_completions_cost": 0.0006612
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 368,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.621,
+    "input_bound": 11266,
+    "reserved_usd": "0.0082950",
+    "request_sha256": "a3ba6a50e5f943218a42e2389a9ae04ded5cf8084141b184ebba921efe302eec"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all 5 attempts with exit_code 0 and status \"passed\", and the logs show 13/13 hidden tests passing on each attempt with the same artifact hash. The replay independently reran the artifact and confirmed 13 passed, 0 failed, exit code 0. The report also summarizes 5/5 attempts passed, so the claim is directly supported."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:03:17.057298+00:00"
+}

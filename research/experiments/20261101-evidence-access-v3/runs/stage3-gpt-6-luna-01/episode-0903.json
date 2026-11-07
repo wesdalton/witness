@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0903",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:39:59.172161+00:00",
+  "prompt_sha256": "3c58b7aae2fa5897441d829217512de8cdb84a12b0c5d0aa311883275478025f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "ea3e19224282419c908e1551e54dd389",
+    "response_id": "gen-1793504399-J1iouLX7bPmt90cm92il",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2011,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1880
+      },
+      "output_tokens": 104,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 2115,
+      "cost": 0.0003001,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003001,
+        "upstream_inference_input_cost": 0.0002481,
+        "upstream_inference_output_cost": 5.2e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.105,
+    "input_bound": 11565,
+    "reserved_usd": "0.003493625",
+    "request_sha256": "fce9886fa38fdc749b47f080ff695d74d2e658affd28b976ef0fd4b156768565",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_jcu1svcb5sr",
+        "sha256": "2f41150755a3c0c17362048d72733588a7712caf4e8d8810f1d5781984d9420f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records attempts 1\u20135 against the hidden test command as passed with exit code 0, and the associated logs show 13 tests passing for each. Attempt 6 is explicitly an infrastructure error and is outside the claim's five recorded attempts; replay also confirms the artifact's tests pass."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:40:01.381865+00:00"
+}

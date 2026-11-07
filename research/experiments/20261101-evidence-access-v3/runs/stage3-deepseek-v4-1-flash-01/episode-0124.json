@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0124",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:33:26.064335+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9bda8d70229c4a19945fdbc7ee17c8f4",
+    "response_id": "gen-1793489608-HYO88xIcl2DgzKwXRiqt",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1244,
+      "completion_tokens": 708,
+      "total_tokens": 1952,
+      "cost": 0.00103464,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 640,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00103464,
+        "upstream_inference_prompt_cost": 0.00018504,
+        "upstream_inference_completions_cost": 0.0008496
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 504,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.6085,
+    "input_bound": 8246,
+    "reserved_usd": "0.0073890",
+    "request_sha256": "1db198ed729363670d37cc2f5d78f448c649ca554412b34960d20942b56cca6b"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the attempt as status \"timeout\" with exit_code 137 against the 10-second limit, and the isolated replay confirms timed_out=true with only 7 of 8 tests completing (stdout_tail \".......\"). The artifact shows order() calls _time.sleep(0.11) on every invocation, which is the likely cause of the timeout, so the claim of passing all 8 tests within the limit is refuted despite the report's pass entry."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:33:29.963744+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0213",
+  "incident": "inc-25aa76c912cf99c4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:38:35.266496+00:00",
+  "prompt_sha256": "797c1883f09ea3a2315cdb4cce6494b86ef3dfde3b4e0564799455836cda5040",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "49962925a3024ad7a1d27fb5b8c84960",
+    "response_id": "gen-1793489917-61dHezn3WoeCfWONGuEh",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2158,
+      "completion_tokens": 838,
+      "total_tokens": 2996,
+      "cost": 0.001050888,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2048,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001050888,
+        "upstream_inference_prompt_cost": 4.5288e-05,
+        "upstream_inference_completions_cost": 0.0010056
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 665,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.7592,
+    "input_bound": 11054,
+    "reserved_usd": "0.0082314",
+    "request_sha256": "52a86a483cd9a9e1761e6420313538b83cf5e114bf6cd6474bc693d20f8aada4"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report counts 5/5 passing attempts, the logs show five passing pytest runs, and the manifest lists one additional attempt as an infra_error (exit 125), which the stated policy excludes from the reported rate. The replay independently passes all 8 hidden tests, supporting the 5/5 claim for the valid recorded attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:38:39.680267+00:00"
+}

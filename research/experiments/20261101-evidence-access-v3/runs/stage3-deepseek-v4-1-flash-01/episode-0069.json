@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0069",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:30:20.026212+00:00",
+  "prompt_sha256": "3c58b7aae2fa5897441d829217512de8cdb84a12b0c5d0aa311883275478025f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d32ea577bffe4a1b8a79ae31bb7945f8",
+    "response_id": "gen-1793489422-L0w43pI707WVTekagY1U",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2372,
+      "completion_tokens": 360,
+      "total_tokens": 2732,
+      "cost": 0.000654384,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1664,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000654384,
+        "upstream_inference_prompt_cost": 0.000222384,
+        "upstream_inference_completions_cost": 0.000432
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 180,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.0802,
+    "input_bound": 11567,
+    "reserved_usd": "0.0083853",
+    "request_sha256": "a36cc5e4260d5236ba51ef24aa161ff6c6b078451823a6d70e34619a88174b10"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records attempts 1 through 5 with status \"passed\" and exit_code 0, while the sixth attempt is an excluded infra_error. The artifact logs for reported attempts 1-5 all show 13 passed, and the isolated replay also passes with 13/13. The report's 5/5 summary is therefore consistent with the available evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:30:23.065633+00:00"
+}

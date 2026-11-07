@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0638",
+  "incident": "inc-832e8bae95c9281a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T03:20:35.550216+00:00",
+  "prompt_sha256": "493ae2f60e4d2bb70f31a8fc57fd4b427ede24dba3dca139b4aa413dfdb8d8fb",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9638da480aa84a6cb3263051609d1c43",
+    "response_id": "gen-1793503235-SzwMZozcKYmOC9B2Hk4t",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2087,
+      "input_tokens_details": {
+        "cached_tokens": 1956
+      },
+      "output_tokens": 608,
+      "output_tokens_details": {
+        "reasoning_tokens": 445
+      },
+      "total_tokens": 2695,
+      "cost": 0.00033666,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00033666,
+        "upstream_inference_input_cost": 3.266e-05,
+        "upstream_inference_output_cost": 0.000304
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 6.1999,
+    "input_bound": 11962,
+    "reserved_usd": "0.003543250",
+    "request_sha256": "e9efbd31385c57cae12ccf31d22ff6b95f9446beae339c0733f6ebc81bad21a7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fdf2b02a63930c4016ae6b004488087d1a2b8b0307f4bad45",
+        "sha256": "1ebb6838ab2f76b3ede7b4b3f56d3928dca28e9fd8edcff50df126d305bd8bb4"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_w0gr3vb2yvf",
+        "sha256": "a34d0dbcf52298ba362f5ce56a54b01835358fdaaf5f4d077eee7411ef2730bd"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records failed hidden-suite runs at attempts 2, 7, and 8, and has eight attempts overall, contradicting the claim that all five recorded attempts passed. Although the report and artifact logs show five successful runs and replay passes, they do not reconcile the manifest's failed attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:20:41.834851+00:00"
+}

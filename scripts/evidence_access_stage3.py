@@ -39,6 +39,7 @@ def load(run: Path, labels: dict) -> list[dict]:
     for row, e in zip(rows, episodes, strict=True):
         counts = (e.get("submission") or {}).get("observed_counts") or []
         replay = [c for c in counts if c["channel"] == "replay"]
+        row["episode"] = e["episode"]
         row["replay_counts_null"] = bool(replay) and all(
             c["passed"] is None and c["failed"] is None for c in replay)
     return rows
@@ -119,9 +120,16 @@ def main() -> int:
     result = {"schema": "witness.evidence-access-stage3-analysis.v1", "model_calls": 0,
               "bootstrap_resamples": s2.B, "seed": s2.SEED, "primary_level": PRIMARY_LEVEL,
               "runs": {}}
+    by_model: dict[str, tuple[list[str], list[dict]]] = {}
     for run in args.runs:
         model = json.loads((run / "manifest.json").read_text())["model"]
-        result["runs"][run.name] = analyze(load(run, labels), model)
+        names, rows = by_model.setdefault(model, ([], []))
+        names.append(run.name)
+        rows.extend(load(run, labels))
+    for model, (names, rows) in by_model.items():
+        if len({r["episode"] for r in rows}) != len(rows):
+            raise ValueError(f"{model}: duplicate episodes across continuation runs")
+        result["runs"][model] = {"run_dirs": names, **analyze(rows, model)}
     text = json.dumps(result, indent=2) + "\n"
     if args.out:
         write_once(args.out / "analysis.json", text)

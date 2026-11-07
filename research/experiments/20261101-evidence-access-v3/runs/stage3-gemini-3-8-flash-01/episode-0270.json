@@ -1,0 +1,84 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0270",
+  "incident": "inc-832e8bae95c9281a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T01:02:32.936719+00:00",
+  "prompt_sha256": "493ae2f60e4d2bb70f31a8fc57fd4b427ede24dba3dca139b4aa413dfdb8d8fb",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "88dafc948d2745bfbed63dc33595673a",
+    "response_id": "gen-1793494953-zwpw6HlHkh4jvsQuFG8o",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2771,
+      "completion_tokens": 4077,
+      "total_tokens": 6848,
+      "cost": 0.017367,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.017367,
+        "upstream_inference_prompt_cost": 0.00207825,
+        "upstream_inference_completions_cost": 0.01528875
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3931,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 28.5043,
+    "input_bound": 11969,
+    "reserved_usd": "0.02433675",
+    "request_sha256": "7e49c0d220197e3f81e9a20dfa99d6c71c61f9005067dc09b281f635acc448bf"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "passed": 8,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "artifacts"
+      },
+      {
+        "passed": 5,
+        "channel": "manifest",
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "failed": 0,
+        "passed": 8
+      }
+    ],
+    "reason": "The manifest records 8 total attempts rather than 5, with 3 attempts failing (exit code 1). The reported 5 attempts in the report and artifacts omit these failed runs and duplicate passing runs.",
+    "evidence_used": [
+      "report",
+      "manifest"
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:03:01.500280+00:00"
+}

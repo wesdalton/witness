@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0716",
+  "incident": "inc-78513033587e8f7e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:07:17.782078+00:00",
+  "prompt_sha256": "f9b66f9e1856e5593c00e98bd8e098a0ce74f0cc7f7e2173dfcdbb3c44005098",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "69ac1e9f4bab446685c816eef1d6fcb4",
+    "response_id": "gen-1793491637-KqgchPvR9O0FypweQMUF",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2191,
+      "completion_tokens": 528,
+      "total_tokens": 2719,
+      "cost": 0.000801684,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1664,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000801684,
+        "upstream_inference_prompt_cost": 0.000168084,
+        "upstream_inference_completions_cost": 0.0006336
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 330,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.3663,
+    "input_bound": 11161,
+    "reserved_usd": "0.0082635",
+    "request_sha256": "990636330a0cd498277f7b6a3d091729a6ffed404b309a4c9e716551882ab3e0"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report records 5 passed attempts out of 5 reported, and the manifest/logs show attempts 1, 2, 3, 5, 6 with exit_code 0 and \"9 passed\", the only non-pass (attempt 4) being an infra_error excluded by policy. The replay independently confirms the patch passes the hidden suite (9 passed, 0 failed). Thus the 5 counted attempts all passed, supporting the claim."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:07:19.214419+00:00"
+}

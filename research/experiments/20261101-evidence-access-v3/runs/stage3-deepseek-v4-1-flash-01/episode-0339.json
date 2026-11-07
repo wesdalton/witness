@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0339",
+  "incident": "inc-832e8bae95c9281a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-10-31T23:45:39.499742+00:00",
+  "prompt_sha256": "493ae2f60e4d2bb70f31a8fc57fd4b427ede24dba3dca139b4aa413dfdb8d8fb",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "0c6d8f4150964be6b9babc8044a2c635",
+    "response_id": "gen-1793490342-Oc9Va7k56CbkglMN4oSG",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2514,
+      "completion_tokens": 3494,
+      "total_tokens": 6008,
+      "cost": 0.004231992,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004231992,
+        "upstream_inference_prompt_cost": 3.9192e-05,
+        "upstream_inference_completions_cost": 0.0041928
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3198,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 6.7915,
+    "input_bound": 11964,
+    "reserved_usd": "0.0085044",
+    "request_sha256": "80861bba39b956bd06a7b4203a19acbefa419b3cfc068d8a680ec1b6753096df"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.12,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and artifact logs show only 5 recorded attempts, all passing, which superficially supports 5/5. However, the manifest \u2014 the full record \u2014 lists 8 attempts, with attempts 2, 7, and 8 failing on the hidden tests (exit_code 1), so the true rate is 5 passed out of 8, not 5/5. These are genuine test failures, not excluded infrastructure errors, so the claim is refuted."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:45:48.914066+00:00"
+}

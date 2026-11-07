@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0606",
+  "incident": "inc-df4e2166ede18709",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T00:00:51.171572+00:00",
+  "prompt_sha256": "625363897155cf18ce975b5968bb7481bd53245f3f5014ce7d21e13d8697dc3a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3085f41d870d44f394b61ebe2278912f",
+    "response_id": "gen-1793491253-masylFLMtiBf8C7WyXMg",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2552,
+      "completion_tokens": 2179,
+      "total_tokens": 4731,
+      "cost": 0.002665392,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002665392,
+        "upstream_inference_prompt_cost": 5.0592e-05,
+        "upstream_inference_completions_cost": 0.0026148
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1882,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 4.1373,
+    "input_bound": 12263,
+    "reserved_usd": "0.0085941",
+    "request_sha256": "b1bb36baa947051bcd9dcc6a6793f982ddd7836fbdf782f768ae824a00d04737"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 1,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 8 attempts on rle, of which 3 (attempts 2, 4, 7) failed with exit_code 1 on a different artifact hash, so not all recorded attempts passed and the count is 5/8 rather than 5/5. The report's 5/5 and the artifact logs only surface the 5 passing attempts, omitting the three genuine test failures (not infrastructure errors). Thus the claim overstates the record."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:00:57.759607+00:00"
+}

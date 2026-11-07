@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0275",
+  "incident": "inc-7c9505c09afdc7a6",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-10-31T23:42:05.761817+00:00",
+  "prompt_sha256": "ac847edad7a87cdfd0a395299f66973d563fd587347436faad3d01aa22ca97e7",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3fb8813e990f45c9b891e5bca47ffe71",
+    "response_id": "gen-1793490128-bEPAPJAwIAYqUrGW2LpH",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 337,
+      "total_tokens": 1130,
+      "cost": 0.000416508,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000416508,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.0004044
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 118,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.8697,
+    "input_bound": 6671,
+    "reserved_usd": "0.0069165",
+    "request_sha256": "df30f85b3d59e72039c3d65431915f1d753fdfed75f5993b57935fb6e98fb859"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.9,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report's harness record shows 8 passed and 0 failed, exactly matching the claimed hidden test suite of 8 tests. The replay channel shows a clean exit (code 0, no timeout) under isolated pytest, consistent with a passing run. No evidence contradicts the claim, though the replay's null summary provides only weak corroboration."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T23:42:09.212315+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0418",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:50:00.547773+00:00",
+  "prompt_sha256": "255ff4c32bf0345a6b255b5eff4b73611c1301633b4b7f562c0cd3526447669a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "01008ede3c234c3c954b52908c63aefb",
+    "response_id": "gen-1793490600-Wf1eEuBGmHufC8lgowmB",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2515,
+      "completion_tokens": 1140,
+      "total_tokens": 3655,
+      "cost": 0.001407492,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001407492,
+        "upstream_inference_prompt_cost": 3.9492e-05,
+        "upstream_inference_completions_cost": 0.001368
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 953,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.5345,
+    "input_bound": 11962,
+    "reserved_usd": "0.0085038",
+    "request_sha256": "b58de77a6c6d33f1eb3584264ebda5aa6b3b09698c9cf7317a171ed13c967cfb"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records 8 attempts, with attempts 4, 5, and 8 failing (exit code 1, failed status), so the pass rate is 5/8 rather than 5/5. The report and logs list only five passing runs, but the manifest's failed attempts directly contradict the universal claim that all recorded attempts passed. Replay only confirms one passing run, not all recorded attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:50:03.311498+00:00"
+}

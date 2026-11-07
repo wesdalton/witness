@@ -1,0 +1,104 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0917",
+  "incident": "inc-1155d1aa247141b4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T03:41:05.480676+00:00",
+  "prompt_sha256": "c6054ebb307b5d08d4a6c5e61fc52231cf8fea979d466ee187f65814d38a6879",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "721dcb966e4444b1a4da20d99dee3999",
+    "response_id": "gen-1793504466-SHtJu6OuYvdm62DnGZjm",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2251,
+      "input_tokens_details": {
+        "cached_tokens": 2120
+      },
+      "output_tokens": 1320,
+      "output_tokens_details": {
+        "reasoning_tokens": 1148
+      },
+      "total_tokens": 3571,
+      "cost": 0.0006943,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0006943,
+        "upstream_inference_input_cost": 3.43e-05,
+        "upstream_inference_output_cost": 0.00066
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 15.652,
+    "input_bound": 12446,
+    "reserved_usd": "0.003603750",
+    "request_sha256": "cdcd1d939b7794920d87b537678006a0fb62d5b2689a3ae1a9b691d4c7e6c69a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08ddc5e9b6766f00016ae6b4d3dc7487d1a478d580f5fbea82",
+        "sha256": "fd24bc5d252b21db412f2563f622ad5628fa5c1af49956718893f977a9b7f839"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_08ddc5e9b6766f00016ae6b4d9dc7087d1a2e5817864a168c2",
+        "sha256": "bd82ace71f1a6b74b0e7fccbf611975de54c73aab48b32b04bb6ee02b8346bd8"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_08ddc5e9b6766f00016ae6b4dfa9c087d1aa073275486e2d7f",
+        "sha256": "ca3c0919996ad49346fee6b4a01c8026ac26bbc250b7af806905a4cfa0feb9d6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_38cj682fhr",
+        "sha256": "a1e7c8df371b80bf6390a0f22e7e74ba52f2708144e166f61f4a30d4c75bb1c1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and five artifact logs identify five recorded attempts, each with 8 tests passed and no failures; the replay also passes 8/8. The manifest contains three failing runs on a different artifact hash, but its five successful runs match the hash in the recorded logs, so those failures do not refute the claim about the five recorded attempts."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T03:41:22.355561+00:00"
+}

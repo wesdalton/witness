@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0820",
+  "incident": "inc-cc874154f78f685a",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T00:12:54.816891+00:00",
+  "prompt_sha256": "bc5753f40002ed8731b5755a7a93165426d7392dc414f3d2a63c474254eded34",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b9c99804b83b4e9fa5f6f6fc229b8c9a",
+    "response_id": "gen-1793491976-BO21KPG4YGS7RYdZKCsq",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 268,
+      "total_tokens": 1107,
+      "cost": 0.000347508,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000347508,
+        "upstream_inference_prompt_cost": 2.5908e-05,
+        "upstream_inference_completions_cost": 0.0003216
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 48,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7,
+    "input_bound": 6846,
+    "reserved_usd": "0.0069690",
+    "request_sha256": "106a0e10ed28e18e32beeee96d288558c5cc96afedd63bed4020b3bf29d40fb9"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Both granted channels independently show 8 hidden tests passed with 0 failures: the report's harness status is \"passed\" (8/0) and the replay shows \"8 passed\" with VERIFIER_EXIT=0 and no timeout. The replay used an isolated pytest with the real runner imported, confirming the patch passes the suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:12:57.347399+00:00"
+}

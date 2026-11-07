@@ -1,0 +1,100 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0017",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T02:38:24.090177+00:00",
+  "prompt_sha256": "bddde165807c4aada3f800f4ad0882b9ceaa37c450e083202d001dd28ea4888f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "21dc86674efe47b28800904cb3353612",
+    "response_id": "gen-1793500705-1jTpB3dzFtTxYdLPcODe",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2193,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2062
+      },
+      "output_tokens": 984,
+      "output_tokens_details": {
+        "reasoning_tokens": 820
+      },
+      "total_tokens": 3177,
+      "cost": 0.00076285,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00076285,
+        "upstream_inference_input_cost": 0.00027085,
+        "upstream_inference_output_cost": 0.000492
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 9.0958,
+    "input_bound": 12199,
+    "reserved_usd": "0.003572875",
+    "request_sha256": "2e0173ca48a497144a90ebd6cb886473245a00cdafd39f0c891fec1a8bed03a3",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ea4949b27a0ff17016ae6a621b3c887d19b293fea72b86093",
+        "sha256": "d7796befc9f5cb6fe00745e9d5a1c4351380257c34d803d64d9db49529a86462"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_0ea4949b27a0ff17016ae6a626161487d195db583695a9d21c",
+        "sha256": "8d252a2c8d70de3bcf865e3e478ffc6ef0702a55ee1fd743c9c4af95ddff3273"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_742dsu7hii",
+        "sha256": "4c5fd416b7a1b911b10dfc4039a33475f4264a104424449a0b794a3e1c351b0d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records attempts 1\u20135, and attempts 2 and 3 have exit code 1 and status failed, so not all five recorded attempts passed. The report and artifact logs reflect only the successful artifact/logs, while replay verifies just one successful run; neither overrides those failed manifest attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:38:34.166035+00:00"
+}

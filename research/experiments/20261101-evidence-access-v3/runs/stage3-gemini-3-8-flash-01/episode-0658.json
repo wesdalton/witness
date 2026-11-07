@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0658",
+  "incident": "inc-d658e2e6d7347079",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T01:49:38.944045+00:00",
+  "prompt_sha256": "e0041ca5d9054b1e5acbc949825c80f307b5867fdedbe71203853579882abb8a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "178da1721aff4e7088ff61ec1dac3322",
+    "response_id": "gen-1793497779-54gHN4vDhbkBfVIxB8Dv",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1138,
+      "completion_tokens": 386,
+      "total_tokens": 1524,
+      "cost": 0.002301,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002301,
+        "upstream_inference_prompt_cost": 0.0008535,
+        "upstream_inference_completions_cost": 0.0014475
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 273,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 3.6499,
+    "input_bound": 8471,
+    "reserved_usd": "0.02171325",
+    "request_sha256": "d0369f56ea2bda68a8b2b76eb8a0e5e6d7671ba8987040884dc4766e765ab46e"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "p_claim_true": 0,
+    "reason": "The manifest and replay show that the test execution timed out with exit code 137 after running only 5 tests. The patch in `csvline/__init__.py` contains a 1.8-second sleep on each call, preventing the 11 tests from completing within the 10-second limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:49:42.666222+00:00"
+}

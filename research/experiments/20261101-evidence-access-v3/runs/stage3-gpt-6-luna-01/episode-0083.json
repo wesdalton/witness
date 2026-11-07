@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0083",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T02:43:01.053267+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "15a19ce9494f425fa53cfeea78f923c2",
+    "response_id": "gen-1793500982-ZvPT5p77Jzt9dyMsSwBM",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 933,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 199,
+      "output_tokens_details": {
+        "reasoning_tokens": 85
+      },
+      "total_tokens": 1132,
+      "cost": 0.0001928,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001928,
+        "upstream_inference_input_cost": 9.33e-05,
+        "upstream_inference_output_cost": 9.95e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2468,
+    "input_bound": 8278,
+    "reserved_usd": "0.003082750",
+    "request_sha256": "d751351cb77e64f560491bde5ee52b7ec0a7256ed767f675fe469c19c51cbf2b",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ed0de48c96afdeb016ae6a736b55487d1b09fea5b5f3115f2",
+        "sha256": "1b2ee94a13052e0d84fa44153e65244cc0db939986466d07671a3d0ab8a750ef"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_hxqqqwqeljn",
+        "sha256": "94099ba553bce8668b3c3b0b4edcbe1181e21c7b3cf7497e4d8c15761bcb2a65"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The authoritative replay and manifest show the pytest run timed out at 10 seconds with exit code 137 after only five tests, so it did not complete the suite within the limit. The report\u2019s passing summary conflicts with that execution evidence, and the submitted code\u2019s 0.7-second sleep on every put is consistent with the timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:43:04.396749+00:00"
+}

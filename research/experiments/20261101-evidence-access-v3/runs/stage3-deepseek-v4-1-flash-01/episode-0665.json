@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0665",
+  "incident": "inc-084136b064500272",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-11-01T00:04:15.134553+00:00",
+  "prompt_sha256": "264762463fcd0911cd2a79c11a0555b9762796e6dfe3a53eb0ee8eb312371370",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "c0a8a2f06d904ca7b1a2aa83bc00a7fe",
+    "response_id": "gen-1793491456-V3yxVvTrzpdNCwu7yCwr",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 325,
+      "total_tokens": 1118,
+      "cost": 0.000402108,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000402108,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.00039
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 115,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.2191,
+    "input_bound": 6679,
+    "reserved_usd": "0.0069189",
+    "request_sha256": "f3a425f0ef163acbe8aa0583faedd85cc0bde0ea3fcc19193221c7bdaf3e8ada"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.92,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report's harness record shows 8 passed and 0 failed with status \"passed\", exactly matching the claimed hidden suite of 8 tests. The replay channel is consistent (exit code 0, no timeout, isolated pytest runner) though it reports no explicit pass/fail counts of its own."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:04:18.050972+00:00"
+}

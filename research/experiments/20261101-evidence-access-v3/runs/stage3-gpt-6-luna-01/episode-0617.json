@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0617",
+  "incident": "inc-54504ace4651d4cc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T03:19:09.753159+00:00",
+  "prompt_sha256": "faf248cd599ab84c25c3dbc8698d24eeecc638ab4035d0cb229cffa7d1da7a7e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1bcc84d496284251bd3a0fc47819bda3",
+    "response_id": "gen-1793503149-rjLdAsmjLTayw2NQB2IY",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1881,
+      "input_tokens_details": {
+        "cached_tokens": 1750
+      },
+      "output_tokens": 165,
+      "output_tokens_details": {
+        "reasoning_tokens": 75
+      },
+      "total_tokens": 2046,
+      "cost": 0.0001131,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001131,
+        "upstream_inference_input_cost": 3.06e-05,
+        "upstream_inference_output_cost": 8.25e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.3884,
+    "input_bound": 11273,
+    "reserved_usd": "0.003457125",
+    "request_sha256": "ca475c7bb586ac02f307825b91016d97899b1eb59ede0557d4c37b67bbf26d22",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_08c0ac5890e2e6dd016ae6afae989487d197fcad59cf4474a1",
+        "sha256": "eb510dca4166b327eb1db17149f686a6497df19351c4ab20b90de19379e82b48"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_y200n8e941p",
+        "sha256": "8cb5ac71718e5fcf3f2ed53967424eee6f306fc91a14db5c656b79546bc81fda"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts as passed with exit code 0, and the corresponding logs show 11 tests passing for each attempt. All attempts reference the same artifact hash, which the isolated replay also verifies as passing."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:19:12.275259+00:00"
+}

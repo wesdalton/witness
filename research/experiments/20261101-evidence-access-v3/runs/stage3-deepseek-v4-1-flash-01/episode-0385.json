@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0385",
+  "incident": "inc-2b1640956f02824f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:48:11.788485+00:00",
+  "prompt_sha256": "34607146785df31bf1fbb3d842aa9c636159c425027596edd5c4b44380607105",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "77497aea49b04175af1c3889e3d1a7c4",
+    "response_id": "gen-1793490494-LvrmkPXpaFWhdx6bVsnc",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1245,
+      "completion_tokens": 223,
+      "total_tokens": 1468,
+      "cost": 0.00045294,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 640,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00045294,
+        "upstream_inference_prompt_cost": 0.00018534,
+        "upstream_inference_completions_cost": 0.0002676
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 46,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.612,
+    "input_bound": 8270,
+    "reserved_usd": "0.0073962",
+    "request_sha256": "3f8421becf80f6ccb17c5aea0fef2280130bf7d9c3e97f2b7e44fe3f6a02046c"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "All four channels agree: the hidden suite reports 9 passed, the manifest shows exit_code 0 with status passed under a 10s limit, and the isolated replay confirms 9 passed in ~0.02s with timed_out false. The report's harness also records passed=9, failed=0. No channel indicates any failure or timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:48:14.938530+00:00"
+}

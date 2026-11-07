@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0974",
+  "incident": "inc-b6c35a209175b880",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T00:21:56.402056+00:00",
+  "prompt_sha256": "409b495659653004c33dce9571b754112da8258070cdba3b42b65736b6ef6c2a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8f65c3e6cf37463fae0aa601e6bff73e",
+    "response_id": "gen-1793492517-7xqtLZdXy1mD7TtBG1Et",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 927,
+      "completion_tokens": 269,
+      "total_tokens": 1196,
+      "cost": 0.000337476,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 896,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000337476,
+        "upstream_inference_prompt_cost": 1.4676e-05,
+        "upstream_inference_completions_cost": 0.0003228
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 53,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.0494,
+    "input_bound": 7112,
+    "reserved_usd": "0.0070488",
+    "request_sha256": "c15a430acdc6dba8909c22eaf1f0f5ec280b91fe0dcf9db25237fd858d4e4139"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 5,
+        "failed": 3
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay of the hidden suite shows 3 failed and 5 passed (8 total) with VERIFIER_EXIT=1, directly contradicting the claim of a full pass. Although the report records 8/8 passed, the isolated replay is the stronger direct evidence that the patch fails the hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:21:58.360965+00:00"
+}

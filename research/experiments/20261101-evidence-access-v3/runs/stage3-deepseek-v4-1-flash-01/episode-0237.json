@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0237",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:39:57.364695+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "a2b67966f9514d4aa0e2a14e5fde406e",
+    "response_id": "gen-1793489999-V33kLQ34Gr7S7AxsJt0U",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1244,
+      "completion_tokens": 813,
+      "total_tokens": 2057,
+      "cost": 0.001010112,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1152,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001010112,
+        "upstream_inference_prompt_cost": 3.4512e-05,
+        "upstream_inference_completions_cost": 0.0009756
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 628,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.819,
+    "input_bound": 8246,
+    "reserved_usd": "0.0073890",
+    "request_sha256": "1db198ed729363670d37cc2f5d78f448c649ca554412b34960d20942b56cca6b"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records the attempt status as \"timeout\" with exit code 137 at the 10-second limit, and the replay independently confirms timed_out=true with exit code 137. The captured stdout tail shows only 7 dots for the 8 hidden tests, indicating the run was killed before completing, so the suite did not pass within the time limit despite the report's harness field."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:40:01.719842+00:00"
+}

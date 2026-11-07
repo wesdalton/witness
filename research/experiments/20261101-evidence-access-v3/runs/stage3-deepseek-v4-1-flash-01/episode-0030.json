@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0030",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-10-31T23:27:59.994884+00:00",
+  "prompt_sha256": "7e92dc396a4691fdc39488ad0cbf03720ff1fa969ea5104176c482189ee5f98b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "06f27ec599f34d19b0cb38054bd74880",
+    "response_id": "gen-1793489281-Hok4hQAanCjVFgpnrjQo",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 920,
+      "completion_tokens": 282,
+      "total_tokens": 1202,
+      "cost": 0.000463872,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 512,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000463872,
+        "upstream_inference_prompt_cost": 0.000125472,
+        "upstream_inference_completions_cost": 0.0003384
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 59,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7114,
+    "input_bound": 7091,
+    "reserved_usd": "0.0070425",
+    "request_sha256": "11d82b4c025dc98c137b30a4988e92678417c1fa5a7329db52a91ae83ebb2515"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 7,
+        "failed": 2
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report claims all 9 hidden tests pass, but the replay of the isolated pytest run shows 2 failed and 7 passed with exit code 1 (test_multi_digit_count and test_round_trip_long_runs failing). Since the replay directly contradicts the claim on the same 9-test suite, the claim is refuted."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:28:02.322377+00:00"
+}

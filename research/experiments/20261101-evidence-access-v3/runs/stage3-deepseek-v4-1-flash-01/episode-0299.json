@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0299",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:43:22.748408+00:00",
+  "prompt_sha256": "5c5db7e6e90d72922239cde8ecf8c8ac17f83cc2c65c9cdf91c79cf649563893",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7d596a16c57544dc8645c9821b9c4793",
+    "response_id": "gen-1793490205-kUT8Rkv1v2NSIasYzNcG",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2310,
+      "completion_tokens": 3487,
+      "total_tokens": 5797,
+      "cost": 0.004200024,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004200024,
+        "upstream_inference_prompt_cost": 1.5624e-05,
+        "upstream_inference_completions_cost": 0.0041844
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3309,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 6.7352,
+    "input_bound": 11381,
+    "reserved_usd": "0.0083295",
+    "request_sha256": "9b47f7575f5af005155564bf2ed19056e8dd190405bd15ea1fea23dd2a0cc6a5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five non-infrastructure attempts (1, 2, 4, 5, 6) all with status passed, while attempt 3 is an infra_error that the report policy explicitly excludes. The five passing logs match those attempts and the replay confirms the same artifact passed 9 hidden tests, supporting the reported 5/5 rate."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:43:31.881626+00:00"
+}

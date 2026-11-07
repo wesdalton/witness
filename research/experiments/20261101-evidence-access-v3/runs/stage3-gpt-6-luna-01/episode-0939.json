@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0939",
+  "incident": "inc-8e422e70b829e245",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T03:43:00.345111+00:00",
+  "prompt_sha256": "6b54845d43a24430d2e8b52a866f82eb0d2dc2210f31bd820fbcc75b3fa2bd9f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "746421d1414a4444bed45a8b13aa854e",
+    "response_id": "gen-1793504580-I6IgeX1Ad7eYFEulqFGU",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 797,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 308,
+      "output_tokens_details": {
+        "reasoning_tokens": 198
+      },
+      "total_tokens": 1105,
+      "cost": 0.0002337,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002337,
+        "upstream_inference_input_cost": 7.97e-05,
+        "upstream_inference_output_cost": 0.000154
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.0988,
+    "input_bound": 7759,
+    "reserved_usd": "0.003017875",
+    "request_sha256": "1c62189d44546250bbdb1879795f9ec783158c03115b4c853b0a7cecc1c4be2c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c1228863de7e3d5016ae6b545e08487d1917f276b387e5f3d",
+        "sha256": "d421a52d4f8acbbd75f2ca930e52259ab6a895d474edb13ed8b3a22865da1d59"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qd30qp7xhza",
+        "sha256": "991f969724f167effc8bfe66cab42051da984873f06ab1e97adf9fad4bba20e1"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records the hidden-test attempt as timed out with exit code 137, and the isolated replay also timed out at the 10-second limit without a summary. Although the report says 8 tests passed, that conflicts with the execution evidence; the submitted implementation also sleeps 0.25 seconds on every call."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:43:05.619037+00:00"
+}

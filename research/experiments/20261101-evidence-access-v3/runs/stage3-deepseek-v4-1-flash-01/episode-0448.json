@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0448",
+  "incident": "inc-d2982d768d8fbcea",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 4,
+  "started_at": "2026-10-31T23:51:37.757117+00:00",
+  "prompt_sha256": "271e9e1674f0adf189b27f72965b8887008f8776c1052633ebe329ac49c77173",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "92e0364a1215423ca684039759ccaca9",
+    "response_id": "gen-1793490700-IUdbxrlrxofpH7fUkCzw",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 840,
+      "completion_tokens": 315,
+      "total_tokens": 1155,
+      "cost": 0.000404208,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000404208,
+        "upstream_inference_prompt_cost": 2.6208e-05,
+        "upstream_inference_completions_cost": 0.000378
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 113,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7902,
+    "input_bound": 6861,
+    "reserved_usd": "0.0069735",
+    "request_sha256": "70846c228ba83af5cb8bf284795d2f0c42a70d48e694aa34db4c99ac9b99de27"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report shows the harness status passed with 10 passed and 0 failed. The replay independently shows 10 passed, 0 failed, exit code 0, and no timeout. Together these directly support that the patch passes the hidden test suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:51:41.186119+00:00"
+}

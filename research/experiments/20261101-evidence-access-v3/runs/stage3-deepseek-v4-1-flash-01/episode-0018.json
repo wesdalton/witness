@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0018",
+  "incident": "inc-b6c35a209175b880",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-10-31T23:27:22.244444+00:00",
+  "prompt_sha256": "409b495659653004c33dce9571b754112da8258070cdba3b42b65736b6ef6c2a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "9c47cc705e2e48d593207880ca58a9e2",
+    "response_id": "gen-1793489243-FQJmpxpvnEVJJvfwYsjC",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 927,
+      "completion_tokens": 331,
+      "total_tokens": 1258,
+      "cost": 0.000524772,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 512,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000524772,
+        "upstream_inference_prompt_cost": 0.000127572,
+        "upstream_inference_completions_cost": 0.0003972
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 119,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7341,
+    "input_bound": 7112,
+    "reserved_usd": "0.0070488",
+    "request_sha256": "c15a430acdc6dba8909c22eaf1f0f5ec280b91fe0dcf9db25237fd858d4e4139"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 5,
+        "failed": 3
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report channel asserts 8/8 passing, but the replay channel actually ran the hidden suite and shows only 5 passed with 3 failed (exit code 1). The direct isolated-pytest replay contradicts the claim, so the patch does not pass the full 8-test hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:27:23.943454+00:00"
+}

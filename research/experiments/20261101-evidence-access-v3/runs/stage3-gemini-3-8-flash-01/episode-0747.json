@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0747",
+  "incident": "inc-849c812d81852b2a",
+  "access": [],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T01:59:57.798840+00:00",
+  "prompt_sha256": "657ead1084b06ce231e3baee0f7f68e4cb332ff0986319551df7bd2ee24dfc96",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "4ca1fb3eff6542fe9b34a4b07fe20610",
+    "response_id": "gen-1793498397-IemZT6cIlhOYH6gWDWp6",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 545,
+      "completion_tokens": 4052,
+      "total_tokens": 4597,
+      "cost": 0.01560375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01560375,
+        "upstream_inference_prompt_cost": 0.00040875,
+        "upstream_inference_completions_cost": 0.015195
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3928,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 30.8088,
+    "input_bound": 6593,
+    "reserved_usd": "0.02030475",
+    "request_sha256": "2f7bfb3b430bbde7532a593789179b188030b5b705b1805b1172309a3e708684"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report"
+    ],
+    "reason": "The report only provides the hidden test suite results for a single attempt (13 passed, 0 failed) rather than all 5 attempts. Additionally, the reporting policy excludes infrastructure errors, so the report alone cannot verify whether any other recorded attempts occurred or failed. Therefore, the granted evidence is insufficient to settle the claim.",
+    "observed_counts": [
+      {
+        "channel": "report",
+        "failed": 0,
+        "passed": 13
+      }
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:00:28.696946+00:00"
+}

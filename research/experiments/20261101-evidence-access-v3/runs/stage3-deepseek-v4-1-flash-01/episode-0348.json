@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0348",
+  "incident": "inc-7d58b740f1f886e6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-10-31T23:46:12.513989+00:00",
+  "prompt_sha256": "42780030d32b90c289eb29c5e00fc7ade79cfcac94a9fa25043a9efe873df8dd",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "909cabb1cff7409d9ae242f54d3f36ca",
+    "response_id": "gen-1793490374-8yK3OU9ZjHmzfhBluIZi",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2352,
+      "completion_tokens": 455,
+      "total_tokens": 2807,
+      "cost": 0.00068712,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1920,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00068712,
+        "upstream_inference_prompt_cost": 0.00014112,
+        "upstream_inference_completions_cost": 0.000546
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 181,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9409,
+    "input_bound": 11566,
+    "reserved_usd": "0.0083850",
+    "request_sha256": "25168ab72209a3f5494e965c045766bd465356f33c6943176093549bd3bafaeb"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All four channels consistently show 5 recorded attempts, each running the hidden test suite with 8 passed and 0 failed. The manifest records exit_code 0 and status \"passed\" for every attempt, and the report confirms attempts_passed 5 of attempts_reported 5. No channel shows any failing or excluded attempt, so the 5/5 claim is supported."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:46:15.516269+00:00"
+}

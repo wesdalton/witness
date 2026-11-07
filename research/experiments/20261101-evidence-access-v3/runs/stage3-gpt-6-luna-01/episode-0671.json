@@ -1,0 +1,78 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0671",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T03:22:47.001881+00:00",
+  "prompt_sha256": "5c5db7e6e90d72922239cde8ecf8c8ac17f83cc2c65c9cdf91c79cf649563893",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3cf2ec3c15994697a5db803dde7eb64d",
+    "response_id": "gen-1793503368-FwXfhN8JJ6Yj1FrU3TTz",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1924,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1793
+      },
+      "output_tokens": 693,
+      "output_tokens_details": {
+        "reasoning_tokens": 578
+      },
+      "total_tokens": 2617,
+      "cost": 0.000583725,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000583725,
+        "upstream_inference_input_cost": 0.000237225,
+        "upstream_inference_output_cost": 0.0003465
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.9936,
+    "input_bound": 11379,
+    "reserved_usd": "0.003470375",
+    "request_sha256": "0927553126dab3a540acc95fa1f44d339d7834bc55a8ceeac110e9bd32c96505",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fc50d81f3a9cbc0016ae6b088f90487d185680208902c7219",
+        "sha256": "44c8d44cba5bb93f0c7c60bc8cfc08960deff01baecc70e3bca727cbf58a0367"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_0fc50d81f3a9cbc0016ae6b08e73b087d1b06180422340bee7",
+        "sha256": "314a25fb7370f957827ac1e70504ce02ec6e5c7599d265b5044bbf35ce312fc0"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_2mmbp0qzg82",
+        "sha256": "88f5286a4f896c7ec2a89ffba69d9becf14c39f60294b2b025bfaef284799382"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and per-attempt logs indicate five passing attempts, and replay confirms the shared artifact passes all 9 tests. However, the manifest marks attempt 3 as an infrastructure error (exit 125), so the evidence does not establish that all five recorded attempts completed successfully; it also lists a sixth attempt, leaving the attempt accounting inconsistent."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T03:22:56.330883+00:00"
+}

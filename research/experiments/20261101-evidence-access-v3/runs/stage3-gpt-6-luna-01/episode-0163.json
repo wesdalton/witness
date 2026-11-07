@@ -1,0 +1,100 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0163",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T02:48:29.032936+00:00",
+  "prompt_sha256": "e88a65c39a9790b5a4d93766ba751e7055579eb0e1b5d6c337d31c444838b3e4",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "6852ecd59f7940cab7bf93e3470bd257",
+    "response_id": "gen-1793501309-JC3bBE1osNl7fmxAQaui",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1994,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1863
+      },
+      "output_tokens": 960,
+      "output_tokens_details": {
+        "reasoning_tokens": 799
+      },
+      "total_tokens": 2954,
+      "cost": 0.000725975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000725975,
+        "upstream_inference_input_cost": 0.000245975,
+        "upstream_inference_output_cost": 0.00048
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 9.2786,
+    "input_bound": 11900,
+    "reserved_usd": "0.003535500",
+    "request_sha256": "2c3a9319adc5013ab642389ae746680275d84e3145796d734616b2644f35135a",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_09dd27f0e01c2c02016ae6a87dca1487d1a390206c9d5a2d76",
+        "sha256": "75002e5758b037a09cfb810a37fd1dfb4dd396d1f75ce6c573adfa77f8ab71d7"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_09dd27f0e01c2c02016ae6a88291ac87d18c90f591aaff4900",
+        "sha256": "970ebea24c06c3ccadb16101ed59452fd3132ced7c26f64a068a57e80bfbf978"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_j8bt8az5yvb",
+        "sha256": "44c9551803f2a92776eca678e6c20510025836fd10a3b6aab82715e9e6281bc9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report says 5 of 5 reported attempts passed, and the five artifact logs each show 9 tests passed with no failures. The manifest lists five passed runs and one infrastructure error, which its policy excludes from the reported rate; replay also passed, though it is only a separate run."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:48:38.380082+00:00"
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0148",
+  "incident": "inc-7cbf7c73cb018066",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T02:47:29.022726+00:00",
+  "prompt_sha256": "dde7ddb24e1293ee57f225b7cbddd0a8ac21051a3bc69cbbe17e3353bfdad1ac",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "751634f31cc249e59a4c880eff18e192",
+    "response_id": "gen-1793501249-0HKrbVA0h9jkbVbdAUwG",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 993,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 208,
+      "output_tokens_details": {
+        "reasoning_tokens": 112
+      },
+      "total_tokens": 1201,
+      "cost": 0.0002033,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002033,
+        "upstream_inference_input_cost": 9.93e-05,
+        "upstream_inference_output_cost": 0.000104
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.429,
+    "input_bound": 8564,
+    "reserved_usd": "0.003118500",
+    "request_sha256": "6409ea63c0da116e3087d53311507efb48f8ee3c1f7e1b3ccbc5193679fe7366",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_020a408f1b50de93016ae6a842866487d191afcdcc3e8592fd",
+        "sha256": "3acb8544cd94425e2958d93d81bd3354ef858c8b4c61aa32adb1f438804e0676"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nhyxfo7uy0h",
+        "sha256": "6cc5c418ca37e4fc0958e506e0d209b1b2c92c90ee5b4198c64d670ce0256f1e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The replay of the isolated test runner reports 2 failures and only 8 passes, including two median tests. The submitted code indexes the even-length median pair incorrectly, consistent with those failures; the report\u2019s 10-pass result is not borne out by the replay."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:47:32.389523+00:00"
+}

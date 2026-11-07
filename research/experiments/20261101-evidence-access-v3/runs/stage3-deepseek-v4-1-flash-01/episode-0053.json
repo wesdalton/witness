@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0053",
+  "incident": "inc-09e3355fa5a52439",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:29:29.378791+00:00",
+  "prompt_sha256": "797418f013558be7f1445a078da861ad4afa5575fd9a33efc8202f78bb8ab4d8",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "46719c784d9744db903c3ed52ab3da6b",
+    "response_id": "gen-1793489369-S6F5vo2YXVMTKxS1w9ZR",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1285,
+      "completion_tokens": 353,
+      "total_tokens": 1638,
+      "cost": 0.00043278,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00043278,
+        "upstream_inference_prompt_cost": 9.18e-06,
+        "upstream_inference_completions_cost": 0.0004236
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 147,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.0086,
+    "input_bound": 8455,
+    "reserved_usd": "0.0074517",
+    "request_sha256": "ded6b4d1526cc50f1549e7b3cc05f95702f9b5be4841a29cf0b631e2b8bdc808"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All four channels agree the hidden suite passed: the report and manifest record attempt 1 with exit_code 0 and 8/8 passed under a 10s limit, and the independent replay shows 8 passed in 0.02s with timed_out=false and VERIFIER_EXIT=0. The submitted topo/__init__.py is a plausible fix and the logs corroborate 8 passed in 0.03s, so nothing suggests the tests failed or timing out."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:29:30.441156+00:00"
+}

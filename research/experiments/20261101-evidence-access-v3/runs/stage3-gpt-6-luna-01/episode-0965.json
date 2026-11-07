@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0965",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:44:49.961425+00:00",
+  "prompt_sha256": "99039e198d78218b0a47f4c4e74e24711f16c28d6dc757bb2da9468e3cfee30d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8806d578a888421ba32e148da0de32a9",
+    "response_id": "gen-1793504690-wztTvyJzsORMgTDVBchM",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2123,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1992
+      },
+      "output_tokens": 112,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 2235,
+      "cost": 0.0003181,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003181,
+        "upstream_inference_input_cost": 0.0002621,
+        "upstream_inference_output_cost": 5.6e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.26,
+    "input_bound": 11678,
+    "reserved_usd": "0.003507750",
+    "request_sha256": "791db650eed52c50e36d467fdb513605988f6ccf50b6b895d6d4062e34b94c8b",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_5kvvjyn88xu",
+        "sha256": "1b2842246ccb5005b307e88d3277e2f302d626d6c1a8f9ad5f94d95267488fbc"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records five reported attempts (1\u20135), but attempts 2 and 3 failed with exit code 1; only attempts 1, 4, and 5 passed. The report's 5/5 summary conflicts with the attempt-level manifest, and the passing logs for the same artifact do not establish that those failed runs passed."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:44:52.743556+00:00"
+}

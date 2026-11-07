@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0327",
+  "incident": "inc-f74ea00d78968288",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-10-31T23:44:58.973604+00:00",
+  "prompt_sha256": "fc9043f2697793b81ef13212a0174e7dc74160b83b3d9028de42ec67d61698a6",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "60fa0e14bbb74122879906179d559c9d",
+    "response_id": "gen-1793490299-soeqPkOKt6hY1a1vd6Qb",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 264,
+      "total_tokens": 1103,
+      "cost": 0.000342708,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000342708,
+        "upstream_inference_prompt_cost": 2.5908e-05,
+        "upstream_inference_completions_cost": 0.0003168
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 56,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7935,
+    "input_bound": 6852,
+    "reserved_usd": "0.0069708",
+    "request_sha256": "bfde5638c5430ef69f958b8d9f100fdca4ab5ea0f99bce6e23ff4fadd7458b91"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 1,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay shows an isolated pytest run completing with exit code 0, 8 passed and 0 failed, matching the claimed 8-test hidden suite. The report independently confirms the harness status passed with 8 passed and 0 failed. Both channels agree, so the claim is supported."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:45:00.685175+00:00"
+}

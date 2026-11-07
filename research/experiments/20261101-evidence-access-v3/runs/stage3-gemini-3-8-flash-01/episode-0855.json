@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0855",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T02:14:58.851373+00:00",
+  "prompt_sha256": "b5df3f30c67b1205150fd6a799aec694a9d7051f214f02e346b321c1ad5577f6",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "c028a7430bf44b1d958f903ada0223f2",
+    "response_id": "gen-1793499298-y1nfQEemuhmTqtCb0Jak",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 546,
+      "completion_tokens": 4066,
+      "total_tokens": 4612,
+      "cost": 0.015657,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.015657,
+        "upstream_inference_prompt_cost": 0.0004095,
+        "upstream_inference_completions_cost": 0.0152475
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3928,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 32.2479,
+    "input_bound": 6588,
+    "reserved_usd": "0.02030100",
+    "request_sha256": "9d618092d9fac3f2d222c95c240c17d6b16fbd958e6dd49d412fde1f80e2d88a"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "failed": 0,
+        "channel": "report",
+        "passed": 9
+      }
+    ],
+    "verdict": "insufficient",
+    "reason": "The report indicates 5 of 5 reported attempts passed, but its policy excludes attempts lost to infrastructure errors from the reported rate, leaving it uncertain whether additional recorded attempts failed. Furthermore, the report only provides harness test counts (9 passed, 0 failed) for a single execution rather than itemized results across all 5 recorded attempts. Therefore, the granted evidence is insufficient to settle the claim.",
+    "evidence_used": [
+      "report"
+    ],
+    "p_claim_true": 0.3
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:15:31.178505+00:00"
+}

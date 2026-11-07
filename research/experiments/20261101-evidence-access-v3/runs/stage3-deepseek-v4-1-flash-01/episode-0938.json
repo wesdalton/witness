@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0938",
+  "incident": "inc-d658e2e6d7347079",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:19:44.908415+00:00",
+  "prompt_sha256": "e0041ca5d9054b1e5acbc949825c80f307b5867fdedbe71203853579882abb8a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "14e7eb4ce2a04a94aa06d10436d9b8db",
+    "response_id": "gen-1793492387-QWVl4efbKqAA5irqkIh2",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1274,
+      "completion_tokens": 382,
+      "total_tokens": 1656,
+      "cost": 0.000501912,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1152,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000501912,
+        "upstream_inference_prompt_cost": 4.3512e-05,
+        "upstream_inference_completions_cost": 0.0004584
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 202,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9041,
+    "input_bound": 8466,
+    "reserved_usd": "0.0074550",
+    "request_sha256": "42a4262346a86736933083ba7f35cdb06267e056f75d6283485c7c98cf7ee0c7"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay show the hidden test run timed out at the 10-second limit with exit code 137, producing only five passing dots. The artifact code contains a 1.8-second sleep in split_line, which makes the 11-test suite unlikely to finish in time; the report's \"passed\" summary is contradicted by the actual run evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:19:48.518891+00:00"
+}

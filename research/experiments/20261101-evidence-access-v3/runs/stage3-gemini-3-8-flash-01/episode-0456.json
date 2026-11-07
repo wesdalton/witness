@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0456",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 4,
+  "started_at": "2026-11-01T01:25:46.058521+00:00",
+  "prompt_sha256": "31a1458560b80b4e95e05938aa27680c66d457b9c5a433d111c848c6647828f5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f93d7261fd2e4eebb2f1bdcad07071fd",
+    "response_id": "gen-1793496346-B8kUuX83VeXsEfjcQf5p",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 734,
+      "completion_tokens": 380,
+      "total_tokens": 1114,
+      "cost": 0.0019755,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0019755,
+        "upstream_inference_prompt_cost": 0.0005505,
+        "upstream_inference_completions_cost": 0.001425
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 268,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 3.9454,
+    "input_bound": 7111,
+    "reserved_usd": "0.02069325",
+    "request_sha256": "15984969f52eb4067fea85010a5c43caecf6fbff3252b7b9a51e2383249da0c3"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "failed": 0,
+        "channel": "report",
+        "passed": 8
+      },
+      {
+        "failed": 4,
+        "passed": 4,
+        "channel": "replay"
+      }
+    ],
+    "reason": "While the report claims all 8 tests passed, the isolated replay verification shows that 4 of the 8 hidden tests failed with exit code 1. Therefore, the claim is refuted.",
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "p_claim_true": 0,
+    "verdict": "refuted"
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:25:50.083059+00:00"
+}

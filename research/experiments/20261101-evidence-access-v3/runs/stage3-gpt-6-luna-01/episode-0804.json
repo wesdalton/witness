@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0804",
+  "incident": "inc-7cbf7c73cb018066",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:31:34.421503+00:00",
+  "prompt_sha256": "dde7ddb24e1293ee57f225b7cbddd0a8ac21051a3bc69cbbe17e3353bfdad1ac",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6c599c4c4e5e431cbcdc71f4273e89aa",
+    "response_id": "gen-1793503895-CRLUPMvhGB0G5DAhJDZs",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 993,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 192,
+      "output_tokens_details": {
+        "reasoning_tokens": 86
+      },
+      "total_tokens": 1185,
+      "cost": 0.0001953,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001953,
+        "upstream_inference_input_cost": 9.93e-05,
+        "upstream_inference_output_cost": 9.6e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2236,
+    "input_bound": 8564,
+    "reserved_usd": "0.003118500",
+    "request_sha256": "6409ea63c0da116e3087d53311507efb48f8ee3c1f7e1b3ccbc5193679fe7366",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a00f2d613d14d73016ae6b2989c4c87d189926004154e8197",
+        "sha256": "ebd003b07da47687a1a8d434caf1f8414d5d057432bc2345f75d61dff6d9f65b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_79rlu9sq1hd",
+        "sha256": "2d22975d4bf89852398ddde93bc971e6ade4e6e8f845bfea2ef2469bc9560337"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Although the report and manifest record 10 passing tests, the replay using the isolated verifier fails 2 of 10, including the even-count median test, and reports a nonzero exit code. The submitted implementation also indexes the wrong pair for an even-sized median, consistent with the replay failures."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:31:39.090833+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1031",
+  "incident": "inc-bdf543ef827e5fd5",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T00:25:10.007281+00:00",
+  "prompt_sha256": "b7d7e1ce106ae3b3840a145f6588dd43e9ce7f7f813803506ee93818cd704733",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "42f4823e788d4775b08130e178926a21",
+    "response_id": "gen-1793492712-TQmVgMP5KKG8k0YvQDLv",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1344,
+      "completion_tokens": 377,
+      "total_tokens": 1721,
+      "cost": 0.00047928,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00047928,
+        "upstream_inference_prompt_cost": 2.688e-05,
+        "upstream_inference_completions_cost": 0.0004524
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 196,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.0427,
+    "input_bound": 8455,
+    "reserved_usd": "0.0074517",
+    "request_sha256": "d8bc6e45b0cdebc7a1a15ed8e4012c16465b10b03e0125015e1a9b54ac5e4a84"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records exit code 137 with status \"timeout\" and the replay confirms timed_out=true at the 10s limit, so the run did not finish within the time limit. The artifact shows from_roman sleeps 5ms per call, explaining the timeout, while the report's unsupported \"passed 13\" claim conflicts with the raw runner evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:25:13.626440+00:00"
+}

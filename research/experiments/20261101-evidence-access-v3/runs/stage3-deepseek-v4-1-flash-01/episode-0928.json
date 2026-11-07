@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0928",
+  "incident": "inc-832e8bae95c9281a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T00:19:12.454743+00:00",
+  "prompt_sha256": "493ae2f60e4d2bb70f31a8fc57fd4b427ede24dba3dca139b4aa413dfdb8d8fb",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "09fba7660a674d8bb6b206405bab3c0a",
+    "response_id": "gen-1793492354-gF3KpXZNXSeKwuPjwILR",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2514,
+      "completion_tokens": 1145,
+      "total_tokens": 3659,
+      "cost": 0.001413192,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001413192,
+        "upstream_inference_prompt_cost": 3.9192e-05,
+        "upstream_inference_completions_cost": 0.001374
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 858,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.1697,
+    "input_bound": 11964,
+    "reserved_usd": "0.0085044",
+    "request_sha256": "80861bba39b956bd06a7b4203a19acbefa419b3cfc068d8a680ec1b6753096df"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 3
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 8 attempts, of which attempts 2, 7, and 8 failed with exit_code 1 (genuine pytest failures, not infrastructure errors), using a different artifact hash (84bb46...) than the passing patch. The report/artifacts only surface the 5 passing attempts and hide the failures, making the 5/5 framing misleading. Thus not all recorded attempts passed the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:19:16.929485+00:00"
+}

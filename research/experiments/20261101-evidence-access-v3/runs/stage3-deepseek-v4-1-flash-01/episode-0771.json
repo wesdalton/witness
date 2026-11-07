@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0771",
+  "incident": "inc-0f4aa46764e29b77",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T00:10:17.010932+00:00",
+  "prompt_sha256": "69239ac660c69347190175a6f67be806d489cdf7f1f745353a0e07485f772cd3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "da6868290b274162a1878ece8d626679",
+    "response_id": "gen-1793491819-jvo17sheHBtNBDOqdgRW",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 299,
+      "total_tokens": 1092,
+      "cost": 0.000370908,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000370908,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.0003588
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 96,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.8787,
+    "input_bound": 6680,
+    "reserved_usd": "0.0069192",
+    "request_sha256": "993c53de9fd4e0ad9467900c1e3f2cb5744430874ea60001d193620c6545d9a5"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report channel shows the harness status \"passed\" with 11 tests passed and 0 failed, matching the claim's 11 hidden tests. The replay channel independently confirms a clean run (exit_code 0, no timeout), though it reports no explicit counts."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:10:20.025728+00:00"
+}

@@ -50,9 +50,10 @@ not a backlog, and refuses paid runs (`LIVE_ENABLED = False`).
 
 ## Spending
 
-The phase ceiling is **$25**, recorded in `research/agent-study/budget.jsonl`.
-Spend what a frozen design needs. If a design needs more than the remaining
-ceiling, stop and ask the user. Exposure counts provider-reported cost for settled
+The phase ceiling is **$35** (raised from $25 by the user on 1 November 2026),
+recorded in `research/agent-study/budget.jsonl` as an `authorization_amendment`
+row; the original header stays unchanged. Spend what a frozen design needs. If a
+design needs more than the remaining ceiling, stop and ask the user. Exposure counts provider-reported cost for settled
 requests and the full reservation for anything outstanding, failed or unpriced
 (`swarm_lab.core.budget.exposure`). Never reset, delete or rewrite a ledger.
 October 18's separate ledger also stays intact.

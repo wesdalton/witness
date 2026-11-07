@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from swarm_lab.core.archive import Archive  # noqa: E402
-from swarm_lab.core.budget import PHASE_LIMIT, exposure  # noqa: E402
+from swarm_lab.core.budget import exposure, phase_limit  # noqa: E402
 
 
 def read(path):
@@ -211,10 +211,11 @@ def audit(root: Path):
     reported = sum((Decimal(r["reported_cost_usd"]) for r in completions.values()
                     if r["reported_cost_usd"] is not None), Decimal(0))
     committed = exposure(ledger)
-    if committed > PHASE_LIMIT or reported > reserved:
+    if committed > phase_limit(ledger) or reported > reserved:
         errors.append("Phase spend/reservation invariant failed")
     return {"schema": "witness.live-auditor-audit.v2", "errors": errors, "warnings": warnings,
-            "requests": len(reservations), "exposure_usd": str(committed),
+            "requests": len(reservations), "phase_limit_usd": str(phase_limit(ledger)),
+            "exposure_usd": str(committed),
             "reserved_usd": str(reserved), "reported_cost_usd": str(reported),
             "batches": batches}
 

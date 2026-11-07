@@ -47,6 +47,12 @@ def money(value) -> Decimal:
     return result
 
 
+def phase_limit(rows) -> Decimal:
+    """The authorized ceiling: the original header or the latest user-approved amendment."""
+    amendments = [money(r["limit_usd"]) for r in rows if r["type"] == "authorization_amendment"]
+    return amendments[-1] if amendments else PHASE_LIMIT
+
+
 def exposure(rows, batch=None) -> Decimal:
     """Committed spend: settled cost where known, otherwise the full reservation."""
     completed = {r["request"]: r for r in rows if r["type"] == "complete"}
@@ -103,9 +109,12 @@ class PhaseBudget:
 
     def reserve(self, request: str, batch: str, amount: Decimal, batch_limit: Decimal):
         amount, batch_limit = money(amount), money(batch_limit)
-        if not 0 < amount <= batch_limit <= PHASE_LIMIT:
+        if not 0 < amount <= batch_limit:
             raise BudgetError("Invalid reservation or batch ceiling")
         with self.transaction() as (rows, append):
+            limit = phase_limit(rows)
+            if batch_limit > limit:
+                raise BudgetError("Invalid reservation or batch ceiling")
             reserves = [r for r in rows if r["type"] == "reserve"]
             if any(r["request"] == request for r in reserves):
                 raise BudgetError("Request already reserved; no retries")
@@ -117,7 +126,7 @@ class PhaseBudget:
                 for r in reserves
             ):
                 raise BudgetError("Unreconciled or failed request; review before more spending")
-            if (exposure(rows) + amount > PHASE_LIMIT
+            if (exposure(rows) + amount > limit
                     or exposure(rows, batch) + amount > batch_limit):
                 raise BudgetError("Phase or batch spending ceiling reached")
             append({"type": "reserve", "request": request, "batch": batch, "usd": str(amount)})
@@ -157,10 +166,21 @@ class PhaseBudget:
                 raise BudgetError("Request already reviewed")
             append({"type": "review", "request": request, "note": note})
 
+    def amend_limit(self, limit, source: str):
+        """Append a user-approved change to the phase ceiling. Never lowers below exposure."""
+        limit = money(limit)
+        if not source.strip():
+            raise BudgetError("An amendment needs its approval source")
+        with self.transaction() as (rows, append):
+            if limit <= phase_limit(rows) or limit < exposure(rows):
+                raise BudgetError("An amendment must raise the current ceiling")
+            append({"type": "authorization_amendment", "limit_usd": str(limit),
+                    "source": source})
+
     def summary(self):
         with self.transaction() as (rows, _):
             return {
-                "phase_limit_usd": str(PHASE_LIMIT),
+                "phase_limit_usd": str(phase_limit(rows)),
                 "requests": sum(r["type"] == "reserve" for r in rows),
                 "exposure_usd": str(exposure(rows)),
                 "reserved_usd": str(sum(

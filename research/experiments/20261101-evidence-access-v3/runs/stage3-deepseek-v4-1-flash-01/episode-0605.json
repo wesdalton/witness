@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0605",
+  "incident": "inc-7cbf7c73cb018066",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T00:00:47.793896+00:00",
+  "prompt_sha256": "06d3224fcd40c39d891e6f9bd4618375de9831bbe40e5d47c3c01c5e9c3b0739",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "831eb2326d2142a3ad1e3785da40aa7f",
+    "response_id": "gen-1793491250-0mk9rvuh7o0wKWNtxWfP",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 919,
+      "completion_tokens": 330,
+      "total_tokens": 1249,
+      "cost": 0.000408276,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 896,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000408276,
+        "upstream_inference_prompt_cost": 1.2276e-05,
+        "upstream_inference_completions_cost": 0.000396
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 101,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7488,
+    "input_bound": 7114,
+    "reserved_usd": "0.0070494",
+    "request_sha256": "78a70246f3a05989f56397cc9ffafe49c1cb3ba315ed4eb9e6d3fdced467a684"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 2
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report's harness metadata claims 10/10 passed, but the actual isolated replay of the hidden suite shows 2 failed (test_median_even_count_averages_middle_pair, test_median_of_ranges) with an IndexError, only 8 passed. The direct replay execution contradicts the claim, so the patch does not pass the 10-test hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:00:51.170963+00:00"
+}

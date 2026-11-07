@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0590",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:59:59.557991+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "74a547d4713f422d968110710d3472f4",
+    "response_id": "gen-1793491201-dkxmVB3rpgK2rmw4XPin",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1246,
+      "completion_tokens": 674,
+      "total_tokens": 1920,
+      "cost": 0.000843912,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1152,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000843912,
+        "upstream_inference_prompt_cost": 3.5112e-05,
+        "upstream_inference_completions_cost": 0.0008088
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 486,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.6093,
+    "input_bound": 8280,
+    "reserved_usd": "0.0073992",
+    "request_sha256": "39d3f7994f23a5b3931707a43606abbc78e1dceeb7e60179aff77724ba630963"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest records the attempt as timed out with exit code 137 at the 10-second limit, and the replay independently confirms timed_out=true with the same exit code. The artifact implementation includes a 0.7-second sleep in every `put`, making a 9-test suite within 10 seconds implausible. The report's claim of 9/9 passing is contradicted by the authoritative run telemetry."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:00:03.177036+00:00"
+}

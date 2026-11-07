@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0000",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T02:37:19.721844+00:00",
+  "prompt_sha256": "5c5db7e6e90d72922239cde8ecf8c8ac17f83cc2c65c9cdf91c79cf649563893",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7d8cd9f4c62b45f3a7163e396367122c",
+    "response_id": "gen-1793500639-aWL3GSE0H1NiBjSgg0Zt",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1924,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1793
+      },
+      "output_tokens": 588,
+      "output_tokens_details": {
+        "reasoning_tokens": 474
+      },
+      "total_tokens": 2512,
+      "cost": 0.000531225,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000531225,
+        "upstream_inference_input_cost": 0.000237225,
+        "upstream_inference_output_cost": 0.000294
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.5164,
+    "input_bound": 11379,
+    "reserved_usd": "0.003470375",
+    "request_sha256": "0927553126dab3a540acc95fa1f44d339d7834bc55a8ceeac110e9bd32c96505",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0039a8381010ef2e016ae6a5e06cf087d1a7c2e736f2e3867a",
+        "sha256": "6595fe67ac7f200b73e63ef1bdd895b7c8e55a17047be8ad99a29c15974a2ca1"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_jvo6sr6t0t",
+        "sha256": "1bdb4ebff1bb7064e78f75a623a4bf05310a199adeba21cdbdd123c65bdb419c"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records attempt 3 as an infrastructure error (exit code 125), so it was not a successful hidden-suite run, despite its artifact log showing passing output. The report's 5/5 rate excludes infrastructure errors, and the later replay only establishes that the shared artifact passes on replay\u2014not that all five recorded attempts passed."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T02:37:25.381413+00:00"
+}

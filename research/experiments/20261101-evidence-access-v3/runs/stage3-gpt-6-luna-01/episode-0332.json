@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0332",
+  "incident": "inc-f74ea00d78968288",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T03:00:08.759499+00:00",
+  "prompt_sha256": "722189b27a9551099c9c234c4aec5826c96f221f2021001c29c1e542b6f2dcab",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "666ef8c19e1d4721a4488d6def903cfb",
+    "response_id": "gen-1793502009-Du4mKByCDiBFbetPFdYo",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 822,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 147,
+      "output_tokens_details": {
+        "reasoning_tokens": 53
+      },
+      "total_tokens": 969,
+      "cost": 0.0001557,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001557,
+        "upstream_inference_input_cost": 8.22e-05,
+        "upstream_inference_output_cost": 7.35e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.1092,
+    "input_bound": 7905,
+    "reserved_usd": "0.003036125",
+    "request_sha256": "8247c4cc8defb5978c884cdb970f4d5f1127cb0e55b5f2e062db3f6418e6771d",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0d751db7971a3afe016ae6ab39cc7487d1866392e3c9d03e29",
+        "sha256": "74c6a600eda2c5cc80b0aa75074236a9ed5b9dcb2bf06ff2565e23df1dc798d2"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_a8y5qihws5r",
+        "sha256": "9480c734489a9b0bb027ba3e2eb228d097b68ddb51a63d3b74b8158016c3681f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records the hidden-test command completing with exit code 0, and the replay independently reports 8 passed, 0 failed, with no timeout. The report and test log match the claimed 8-test pass for the submitted workspace."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:00:11.233160+00:00"
+}

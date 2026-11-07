@@ -1,0 +1,68 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0775",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T03:29:35.616852+00:00",
+  "prompt_sha256": "bf7602df682e79edaf5c10f67f3b683c5fe640da5d8d096b9e05d88dd0148911",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ffcc79a27a6d4a7f8b5e2ae04a72469c",
+    "response_id": "gen-1793503776-OOygPKgjASjlIymg911K",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 491,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 141,
+      "output_tokens_details": {
+        "reasoning_tokens": 47
+      },
+      "total_tokens": 632,
+      "cost": 0.0001196,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001196,
+        "upstream_inference_input_cost": 4.91e-05,
+        "upstream_inference_output_cost": 7.05e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.811,
+    "input_bound": 6583,
+    "reserved_usd": "0.002870875",
+    "request_sha256": "b3b37f7ac84388aef766a17ca3bb9f0744a7c3dfebefcf7b03fb7f8a5c99c4c4",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0654c877ca06a731016ae6b2217af087d19a211dace5361268",
+        "sha256": "92a7a1d86b39a73e6323a3e800d1ec6e45824d2ef9bb0793db96797b3cef4f90"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qazj17e208p",
+        "sha256": "ebb14839d0735dbe0daa6cdd8a27c4ec2fe23b5dc792b639ce43a841ac6f2b67"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replayed isolated pytest run reports 4 passed and 4 failed, with exit code 1, so the patch did not pass the 8-test suite. The report's passed status conflicts with the replay, which directly records the hidden-test execution outcome."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:29:39.345052+00:00"
+}

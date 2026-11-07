@@ -1,0 +1,92 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0160",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T02:48:17.366702+00:00",
+  "prompt_sha256": "37a3a0be4afd7bffadcac3cc4794693851fca6267c3c70993f14d64e10668d08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5c9de5d2179a4b65858cb979d78645a5",
+    "response_id": "gen-1793501298-dEOvE2yhRCDPqKc1LyXm",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1143,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 319,
+      "output_tokens_details": {
+        "reasoning_tokens": 169
+      },
+      "total_tokens": 1462,
+      "cost": 0.0002738,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002738,
+        "upstream_inference_input_cost": 0.0001143,
+        "upstream_inference_output_cost": 0.0001595
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.7389,
+    "input_bound": 9339,
+    "reserved_usd": "0.003215375",
+    "request_sha256": "84c4c34108187b12132c9d23075011943009cf4a0b40663b1a52cbf7a9f911ed",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a15df60b0c276fe016ae6a873093487d19ff7db805bd154b4",
+        "sha256": "9887d7bca0a9e386a4f1bac44e1e9712badac0082428a16e03e983861a4d8d82"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_mg5la5q9sql",
+        "sha256": "9cd642ed37784bd60309f447658b100830dbf23a987435403e7b72e06d08509f"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 4,
+        "failed": 4
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay of the hidden tests reports 4 passed and 4 failed, directly contradicting the claim that all 8 pass. The patch\u2019s cycle check also only raises when the result is longer than the node set, so cycles can escape detection."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:48:22.110547+00:00"
+}

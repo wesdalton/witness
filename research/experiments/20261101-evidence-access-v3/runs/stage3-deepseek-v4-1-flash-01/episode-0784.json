@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0784",
+  "incident": "inc-508fd1b3664428ed",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T00:11:01.017574+00:00",
+  "prompt_sha256": "6a9f6355516b1c9fbace796c1511e1aa1e45485f25f61ed75666ed3178aa2ab8",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "913b0b28f40c44a9a9c5d3cfafe10315",
+    "response_id": "gen-1793491861-AghDebTtIQEJ7piQKdUK",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2056,
+      "completion_tokens": 665,
+      "total_tokens": 2721,
+      "cost": 0.000812688,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2048,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000812688,
+        "upstream_inference_prompt_cost": 1.4688e-05,
+        "upstream_inference_completions_cost": 0.000798
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 476,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.5502,
+    "input_bound": 10561,
+    "reserved_usd": "0.0080835",
+    "request_sha256": "1afb0fe27bced92d79bf8b279487c50e85dcdd3617fc51b963e29fa4962335d0"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.9,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 5 attempts, each with status \"passed\" and exit_code 0, and the artifacts logs show \"8 passed\" for every recorded attempt. The report independently states attempts_passed=5/attempts_reported=5, and the isolated replay confirms the submitted artifact passes 8/8 with exit_code 0. All channels agree that all 5 recorded attempts passed the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:11:02.679370+00:00"
+}

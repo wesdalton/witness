@@ -1,0 +1,85 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0545",
+  "incident": "inc-08e8765adb0bf2a2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T01:37:11.785432+00:00",
+  "prompt_sha256": "14af8ae1d50e98ec338064983b430f25376516d687055fe0fed1c9e5a3c069cc",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7df15ca19114461da1a27d06667d4c08",
+    "response_id": "gen-1793497031-70kpA5L2l9o8B93wfPGl",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1179,
+      "completion_tokens": 771,
+      "total_tokens": 1950,
+      "cost": 0.0037755,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0037755,
+        "upstream_inference_prompt_cost": 0.00088425,
+        "upstream_inference_completions_cost": 0.00289125
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 606,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 6.4358,
+    "input_bound": 8589,
+    "reserved_usd": "0.02180175",
+    "request_sha256": "57e2481e2a41858cb4ae88390dd72fd551064c42c63ef39de922619ea98e16eb"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Although the report asserts that 9 tests passed, both the manifest and replay records show the test run timed out with exit code 137 after executing only 8 tests. Because the evaluation exceeded the 10-second limit and did not complete, the claim is refuted.",
+    "p_claim_true": 0,
+    "observed_counts": [
+      {
+        "failed": 0,
+        "channel": "report",
+        "passed": 9
+      },
+      {
+        "channel": "artifacts",
+        "failed": null,
+        "passed": null
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "failed": null,
+        "channel": "replay",
+        "passed": null
+      }
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:37:18.289683+00:00"
+}

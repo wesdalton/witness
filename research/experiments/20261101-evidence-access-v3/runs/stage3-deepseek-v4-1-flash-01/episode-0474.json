@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0474",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:53:04.204664+00:00",
+  "prompt_sha256": "99039e198d78218b0a47f4c4e74e24711f16c28d6dc757bb2da9468e3cfee30d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "c48aa66eda384491a9b6f1dff2d1b5bd",
+    "response_id": "gen-1793490787-KjPoCbUzyJ2F59T0MzGJ",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2486,
+      "completion_tokens": 2380,
+      "total_tokens": 4866,
+      "cost": 0.002886792,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002886792,
+        "upstream_inference_prompt_cost": 3.0792e-05,
+        "upstream_inference_completions_cost": 0.002856
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2174,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 5.6365,
+    "input_bound": 11680,
+    "reserved_usd": "0.0084192",
+    "request_sha256": "3315bd5bc2a62ff9e4fffbf8d4cb34b0963dc725996b2ba26b66092350a306bb"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records 8 total attempts, with attempts 2, 3, and 8 failing (exit_code 1), so the claim that all recorded attempts passed is false. The report's 5/5 and the five passing artifact logs conflict with the manifest's failed attempts 2 and 3, and no evidence shows those failures were infrastructure errors eligible for exclusion. The replay only confirms that the passing artifact runs successfully and does not resolve the failed attempts in favor of the claim."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:53:12.385500+00:00"
+}

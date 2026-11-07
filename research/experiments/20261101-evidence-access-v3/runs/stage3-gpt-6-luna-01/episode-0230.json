@@ -1,0 +1,92 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0230",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T02:53:23.184663+00:00",
+  "prompt_sha256": "37a3a0be4afd7bffadcac3cc4794693851fca6267c3c70993f14d64e10668d08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "63beb25bf1e5491ea1ab273b00d1f60f",
+    "response_id": "gen-1793501604-b5szlVIHwkx5CHZKTnDa",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1143,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 432,
+      "output_tokens_details": {
+        "reasoning_tokens": 282
+      },
+      "total_tokens": 1575,
+      "cost": 0.0003303,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003303,
+        "upstream_inference_input_cost": 0.0001143,
+        "upstream_inference_output_cost": 0.000216
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.9611,
+    "input_bound": 9339,
+    "reserved_usd": "0.003215375",
+    "request_sha256": "84c4c34108187b12132c9d23075011943009cf4a0b40663b1a52cbf7a9f911ed",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_074453a6d7689c02016ae6a9a4b50c87d1a4109192b2ca611e",
+        "sha256": "40c9e910a1baea3f3c37ef1165b34d709796890dfe0b15ed8bd2eff3ffd5b10f"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_7xy6xwz1vra",
+        "sha256": "f9eba613f44e82b54e6f605ea3d1cdd8e9de4fb1fdeb8deea4d6ffa82c35658a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 4,
+        "failed": 4
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The isolated replay of the hidden suite failed 4 of 8 tests, including cycle-rejection cases, directly contradicting the claim. The artifact implementation's cycle check also fails to detect cycles because it tests whether the result is longer than the node set."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:53:29.049686+00:00"
+}

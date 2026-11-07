@@ -1,0 +1,60 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0361",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 5,
+  "started_at": "2026-10-31T23:46:53.774273+00:00",
+  "prompt_sha256": "18083a5b976ee0ccdfcaa49f1883f680d85ec0e8fc96bd75f003c22596a878d4",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b4ccf4e808b143a3a3a46b7366509fed",
+    "response_id": "gen-1793490416-FhblSRGoYwmyc8FtymlW",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 786,
+      "completion_tokens": 203,
+      "total_tokens": 989,
+      "cost": 0.000253608,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000253608,
+        "upstream_inference_prompt_cost": 1.0008e-05,
+        "upstream_inference_completions_cost": 0.0002436
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 37,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.6976,
+    "input_bound": 6570,
+    "reserved_usd": "0.0068862",
+    "request_sha256": "49092d687ec90250b3e6aa23ff59c41e8acc95c03eca683477aeeecb9ffe7a56"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay of the hidden test suite shows 2 failed and 7 passed (exit code 1), contradicting the claim that all 9 tests pass. The report's harness summary claims 9 passed, but the direct replay evidence is authoritative and shows failures in test_multi_digit_count and test_round_trip_long_runs."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:46:56.876123+00:00"
+}

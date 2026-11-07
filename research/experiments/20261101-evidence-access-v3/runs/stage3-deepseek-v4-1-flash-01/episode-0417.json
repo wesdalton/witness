@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0417",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-10-31T23:49:54.030928+00:00",
+  "prompt_sha256": "a0bef81b2517c07222942de52ef5fc1011ee70723635ea2d4583d06122bfaa3e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "054be668817a4a85ac16204e87af3932",
+    "response_id": "gen-1793490596-4t7lGd11JlShAL66xgUs",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2165,
+      "completion_tokens": 1764,
+      "total_tokens": 3929,
+      "cost": 0.002164188,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2048,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002164188,
+        "upstream_inference_prompt_cost": 4.7388e-05,
+        "upstream_inference_completions_cost": 0.0021168
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1553,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 3.8154,
+    "input_bound": 10862,
+    "reserved_usd": "0.0081738",
+    "request_sha256": "2c4954afb8d5277ff2bfebb4c007eb9919ec3b17a6f47f3efa10c5ae8f2425a5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.85,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Report, logs, and replay all show the hidden suite passing (8 passed, exit 0) for the single artifact hash used, and the manifest records 5 non-infra attempts (1,2,4,5,6) all with status \"passed/exit 0\". The manifest also lists a 6th attempt (3) that exited 125 with status \"infra_error\", which the stated policy excludes from the reported rate, so the 5/5 pass tally is consistent with the evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:50:00.547124+00:00"
+}

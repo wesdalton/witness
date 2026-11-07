@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0003",
+  "incident": "inc-849c812d81852b2a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:26:27.036531+00:00",
+  "prompt_sha256": "06c17251a11c9cecc072d8fe623df7fa3d8f1acd12656819900d8bb69f51bc08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5c3b23c47d45436595817fe80db80454",
+    "response_id": "gen-1793489189-sgFiJCpBSnk0R20yrnpJ",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2575,
+      "completion_tokens": 570,
+      "total_tokens": 3145,
+      "cost": 0.00070386,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2560,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00070386,
+        "upstream_inference_prompt_cost": 1.986e-05,
+        "upstream_inference_completions_cost": 0.000684
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 378,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.1809,
+    "input_bound": 12148,
+    "reserved_usd": "0.0085596",
+    "request_sha256": "c9555c5ab1195d0da2d8484af40cda1218deb2e48318c2629b7a56aec24ea8c5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records 8 attempts, of which attempts 3, 6, and 8 exited 1 with status \"failed\" (artifact hash 23a16d...), so not all recorded attempts passed. The logs and report only surface the 5 passing runs, but the full manifest contradicts the 5/5 claim. Replay confirms only the passing artifact 69bec88... yields 13 passed."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:26:30.670844+00:00"
+}

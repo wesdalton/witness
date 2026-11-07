@@ -1,0 +1,84 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0922",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T02:23:23.332015+00:00",
+  "prompt_sha256": "15c4a429973bc44262809fa4c57852daf19b345933cba95dc3d2877264fd06f3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7e8a67918dfb4eb0acf7d34867bac930",
+    "response_id": "gen-1793499803-hKFcRALD4Qoy3P9JycWW",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 1218,
+      "completion_tokens": 611,
+      "total_tokens": 1829,
+      "cost": 0.00320475,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00320475,
+        "upstream_inference_prompt_cost": 0.0009135,
+        "upstream_inference_completions_cost": 0.00229125
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 450,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 6.1282,
+    "input_bound": 8772,
+    "reserved_usd": "0.02193900",
+    "request_sha256": "8c01d13d686b69a77092c577630d8c402ce980de0093e4fceefc1b465501f6a5"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "reason": "Both the manifest and replay logs show that the test execution timed out with exit code 137, having completed only 7 of the tests before the 10-second limit. Therefore, the patch did not pass the 8-test hidden suite within the time limit.",
+    "observed_counts": [
+      {
+        "passed": 8,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "failed": null,
+        "passed": null
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "manifest"
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "evidence_used": [
+      "manifest",
+      "replay"
+    ]
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:23:29.548168+00:00"
+}

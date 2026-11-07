@@ -222,8 +222,17 @@ def main():
     parser.add_argument("--model", choices=list(STAGE3_MODELS), required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--stage", choices=["1", "2", "3", "smoke"], default="1")
+    parser.add_argument("--continue-from", type=Path,
+                        help="Earlier run of the same plan; only its unattempted episodes run")
+    parser.add_argument("--batch-ceiling", type=Decimal,
+                        help="Override the frozen ceiling; requires --amendment")
+    parser.add_argument("--amendment", type=Path, help="Sealed protocol amendment authorizing it")
     parser.add_argument("--live", action="store_true")
     args = parser.parse_args()
+    if (args.batch_ceiling is None) != (args.amendment is None):
+        raise BudgetError("--batch-ceiling and --amendment must be given together")
+    if args.amendment and not args.amendment.is_file():
+        raise BudgetError("Amendment document not found")
     args.corpus, args.out = args.corpus.resolve(), args.out.resolve()
     incidents, _, separating = load_corpus(args.corpus)
     by_id = {i["id"]: i for i in incidents}
@@ -235,6 +244,18 @@ def main():
         episodes, ceiling = plan_stage3(incidents, args.model), STAGE3_CEILINGS[args.model]
     else:
         episodes, ceiling = plan_smoke(incidents), SMOKE_CEILING
+    continues = None
+    if args.continue_from:
+        earlier = json.loads((args.continue_from / "manifest.json").read_text())
+        if earlier["model"] != args.model or earlier["episodes"] != episodes:
+            raise BudgetError("Continuation must use the same model and plan")
+        done = {json.loads(p.read_text())["episode"]
+                for p in args.continue_from.glob("episode-*.json")}
+        episodes = [e for e in episodes if e["episode"] not in done]
+        continues = {"run": str(args.continue_from.resolve().relative_to(ROOT)),
+                     "batch": earlier["batch"], "already_attempted": len(done)}
+    if args.batch_ceiling is not None:
+        ceiling = args.batch_ceiling
     summary = {"model": args.model, "stage": args.stage, "episodes": len(episodes),
                "batch_ceiling_usd": str(ceiling),
                "access_sets": sorted({access_name(e["access"]) for e in episodes}),
@@ -265,6 +286,9 @@ def main():
         "endpoint": endpoint and {k: endpoint.get(k) for k in ("tag", "provider_name", "pricing")},
         "submit_tool": SUBMIT, "corpus": str(args.corpus.relative_to(ROOT)),
         "episodes": episodes, "batch_ceiling_usd": str(ceiling), "key_limits": key_limits,
+        "continues": continues, "amendment": args.amendment and {
+            "path": str(args.amendment.resolve().relative_to(ROOT)),
+            "sha256": digest(args.amendment.read_bytes())},
         "started_at": datetime.now(UTC).isoformat()})
     if args.model in CONTRACTS:
         client = contract_client(key, args.model, PhaseBudget(PHASE_LEDGER), batch,

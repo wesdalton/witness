@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0818",
+  "incident": "inc-084136b064500272",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T00:12:48.444459+00:00",
+  "prompt_sha256": "264762463fcd0911cd2a79c11a0555b9762796e6dfe3a53eb0ee8eb312371370",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "e53f4b73ae6e4d7b8dc0b00825ce2a59",
+    "response_id": "gen-1793491970-ZJYmoWL25F0Pzoz9keoR",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 489,
+      "total_tokens": 1282,
+      "cost": 0.000598908,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000598908,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.0005868
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 271,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.3177,
+    "input_bound": 6679,
+    "reserved_usd": "0.0069189",
+    "request_sha256": "f3a425f0ef163acbe8aa0583faedd85cc0bde0ea3fcc19193221c7bdaf3e8ada"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.9,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report's harness channel shows 8 passed and 0 failed, exactly matching the claimed 8-test hidden suite, and the replay shows a clean exit_code 0 with no timeout. The replay does not itself expose pass/fail counts, but it is consistent and does not contradict the report. Thus the granted evidence supports the claim."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:12:51.564945+00:00"
+}

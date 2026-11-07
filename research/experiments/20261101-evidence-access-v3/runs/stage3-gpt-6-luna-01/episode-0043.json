@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0043",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T02:40:13.380754+00:00",
+  "prompt_sha256": "3c58b7aae2fa5897441d829217512de8cdb84a12b0c5d0aa311883275478025f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "39ab7d5f9a784a88b74c9e14cb1b3890",
+    "response_id": "gen-1793500813-R46zPBLz0l7i8R2pEpU5",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2011,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1880
+      },
+      "output_tokens": 205,
+      "output_tokens_details": {
+        "reasoning_tokens": 98
+      },
+      "total_tokens": 2216,
+      "cost": 0.0003506,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0003506,
+        "upstream_inference_input_cost": 0.0002481,
+        "upstream_inference_output_cost": 0.0001025
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.5116,
+    "input_bound": 11565,
+    "reserved_usd": "0.003493625",
+    "request_sha256": "fce9886fa38fdc749b47f080ff695d74d2e658affd28b976ef0fd4b156768565",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0ed69393ba87699f016ae6a68e14fc87d1a1f288493fa50081",
+        "sha256": "4fe1ece5283f1ac20e2f83a093037133d11bfdc37e2a0bf8f806533c8384091b"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_q6d800e8b2",
+        "sha256": "f9246a8bcadc0ee121fe8cc15c71742bd32ffff70b98911f1b7d6833bed4af9a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Manifest and logs show attempts 1\u20135 all used the same artifact hash and passed the hidden suite with exit code 0; the replay also passed all 13 tests. Attempt 6 was an infrastructure error, not one of the five reported passing attempts, and the report says such attempts are excluded."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:40:15.992522+00:00"
+}

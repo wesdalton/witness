@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0879",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T00:16:23.663485+00:00",
+  "prompt_sha256": "f9f7d748baa433f4dbcfb1c01a4d60ab97c5e4b4d4e99ba79527eadcb4e33a77",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "4e6b86677fe0411fa9021e44f70b3678",
+    "response_id": "gen-1793492183-WHpxra5sb4pfkIuZSHEK",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2506,
+      "completion_tokens": 1116,
+      "total_tokens": 3622,
+      "cost": 0.001375992,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2432,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001375992,
+        "upstream_inference_prompt_cost": 3.6792e-05,
+        "upstream_inference_completions_cost": 0.0013392
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 842,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.4472,
+    "input_bound": 12088,
+    "reserved_usd": "0.0085416",
+    "request_sha256": "8d0c7be8aba0555993817195d2699c6451bdc0d200cd4b62a609c9c2285495ee"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 13,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report records 5 attempts passed out of 5, the artifact logs show all 5 attempts with 13 passed and no failures, the manifest lists attempts 1-5 as passed (only attempt 6 was an excluded infra_error), and the isolated replay reproduced 13 passed with exit 0. All granted channels agree the 5 recorded attempts passed the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:16:26.185601+00:00"
+}

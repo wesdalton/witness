@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0186",
+  "incident": "inc-95e422757df09a0b",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-10-31T23:36:48.388393+00:00",
+  "prompt_sha256": "46fc3cf6581cc5d1984cebd1f62755bd6cc2a1b9cd9c52f350ca2a8388d6c651",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b89dc79a428f40398ca1e4ade920e81f",
+    "response_id": "gen-1793489809-al7beqEN3f0Op4Xk5trT",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 401,
+      "total_tokens": 1194,
+      "cost": 0.00053094,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 640,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00053094,
+        "upstream_inference_prompt_cost": 4.974e-05,
+        "upstream_inference_completions_cost": 0.0004812
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 194,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9367,
+    "input_bound": 6684,
+    "reserved_usd": "0.0069204",
+    "request_sha256": "14c0c327600e9181ee83bfc373fc740cedd80654afd59d550217f5b75a90bcaf"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report explicitly shows the harness status as passed with 10 passed and 0 failed, matching the claimed hidden suite of 10 tests. The replay exits cleanly with code 0 and no timeout, which is consistent with the passing result, though it reports no per-test counts."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T23:36:50.800693+00:00"
+}

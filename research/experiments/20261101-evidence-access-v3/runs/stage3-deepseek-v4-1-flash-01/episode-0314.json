@@ -1,0 +1,60 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0314",
+  "incident": "inc-f74ea00d78968288",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 3,
+  "started_at": "2026-10-31T23:44:14.395895+00:00",
+  "prompt_sha256": "813decd0fc119e9a85e067a8f5acc88eb25f2f40dc8831379cbb91f2b3d9c597",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "6d0d577c85234459a599fb77e8d1ac9c",
+    "response_id": "gen-1793490256-HRRb2aGEMQbf3uxWdt6D",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 705,
+      "completion_tokens": 173,
+      "total_tokens": 878,
+      "cost": 0.000268572,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 512,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000268572,
+        "upstream_inference_prompt_cost": 6.0972e-05,
+        "upstream_inference_completions_cost": 0.0002076
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 20,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.6157,
+    "input_bound": 6331,
+    "reserved_usd": "0.0068145",
+    "request_sha256": "9a6377fea68a37fe71ee8a00b8b46ff19ebda3845aa46d1412b4c097ef504e45"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay shows an isolated pytest run exiting 0 with \"8 passed\" and no failures or timeouts, matching the claim's 8 hidden tests. The report corroborates this with passed=8 and failed=0. Both channels agree the patch passes the evaluation suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:44:17.363462+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0217",
+  "incident": "inc-7cbf7c73cb018066",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 3,
+  "started_at": "2026-10-31T23:38:48.082350+00:00",
+  "prompt_sha256": "4b5305e24fe24a63b929a1943a6d21081a0b4697a428b934a395484af22792f5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5b61a17f553e4bc4b69ecac607888db7",
+    "response_id": "gen-1793489930-ajSnYozACOz6zisPbGEO",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 785,
+      "completion_tokens": 278,
+      "total_tokens": 1063,
+      "cost": 0.000343308,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000343308,
+        "upstream_inference_prompt_cost": 9.708e-06,
+        "upstream_inference_completions_cost": 0.0003336
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 97,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.6694,
+    "input_bound": 6593,
+    "reserved_usd": "0.0068931",
+    "request_sha256": "3a1097d7f00add3ea37ca2e92ad1bc2798bd4546ee2a5ea4c47975f5e4a6579e"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay of the isolated hidden-suite run shows exit_code 1 with 2 failed and 8 passed tests (test_median_even_count_averages_middle_pair, test_median_of_ranges), directly contradicting the claim that all 10 tests pass. Although the report's harness field claims 10 passed, the concrete replay output overrides it, so the patch fails the hidden suite."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:38:51.390911+00:00"
+}

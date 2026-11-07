@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0247",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T02:54:24.296749+00:00",
+  "prompt_sha256": "04c0a139846229920bcaae3dc936ae042d42ea47ee9da01613932c79834b9709",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b2d5f52b90494bfbae2b8d51c806b8e3",
+    "response_id": "gen-1793501665-96uxe9k2NQ7ie96hM8cG",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1019,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 101,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1120,
+      "cost": 0.0001524,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001524,
+        "upstream_inference_input_cost": 0.0001019,
+        "upstream_inference_output_cost": 5.05e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.767,
+    "input_bound": 8608,
+    "reserved_usd": "0.003124000",
+    "request_sha256": "a3b9e60d307e79fafec700656ae1ce049f1e1dbec8273c4576472676102a0567",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_fm2kb6qlcqj",
+        "sha256": "00ae36938881b2864400aef06269c216cd7e6ae0ccab2af3b92d238d5cb721e3"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "replay",
+      "artifacts",
+      "report",
+      "manifest"
+    ],
+    "reason": "The isolated replay of the actual workspace reports two hidden-test failures, including multi-digit counts and long-run round trips, and the decoder shown overwrites rather than accumulates digit counts. The passing report and manifest conflict with the replay, but do not establish that this submitted patch passes."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:54:27.149036+00:00"
+}

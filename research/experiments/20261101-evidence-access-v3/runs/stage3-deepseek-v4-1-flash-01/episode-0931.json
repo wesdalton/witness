@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0931",
+  "incident": "inc-71b97e0f727480ae",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-11-01T00:19:22.533960+00:00",
+  "prompt_sha256": "5b4ce0c22bd41bc6e6671b00fbb1c574527ae568e0c4ee388481a198edd15765",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d38f91bdad6a444c917ce4c6eaba2328",
+    "response_id": "gen-1793492365-QHVzEyIKy4UNeJGyb4Ls",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 335,
+      "total_tokens": 1128,
+      "cost": 0.000414108,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000414108,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.000402
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 128,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7271,
+    "input_bound": 6669,
+    "reserved_usd": "0.0069159",
+    "request_sha256": "6047bb352754191d6b288b4f17c3ec73de82a7cf8de21c55094d924fc3b5f07c"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.92,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report's harness summary explicitly shows 9 passed and 0 failed with status \"passed\", directly matching the claimed 9-test hidden suite. The replay confirms an exit code 0 clean run under an isolated pytest harness, though it exposes no pass/fail counts of its own."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:19:25.941213+00:00"
+}

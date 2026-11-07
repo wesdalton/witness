@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0973",
+  "incident": "inc-7bd38a8435b20681",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:21:51.614977+00:00",
+  "prompt_sha256": "b0791ca503d141694b4b9c9f900f928397234fbdd4b9ecdadf1088a193b55c17",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "68c0cf139ebd4936a3433c178f33cf55",
+    "response_id": "gen-1793492514-G9vwZJbn2wH89oozEZSB",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1171,
+      "completion_tokens": 716,
+      "total_tokens": 1887,
+      "cost": 0.000871812,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1152,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000871812,
+        "upstream_inference_prompt_cost": 1.2612e-05,
+        "upstream_inference_completions_cost": 0.0008592
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 530,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.2902,
+    "input_bound": 7996,
+    "reserved_usd": "0.0073140",
+    "request_sha256": "2a60c1132a1124047bd3875242f0fb8d90c6273dbc94934620e799340c66f47f"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay show the run timed out at the 10-second limit with exit code 137, and the captured stdout contains only 8 passing dots rather than 10. The submitted source adds a 0.09-second sleep in median, making a 10-test suite likely exceed 10 seconds. The report's contrary pass label is outweighed by the concrete timed-out run evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:21:56.401584+00:00"
+}

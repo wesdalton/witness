@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0511",
+  "incident": "inc-c0c99dedd2886bdc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T03:12:06.430729+00:00",
+  "prompt_sha256": "6da0c637d3d775c022997e278f8c3ab9c096b4ce3f0059df000208034f846a3d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "46e42518c44842d496e63921a88fc137",
+    "response_id": "gen-1793502727-QpT9vBdI3WgN1mu8NFSl",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1823,
+      "input_tokens_details": {
+        "cached_tokens": 1692
+      },
+      "output_tokens": 172,
+      "output_tokens_details": {
+        "reasoning_tokens": 71
+      },
+      "total_tokens": 1995,
+      "cost": 0.00011602,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00011602,
+        "upstream_inference_input_cost": 3.002e-05,
+        "upstream_inference_output_cost": 8.6e-05
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.0274,
+    "input_bound": 10796,
+    "reserved_usd": "0.003397500",
+    "request_sha256": "24c0e5a64310889b9f9dd0a98e20b6955400d72e9a7fbf965abbc6945196dafd",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0da268c689c9b9e5016ae6ae09034887d1b75b1dd0ff5eb367",
+        "sha256": "be14df4699cc07aecb989fc16fa75d402021c00f2e1e2790bf6e4cc745856009"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_9n9j5jbshza",
+        "sha256": "d5c2d1cd61c8e624fce99e31d36f06e5d9bfdf68d294b422b050ceeeb16abf68"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records five attempts, each with exit code 0 and status passed for the hidden-test command, and the logs show 10 passing tests for each. The report confirms 5/5, while the isolated replay independently passes all 10 tests on the recorded artifact."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:12:10.729382+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0189",
+  "incident": "inc-f51b4c54715b879e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T00:53:46.613183+00:00",
+  "prompt_sha256": "d63ff975318799197d091c1f9cf08068682f356d98458e737943a1a8125cc0f6",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "93477def0e914e82bdde6cef666c170c",
+    "response_id": "gen-1793494426-HKla71k3S50lxko3FNP0",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2574,
+      "completion_tokens": 2353,
+      "total_tokens": 4927,
+      "cost": 0.01075425,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01075425,
+        "upstream_inference_prompt_cost": 0.0019305,
+        "upstream_inference_completions_cost": 0.00882375
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2190,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 18.1067,
+    "input_bound": 11792,
+    "reserved_usd": "0.02420400",
+    "request_sha256": "dab7e9ff72a3b58176f8c9863063c0c1b465dc442882a60ee473b4ace0e53b34"
+  },
+  "status": "completed",
+  "submission": {
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "observed_counts": [
+      {
+        "passed": 13,
+        "failed": 0,
+        "channel": "report"
+      },
+      {
+        "failed": 0,
+        "passed": 13,
+        "channel": "artifacts"
+      },
+      {
+        "failed": null,
+        "channel": "manifest",
+        "passed": null
+      },
+      {
+        "channel": "replay",
+        "failed": 0,
+        "passed": 13
+      }
+    ],
+    "reason": "All five attempts recorded in the manifest and artifact logs successfully passed the 13 hidden tests with exit code 0. The replay verification further confirms the test suite passes with zero failures. Thus, the claim is supported across all provided evidence channels.",
+    "p_claim_true": 1,
+    "verdict": "supported"
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:54:04.776336+00:00"
+}

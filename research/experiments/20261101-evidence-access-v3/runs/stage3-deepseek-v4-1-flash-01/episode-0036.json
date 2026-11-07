@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0036",
+  "incident": "inc-f6e5148b72485191",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-10-31T23:28:25.183191+00:00",
+  "prompt_sha256": "31ef9fbb6813bdc3a20d3d12f66a67041e4ae9957c9cc177b1846440a0cd2356",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8356dd3f9a7d491bb8ea6ccaad20dad3",
+    "response_id": "gen-1793489305-MxE0qxc3cw8PuL9U079a",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2567,
+      "completion_tokens": 1557,
+      "total_tokens": 4124,
+      "cost": 0.002186916,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1536,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002186916,
+        "upstream_inference_prompt_cost": 0.000318516,
+        "upstream_inference_completions_cost": 0.0018684
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1364,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 3.0713,
+    "input_bound": 12157,
+    "reserved_usd": "0.0085623",
+    "request_sha256": "2b8ca5d1547cbd4b77602b2bc1bea4873d5c55f11ab6e525d945b3302a47b001"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records 8 attempts, not 5, and shows 3 failed attempts (attempts 2, 3, and 8) with exit_code 1. The report's 5/5 summary and the 5 passing logs conflict with the manifest's recorded failures, so the evidence does not support the claim that all recorded attempts passed. Replay only confirms that the passing artifact passes in isolation, not that every attempt did."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:28:28.301276+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0975",
+  "incident": "inc-d163e0cfa66aec3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T00:21:58.361612+00:00",
+  "prompt_sha256": "7a75bed7f01cd021b59114feb43c11886169e9a33779d55dbb2217ebace71974",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "5c9dc8be22d2461aa5d26531e03ae62b",
+    "response_id": "gen-1793492520-dcOtlZAJh8zGni1noNeq",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2374,
+      "completion_tokens": 2183,
+      "total_tokens": 4557,
+      "cost": 0.002654424,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002654424,
+        "upstream_inference_prompt_cost": 3.4824e-05,
+        "upstream_inference_completions_cost": 0.0026196
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1998,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 6.3625,
+    "input_bound": 11635,
+    "reserved_usd": "0.0084057",
+    "request_sha256": "1703018fa1584d77c07998aabd1af777d07baf3d0c24e781df42dee94f1e0158"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.1,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts for this task: attempts 1-5 passed, but attempts 6-8 failed with exit_code 1 on the hidden test suite. Thus the claim that all recorded attempts were 5/5 is contradicted; the report's 5/5 reflects only a subset of the recorded attempts. The logs and replay only confirm that the passing artifact succeeds."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:22:06.875396+00:00"
+}

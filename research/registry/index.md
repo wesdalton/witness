@@ -28,6 +28,10 @@ Completed runs, frozen designs, analyses, report editions and corrections have s
 | 20261031-evidence-access-v2 | gate | [Provider smoke for v3 (20 development episodes)](../experiments/20261031-evidence-access-v2/gates/provider-smoke-01/report.md) | 20261031-evidence-access-v2.gate-provider-smoke-01 |
 | 20261101-evidence-access-v3 | design | [Evidence-access benchmark v3 (cross-family replication and observed-counts intervention)](../experiments/20261101-evidence-access-v3/design/protocol.md) | 20261101-evidence-access-v3.design |
 | 20261101-evidence-access-v3 | gate | [Corpus v3 (attempts bound to patch hashes) built and free gates passed](../experiments/20261101-evidence-access-v3/gates/corpus-v3/manifest.json) | 20261101-evidence-access-v3.gate-corpus-v3 |
+| 20261101-evidence-access-v3 | run | [v3, DeepSeek V4.1 Flash, 1,056 held-out episodes](../experiments/20261101-evidence-access-v3/runs/stage3-deepseek-v4-1-flash-01/manifest.json) | 20261101-evidence-access-v3.run-stage3-deepseek-01 |
+| 20261101-evidence-access-v3 | run | [v3, Gemini 3.8 Flash, stopped at batch ceiling after 1,023/1,056](../experiments/20261101-evidence-access-v3/runs/stage3-gemini-3-8-flash-01/manifest.json) | 20261101-evidence-access-v3.run-stage3-gemini-01-stopped |
+| 20261101-evidence-access-v3 | adjudication | [v3 amendment: $35 phase ceiling, Gemini continuation, Sonnet $15 ceiling](../experiments/20261101-evidence-access-v3/adjudications/protocol-amendment-01) | 20261101-evidence-access-v3.protocol-amendment-01 |
+| 20261101-evidence-access-v3 | run | [v3, GPT-6 Luna, 1,056 held-out episodes](../experiments/20261101-evidence-access-v3/runs/stage3-gpt-6-luna-01/manifest.json) | 20261101-evidence-access-v3.run-stage3-luna-01 |
 | legacy-agent-study | run | [luna-calibration-01](../agent-study/luna-calibration-01/manifest.json) | legacy-agent-study-luna-calibration-01 |
 | legacy-agent-study | run | [luna-calibration-02](../agent-study/luna-calibration-02/manifest.json) | legacy-agent-study-luna-calibration-02 |
 | legacy-agent-study | run | [luna-screening-01](../agent-study/luna-screening-01/manifest.json) | legacy-agent-study-luna-screening-01 |

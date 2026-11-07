@@ -1,0 +1,60 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0800",
+  "incident": "inc-0968ccd0ebbe9683",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 4,
+  "started_at": "2026-11-01T00:11:51.812175+00:00",
+  "prompt_sha256": "8eb0708d54e1adfde047c1840a64fa85ed27e4e79b5b892e404eeeead2a69536",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b0bb1662729e4ebca73d87dbe9f15964",
+    "response_id": "gen-1793491912-nQyRosODQfDDNoUUS3uv",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 799,
+      "completion_tokens": 344,
+      "total_tokens": 1143,
+      "cost": 0.000426708,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000426708,
+        "upstream_inference_prompt_cost": 1.3908e-05,
+        "upstream_inference_completions_cost": 0.0004128
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 182,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.8822,
+    "input_bound": 6592,
+    "reserved_usd": "0.0068928",
+    "request_sha256": "e958bbb52cbe2d6f8271f0ee07207a3004097cc927077b0ef281a82879a770a3"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report asserts 8/8 hidden tests passed, but the replay of the same suite shows 4 failed and 4 passed with a nonzero verifier exit, contradicting the claim. The replay's direct pytest run is stronger evidence than the summary report, so the patch does not pass all 8 tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:11:53.527210+00:00"
+}

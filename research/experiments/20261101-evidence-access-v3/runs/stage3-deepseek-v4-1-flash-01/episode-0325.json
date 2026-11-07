@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0325",
+  "incident": "inc-f6e5148b72485191",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:44:51.103363+00:00",
+  "prompt_sha256": "31ef9fbb6813bdc3a20d3d12f66a67041e4ae9957c9cc177b1846440a0cd2356",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "829956c4bae94e6eb93c95d2c09be7b3",
+    "response_id": "gen-1793490293-0ao3QxcEobCK9IZbiKkx",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2567,
+      "completion_tokens": 446,
+      "total_tokens": 3013,
+      "cost": 0.00055266,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2560,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00055266,
+        "upstream_inference_prompt_cost": 1.746e-05,
+        "upstream_inference_completions_cost": 0.0005352
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 271,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.0258,
+    "input_bound": 12157,
+    "reserved_usd": "0.0085623",
+    "request_sha256": "2b8ca5d1547cbd4b77602b2bc1bea4873d5c55f11ab6e525d945b3302a47b001"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts"
+    ],
+    "reason": "The manifest records 8 attempts on csvline, of which attempts 2, 3, and 8 failed (exit_code 1, status failed), while only 5 passed. The report's \"5/5\" is a subsetted count that excludes real failed attempts, so the claim that all recorded attempts passed is inconsistent with the full evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:44:54.517253+00:00"
+}

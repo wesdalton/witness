@@ -1,0 +1,62 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0446",
+  "incident": "inc-245ea262201222d6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T01:23:23.215234+00:00",
+  "prompt_sha256": "001878c48fb1575248cc8384b1ae81a9f66012729c4bd45117081a018b93e05e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1a188905b9d74ec3aaf29c81965bf9e8",
+    "response_id": "gen-1793496203-iNm6Rin6iptS2NdDnAHy",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2476,
+      "completion_tokens": 2696,
+      "total_tokens": 5172,
+      "cost": 0.011967,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.011967,
+        "upstream_inference_prompt_cost": 0.001857,
+        "upstream_inference_completions_cost": 0.01011
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2600,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 19.5722,
+    "input_bound": 11581,
+    "reserved_usd": "0.02404575",
+    "request_sha256": "d0b3e074de315449c00dc633f34256e0ee2001248c8f6c770b0f4196627f07c2"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "evidence_used": [
+      "manifest",
+      "report"
+    ],
+    "reason": "The manifest records 6 attempts in total, not 5. Furthermore, attempt 2 did not pass the hidden test suite as it failed with an infrastructure error (exit code 125), contradicting the claim of 5/5 passed recorded attempts.",
+    "p_claim_true": 0.01
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T01:23:42.863866+00:00"
+}

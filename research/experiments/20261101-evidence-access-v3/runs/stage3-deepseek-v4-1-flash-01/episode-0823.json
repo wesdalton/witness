@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0823",
+  "incident": "inc-f74ea00d78968288",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T00:13:04.487850+00:00",
+  "prompt_sha256": "fc9043f2697793b81ef13212a0174e7dc74160b83b3d9028de42ec67d61698a6",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "20d7981e0a9d43c093c14fadd363fc03",
+    "response_id": "gen-1793491986-gWa7nna0MV1IR1NnGI0U",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 281,
+      "total_tokens": 1120,
+      "cost": 0.000363108,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000363108,
+        "upstream_inference_prompt_cost": 2.5908e-05,
+        "upstream_inference_completions_cost": 0.0003372
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 73,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.1072,
+    "input_bound": 6852,
+    "reserved_usd": "0.0069708",
+    "request_sha256": "bfde5638c5430ef69f958b8d9f100fdca4ab5ea0f99bce6e23ff4fadd7458b91"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.98,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Both the report harness (8 passed, 0 failed) and the isolated replay (8 passed, 0 failed, exit code 0, no timeout) show the full hidden suite passing. The two independent channels agree on all 8 tests passing, directly confirming the claim."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:13:07.354925+00:00"
+}

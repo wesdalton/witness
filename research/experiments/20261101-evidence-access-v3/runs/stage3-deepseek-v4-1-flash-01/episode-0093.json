@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0093",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-10-31T23:31:41.257795+00:00",
+  "prompt_sha256": "04c0a139846229920bcaae3dc936ae042d42ea47ee9da01613932c79834b9709",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "e85245df445148828cfe749ac1cf9000",
+    "response_id": "gen-1793489503-Msqf3LsNbkmxbPU3Nt1O",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1343,
+      "completion_tokens": 279,
+      "total_tokens": 1622,
+      "cost": 0.000624804,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000624804,
+        "upstream_inference_prompt_cost": 0.000290004,
+        "upstream_inference_completions_cost": 0.0003348
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 88,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7769,
+    "input_bound": 8610,
+    "reserved_usd": "0.0074982",
+    "request_sha256": "12ce8903141b047c4cf4765dc7331f41127b2f823f98717df2e5c113835d1965"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The report and manifest claim 9 passed, but the isolated replay shows 2 failed (test_multi_digit_count, test_round_trip_long_runs) with only 7 passed. The artifact code confirms the bug: decode does count = int(ch) per digit instead of accumulating multi-digit counts, so the multi-digit spec is violated. The 9-pass stdout is contradicted by the authoritative replay."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:31:44.077483+00:00"
+}

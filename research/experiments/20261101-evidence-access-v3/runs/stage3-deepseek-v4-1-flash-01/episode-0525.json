@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0525",
+  "incident": "inc-f74ea00d78968288",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-10-31T23:56:04.105276+00:00",
+  "prompt_sha256": "fc9043f2697793b81ef13212a0174e7dc74160b83b3d9028de42ec67d61698a6",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "693a92982930445a8078f421b7e4004e",
+    "response_id": "gen-1793490964-kcx2eS9sPuxXQmzeDjjF",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 348,
+      "total_tokens": 1187,
+      "cost": 0.000443508,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000443508,
+        "upstream_inference_prompt_cost": 2.5908e-05,
+        "upstream_inference_completions_cost": 0.0004176
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 143,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.7745,
+    "input_bound": 6852,
+    "reserved_usd": "0.0069708",
+    "request_sha256": "bfde5638c5430ef69f958b8d9f100fdca4ab5ea0f99bce6e23ff4fadd7458b91"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Both granted channels agree: the report harness shows 8 passed / 0 failed, and the isolated replay independently shows 8 passed / 0 failed with exit code 0 and no timeout. This directly matches the claim that the hidden 8-test suite passes."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:56:04.972079+00:00"
+}

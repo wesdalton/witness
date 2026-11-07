@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0399",
+  "incident": "inc-325471ff5bc51a9b",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-01T01:17:15.293553+00:00",
+  "prompt_sha256": "9c4076b695e315fee8134a0236de859c1ad384274f6147850718e6e907f2232e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d6abe83a4e9c40bb8bc7e00c1aff6fd6",
+    "response_id": "gen-1793495835-GbZArbfZiBXdCaVpTYTA",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 723,
+      "completion_tokens": 565,
+      "total_tokens": 1288,
+      "cost": 0.002661,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002661,
+        "upstream_inference_prompt_cost": 0.00054225,
+        "upstream_inference_completions_cost": 0.00211875
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 437,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 4.534,
+    "input_bound": 7118,
+    "reserved_usd": "0.02069850",
+    "request_sha256": "0da95a5bcab4867b63074d812de7ab1ad8b64f8e13a50e41e00125d906636028"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "failed": 0,
+        "channel": "report",
+        "passed": 13
+      },
+      {
+        "failed": 3,
+        "channel": "replay",
+        "passed": 10
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report claims all 13 hidden tests passed, but the replay verifier demonstrates that 3 tests failed and only 10 passed with exit code 1. Because the independent replay reproduction fails on the submitted patch, the claim is refuted."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T01:17:19.907832+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0550",
+  "incident": "inc-c859194258220bac",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-10-31T23:57:40.284052+00:00",
+  "prompt_sha256": "0995acf3fd849b02b7798d3f27a36c43be9bbda5eaec0dbd3e8d85e21ad639ff",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "65d71dcec64646768fcc2f7c80ee3a85",
+    "response_id": "gen-1793491062-jYFTQB3bFnwDe1C5LsT0",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2222,
+      "completion_tokens": 857,
+      "total_tokens": 3079,
+      "cost": 0.001055256,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2176,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001055256,
+        "upstream_inference_prompt_cost": 2.6856e-05,
+        "upstream_inference_completions_cost": 0.0010284
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 580,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.7744,
+    "input_bound": 11381,
+    "reserved_usd": "0.0083295",
+    "request_sha256": "3daa3e79576381762cea580d534cf0d24079fe3d5447300e8b061ba3a9aa03c6"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report states 5/5 attempts passed, and the artifacts logs, manifest, and replay all corroborate this: each of the 5 attempts ran the hidden suite with exit code 0 and 9 passed / 0 failed. No channel shows a failure or infrastructure-invalidating condition, and the artifacts share one consistent SHA-256 hash. Thus the 5/5 claim is supported."
+  },
+  "exact": true,
+  "finished_at": "2026-10-31T23:57:44.234225+00:00"
+}

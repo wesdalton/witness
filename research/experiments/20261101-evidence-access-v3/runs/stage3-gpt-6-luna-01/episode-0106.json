@@ -1,0 +1,105 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0106",
+  "incident": "inc-262ced5d895e3e73",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T02:44:21.676348+00:00",
+  "prompt_sha256": "3a509c689eda8b73cf4cd402b377abc9c603e3b00647bcf6f54f22554a4c2246",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3ee1f0c525ee47fd82fc288c6bfeb377",
+    "response_id": "gen-1793501063-08KDAOQ4mo7Wk2dTE6BD",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2003,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1872
+      },
+      "output_tokens": 1375,
+      "output_tokens_details": {
+        "reasoning_tokens": 1211
+      },
+      "total_tokens": 3378,
+      "cost": 0.0009346,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0009346,
+        "upstream_inference_input_cost": 0.0002471,
+        "upstream_inference_output_cost": 0.0006875
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 13.4368,
+    "input_bound": 11618,
+    "reserved_usd": "0.003500250",
+    "request_sha256": "da2e7b2ac26b9e4788a43ef52b81cea2003254a279920cea96a7d91272e52f5c",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a8faa8cd1201ad6016ae6a787c68887d18661e2d91ae7fe72",
+        "sha256": "d1e734c40fb6ed5b42fcfbb208851236831c1b43ce84de9d5b145c8650cd8411"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_0a8faa8cd1201ad6016ae6a78c876887d19c49bebd169140c4",
+        "sha256": "582b80b0332ec293f5532b723483fa50a4fd83decffa13798e8bcac2d3611738"
+      },
+      {
+        "type": "reasoning",
+        "id": "rs_0a8faa8cd1201ad6016ae6a7915c8c87d1a349355aa72afd5a",
+        "sha256": "04f9859318a274fdf6a5754f7fca475db7e96e25cbf20a0638f75578214e1746"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_bhkpsoleuup",
+        "sha256": "0ba1d33b2e9546ef25a9bef527b4a39a8ab430fda6098731cbf8f65bac925c8b"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "insufficient",
+    "p_claim_true": 0.55,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report and artifact logs show five reported runs passing, and replay passes, but the manifest lists six executions with execution 2 marked infra_error while the logs label a passing run as reported attempt 2. This inconsistency prevents establishing exactly which five attempts the claim refers to or whether each of them passed."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T02:44:36.557856+00:00"
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0152",
+  "incident": "inc-d163e0cfa66aec3e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T00:47:11.871711+00:00",
+  "prompt_sha256": "dee3a589a9cb3ca9b119ba9058da39ca2896293a12a24f7fb1023977c3d88d26",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7d9f358f5f1c4bfe897299bd46a5be76",
+    "response_id": "gen-1793494031-3chTI9NohC31jtncky2q",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2821,
+      "completion_tokens": 4072,
+      "total_tokens": 6893,
+      "cost": 0.01738575,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01738575,
+        "upstream_inference_prompt_cost": 0.00211575,
+        "upstream_inference_completions_cost": 0.01527
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3928,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 29.7986,
+    "input_bound": 12161,
+    "reserved_usd": "0.02448075",
+    "request_sha256": "f168be4713789134379573bcc819b5973442ec81617730e100bdeebc5af3a7e1"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "passed": 8,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "failed": null,
+        "passed": null
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "manifest"
+      },
+      {
+        "passed": 8,
+        "channel": "replay",
+        "failed": 0
+      }
+    ],
+    "evidence_used": [
+      "manifest"
+    ],
+    "verdict": "refuted",
+    "reason": "The manifest records 8 total attempts rather than 5, with attempts 6 through 8 failing the test suite with exit code 1. Therefore, the claim that all recorded attempts passed is refuted by the manifest.",
+    "p_claim_true": 0
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:47:41.728265+00:00"
+}

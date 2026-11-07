@@ -1,0 +1,85 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0041",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T00:33:12.280242+00:00",
+  "prompt_sha256": "e484085e700a29f6c91db9cd37f1a3f9728fd4eed5a045910cc0760cf395ac8f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "54945016454643e78be6b5c61157eea4",
+    "response_id": "gen-1793493192-HWGAM5EBgmuxAXj4BQLJ",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2880,
+      "completion_tokens": 1261,
+      "total_tokens": 4141,
+      "cost": 0.00688875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00688875,
+        "upstream_inference_prompt_cost": 0.00216,
+        "upstream_inference_completions_cost": 0.00472875
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1087,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 11.5519,
+    "input_bound": 12488,
+    "reserved_usd": "0.02472600",
+    "request_sha256": "71b2588772606dbc588931297fccfd400c438fae7e2ba72ce2387eb2c876b2d6"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0,
+    "reason": "The evaluation manifest records 8 total attempts rather than 5, with 3 failing the hidden test suite (attempts 4, 5, and 8). The report and artifact logs selectively omit the 3 failed attempts, presenting only the 5 successful ones. Consequently, the claim that all recorded attempts passed is refuted.",
+    "observed_counts": [
+      {
+        "failed": 0,
+        "passed": 5,
+        "channel": "report"
+      },
+      {
+        "channel": "artifacts",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "failed": 3,
+        "channel": "manifest",
+        "passed": 5
+      },
+      {
+        "channel": "replay",
+        "failed": 0,
+        "passed": 1
+      }
+    ],
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "verdict": "refuted"
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:33:24.199513+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0988",
+  "incident": "inc-27ae538783dfe579",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-01T00:22:43.173306+00:00",
+  "prompt_sha256": "1d169d5bcc60dcb96cccfc501a21baa4f9aac05e1a68df203f409ed27c5e12fb",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d3c840ea9a404dca9e49443abd3d933b",
+    "response_id": "gen-1793492565-0LmTyESYpBX5OSKJoMrz",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2330,
+      "completion_tokens": 486,
+      "total_tokens": 2816,
+      "cost": 0.000604824,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000604824,
+        "upstream_inference_prompt_cost": 2.1624e-05,
+        "upstream_inference_completions_cost": 0.0005832
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 299,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 1.5677,
+    "input_bound": 11346,
+    "reserved_usd": "0.0083190",
+    "request_sha256": "4ff8ecdaaf80785fcb6e0d2b9ce43fb209b44828439863f0a66412d661f1506a"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.92,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest lists 5 attempts with status \"passed\" (exit 0) plus one attempt (4) marked infra_error, which the stated policy excludes from the reported rate, matching the report's 5/5. The artifact logs show 5 passing runs (\"8 passed\") and the isolated replay also exits 0 with 8 passed, corroborating the hidden suite passes on the submitted patch."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:22:46.910074+00:00"
+}

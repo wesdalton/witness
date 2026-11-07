@@ -1,0 +1,84 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0184",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-01T00:53:04.609626+00:00",
+  "prompt_sha256": "e88a65c39a9790b5a4d93766ba751e7055579eb0e1b5d6c337d31c444838b3e4",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "014d1130127e45e7a93703c3e7398777",
+    "response_id": "gen-1793494384-RGjkhS0FgARa8eufwpqp",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2615,
+      "completion_tokens": 2620,
+      "total_tokens": 5235,
+      "cost": 0.01178625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01178625,
+        "upstream_inference_prompt_cost": 0.00196125,
+        "upstream_inference_completions_cost": 0.009825
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2458,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 19.1469,
+    "input_bound": 11907,
+    "reserved_usd": "0.02429025",
+    "request_sha256": "31fe58296f32618d5bf1156c9a129d1691f9f9691bda2831c1999195acedad90"
+  },
+  "status": "completed",
+  "submission": {
+    "p_claim_true": 0,
+    "verdict": "refuted",
+    "observed_counts": [
+      {
+        "passed": 9,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "failed": null,
+        "passed": null,
+        "channel": "manifest"
+      },
+      {
+        "failed": 0,
+        "passed": 9,
+        "channel": "replay"
+      }
+    ],
+    "evidence_used": [
+      "manifest",
+      "report"
+    ],
+    "reason": "The manifest shows 6 recorded attempts rather than 5, with attempt 3 failing due to an infrastructure error (exit code 125). Although the report excluded this failed attempt to report 5/5 passing attempts, the record contains 6 attempts total, contradicting the claim."
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T00:53:23.832331+00:00"
+}

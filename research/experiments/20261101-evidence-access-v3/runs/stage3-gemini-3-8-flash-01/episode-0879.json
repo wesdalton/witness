@@ -1,0 +1,60 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0879",
+  "incident": "inc-7cbf7c73cb018066",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 3,
+  "started_at": "2026-11-01T02:18:37.964565+00:00",
+  "prompt_sha256": "4b5305e24fe24a63b929a1943a6d21081a0b4697a428b934a395484af22792f5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "29ded0643f2a40eeba88f94db42b47b0",
+    "response_id": "gen-1793499518-quCAJsbWEWMFpgbNtNMf",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 587,
+      "completion_tokens": 377,
+      "total_tokens": 964,
+      "cost": 0.001854,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001854,
+        "upstream_inference_prompt_cost": 0.00044025,
+        "upstream_inference_completions_cost": 0.00141375
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 281,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 4.2584,
+    "input_bound": 6598,
+    "reserved_usd": "0.02030850",
+    "request_sha256": "12e7635311b9f08852ad79923ba09ccb5ce821338888b88f33a761a20cf79076"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "While the harness report claims 10 passed tests, the execution replay reveals that running the isolated verifier fails two tests with exit code 1 (IndexError in quantiles/__init__.py). Thus, the submitted patch does not pass the hidden test suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:18:42.321117+00:00"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0169",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T02:48:58.598266+00:00",
+  "prompt_sha256": "255ff4c32bf0345a6b255b5eff4b73611c1301633b4b7f562c0cd3526447669a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "2678a0f3752e4d6ab3ce7a2f53f403b5",
+    "response_id": "gen-1793501339-ugREewBeGiqcAt4dREVy",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2127,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1996
+      },
+      "output_tokens": 579,
+      "output_tokens_details": {
+        "reasoning_tokens": 461
+      },
+      "total_tokens": 2706,
+      "cost": 0.0005521,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0005521,
+        "upstream_inference_input_cost": 0.0002626,
+        "upstream_inference_output_cost": 0.0002895
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 4.9329,
+    "input_bound": 11960,
+    "reserved_usd": "0.003543000",
+    "request_sha256": "a11349b2f85dffdb563e6e88bd2837b43ea714acc1706d4fa6fd18e5a21579c7",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0dc3f387fcb15fbf016ae6a89bb5bc87d1aa0f52edfd823b2c",
+        "sha256": "f6804c477c0a5d9ab35eba984425d52139828f4238b1aab294dad5db3e0d9772"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_3ba3rgct812",
+        "sha256": "244199ff1c04ac556f6cd24c84e41382cec31afccdddf7539ad3b507553dfbb6"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records attempts 4 and 5 as failed (exit code 1) and ties them to a different artifact hash than the passing runs, contradicting the claim that all five attempts passed. The report and supplied logs say 5/5 passed, but that conflicts with the manifest; the replay only verifies one artifact and cannot erase those failures."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:49:04.131448+00:00"
+}

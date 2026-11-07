@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0663",
+  "incident": "inc-508fd1b3664428ed",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T00:04:07.975785+00:00",
+  "prompt_sha256": "6a9f6355516b1c9fbace796c1511e1aa1e45485f25f61ed75666ed3178aa2ab8",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "e63b462c587a4db98f6e159212b8cedb",
+    "response_id": "gen-1793491450-b2JenoMu8U3jqfIE1SlR",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 2056,
+      "completion_tokens": 409,
+      "total_tokens": 2465,
+      "cost": 0.000505488,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 2048,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000505488,
+        "upstream_inference_prompt_cost": 1.4688e-05,
+        "upstream_inference_completions_cost": 0.0004908
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 238,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9807,
+    "input_bound": 10561,
+    "reserved_usd": "0.0080835",
+    "request_sha256": "1afb0fe27bced92d79bf8b279487c50e85dcdd3617fc51b963e29fa4962335d0"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest shows 5 attempts, all with exit_code 0 and status \"passed\" on the hidden_tests command, and the artifact logs for each attempt show 8 passed. The isolated replay independently reproduces 8 passed with exit code 0 and no failures, matching the report's 5/5 claim."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:04:11.412268+00:00"
+}

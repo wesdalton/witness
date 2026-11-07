@@ -1,0 +1,84 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0524",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-01T01:34:12.176881+00:00",
+  "prompt_sha256": "e03339639e57036072d34e79dfa9504e3cf8e0cd6053d4aa1a99dd9102feab3d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "e63e6c05bea44a72ba23b845e4cd7ee6",
+    "response_id": "gen-1793496852-hlNgXP99ZKQULen2cee5",
+    "model": "google/gemini-3.8-flash",
+    "provider": "Google AI Studio",
+    "usage": {
+      "prompt_tokens": 2517,
+      "completion_tokens": 2956,
+      "total_tokens": 5473,
+      "cost": 0.01297275,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01297275,
+        "upstream_inference_prompt_cost": 0.00188775,
+        "upstream_inference_completions_cost": 0.011085
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2793,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "STOP",
+    "elapsed_seconds": 21.6537,
+    "input_bound": 11388,
+    "reserved_usd": "0.02390100",
+    "request_sha256": "c8a5b359b6a36d93cbdea04554344f364c306764f60d3378bea373189884f0ae"
+  },
+  "status": "completed",
+  "submission": {
+    "evidence_used": [
+      "manifest",
+      "report"
+    ],
+    "verdict": "refuted",
+    "reason": "The manifest records 6 attempts rather than 5, with attempt 3 terminating in an infra_error (exit code 125). Although the report excluded this error per its reporting policy, the claim that all 5 recorded attempts passed (5/5) is contradicted by the execution manifest.",
+    "observed_counts": [
+      {
+        "passed": 8,
+        "channel": "report",
+        "failed": 0
+      },
+      {
+        "failed": 0,
+        "channel": "artifacts",
+        "passed": 8
+      },
+      {
+        "passed": null,
+        "failed": null,
+        "channel": "manifest"
+      },
+      {
+        "failed": 0,
+        "channel": "replay",
+        "passed": 8
+      }
+    ],
+    "p_claim_true": 0
+  },
+  "exact": false,
+  "finished_at": "2026-11-01T01:34:34.614223+00:00"
+}

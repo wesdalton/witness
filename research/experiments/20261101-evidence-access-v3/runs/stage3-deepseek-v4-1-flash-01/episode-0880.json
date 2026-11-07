@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0880",
+  "incident": "inc-8e422e70b829e245",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-01T00:16:26.186157+00:00",
+  "prompt_sha256": "6b54845d43a24430d2e8b52a866f82eb0d2dc2210f31bd820fbcc75b3fa2bd9f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "7ed1821e0b7d4372b3fc37f4dd823f0d",
+    "response_id": "gen-1793492187-Lddl8zXAj1lFqXxMxNa1",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 1112,
+      "completion_tokens": 830,
+      "total_tokens": 1942,
+      "cost": 0.001028544,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1024,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001028544,
+        "upstream_inference_prompt_cost": 3.2544e-05,
+        "upstream_inference_completions_cost": 0.000996
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 637,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 2.2417,
+    "input_bound": 7761,
+    "reserved_usd": "0.0072435",
+    "request_sha256": "ee9aba6a57f77227b0a1b0146c50b0af0feb4654819d81d9d2ecd93587e22d17"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay both show the submitted run timed out at the 10-second limit (exit 137/-9, timed_out true) with only seven test dots, so the hidden suite did not complete within the limit. The report's claim of 8/8 passed is contradicted by this direct run evidence, and the artifact code's 0.25s sleep per slugify call plausibly caused the cumulative timeout."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T00:16:29.180166+00:00"
+}

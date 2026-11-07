@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1042",
+  "incident": "inc-849c812d81852b2a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-01T03:50:54.767858+00:00",
+  "prompt_sha256": "06c17251a11c9cecc072d8fe623df7fa3d8f1acd12656819900d8bb69f51bc08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b9f123aa7b714fd88f68ab35392e8db0",
+    "response_id": "gen-1793505055-papi5XlGvaDSkIN62kYw",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2204,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2073
+      },
+      "output_tokens": 575,
+      "output_tokens_details": {
+        "reasoning_tokens": 472
+      },
+      "total_tokens": 2779,
+      "cost": 0.000559725,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000559725,
+        "upstream_inference_input_cost": 0.000272225,
+        "upstream_inference_output_cost": 0.0002875
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 7.534,
+    "input_bound": 12146,
+    "reserved_usd": "0.003566250",
+    "request_sha256": "5a901c063dd3e5448c7a085bce4bc297a69467b1d1a65768e9af9df06308cc3b",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_04cc4896a9968318016ae6b720356487d1b066654ecd64ba21",
+        "sha256": "ce9859d077865c0f805d191c737343d987a0dfa2804005e34f92b2e92d66c1b2"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_qy6k8zf158e",
+        "sha256": "223ad6934da63922563f2d6f4fdc02c73bd87ebd12d2ab2f076237b047ecd447"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records eight attempts, not five: attempts 3, 6, and 8 have exit code 1 and status failed, so it is not true that all recorded attempts passed. Although the report and artifact logs show five passing runs, that omits the three failed manifest attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T03:51:02.673535+00:00"
+}

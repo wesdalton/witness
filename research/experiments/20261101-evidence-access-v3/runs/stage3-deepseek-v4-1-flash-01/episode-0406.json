@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0406",
+  "incident": "inc-0f4aa46764e29b77",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 3,
+  "started_at": "2026-10-31T23:49:19.498936+00:00",
+  "prompt_sha256": "69239ac660c69347190175a6f67be806d489cdf7f1f745353a0e07485f772cd3",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "a34e94cb35c749fba4bc0018ec9c9051",
+    "response_id": "gen-1793490561-77PewLofMh1WNHzLthb9",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "provider": "Together",
+    "usage": {
+      "prompt_tokens": 793,
+      "completion_tokens": 409,
+      "total_tokens": 1202,
+      "cost": 0.000502908,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000502908,
+        "upstream_inference_prompt_cost": 1.2108e-05,
+        "upstream_inference_completions_cost": 0.0004908
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 196,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_calls",
+    "elapsed_seconds": 0.9745,
+    "input_bound": 6680,
+    "reserved_usd": "0.0069192",
+    "request_sha256": "993c53de9fd4e0ad9467900c1e3f2cb5744430874ea60001d193620c6545d9a5"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.85,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report channel directly shows the harness passed 11 and failed 0 tests, matching the claimed 11-test suite. The replay channel exits 0 without timing out, consistent with a passing run, though it reports no per-test counts to independently corroborate. No evidence contradicts the claim, so it is supported."
+  },
+  "exact": false,
+  "finished_at": "2026-10-31T23:49:22.504507+00:00"
+}

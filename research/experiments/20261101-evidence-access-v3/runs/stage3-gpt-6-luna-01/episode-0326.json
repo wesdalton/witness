@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0326",
+  "incident": "inc-d53248e08f7199d6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-01T02:59:42.440750+00:00",
+  "prompt_sha256": "c6bee99604d8460ae901d3d518396ecf4c3c97fa9090dc9a450a65892a7a4e7d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "765c0bbae418459ebc196610044dd542",
+    "response_id": "gen-1793501983-P6RsA29RObUeoL6e1OYu",
+    "model": "openai/gpt-6-luna",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1079,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 292,
+      "output_tokens_details": {
+        "reasoning_tokens": 134
+      },
+      "total_tokens": 1371,
+      "cost": 0.0002539,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0002539,
+        "upstream_inference_input_cost": 0.0001079,
+        "upstream_inference_output_cost": 0.000146
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2999,
+    "input_bound": 9202,
+    "reserved_usd": "0.003198250",
+    "request_sha256": "173cbd4d2b86e207ddc59a3dcbf4af95c53cbd9ad71251bd85ef7d467f8d4f22",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_070e2cc036df3334016ae6ab1fcf7487d18cecc5bc746e8ff0",
+        "sha256": "14020c83f72bb92201dd0f729c675369e39a48cc39907ba4dc8811d87b71281d"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_62borg5zpim",
+        "sha256": "fcd6d79679aee2e24e77ddc01e7ca337d0cf48927b040f621de8ba0c535dcf56"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 11,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.999,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report, artifacts log, and replay each show all 11 tests passing with no failures; the replay also explicitly says it did not time out and completed in 0.02 seconds under the 10-second limit. The manifest independently records a passed attempt with that time limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-01T02:59:46.463356+00:00"
+}
