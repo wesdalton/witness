@@ -70,7 +70,7 @@ test("no external scripts, stylesheets or fonts", () => {
 
 test("headline numbers appear on the page", () => {
   const required = [
-    "alone as proof that the tests passed",
+    "Accepted on exit code",
     "48/48", "14/48", "43/48", "0/48",
     "191 of 192", "172 of 192", "0/192",
     "0/96", "2,112", "$2.69",
