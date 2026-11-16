@@ -151,3 +151,36 @@ def test_stage3_plan_and_counts_validation():
         audit.validate({k: v for k, v in good.items() if k != "observed_counts"}, "counts")
     with pytest.raises(ValueError):
         audit.validate(good, "base")
+
+def test_continuation_runs_only_unattempted_episodes(tmp_path, monkeypatch):
+    from witness.core.budget import BudgetError
+    from witness.evidence_access import audit
+
+    monkeypatch.setattr(audit, "ROOT", tmp_path)
+    plan = [{"episode": f"{n:04d}", "incident": "i", "access": [], "prompt": "base",
+             "sample": n} for n in range(6)]
+
+    def run(name, episodes, recorded):
+        folder = tmp_path / name
+        folder.mkdir()
+        (folder / "manifest.json").write_text(json.dumps(
+            {"model": "m", "batch": name, "episodes": episodes}))
+        for e in recorded:
+            (folder / f"episode-{e}.json").write_text(json.dumps({"episode": e}))
+        return folder
+
+    first = run("first", plan, ["0000", "0001"])
+    second = run("second", plan[2:], ["0002"])
+    left, link = audit.remaining(plan, "m", [first, second], skip=["0003"])
+    assert [e["episode"] for e in left] == ["0004", "0005"]
+    assert link == {"runs": [{"run": "first", "batch": "first", "already_attempted": 2},
+                             {"run": "second", "batch": "second", "already_attempted": 1}],
+                    "skipped": ["0003"]}
+    with pytest.raises(BudgetError):  # a recorded episode cannot be "skipped"
+        audit.remaining(plan, "m", [first, second], skip=["0002"])
+    with pytest.raises(BudgetError):  # nor one no earlier run planned
+        audit.remaining(plan, "m", [second], skip=["0000"])
+    with pytest.raises(BudgetError):
+        audit.remaining(plan, "other", [first])
+    with pytest.raises(BudgetError):
+        audit.remaining(plan[:3], "m", [first])

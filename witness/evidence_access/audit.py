@@ -201,6 +201,29 @@ def run_episode(spec: dict, incident: dict, separating: dict, client) -> dict:
     return record
 
 
+def remaining(episodes: list[dict], model: str, runs: list[Path], skip=()) -> tuple[list, dict]:
+    """Episodes of the plan that no earlier run attempted.
+
+    `skip` lists episodes that an earlier run attempted without writing a record (for
+    example a request that timed out with an unknown outcome); they are never repeated.
+    """
+    attempted, linked, manifests = set(), [], []
+    for run in runs:
+        earlier = json.loads((run / "manifest.json").read_text())
+        if earlier["model"] != model or any(e not in episodes for e in earlier["episodes"]):
+            raise BudgetError("Continuation must use the same model and plan")
+        done = {json.loads(p.read_text())["episode"] for p in run.glob("episode-*.json")}
+        attempted |= done
+        manifests.extend(e["episode"] for e in earlier["episodes"])
+        linked.append({"run": str(run.resolve().relative_to(ROOT)), "batch": earlier["batch"],
+                       "already_attempted": len(done)})
+    if any(e not in manifests or e in attempted for e in skip):
+        raise BudgetError("Skipped episodes must be planned by an earlier run and unrecorded")
+    attempted |= set(skip)
+    return ([e for e in episodes if e["episode"] not in attempted],
+            {"runs": linked, "skipped": sorted(skip)})
+
+
 def snapshot(out: Path) -> dict[str, str]:
     """Copy the exact runner source into the run and return its hashes."""
     paths = [*sorted((ROOT / "witness/evidence_access").glob("*.py")),
@@ -222,8 +245,10 @@ def main():
     parser.add_argument("--model", choices=list(STAGE3_MODELS), required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--stage", choices=["1", "2", "3", "smoke"], default="1")
-    parser.add_argument("--continue-from", type=Path,
-                        help="Earlier run of the same plan; only its unattempted episodes run")
+    parser.add_argument("--continue-from", type=Path, nargs="+",
+                        help="Earlier runs of the same plan; only episodes none attempted run")
+    parser.add_argument("--skip", nargs="+", default=[],
+                        help="Episodes attempted without a record; never rerun (needs --amendment)")
     parser.add_argument("--batch-ceiling", type=Decimal,
                         help="Override the frozen ceiling; requires --amendment")
     parser.add_argument("--amendment", type=Path, help="Sealed protocol amendment authorizing it")
@@ -233,6 +258,8 @@ def main():
         raise BudgetError("--batch-ceiling and --amendment must be given together")
     if args.amendment and not args.amendment.is_file():
         raise BudgetError("Amendment document not found")
+    if args.skip and not (args.amendment and args.continue_from):
+        raise BudgetError("--skip requires --continue-from and --amendment")
     args.corpus, args.out = args.corpus.resolve(), args.out.resolve()
     incidents, _, separating = load_corpus(args.corpus)
     by_id = {i["id"]: i for i in incidents}
@@ -246,14 +273,7 @@ def main():
         episodes, ceiling = plan_smoke(incidents), SMOKE_CEILING
     continues = None
     if args.continue_from:
-        earlier = json.loads((args.continue_from / "manifest.json").read_text())
-        if earlier["model"] != args.model or earlier["episodes"] != episodes:
-            raise BudgetError("Continuation must use the same model and plan")
-        done = {json.loads(p.read_text())["episode"]
-                for p in args.continue_from.glob("episode-*.json")}
-        episodes = [e for e in episodes if e["episode"] not in done]
-        continues = {"run": str(args.continue_from.resolve().relative_to(ROOT)),
-                     "batch": earlier["batch"], "already_attempted": len(done)}
+        episodes, continues = remaining(episodes, args.model, args.continue_from, args.skip)
     if args.batch_ceiling is not None:
         ceiling = args.batch_ceiling
     summary = {"model": args.model, "stage": args.stage, "episodes": len(episodes),
