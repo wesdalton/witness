@@ -1,4 +1,9 @@
-# Witness
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="website/dist/assets/witness-stacked-reverse@2x.png">
+    <img src="website/dist/assets/witness-stacked@2x.png" alt="Witness" width="200">
+  </picture>
+</p>
 
 **Do LLM auditors know when the evidence cannot settle a claim about an agent run?**
 

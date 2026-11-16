@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#1a201d" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <title>Accepted on exit code 0 | Witness</title>
-  <meta name="description" content="A research note by Wes Dalton. On held-out tasks, two LLM auditors accepted every agent run whose replay showed exit status 0 and no tests (48 of 48 episodes each), and trusted an evaluation harness's own report almost every time.">
+  <meta name="description" content="A research note by Wes Dalton. On held-out tasks, GPT-6 Luna and GPT-6.1 Sol, used as auditors, judged an agent patch to pass its tests whenever the replay showed exit code 0 and no tests had run (48 of 48 episodes each), and trusted an evaluation harness's own report almost every time.">
   <link rel="canonical" href="https://wesdalton.github.io/witness/">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Witness">
   <meta property="og:title" content="Accepted on exit code 0">
-  <meta property="og:description" content="Do LLM auditors notice when their evidence cannot settle a claim about an agent run? On held-out tasks, two auditors accepted runs whose replay showed exit status 0 and no tests in 96 of 96 episodes.">
+  <meta property="og:description" content="Do LLM auditors notice when their evidence cannot settle a claim about an agent run? An agent patch quit before any test ran, and the replay showed only exit code 0. GPT-6 Luna and GPT-6.1 Sol, used as auditors, still judged the claim that it passed the tests supported in 96 of 96 episodes.">
   <meta property="og:url" content="https://wesdalton.github.io/witness/">
   <meta property="og:image" content="https://wesdalton.github.io/witness/assets/social-card.png">
   <meta property="og:image:width" content="1200">
@@ -23,13 +23,13 @@
   <meta property="og:image:alt" content="The Witness symbol, a hand-drawn lowercase w, beside the name Witness">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Accepted on exit code 0">
-  <meta name="twitter:description" content="Do LLM auditors notice when their evidence cannot settle a claim about an agent run? On held-out tasks, two auditors accepted runs whose replay showed exit status 0 and no tests in 96 of 96 episodes.">
+  <meta name="twitter:description" content="Do LLM auditors notice when their evidence cannot settle a claim about an agent run? An agent patch quit before any test ran, and the replay showed only exit code 0. GPT-6 Luna and GPT-6.1 Sol, used as auditors, still judged the claim that it passed the tests supported in 96 of 96 episodes.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar">
-    <a class="home" href="#top"><img class="logo-light" src="assets/witness-symbol-small.svg" alt="" width="24" height="24"><img class="logo-dark" src="assets/witness-symbol-small-reverse.svg" alt="" width="24" height="24">Witness</a>
+    <a class="home" href="#top" aria-label="Witness, top of page"><img class="logo-light" src="assets/witness-wordmark-small.svg" alt="" width="132" height="26"><img class="logo-dark" src="assets/witness-wordmark-small-reverse.svg" alt="" width="132" height="26"></a>
     <nav aria-label="Sections">
       <a href="#setup">Setup</a>
       <a href="#findings">Findings</a>
@@ -42,10 +42,10 @@
   <main id="main">
     <article id="top">
       <header class="intro col">
-        <div class="intro-mark" aria-hidden="true"><img class="logo-light" src="assets/witness-symbol.svg" alt="" width="96" height="56"><img class="logo-dark" src="assets/witness-symbol-reverse.svg" alt="" width="96" height="56"></div>
+        <div class="intro-mark" aria-hidden="true"><img class="logo-light" src="assets/witness-stacked-small.svg" alt="" width="160" height="122"><img class="logo-dark" src="assets/witness-stacked-small-reverse.svg" alt="" width="160" height="122"></div>
         <p class="meta">Research note &middot; Evidence-access benchmark v2 &middot; Held-out study run 31 October 2026</p>
         <h1>Accepted on exit code&nbsp;0</h1>
-        <p class="dek">When an LLM auditor is asked whether an agent run really did what its report claims, does it recognize when its evidence cannot settle the claim, and does it use the evidence that can? On held-out tasks, two auditors read a replay showing exit status 0, no output and no test summary as proof that the tests passed, in every one of 96 episodes.</p>
+        <p class="dek">A report claims an agent&rsquo;s patch passes a hidden test suite. An LLM auditor is asked to check that claim, using the harness&rsquo;s report, which shows every test passing, and its own replay of the tests. The replay shows exit code 0, no output and no test summary, because the patch quits the process before any test runs. On held-out tasks, GPT-6 Luna and GPT-6.1 Sol judged the claim supported in all 96 of these episodes.</p>
       </header>
 
       <figure class="fig col-wide" id="fig-early-exit" aria-labelledby="fig1-cap">
