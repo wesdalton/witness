@@ -1,6 +1,6 @@
 # Findings
 
-Current as of 16 November 2026. This report covers the active study in full and
+Current as of 16 November 2026 (v3 results added the same day). This report covers the active study in full and
 the earlier, closed studies in one table. Raw evidence for the active study is in
 [`experiments/`](experiments/). Everything else, including the closed studies'
 runs and writeups, is preserved at the git tag
@@ -8,6 +8,11 @@ runs and writeups, is preserved at the git tag
 
 ## Summary
 
+- **Five models from four providers accept exit code 0 alone (v3).** Claude
+  Sonnet 5.5, Gemini 3.8 Flash, DeepSeek V4.1 Flash, GPT-6 Luna and GPT-6.1 Sol
+  each judged that a patch passes its tests in 48 of 48 episodes when their own
+  replay showed only exit code 0. Asked first to list the counts the replay shows,
+  every model recorded that the replay shows none and still said the tests passed.
 - **Exit status 0 is treated as proof that tests ran.** When the only evidence was
   an auditor-run replay showing exit status 0, no output and no test summary, GPT-6
   Luna and GPT-6.1 Sol both accepted the run as passing in every episode (8
@@ -17,8 +22,7 @@ runs and writeups, is preserved at the git tag
   is byte-identical for the valid and invalid run, Luna answered `supported` in
   191/192 episodes and Sol in 172/192, with median stated confidence 0.99 and
   0.97. Two added prompt sentences removed this completely (0/192 for both).
-- **Status:** a replication on three other model families is mostly run and not
-  yet analyzed. Five earlier studies found no effect; the reasons shaped the
+- **Earlier work:** five earlier studies found no effect; the reasons shaped the
   current design.
 
 ## The question
@@ -119,26 +123,45 @@ are not actually established. This affects a secondary guard and the full-access
 cells, not the results above
 ([adjudication](experiments/20261031-evidence-access-v2/adjudications/dropped-attempts-labels-01/adjudication.md)).
 
-### v3 replication (in progress, not analyzed)
+### v3 replication: five models, four providers
 
-[Protocol](experiments/20261101-evidence-access-v3/design/protocol.md). Same
-design on DeepSeek V4.1 Flash, Gemini 3.8 Flash and Claude Sonnet 5.5, plus Luna
-and Sol again, with an added arm that shows observed test counts. Status:
+[Protocol](experiments/20261101-evidence-access-v3/design/protocol.md),
+[report](experiments/20261101-evidence-access-v3/reports/stage3-01/report.md),
+[analysis](experiments/20261101-evidence-access-v3/analyses/stage3-01/analysis.json).
+Same design on a rebuilt corpus with Claude Sonnet 5.5, Gemini 3.8 Flash and
+DeepSeek V4.1 Flash as the primary test, plus Luna and Sol again. A new arm
+(`counts`) asked the auditor to list, before deciding, the pass and fail counts
+each granted channel shows. 5,279 episodes, $15.46, analysis run once after every
+batch finished.
 
-| Model | Episodes |
-| --- | --- |
-| DeepSeek V4.1 Flash | 1,056 / 1,056 |
-| GPT-6 Luna | 1,056 / 1,056 |
-| GPT-6.1 Sol | 1,056 / 1,056 (two runs) |
-| Gemini 3.8 Flash | 1,034 / 1,056 (stopped by a timeout) |
-| Claude Sonnet 5.5 | not started |
+| Model | Early exit accepted, replay only (base / counts) | Replay counts recorded as null, then accepted | Report-only commitment |
+| --- | --- | --- | --- |
+| Claude Sonnet 5.5 | 48/48 / 48/48 | 48/48 | 192/192 |
+| Gemini 3.8 Flash | 48/48 / 47/48 | 47/48 | 192/192 |
+| DeepSeek V4.1 Flash | 48/48 / 48/48 | 48/48 | 192/192 |
+| GPT-6 Luna | 48/48 / 48/48 | 48/48 | 192/192 |
+| GPT-6.1 Sol | 48/48 / 48/48 | 48/48 | 188/192 |
 
-Runs stopped twice for infrastructure reasons: prepaid provider credit ran out,
-and a request timed out. Both stops are recorded without retries
+- **The exit-status failure replicated in all three new families.** All six R1
+  tests passed: each new model committed on every report-only episode and accepted
+  every early-exit run while refuting every shadow-runner run.
+- **Asking for the counts did not help any model.** Every model correctly wrote
+  down that the replay shows no pass or fail counts, then accepted the claim
+  anyway. Sonnet: "The replay exited with code 0 and did not time out, which
+  agrees with the report. The replay showed no counts of its own." The models see
+  the missing summary and still treat a clean exit as confirmation.
+- **Repaired attempt family.** With each attempt bound to its patch hash, the
+  attempt-rate claims became decidable; only the declared-exclusion variant stayed
+  hard for some models (Gemini 1/24, Sol 13/24, Luna 15/24).
+
+Runs stopped three times for infrastructure reasons and were continued without
+repeating any episode
 ([credit stop](experiments/20261101-evidence-access-v3/adjudications/infra-stop-402-01/note.md),
-[timeout stop](experiments/20261101-evidence-access-v3/adjudications/infra-stop-timeout-01/note.md)).
-The second note also corrects a wrong statement in amendment 01 about when it was
-written. No v3 analysis will be run until the frozen design is complete.
+[timeout stop](experiments/20261101-evidence-access-v3/adjudications/infra-stop-timeout-01/note.md),
+[amendment 03](experiments/20261101-evidence-access-v3/adjudications/protocol-amendment-03/amendment.md)).
+Gemini has 1,055 of 1,056 episodes; the one request with an unknown outcome was
+not repeated. The timeout note also corrects a wrong statement in amendment 01
+about when it was written.
 
 ## Related work
 
@@ -179,13 +202,14 @@ All paid requests in this phase are recorded in an append-only ledger,
 [`budget.jsonl`](budget.jsonl), that reserves the worst-case cost of every request
 before sending it and refuses requests that would exceed the ceiling.
 
-| Item | Value |
+| Item | Value (as of 16 November 2026) |
 | --- | --- |
 | Phase ceiling | $35 (raised from $25 on 1 November) |
-| Requests | 7,246 (7,244 settled, 2 failed) |
-| Billed by the provider | $11.54 |
-| Exposure (billed plus reservations held for the 2 failed requests) | $11.62 |
+| Requests | 8,323 (8,321 settled, 2 failed) |
+| Billed by the provider | $18.90 |
+| Exposure (billed plus reservations held for the 2 failed requests) | $18.98 |
 | Evidence-access v2 alone | 2,112 requests, $2.69 |
+| Evidence-access v3 alone | 5,281 requests (5,279 episodes, 2 failed), $15.46 |
 
 The ledger reconciles with the provider's usage to within $0.001
 ([credit stop note](experiments/20261101-evidence-access-v3/adjudications/infra-stop-402-01/note.md)).
@@ -198,7 +222,11 @@ The ledger reconciles with the provider's usage to within $0.001
 - **Few independent units.** v2 has 8 held-out tasks and 24 pair groups. The
   exit-status result rests on one replay record pattern across 8 incidents. Tasks
   are held out; failure families are not.
-- **Two models from one provider.** v3 tests other families but is not analyzed.
+- **Models and router.** v2 tested two models from one provider; v3 adds three
+  families, all through one router (OpenRouter), with reasoning settings that are
+  not identical across providers.
+- **One failure signature.** Every early-exit run ends with `os._exit(0)`. Other
+  ways a test process can exit 0 without testing are untested.
 - **Prompt dependence.** The report-only result depends on the instruction; the
   explicit prompt states the rule being tested.
 - **Ground truth.** The dropped-attempts family's second reference check is not
