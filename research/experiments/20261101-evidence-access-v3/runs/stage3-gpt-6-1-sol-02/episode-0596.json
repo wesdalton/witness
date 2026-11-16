@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0596",
+  "incident": "inc-d53248e08f7199d6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-07T15:40:13.558326+00:00",
+  "prompt_sha256": "c6bee99604d8460ae901d3d518396ecf4c3c97fa9090dc9a450a65892a7a4e7d",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "e0e4706b71de470e9382fa85d98a8d13",
+    "response_id": "gen-1794066014-2bjVuEKd4M35RrW8Fumx",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1079,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 204,
+      "output_tokens_details": {
+        "reasoning_tokens": 41
+      },
+      "total_tokens": 1283,
+      "cost": 0.004198,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004198,
+        "upstream_inference_input_cost": 0.002158,
+        "upstream_inference_output_cost": 0.00204
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.864,
+    "input_bound": 9202,
+    "reserved_usd": "0.0639650",
+    "request_sha256": "06cfb50c074e984fd1ea5f70c5531b7e83fa4398f2ead4875dbb39e3718e673d",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0c1b632e95343e30016aef465ecf1087d1977931ad5c4f7f69",
+        "sha256": "bcf0766c5eb19043a18c16697b550a18036d38331dce593914b261d7d23eafed"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_15dgmb1h54a",
+        "sha256": "0cf57867f3f882448ed4d55894e5c5d4e2f1a4493519a1302b2f2baf5db47921"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 11,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.999,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The isolated replay records 11 passed, 0 failed, exit code 0, and no timeout under the 10-second limit, with pytest reporting 0.02 seconds. The report and artifact log corroborate the result, and the manifest confirms a successful hidden-test invocation with the same time limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:40:16.797791+00:00"
+}

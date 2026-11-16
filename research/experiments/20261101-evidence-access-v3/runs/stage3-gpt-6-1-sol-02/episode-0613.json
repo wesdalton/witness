@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0613",
+  "incident": "inc-c859194258220bac",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-07T15:41:16.754275+00:00",
+  "prompt_sha256": "d9a61f80bacb228354d5fa1b65a6fce0fcf16c0eb30fd9b395285911be7c5681",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "7f10730aa1be4fe9ad204eb69d86a9af",
+    "response_id": "gen-1794066077-NPHr1eeFaQJXLkuhM6cA",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1744,
+      "input_tokens_details": {
+        "cached_tokens": 1613
+      },
+      "output_tokens": 112,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1856,
+      "cost": 0.0015433,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0015433,
+        "upstream_inference_input_cost": 0.0004233,
+        "upstream_inference_output_cost": 0.00112
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.3224,
+    "input_bound": 10858,
+    "reserved_usd": "0.0681050",
+    "request_sha256": "97aff5c403b7436474a0c9d31ad42969e5d435137cc78cb3f12bbcc04eb24842",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_e05nhe2r0h6",
+        "sha256": "8e07652e0f0cd17a7b7980e259eec1b1935f3cb62ee08117ccf55fb33bc03b49"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts running the hidden test suite with exit code 0 and status passed, and corresponding logs each show 9 tests passed. All attempts reference the same artifact hash, and the isolated replay independently confirms 9 passed with no failures or errors. These records support the claimed 5/5 result for the recorded attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:41:19.974896+00:00"
+}

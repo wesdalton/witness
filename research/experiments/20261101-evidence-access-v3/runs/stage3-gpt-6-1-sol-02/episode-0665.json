@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0665",
+  "incident": "inc-325471ff5bc51a9b",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 4,
+  "started_at": "2026-11-07T15:44:20.866089+00:00",
+  "prompt_sha256": "eb134a1424599abf2d18286176fd3683d767f3ff1ee7d4e80cf8119a4b915cd4",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "88caa4dee98e412698c1d6d9c2680f87",
+    "response_id": "gen-1794066262-omWjWd7zJ9hRn5qImDyQ",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 476,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 104,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 580,
+      "cost": 0.001992,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001992,
+        "upstream_inference_input_cost": 0.000952,
+        "upstream_inference_output_cost": 0.00104
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0747,
+    "input_bound": 6590,
+    "reserved_usd": "0.0574350",
+    "request_sha256": "aa29d0fec5ba4d4966bf7da0d81d772e39fdc9c104bbfe06dd51a8fd299c3701",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_fwqv8u1mbos",
+        "sha256": "d887c069e9e1f3c4a0b534fd4adc865b85526a21ddc8b701c0faa05cde53c50a"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Although the report claims 13 tests passed, the isolated replay shows 3 failures and 10 passes, with exit code 1 and no timeout. The replay explicitly identifies failures in repeated symbols, subtractive pairs, and full-range round trips, contradicting the claim that the submitted patch passes all 13 hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:44:24.103379+00:00"
+}

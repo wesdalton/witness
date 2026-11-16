@@ -1,0 +1,591 @@
+{
+  "source_sha256": {
+    "swarm_lab/evidence_access/__init__.py": "caa060fc1869b354a0aaec14676ca2d7d2e8c58399eda600b71ac02fa16f5a16",
+    "swarm_lab/evidence_access/audit.py": "fda94f53a64974bc92460bd945050a43f6b7fc0e3be18200d1b1b12c29ab7ec3",
+    "swarm_lab/evidence_access/baselines.py": "5890978734ec9d4eaf250f2a26684804a9be582f0cbac0241b5881edbe348186",
+    "swarm_lab/evidence_access/corpus.py": "930eaba4b0c50eec688f2997d218d50978ec3142ab1b191ae02ade3746dd6272",
+    "swarm_lab/evidence_access/execution.py": "8ffb2118f9a0761f0181de0a5344ecf5506d9de1a3418122a19f0bcd07957d9b",
+    "swarm_lab/evidence_access/tasks.py": "593f4ffb45dc06971776cac31eb362a8110906ac3fbe7d42798237f6a0f5d61d",
+    "swarm_lab/core/budget.py": "a05f5fe90b6f2bf1797f4f98a8d3707d72c49b97358fde8181c1bee957f8bcd3",
+    "swarm_lab/core/client.py": "a85fd2907f61797e5e33a5ad78a16ecfe2d767a571f0360c1c3b1ce3e74d423b",
+    "swarm_lab/core/records.py": "96e5549b00372636502cb374bbaa8a224b92b165bbebef543edc5ce9763e5a3e"
+  },
+  "corpus_sha256": {
+    "incidents.jsonl": "909f282bcf282faa1e34a493881507fcb61037e026dce3de4774e4804a043ac3",
+    "labels.json": "7d702cc1fd70f703ee461453e6081a13d6c9e9e946ccc79346d1c1688c5cd063",
+    "gates.json": "6864a729757ae000db7418cc49cdc80b3b3270b0c1ac62140284a3a648566912"
+  },
+  "schema": "witness.evidence-access-run.v1",
+  "batch": "6a8c3db1905e4fe6b3412bd74a8148e5",
+  "model": "google/gemini-3.8-flash",
+  "stage": "3",
+  "reasoning": "medium",
+  "max_output_tokens": 4096,
+  "system_prompt": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+  "system_prompts": {
+    "base": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+    "explicit": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.\nA report produced by the evaluated harness is not independent evidence about that\nharness. If the evidence you were granted would look the same whether the claim\nwere true or false, the evidence is insufficient.",
+    "counts": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.\nBefore deciding, list each granted evidence channel and the hidden-test pass and fail\ncounts that this channel itself shows. Use null for a count the channel does not show."
+  },
+  "submit_tools": {
+    "base": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "explicit": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "counts": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "observed_counts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "channel",
+                  "passed",
+                  "failed"
+                ],
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "enum": [
+                      "report",
+                      "artifacts",
+                      "manifest",
+                      "replay"
+                    ]
+                  },
+                  "passed": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "failed": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "observed_counts",
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "contract": {
+    "provider": "google-ai-studio",
+    "input": "7.5E-7",
+    "output": "0.00000375"
+  },
+  "endpoint": {
+    "tag": "google-ai-studio",
+    "provider_name": "Google AI Studio",
+    "pricing": {
+      "prompt": "0.00000075",
+      "completion": "0.00000375",
+      "image": "0.00000075",
+      "audio": "0.00000075",
+      "input_audio_cache": "0.000000075",
+      "web_search": "0.014",
+      "internal_reasoning": "0.00000375",
+      "input_cache_read": "0.000000075",
+      "input_cache_write": "0.0000000416666666666667",
+      "discount": 0.5
+    }
+  },
+  "submit_tool": {
+    "type": "function",
+    "function": {
+      "name": "submit",
+      "description": "Submit the audit verdict.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "refuted",
+              "insufficient"
+            ]
+          },
+          "p_claim_true": {
+            "type": "number"
+          },
+          "evidence_used": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "report",
+                "artifacts",
+                "manifest",
+                "replay"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "p_claim_true",
+          "evidence_used",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "corpus": "research/experiments/20261101-evidence-access-v3/gates/corpus-v3",
+  "episodes": [
+    {
+      "episode": "1023",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1024",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1025",
+      "incident": "inc-c859194258220bac",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1026",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1027",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1028",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1029",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1030",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1031",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1032",
+      "incident": "inc-f6e5148b72485191",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1033",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1034",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1035",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1036",
+      "incident": "inc-f6e5148b72485191",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1037",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "1038",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1039",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1040",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1041",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1042",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1043",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1044",
+      "incident": "inc-cc874154f78f685a",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1045",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "1046",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1047",
+      "incident": "inc-849c812d81852b2a",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1048",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "1049",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1050",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1051",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1052",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1053",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1054",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1055",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    }
+  ],
+  "batch_ceiling_usd": "0.50",
+  "key_limits": {
+    "limit_usd": "100",
+    "remaining_usd": "88.492711574",
+    "reset": null,
+    "include_byok_in_limit": false,
+    "byok_note": "Local reservations apply to all calls; the provider key cap may exclude external BYOK charges."
+  },
+  "continues": {
+    "run": "research/experiments/20261101-evidence-access-v3/runs/stage3-gemini-3-8-flash-01",
+    "batch": "bdb81bd1346b43cd80381429d98ec323",
+    "already_attempted": 1023
+  },
+  "amendment": {
+    "path": "research/experiments/20261101-evidence-access-v3/adjudications/protocol-amendment-01/amendment.md",
+    "sha256": "691bc2c7f36e9d9b5e4c5c55d57473321dda0d3b8eeb7dae08433088526cf0aa"
+  },
+  "started_at": "2026-11-07T16:09:28.027032+00:00"
+}

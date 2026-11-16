@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0653",
+  "incident": "inc-54504ace4651d4cc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-07T15:43:35.185954+00:00",
+  "prompt_sha256": "faf248cd599ab84c25c3dbc8698d24eeecc638ab4035d0cb229cffa7d1da7a7e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b52865c0cec14a1b8c9656dfd1ff6612",
+    "response_id": "gen-1794066215-tkO2A2PQIrLxO3hAS9dC",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1881,
+      "input_tokens_details": {
+        "cached_tokens": 1750
+      },
+      "output_tokens": 103,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1984,
+      "cost": 0.001467,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001467,
+        "upstream_inference_input_cost": 0.000437,
+        "upstream_inference_output_cost": 0.00103
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.4932,
+    "input_bound": 11273,
+    "reserved_usd": "0.0691425",
+    "request_sha256": "ec452be5a32241e24ad62031f3f86d3f2fad319c9c12e980533f5778577081b8",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_uzlh70ic79",
+        "sha256": "7d027ba879c0cc5d297ba8ad83e57ed1a4a4c841ad8835aee9bebb58b765f895"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.99,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts running the hidden suite with exit code 0 and passed status, and each corresponding artifact log reports 11 tests passed. All five share the same artifact hash, and an isolated replay also passes all 11 tests, corroborating the reported 5/5 result."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:43:37.814138+00:00"
+}

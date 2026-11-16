@@ -1,0 +1,73 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0754",
+  "incident": "inc-849c812d81852b2a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-07T15:50:00.036053+00:00",
+  "prompt_sha256": "06c17251a11c9cecc072d8fe623df7fa3d8f1acd12656819900d8bb69f51bc08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "18f5a5c4fdfa4708b451ddac2ba17bc9",
+    "response_id": "gen-1794066600-uZKnlIssi7GyOoAFuwg3",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2204,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2073
+      },
+      "output_tokens": 157,
+      "output_tokens_details": {
+        "reasoning_tokens": 23
+      },
+      "total_tokens": 2361,
+      "cost": 0.0070145,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0070145,
+        "upstream_inference_input_cost": 0.0054445,
+        "upstream_inference_output_cost": 0.00157
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6764,
+    "input_bound": 12146,
+    "reserved_usd": "0.0713250",
+    "request_sha256": "1b55ab439f4c1d81f01931c9f9a4e03edfbeb1dfb8685495bad535a964a83e02",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_075c6cd414c1a06d016aef48a9325087d19342b8389230003e",
+        "sha256": "55064ca5745f0ccd5425702f4f0d66393977ef546cf92146d67d7bc8b4856193"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_rgs7q34krk",
+        "sha256": "9f522f1819b300f36c807d4c0a5066d7839936e7ca485bf247094f78708cedef"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, including hidden-test failures with exit code 1 on attempts 3, 6, and 8, so the recorded success rate is 5/8, not 5/5. The artifact log labeled attempt 3 uses a different hash from the manifest's failed attempt 3, undermining the report's accounting. The successful replay verifies the supplied passing artifact, not that every recorded attempt passed."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:50:03.899643+00:00"
+}

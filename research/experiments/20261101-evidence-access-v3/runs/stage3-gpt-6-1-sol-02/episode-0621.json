@@ -1,0 +1,75 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0621",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-07T15:41:43.126898+00:00",
+  "prompt_sha256": "7e92dc396a4691fdc39488ad0cbf03720ff1fa969ea5104176c482189ee5f98b",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "4bc2bb225f264876a742bc722d8723f8",
+    "response_id": "gen-1794066104-bs9cZJ1bEi0W7hPEdyW9",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 547,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 126,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 673,
+      "cost": 0.002354,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002354,
+        "upstream_inference_input_cost": 0.001094,
+        "upstream_inference_output_cost": 0.00126
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 1.9677,
+    "input_bound": 7089,
+    "reserved_usd": "0.0586825",
+    "request_sha256": "5ab8fed8d46e4aa4ce4e0b73e966884d4fbfa4a29e4c7ed56e5fd14ae78052e7",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_p5mmyf23bem",
+        "sha256": "4adbe6d812b399ec4491291039b98296cdefd89edcd5f88cdfa54611ce4316aa"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 7,
+        "failed": 2
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report claims 9 passes and 0 failures, but the isolated replay shows 7 passes and 2 failures with exit code 1. The replay identifies failures in multi-digit counts and long-run round trips, directly contradicting the claim that all nine hidden tests pass."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:41:46.666203+00:00"
+}

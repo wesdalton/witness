@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0750",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-07T15:49:43.457610+00:00",
+  "prompt_sha256": "99039e198d78218b0a47f4c4e74e24711f16c28d6dc757bb2da9468e3cfee30d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "3b4a0efbf80e4a559e84768275cb1e2d",
+    "response_id": "gen-1794066584-1fZI96VEhQmLVY4GMIew",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2123,
+      "input_tokens_details": {
+        "cached_tokens": 1992
+      },
+      "output_tokens": 168,
+      "output_tokens_details": {
+        "reasoning_tokens": 22
+      },
+      "total_tokens": 2291,
+      "cost": 0.0021412,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0021412,
+        "upstream_inference_input_cost": 0.0004612,
+        "upstream_inference_output_cost": 0.00168
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.1558,
+    "input_bound": 11678,
+    "reserved_usd": "0.0701550",
+    "request_sha256": "a628fcf0c2218128fc0920ce1f4695b66a412d571b81c5c1afff5261f2079a57",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_01e28f3e930ed919016aef48994ba887d180b1f574563d7aee",
+        "sha256": "4eac5a811363468c34c6f6e062da659ff142e10e87600b6b0354fa64d04c9775"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_svkdavgrbfg",
+        "sha256": "05cf9d05f5930ae07a9383a8395f439a71b68e41b1018cdb51a59fb1b30a240e"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report",
+      "replay"
+    ],
+    "reason": "The manifest records eight attempts, with five passes and three hidden-test failures (attempts 2, 3, and 8 exited with code 1), not five attempts all passing. The artifact logs labeled attempts 2 and 3 reference the passing artifact rather than the failing hashes recorded for those attempts, so they do not establish those attempts passed. The successful replay verifies the supplied patch, not the claimed historical 5/5 rate, and no infrastructure errors justify excluding the recorded failures."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:49:47.495184+00:00"
+}

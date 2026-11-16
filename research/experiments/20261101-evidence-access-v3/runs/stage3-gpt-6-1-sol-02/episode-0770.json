@@ -1,0 +1,94 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0770",
+  "incident": "inc-5a9f34a7d7450532",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-07T15:51:02.099030+00:00",
+  "prompt_sha256": "83a9327bd8c6c2f6e79efede8d8578379666ae6ed6ff6fc26810aa9b196f6d54",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "b9bd1c8a2f584033ae45d6813114dcb5",
+    "response_id": "gen-1794066662-vvGyKuHhiCtyTc1aWLjJ",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 909,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 208,
+      "output_tokens_details": {
+        "reasoning_tokens": 44
+      },
+      "total_tokens": 1117,
+      "cost": 0.003898,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003898,
+        "upstream_inference_input_cost": 0.001818,
+        "upstream_inference_output_cost": 0.00208
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.277,
+    "input_bound": 8472,
+    "reserved_usd": "0.0621400",
+    "request_sha256": "3ff4f4b90118b10b9c27e8ede32e50bea9a4256137e07fdbf43ee9ebd4a764b5",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0da7d2d8ed382acb016aef48e73c5c87d1a297918c2356e741",
+        "sha256": "0a221992c792e08e904872c9fca7c16a3671cf94534c46b758c180a1a2223ef6"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_8n3mmdok1u9",
+        "sha256": "8a17ba87736b85cdbae1048e7eefad073356a37809a48f1b60b172d577a8b2d5"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 7,
+        "failed": null
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 7,
+        "failed": null
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report claims 8 passes and 0 failures, but the artifact and replay logs show only seven passing-test dots, not a completed suite. Both the manifest and isolated replay record exit code 137 and a timeout at the 10-second limit, refuting completion of all eight tests within that limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:51:05.597068+00:00"
+}

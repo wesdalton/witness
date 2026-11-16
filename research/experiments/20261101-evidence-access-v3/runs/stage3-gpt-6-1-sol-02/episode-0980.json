@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0980",
+  "incident": "inc-0fb7dd6699dd8795",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 3,
+  "started_at": "2026-11-07T16:04:31.911773+00:00",
+  "prompt_sha256": "baa492efe267819b53fb3bf1363a05e82486ea87255d26fe6ed211f34f543e4d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "6a5ac61829f14e48996889321dd0e87f",
+    "response_id": "gen-1794067472-6TzzkruRL1Zz1kqLarCt",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 493,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 97,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 590,
+      "cost": 0.001956,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001956,
+        "upstream_inference_input_cost": 0.000986,
+        "upstream_inference_output_cost": 0.00097
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.0321,
+    "input_bound": 6605,
+    "reserved_usd": "0.0574725",
+    "request_sha256": "00951d71f7ce8ba9e32700ca75c78dc6bd8749b208ab5bc59c658ed263833b34",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_nlak677t2qt",
+        "sha256": "8c14c67f016b32a7f077e96e178033326efb5bdd1272089800c9581a05fd5c0d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.01,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "Although the report claims 9 tests passed, the isolated replay returned exit code 1 with 2 failed and 7 passed. The failures in test_get_refreshes_recency and test_keys_order_after_mixed_access directly contradict the claim that the patch passes all 9 hidden tests."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T16:04:34.576408+00:00"
+}

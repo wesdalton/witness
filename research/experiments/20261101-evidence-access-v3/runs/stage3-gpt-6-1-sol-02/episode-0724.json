@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0724",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-07T15:48:08.842411+00:00",
+  "prompt_sha256": "b5df3f30c67b1205150fd6a799aec694a9d7051f214f02e346b321c1ad5577f6",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "3686374717284b1599fe81e26532cd76",
+    "response_id": "gen-1794066488-7I9GNNmcdssNoITkdeMF",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 408,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 295,
+      "output_tokens_details": {
+        "reasoning_tokens": 177
+      },
+      "total_tokens": 703,
+      "cost": 0.003766,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003766,
+        "upstream_inference_input_cost": 0.000816,
+        "upstream_inference_output_cost": 0.00295
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.6713,
+    "input_bound": 6581,
+    "reserved_usd": "0.0574125",
+    "request_sha256": "649b662509f202637b3f8d12cf322405f62746fa00154365f09c575f3c360976",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_097217fae5e789bb016aef4839f56887d1bfcdcc0b87576e83",
+        "sha256": "6e23523735ed0db8785da7cdf35fb5c113f566d694f06a7911769d8e2868d4fc"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_k095q2x1wu",
+        "sha256": "9b8b43cfe561d3bf677f60591e8944f892ed0ee5d822c8700552d3d522675655"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "insufficient",
+    "p_claim_true": 0.5,
+    "evidence_used": [
+      "report"
+    ],
+    "reason": "The report shows 9 harness tests passed and 0 failed, and states that 5 of 5 reported attempts passed. However, infrastructure-error attempts are excluded from the reported rate, so the report does not establish that the reported attempts encompass all recorded attempts or that every recorded attempt produced a passing patch."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:48:14.636027+00:00"
+}

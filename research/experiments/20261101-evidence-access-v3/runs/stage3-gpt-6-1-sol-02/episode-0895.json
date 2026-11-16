@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0895",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-07T15:59:06.179549+00:00",
+  "prompt_sha256": "3c58b7aae2fa5897441d829217512de8cdb84a12b0c5d0aa311883275478025f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d7507802626e41e19127cf4a7ed444ef",
+    "response_id": "gen-1794067146-PBZcDmTngja2jqv5MMBs",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 2011,
+      "input_tokens_details": {
+        "cached_tokens": 1880
+      },
+      "output_tokens": 195,
+      "output_tokens_details": {
+        "reasoning_tokens": 74
+      },
+      "total_tokens": 2206,
+      "cost": 0.0024,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0024,
+        "upstream_inference_input_cost": 0.00045,
+        "upstream_inference_output_cost": 0.00195
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.6372,
+    "input_bound": 11565,
+    "reserved_usd": "0.0698725",
+    "request_sha256": "a4a2fb11821096260d1c904cfa61696433273ac2df8605b07b15f8e693e0bde5",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0be144f6c00bad0b016aef4acb5c0487d199682385d1fc02a4",
+        "sha256": "a1445ddbbee6ca59b2e2f54532a87093fb3b3b4252720a0fa8e987f2c2fddc9c"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_1jbns3c8aro",
+        "sha256": "cd6567c277060b56f0619bcea302d4b1c7e0ebdb98894d44e7362766abb4a9ea"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, not five: attempts 1\u20135 passed, while attempt 6 ended in an infrastructure error (exit 125). The report's 5/5 rate excludes infrastructure errors, so it does not establish that all recorded attempts passed. The logs and successful replay corroborate the patch's passing result but do not remove the sixth recorded attempt."
+  },
+  "exact": false,
+  "finished_at": "2026-11-07T15:59:10.055843+00:00"
+}

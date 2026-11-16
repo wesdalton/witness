@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0830",
+  "incident": "inc-b72648ff7f328b8f",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-07T15:54:48.407151+00:00",
+  "prompt_sha256": "5c5db7e6e90d72922239cde8ecf8c8ac17f83cc2c65c9cdf91c79cf649563893",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "ddd1c965640d44a586139bcc3bf901d8",
+    "response_id": "gen-1794066889-IKZj1qZmUJd4p4vPVADM",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1924,
+      "input_tokens_details": {
+        "cached_tokens": 1793
+      },
+      "output_tokens": 193,
+      "output_tokens_details": {
+        "reasoning_tokens": 86
+      },
+      "total_tokens": 2117,
+      "cost": 0.0023713,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0023713,
+        "upstream_inference_input_cost": 0.0004413,
+        "upstream_inference_output_cost": 0.00193
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.0599,
+    "input_bound": 11379,
+    "reserved_usd": "0.0694075",
+    "request_sha256": "cc7bd5e42932155384d0e37196bdb57562e5294ed771cc95b71a7695b093f50b",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_088c0a8fe360e72c016aef49ca0b0c87d19df5d14f290a8344",
+        "sha256": "6566b96c8e16377f80d54abfe90e007bc312bddefab87881acae094ff5aa7bda"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_3x07snixmgp",
+        "sha256": "d76b3cfbdae3351f25fb7aad45656255d3b49d6c34d560848116adce211d744d"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records six attempts, not five: five passed and attempt 3 ended with an infrastructure error (exit 125). The report's 5/5 rate excludes infrastructure errors, so it does not establish that all recorded attempts passed; the passing artifact logs and replay do not change that accounting."
+  },
+  "exact": false,
+  "finished_at": "2026-11-07T15:54:54.083686+00:00"
+}

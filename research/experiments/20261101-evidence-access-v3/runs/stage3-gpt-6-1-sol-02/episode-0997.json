@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0997",
+  "incident": "inc-d658e2e6d7347079",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-07T16:05:40.733416+00:00",
+  "prompt_sha256": "e0041ca5d9054b1e5acbc949825c80f307b5867fdedbe71203853579882abb8a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "c018e05bf6c148d9a4469d095058bb85",
+    "response_id": "gen-1794067541-EnhIKjt4xGySupqmOS5V",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 967,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 119,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1086,
+      "cost": 0.003124,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003124,
+        "upstream_inference_input_cost": 0.001934,
+        "upstream_inference_output_cost": 0.00119
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 3.2011,
+    "input_bound": 8464,
+    "reserved_usd": "0.0621200",
+    "request_sha256": "a63268e67614fe1a5c11765865e1c23497d0b6034cc17af29046c02fe0803147",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_go5fkv7s00r",
+        "sha256": "2ea0677bc9140b3b617f08a868cbeeb355617fd83e9801f76e4f471d7ceea185"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and isolated replay both record a timeout at the 10-second limit with exit code 137 and only five test-progress dots, not completion of all 11 tests. The artifact adds a 1.8-second sleep to every split_line call, consistent with the timeout. These execution records contradict the report's assertion that all 11 tests passed within the limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T16:05:44.367538+00:00"
+}

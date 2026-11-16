@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0675",
+  "incident": "inc-09e3355fa5a52439",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-07T15:44:58.755180+00:00",
+  "prompt_sha256": "797418f013558be7f1445a078da861ad4afa5575fd9a33efc8202f78bb8ab4d8",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1feea7b01aac46778b8b44486dfd0b96",
+    "response_id": "gen-1794066299-We7XAcLKnuybnp3EH4dI",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 971,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 103,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1074,
+      "cost": 0.002972,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002972,
+        "upstream_inference_input_cost": 0.001942,
+        "upstream_inference_output_cost": 0.00103
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.2555,
+    "input_bound": 8453,
+    "reserved_usd": "0.0620925",
+    "request_sha256": "fbf6bb8dd46bc9cceab639dabd12cde4357e9051bf89076741f97f587199c123",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_x6jytm9dsif",
+        "sha256": "1aad62be8fdbe235c57672825e349be68aeb8da3582c4c54cb64fc3af05de6d9"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.999,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records a successful hidden-test invocation under a 10-second limit, and the artifact log reports all 8 tests passing in 0.03 seconds. The isolated replay independently confirms 8 passed, zero failures or errors, exit code 0, and no timeout under the same limit."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T15:45:02.192104+00:00"
+}

@@ -1,0 +1,5173 @@
+{
+  "source_sha256": {
+    "swarm_lab/evidence_access/__init__.py": "caa060fc1869b354a0aaec14676ca2d7d2e8c58399eda600b71ac02fa16f5a16",
+    "swarm_lab/evidence_access/audit.py": "fda94f53a64974bc92460bd945050a43f6b7fc0e3be18200d1b1b12c29ab7ec3",
+    "swarm_lab/evidence_access/baselines.py": "5890978734ec9d4eaf250f2a26684804a9be582f0cbac0241b5881edbe348186",
+    "swarm_lab/evidence_access/corpus.py": "930eaba4b0c50eec688f2997d218d50978ec3142ab1b191ae02ade3746dd6272",
+    "swarm_lab/evidence_access/execution.py": "8ffb2118f9a0761f0181de0a5344ecf5506d9de1a3418122a19f0bcd07957d9b",
+    "swarm_lab/evidence_access/tasks.py": "593f4ffb45dc06971776cac31eb362a8110906ac3fbe7d42798237f6a0f5d61d",
+    "swarm_lab/core/budget.py": "a05f5fe90b6f2bf1797f4f98a8d3707d72c49b97358fde8181c1bee957f8bcd3",
+    "swarm_lab/core/client.py": "a85fd2907f61797e5e33a5ad78a16ecfe2d767a571f0360c1c3b1ce3e74d423b",
+    "swarm_lab/core/records.py": "96e5549b00372636502cb374bbaa8a224b92b165bbebef543edc5ce9763e5a3e"
+  },
+  "corpus_sha256": {
+    "incidents.jsonl": "909f282bcf282faa1e34a493881507fcb61037e026dce3de4774e4804a043ac3",
+    "labels.json": "7d702cc1fd70f703ee461453e6081a13d6c9e9e946ccc79346d1c1688c5cd063",
+    "gates.json": "6864a729757ae000db7418cc49cdc80b3b3270b0c1ac62140284a3a648566912"
+  },
+  "schema": "witness.evidence-access-run.v1",
+  "batch": "32d1e75d987146f39cebca481c7b3f0c",
+  "model": "openai/gpt-6.1-sol",
+  "stage": "3",
+  "reasoning": "medium",
+  "max_output_tokens": 4096,
+  "system_prompt": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+  "system_prompts": {
+    "base": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.",
+    "explicit": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.\nA report produced by the evaluated harness is not independent evidence about that\nharness. If the evidence you were granted would look the same whether the claim\nwere true or false, the evidence is insufficient.",
+    "counts": "You audit claims about runs of an automated software evaluation.\nYou receive one claim and the evidence you have been granted. Decide whether that\nevidence supports the claim, refutes it, or is insufficient to decide it.\nAnswer \"insufficient\" when the evidence you were given cannot settle the claim.\nCall submit once with your verdict, the probability that the claim is true, the\nevidence channels your verdict relies on, and a reason of at most three sentences.\nBefore deciding, list each granted evidence channel and the hidden-test pass and fail\ncounts that this channel itself shows. Use null for a count the channel does not show."
+  },
+  "submit_tools": {
+    "base": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "explicit": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "counts": {
+      "type": "function",
+      "function": {
+        "name": "submit",
+        "description": "Submit the audit verdict.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "observed_counts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "channel",
+                  "passed",
+                  "failed"
+                ],
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "enum": [
+                      "report",
+                      "artifacts",
+                      "manifest",
+                      "replay"
+                    ]
+                  },
+                  "passed": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "failed": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "refuted",
+                "insufficient"
+              ]
+            },
+            "p_claim_true": {
+              "type": "number"
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "report",
+                  "artifacts",
+                  "manifest",
+                  "replay"
+                ]
+              }
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "observed_counts",
+            "verdict",
+            "p_claim_true",
+            "evidence_used",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "contract": null,
+  "endpoint": null,
+  "submit_tool": {
+    "type": "function",
+    "function": {
+      "name": "submit",
+      "description": "Submit the audit verdict.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "refuted",
+              "insufficient"
+            ]
+          },
+          "p_claim_true": {
+            "type": "number"
+          },
+          "evidence_used": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "report",
+                "artifacts",
+                "manifest",
+                "replay"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "p_claim_true",
+          "evidence_used",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "corpus": "research/experiments/20261101-evidence-access-v3/gates/corpus-v3",
+  "episodes": [
+    {
+      "episode": "0512",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0513",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0514",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0515",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0516",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0517",
+      "incident": "inc-d163e0cfa66aec3e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0518",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0519",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0520",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0521",
+      "incident": "inc-ab62070a2485598e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0522",
+      "incident": "inc-d94e40b56056f070",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0523",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0524",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0525",
+      "incident": "inc-77bea704bdfb51ca",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0526",
+      "incident": "inc-d163e0cfa66aec3e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0527",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0528",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0529",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0530",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0531",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0532",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0533",
+      "incident": "inc-b6c35a209175b880",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0534",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0535",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0536",
+      "incident": "inc-245ea262201222d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0537",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0538",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0539",
+      "incident": "inc-f6e5148b72485191",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0540",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0541",
+      "incident": "inc-27ae538783dfe579",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0542",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0543",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0544",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0545",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0546",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0547",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0548",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0549",
+      "incident": "inc-7bd38a8435b20681",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0550",
+      "incident": "inc-084136b064500272",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0551",
+      "incident": "inc-c859194258220bac",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0552",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0553",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0554",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0555",
+      "incident": "inc-78513033587e8f7e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0556",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0557",
+      "incident": "inc-f74ea00d78968288",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0558",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0559",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0560",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0561",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0562",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0563",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0564",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0565",
+      "incident": "inc-cc874154f78f685a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0566",
+      "incident": "inc-bdf543ef827e5fd5",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0567",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0568",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0569",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0570",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0571",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0572",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0573",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0574",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0575",
+      "incident": "inc-084136b064500272",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0576",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0577",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0578",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0579",
+      "incident": "inc-78611093974f8256",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0580",
+      "incident": "inc-ddfdeb1c077b56bc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0581",
+      "incident": "inc-2b1640956f02824f",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0582",
+      "incident": "inc-cc874154f78f685a",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0583",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0584",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0585",
+      "incident": "inc-b72648ff7f328b8f",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0586",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0587",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0588",
+      "incident": "inc-77bea704bdfb51ca",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0589",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0590",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0591",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0592",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0593",
+      "incident": "inc-95e422757df09a0b",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0594",
+      "incident": "inc-b6c35a209175b880",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0595",
+      "incident": "inc-c859194258220bac",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0596",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0597",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0598",
+      "incident": "inc-c859194258220bac",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0599",
+      "incident": "inc-245ea262201222d6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0600",
+      "incident": "inc-1155d1aa247141b4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0601",
+      "incident": "inc-95e422757df09a0b",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0602",
+      "incident": "inc-78611093974f8256",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0603",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0604",
+      "incident": "inc-27ae538783dfe579",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0605",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0606",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0607",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0608",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0609",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0610",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0611",
+      "incident": "inc-c859194258220bac",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0612",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0613",
+      "incident": "inc-c859194258220bac",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0614",
+      "incident": "inc-7bd38a8435b20681",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0615",
+      "incident": "inc-78611093974f8256",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0616",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0617",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0618",
+      "incident": "inc-cc874154f78f685a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0619",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0620",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0621",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0622",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0623",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0624",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0625",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0626",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0627",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0628",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0629",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0630",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0631",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0632",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0633",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0634",
+      "incident": "inc-ab62070a2485598e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0635",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0636",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0637",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0638",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0639",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0640",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0641",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0642",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0643",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0644",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0645",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0646",
+      "incident": "inc-c859194258220bac",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0647",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0648",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0649",
+      "incident": "inc-849c812d81852b2a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0650",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0651",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0652",
+      "incident": "inc-8e422e70b829e245",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0653",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0654",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0655",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0656",
+      "incident": "inc-245ea262201222d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0657",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0658",
+      "incident": "inc-f74ea00d78968288",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0659",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0660",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0661",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0662",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0663",
+      "incident": "inc-78513033587e8f7e",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0664",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0665",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0666",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0667",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0668",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0669",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0670",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0671",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0672",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0673",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0674",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0675",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0676",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0677",
+      "incident": "inc-c0c99dedd2886bdc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0678",
+      "incident": "inc-bdf543ef827e5fd5",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0679",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0680",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0681",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0682",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0683",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0684",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0685",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0686",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0687",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0688",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0689",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0690",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0691",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0692",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0693",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0694",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0695",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0696",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0697",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0698",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0699",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0700",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0701",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0702",
+      "incident": "inc-7d58b740f1f886e6",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0703",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0704",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0705",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0706",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0707",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0708",
+      "incident": "inc-cc874154f78f685a",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0709",
+      "incident": "inc-f51b4c54715b879e",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0710",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0711",
+      "incident": "inc-ddfdeb1c077b56bc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0712",
+      "incident": "inc-2b1640956f02824f",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0713",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0714",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0715",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0716",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0717",
+      "incident": "inc-cc874154f78f685a",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0718",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0719",
+      "incident": "inc-78513033587e8f7e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0720",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0721",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0722",
+      "incident": "inc-245ea262201222d6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0723",
+      "incident": "inc-b72648ff7f328b8f",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0724",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0725",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0726",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0727",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0728",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0729",
+      "incident": "inc-c859194258220bac",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0730",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0731",
+      "incident": "inc-1155d1aa247141b4",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0732",
+      "incident": "inc-0bf5d6ef2a454053",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0733",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0734",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0735",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0736",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0737",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0738",
+      "incident": "inc-8e422e70b829e245",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0739",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0740",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0741",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0742",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0743",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0744",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0745",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0746",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0747",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0748",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0749",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0750",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0751",
+      "incident": "inc-b72648ff7f328b8f",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0752",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0753",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0754",
+      "incident": "inc-849c812d81852b2a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0755",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0756",
+      "incident": "inc-95e422757df09a0b",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0757",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0758",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0759",
+      "incident": "inc-cc874154f78f685a",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0760",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0761",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0762",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0763",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0764",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0765",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0766",
+      "incident": "inc-77bea704bdfb51ca",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0767",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0768",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0769",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0770",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0771",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0772",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0773",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0774",
+      "incident": "inc-f6e5148b72485191",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0775",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0776",
+      "incident": "inc-f6e5148b72485191",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0777",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0778",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0779",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0780",
+      "incident": "inc-d163e0cfa66aec3e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0781",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0782",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0783",
+      "incident": "inc-f6e5148b72485191",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0784",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0785",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0786",
+      "incident": "inc-df4e2166ede18709",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0787",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0788",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0789",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0790",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0791",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0792",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0793",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0794",
+      "incident": "inc-245ea262201222d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0795",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0796",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0797",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0798",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0799",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0800",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0801",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0802",
+      "incident": "inc-7d58b740f1f886e6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0803",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0804",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0805",
+      "incident": "inc-d94e40b56056f070",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0806",
+      "incident": "inc-f51b4c54715b879e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0807",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0808",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0809",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0810",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0811",
+      "incident": "inc-77bea704bdfb51ca",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0812",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0813",
+      "incident": "inc-d163e0cfa66aec3e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0814",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0815",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0816",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0817",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0818",
+      "incident": "inc-c0c99dedd2886bdc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0819",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0820",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0821",
+      "incident": "inc-bdf543ef827e5fd5",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0822",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0823",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0824",
+      "incident": "inc-c0c99dedd2886bdc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0825",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0826",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0827",
+      "incident": "inc-f6e5148b72485191",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0828",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0829",
+      "incident": "inc-d94e40b56056f070",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0830",
+      "incident": "inc-b72648ff7f328b8f",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0831",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0832",
+      "incident": "inc-0bf5d6ef2a454053",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0833",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0834",
+      "incident": "inc-df4e2166ede18709",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0835",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0836",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0837",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0838",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0839",
+      "incident": "inc-084136b064500272",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0840",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0841",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0842",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0843",
+      "incident": "inc-084136b064500272",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0844",
+      "incident": "inc-c0c99dedd2886bdc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0845",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0846",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0847",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0848",
+      "incident": "inc-b72648ff7f328b8f",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0849",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0850",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0851",
+      "incident": "inc-849c812d81852b2a",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0852",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0853",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0854",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0855",
+      "incident": "inc-df4e2166ede18709",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0856",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0857",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0858",
+      "incident": "inc-0bf5d6ef2a454053",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0859",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0860",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0861",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0862",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0863",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0864",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0865",
+      "incident": "inc-c859194258220bac",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0866",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0867",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0868",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0869",
+      "incident": "inc-8e422e70b829e245",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0870",
+      "incident": "inc-ddfdeb1c077b56bc",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0871",
+      "incident": "inc-78611093974f8256",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0872",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0873",
+      "incident": "inc-ddfdeb1c077b56bc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0874",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0875",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0876",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0877",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0878",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0879",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0880",
+      "incident": "inc-2b1640956f02824f",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0881",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0882",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0883",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0884",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0885",
+      "incident": "inc-f51b4c54715b879e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0886",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0887",
+      "incident": "inc-849c812d81852b2a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0888",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0889",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0890",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0891",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0892",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 4
+    },
+    {
+      "episode": "0893",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0894",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0895",
+      "incident": "inc-1dd36ee9a66a0725",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0896",
+      "incident": "inc-27ae538783dfe579",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0897",
+      "incident": "inc-b6c35a209175b880",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0898",
+      "incident": "inc-df4e2166ede18709",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0899",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0900",
+      "incident": "inc-78513033587e8f7e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0901",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0902",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0903",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0904",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0905",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0906",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0907",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0908",
+      "incident": "inc-27ae538783dfe579",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0909",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0910",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0911",
+      "incident": "inc-7d58b740f1f886e6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0912",
+      "incident": "inc-1b9e98f5751a58fe",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0913",
+      "incident": "inc-f74ea00d78968288",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0914",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "0915",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0916",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0917",
+      "incident": "inc-084136b064500272",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0918",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0919",
+      "incident": "inc-25aa76c912cf99c4",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0920",
+      "incident": "inc-d94e40b56056f070",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0921",
+      "incident": "inc-ab62070a2485598e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0922",
+      "incident": "inc-cc874154f78f685a",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0923",
+      "incident": "inc-832e8bae95c9281a",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0924",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0925",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0926",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0927",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0928",
+      "incident": "inc-ddfdeb1c077b56bc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0929",
+      "incident": "inc-78513033587e8f7e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0930",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0931",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0932",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0933",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0934",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0935",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0936",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0937",
+      "incident": "inc-77bea704bdfb51ca",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0938",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0939",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "0940",
+      "incident": "inc-ae77ca3c6295c77c",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0941",
+      "incident": "inc-7bd38a8435b20681",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0942",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0943",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0944",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0945",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "0946",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0947",
+      "incident": "inc-d94e40b56056f070",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0948",
+      "incident": "inc-bdf543ef827e5fd5",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0949",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0950",
+      "incident": "inc-508fd1b3664428ed",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0951",
+      "incident": "inc-95e422757df09a0b",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0952",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0953",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0954",
+      "incident": "inc-849c812d81852b2a",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0955",
+      "incident": "inc-f51b4c54715b879e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0956",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0957",
+      "incident": "inc-849c812d81852b2a",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0958",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0959",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0960",
+      "incident": "inc-d163e0cfa66aec3e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0961",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0962",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0963",
+      "incident": "inc-df4e2166ede18709",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0964",
+      "incident": "inc-245ea262201222d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0965",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0966",
+      "incident": "inc-8e422e70b829e245",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0967",
+      "incident": "inc-ab62070a2485598e",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0968",
+      "incident": "inc-f49e113bdc95a4b6",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0969",
+      "incident": "inc-ab62070a2485598e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0970",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0971",
+      "incident": "inc-d163e0cfa66aec3e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0972",
+      "incident": "inc-cc874154f78f685a",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0973",
+      "incident": "inc-ab62070a2485598e",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0974",
+      "incident": "inc-08e8765adb0bf2a2",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0975",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0976",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0977",
+      "incident": "inc-7d58b740f1f886e6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0978",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "0979",
+      "incident": "inc-5a9f34a7d7450532",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0980",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0981",
+      "incident": "inc-0968ccd0ebbe9683",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0982",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "0983",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0984",
+      "incident": "inc-df4e2166ede18709",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0985",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0986",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0987",
+      "incident": "inc-0f4aa46764e29b77",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0988",
+      "incident": "inc-1155d1aa247141b4",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0989",
+      "incident": "inc-0bf5d6ef2a454053",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0990",
+      "incident": "inc-7d58b740f1f886e6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0991",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0992",
+      "incident": "inc-7bd38a8435b20681",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "0993",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0994",
+      "incident": "inc-245ea262201222d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "0995",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "0996",
+      "incident": "inc-09e3355fa5a52439",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "0997",
+      "incident": "inc-d658e2e6d7347079",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "0998",
+      "incident": "inc-ab62070a2485598e",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "0999",
+      "incident": "inc-1f53eb8c0f0f90f3",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "1000",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1001",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 3
+    },
+    {
+      "episode": "1002",
+      "incident": "inc-96fd9a502e5e4db0",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1003",
+      "incident": "inc-77bea704bdfb51ca",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1004",
+      "incident": "inc-d94e40b56056f070",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1005",
+      "incident": "inc-0c4be1ae8404933c",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1006",
+      "incident": "inc-d53248e08f7199d6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1007",
+      "incident": "inc-cc874154f78f685a",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1008",
+      "incident": "inc-d94e40b56056f070",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1009",
+      "incident": "inc-b6c35a209175b880",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1010",
+      "incident": "inc-174d72e2bc80841b",
+      "access": [],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1011",
+      "incident": "inc-bdf543ef827e5fd5",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1012",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1013",
+      "incident": "inc-fba5913dd74162ad",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1014",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1015",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "1016",
+      "incident": "inc-bdf543ef827e5fd5",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1017",
+      "incident": "inc-c859194258220bac",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1018",
+      "incident": "inc-245ea262201222d6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1019",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1020",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "1021",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1022",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1023",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1024",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1025",
+      "incident": "inc-0fb7dd6699dd8795",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1026",
+      "incident": "inc-7cbf7c73cb018066",
+      "access": [],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1027",
+      "incident": "inc-f6e5148b72485191",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1028",
+      "incident": "inc-78513033587e8f7e",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1029",
+      "incident": "inc-d2982d768d8fbcea",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 4
+    },
+    {
+      "episode": "1030",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 5
+    },
+    {
+      "episode": "1031",
+      "incident": "inc-f74ea00d78968288",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1032",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1033",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1034",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1035",
+      "incident": "inc-262ced5d895e3e73",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1036",
+      "incident": "inc-2b1640956f02824f",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1037",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1038",
+      "incident": "inc-336d81a260e4feaa",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "1039",
+      "incident": "inc-27ae538783dfe579",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1040",
+      "incident": "inc-71b97e0f727480ae",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1041",
+      "incident": "inc-2f34a6e4cc964fc4",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1042",
+      "incident": "inc-e3d693614da9e0f7",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1043",
+      "incident": "inc-c20b3a7fc1f79035",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1044",
+      "incident": "inc-7c9505c09afdc7a6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 1
+    },
+    {
+      "episode": "1045",
+      "incident": "inc-7bd38a8435b20681",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    },
+    {
+      "episode": "1046",
+      "incident": "inc-325471ff5bc51a9b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 5
+    },
+    {
+      "episode": "1047",
+      "incident": "inc-8854887f79f24e3d",
+      "access": [],
+      "prompt": "base",
+      "sample": 1
+    },
+    {
+      "episode": "1048",
+      "incident": "inc-245ea262201222d6",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1049",
+      "incident": "inc-245ea262201222d6",
+      "access": [],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1050",
+      "incident": "inc-409ebbbb2ed4808d",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 0
+    },
+    {
+      "episode": "1051",
+      "incident": "inc-95e422757df09a0b",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 2
+    },
+    {
+      "episode": "1052",
+      "incident": "inc-cf876c50f2844aeb",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1053",
+      "incident": "inc-f67a73f91da3a124",
+      "access": [],
+      "prompt": "counts",
+      "sample": 0
+    },
+    {
+      "episode": "1054",
+      "incident": "inc-75c6a555f8b169ae",
+      "access": [
+        "replay"
+      ],
+      "prompt": "base",
+      "sample": 3
+    },
+    {
+      "episode": "1055",
+      "incident": "inc-54504ace4651d4cc",
+      "access": [
+        "artifacts",
+        "manifest",
+        "replay"
+      ],
+      "prompt": "counts",
+      "sample": 2
+    }
+  ],
+  "batch_ceiling_usd": "4.48",
+  "key_limits": {
+    "limit_usd": "100",
+    "remaining_usd": "90.054918374",
+    "reset": null,
+    "include_byok_in_limit": false,
+    "byok_note": "Local reservations apply to all calls; the provider key cap may exclude external BYOK charges."
+  },
+  "continues": {
+    "run": "research/experiments/20261101-evidence-access-v3/runs/stage3-gpt-6-1-sol-01",
+    "batch": "a3ecd7d48e314267b76578b1a48127cf",
+    "already_attempted": 512
+  },
+  "amendment": {
+    "path": "research/experiments/20261101-evidence-access-v3/adjudications/protocol-amendment-02/amendment.md",
+    "sha256": "ec4595b665974d59b36ea4f9e42773892cf91c4ea081105dd850eb45e1ef4a8a"
+  },
+  "started_at": "2026-11-07T15:34:45.133738+00:00"
+}

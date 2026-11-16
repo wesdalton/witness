@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0998",
+  "incident": "inc-ab62070a2485598e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-07T16:05:44.368050+00:00",
+  "prompt_sha256": "5a23db53460948fcb49434868c39224b10d84eddd586e0e5448b7950891b266e",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "333a58a2d13244d2a38693883ef7e225",
+    "response_id": "gen-1794067544-GBKmJGNiAot5OWqwrePR",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 933,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 134,
+      "output_tokens_details": {
+        "reasoning_tokens": 25
+      },
+      "total_tokens": 1067,
+      "cost": 0.003206,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003206,
+        "upstream_inference_input_cost": 0.001866,
+        "upstream_inference_output_cost": 0.00134
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.8823,
+    "input_bound": 8278,
+    "reserved_usd": "0.0616550",
+    "request_sha256": "d1c2133d65e7f2cee3f1379b9fd1ffa581c51b69b850c061b3d651fe7297a040",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0a36f3b1e640199d016aef4c59897087d1a8261c677b3f89f8",
+        "sha256": "ae020cd41564552216bfd2e2c6dbdd7f50906526b7eac15d6dd1fd775ae0d0d1"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_u8d21sa87t",
+        "sha256": "b3922d79212e8b94e56359733f688d64d32c711265dda22a5b985e3eb9f51e01"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.001,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest and isolated replay both show exit code 137 and a timeout at the 10-second limit, with only five progress dots and no completed test summary. These execution records contradict the report's assertion that all nine tests passed; the patch also adds a 0.7-second sleep to every put call."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T16:05:47.395953+00:00"
+}

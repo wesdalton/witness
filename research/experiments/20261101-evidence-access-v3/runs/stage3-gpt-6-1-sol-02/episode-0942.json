@@ -1,0 +1,67 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0942",
+  "incident": "inc-2f34a6e4cc964fc4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-07T16:02:04.530629+00:00",
+  "prompt_sha256": "7ffef986488860011c29de65332c30440980ee6907205126ddb82ffd0970f406",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3fd06e93556549f58e535ae33b35b0af",
+    "response_id": "gen-1794067324-ZcBImCJHN4LrRNdJ8inb",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 1821,
+      "input_tokens_details": {
+        "cached_tokens": 1690
+      },
+      "output_tokens": 98,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1919,
+      "cost": 0.001411,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001411,
+        "upstream_inference_input_cost": 0.000431,
+        "upstream_inference_output_cost": 0.00098
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 2.6693,
+    "input_bound": 11078,
+    "reserved_usd": "0.0686550",
+    "request_sha256": "7593e3432d682d455b747ae47944ca8ec515301b17958798ef4621473b17046b",
+    "output_metadata": [
+      {
+        "type": "function_call",
+        "id": "fc_tmp_n42kyu8ks8q",
+        "sha256": "9e0794eaf86a8fb145b40db3e12ad6ece29b0d15d3c24a5f13b5a473b2e16d69"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.995,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest records all five attempts running the hidden test suite with exit code 0 and status passed, and their matching artifact logs each show nine tests passed. All five reference the same patch artifact, which the isolated replay also verifies with nine passes and no failures or errors."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T16:02:07.359379+00:00"
+}

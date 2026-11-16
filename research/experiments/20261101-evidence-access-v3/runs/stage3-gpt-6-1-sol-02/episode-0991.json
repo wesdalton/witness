@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0991",
+  "incident": "inc-2f34a6e4cc964fc4",
+  "access": [],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-07T16:05:11.837944+00:00",
+  "prompt_sha256": "b5df3f30c67b1205150fd6a799aec694a9d7051f214f02e346b321c1ad5577f6",
+  "expected": "insufficient",
+  "model_event": {
+    "request_id": "98234504a102441884877f9db6245c3f",
+    "response_id": "gen-1794067512-0HOvqCl9SHzui6BrCX2w",
+    "model": "openai/gpt-6.1-sol",
+    "provider": null,
+    "api": "responses",
+    "usage": {
+      "input_tokens": 408,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 299,
+      "output_tokens_details": {
+        "reasoning_tokens": 179
+      },
+      "total_tokens": 707,
+      "cost": 0.003806,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003806,
+        "upstream_inference_input_cost": 0.000816,
+        "upstream_inference_output_cost": 0.00299
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "completed",
+    "elapsed_seconds": 5.5124,
+    "input_bound": 6581,
+    "reserved_usd": "0.0574125",
+    "request_sha256": "649b662509f202637b3f8d12cf322405f62746fa00154365f09c575f3c360976",
+    "output_metadata": [
+      {
+        "type": "reasoning",
+        "id": "rs_0413ddcb440d79ba016aef4c3935ac87d19d72e340974b76e3",
+        "sha256": "3b031cb51ba0c8126510186acce0c828c7232ce908d007fd5230d5be5f5848b3"
+      },
+      {
+        "type": "function_call",
+        "id": "fc_tmp_0ved3vhs686k",
+        "sha256": "31002f6f488ef0c48f3329adcbe8872dbf43ac7692d16e4f34e61964593f2390"
+      }
+    ]
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "insufficient",
+    "p_claim_true": 0.6,
+    "evidence_used": [
+      "report"
+    ],
+    "reason": "The report shows harness counts of 9 passed and 0 failed, and states that 5 of 5 reported attempts passed. However, it explicitly excludes attempts lost to infrastructure errors, so the reported denominator does not establish that all recorded attempts are included. The evidence therefore cannot settle the claim about all recorded attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-07T16:05:17.837414+00:00"
+}
