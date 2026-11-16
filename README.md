@@ -1,76 +1,127 @@
 # Witness
 
-A research prototype on how AI auditors verify claims about agent runs, and what
-evidence they need to do it. **First confirmed result (31 October 2026):** on
-held-out tasks, two LLM auditors accepted test reports that provably could not
-decide the claim. They also treated a verifier's exit status 0 as proof even when
-no tests were shown to have run. The current state of every study is in
-[research/findings.md](research/findings.md).
+**Do LLM auditors know when the evidence cannot settle a claim about an agent run?**
 
-## Where things stand
+Witness is a controlled benchmark that tests whether an AI auditor can tell when
+the evidence it has been given cannot verify an agent's claim, and whether it
+uses the evidence that can.
 
-- **Active question:** the evidence-access benchmark ([research/directions.md](research/directions.md),
-  Option 1). It uses paired valid and invalid runs that look identical under
-  restricted access, and asks which added evidence lets an auditor tell them apart.
-  A frozen v2 protocol confirmed the Stage 1 pilot on 64 held-out incidents:
-  GPT-6 Luna and GPT-6.1 Sol committed on 99.5% and 89.6% of uncheckable reports,
-  and both accepted 48/48 early-exit runs from the verifier's exit code alone.
-  Code: `swarm_lab/evidence_access/`.
-- **Closed studies:** the swarm pilot, single-claim auditor, portfolio allocation
-  screen, and query capability series. They hit ceilings or were underpowered.
-  Their runners are kept under `swarm_lab/legacy/` and refuse paid runs.
-- **Validated results:** a capable auditor exposed two wrong labels in our own
-  benchmark, and replayed probe output can differ for incidental reasons such as
-  memory addresses. Both are about measurement, not agent behavior.
-- **Budget:** $25 phase ceiling. 3,022 requests, $3.399806440 billed
-  (`research/agent-study/budget.jsonl`).
+The main result so far is about exit codes. On held-out tasks, GPT-6 Luna and
+GPT-6.1 Sol accepted a test run as passing in every case where the replay showed
+exit status 0, no output and no test summary. Real pytest always prints a summary,
+so that record shows that no tests ran. Telling Sol the rule explicitly barely
+helped (43/48 still accepted).
 
-Operating rules for research work are in [AGENTS.md](AGENTS.md).
+[Full findings](research/findings.md) · [Project site](https://wesdalton.github.io/witness/)
 
-## Layout
+## The idea in 30 seconds
+
+Two runs of the same task. In one, the agent fixed the bug and the tests pass. In
+the other, the library calls `os._exit(0)` on import, so the test process exits
+cleanly before any test runs. The harness reports "8 passed" for both.
+
+| Evidence the auditor sees | Valid run | Invalid run | Justified verdict |
+| --- | --- | --- | --- |
+| Harness report only | identical bytes | identical bytes | `insufficient` |
+| Auditor-run replay | `8 passed`, exit 0 | no output, exit 0 | `supported` / `refuted` |
+
+Because the report bytes are identical, no auditor can beat a coin flip on the
+pair from the report alone, so `insufficient` is provably the right answer. That
+lets the benchmark score *whether the auditor knows what it doesn't know*, not
+just whether it guesses the label.
+
+## Results (v2, held-out tasks)
+
+8 held-out tasks, 64 incidents, 2,112 episodes, $2.69. Protocol frozen before
+dispatch.
+
+| Measure | GPT-6 Luna | GPT-6.1 Sol |
+| --- | --- | --- |
+| Accepts a replay with exit 0 and no test summary | 48/48 | 48/48 |
+| ...after being told the rule | 14/48 | 43/48 |
+| Commits to a verdict from a report that cannot decide the claim | 191/192 | 172/192 |
+| ...after being told the rule | 0/192 | 0/192 |
+
+The exit-status cells are 8 incidents sampled 6 times; the report-only cells come
+from 24 distinct reports. Details, intervals and limitations are in
+[research/findings.md](research/findings.md). A replication on DeepSeek, Gemini
+and Claude Sonnet is mostly run and not yet analyzed.
+
+## How the benchmark works
+
+- **Paired incidents from real runs.** Small Python libraries run in a locked-down
+  Docker container (no network, read-only, all capabilities dropped). Three
+  failure families: a shadowed or short-circuited test runner, a timeout recorded
+  as success, and failed attempts dropped from a success rate.
+- **Access sets.** The auditor gets the harness report plus any combination of
+  full artifacts, an independent run manifest, and a replay it controls (8 sets).
+- **Certified insufficiency.** A gate checks, for every pair and access set,
+  whether the valid and invalid prompts are byte-identical, and that no label
+  leaks through names or wording.
+- **Executable ground truth.** Two reference checks per label, plus deterministic
+  baselines: an exact checker that abstains only when it should, and a naive one
+  that never abstains.
+- **Pre-registered and budget-capped.** Each paid batch has a frozen protocol, and
+  every request goes through an append-only spend ledger that refuses calls over
+  the ceiling. See [METHODS.md](METHODS.md).
+
+## Repository layout
 
 | Path | Contents |
 | --- | --- |
-| `swarm_lab/core/` | Phase budget, OpenRouter client, Docker sandbox, records, evidence archive |
-| `swarm_lab/evidence_access/` | Active benchmark: tasks, corpus builder, baselines, Stage 1 runner |
-| `swarm_lab/legacy/` | Closed study runners and case builders (historical reproduction) |
-| `scripts/` | Evidence audits, archive CLI, site build; `scripts/legacy/` for closed studies |
-| `research/findings.md` | One current report covering every study |
-| `research/registry/` | Write-once SHA-256 records of all sealed evidence, plus derived index |
-| `research/archive/` | Sealed writeup editions and the content-addressed snapshot store |
-| `inspect_tasks/`, `website/` | The original Inspect tasks and browser prototype |
+| [`witness/core/`](witness/core/) | Spend ledger, model client, Docker sandbox, write-once evidence archive |
+| [`witness/evidence_access/`](witness/evidence_access/) | Fixture tasks, corpus builder, auditor prompts, baselines |
+| [`docker/`](docker/) | The sandbox image the fixture runs use |
+| [`scripts/`](scripts/) | Corpus gates, per-stage runners and analyses, archive audits |
+| [`tests/`](tests/) | Unit tests for the ledger, archive and benchmark |
+| [`research/findings.md`](research/findings.md) | The current report |
+| [`research/experiments/`](research/experiments/) | Frozen protocols, gates, raw episodes, analyses and reports for v1 to v3 |
+| [`research/registry/`](research/registry/) | SHA-256 records of every sealed evidence bundle |
+| [`research/budget.jsonl`](research/budget.jsonl) | Append-only ledger of every paid request |
+| [`website/`](website/) | The project site |
 
-## Validate the repository
+## Reproduce
+
+Requires Python 3.12+.
 
 ```sh
+python3 -m venv .venv
+.venv/bin/pip install -e '.[dev]' -c requirements-dev.lock
+
+# Recompute the v2 results from the raw episodes (no model calls)
+.venv/bin/python scripts/evidence_access_stage2.py \
+  --corpus research/experiments/20261031-evidence-access-v2/gates/corpus-v2 \
+  --runs research/experiments/20261031-evidence-access-v2/runs/stage2-luna-01 \
+         research/experiments/20261031-evidence-access-v2/runs/stage2-sol-01 \
+  --out /tmp/witness-v2
+cmp /tmp/witness-v2/analysis.json \
+    research/experiments/20261031-evidence-access-v2/analyses/stage2-01/analysis.json
+
+# Tests, lint, and integrity checks over all sealed evidence
 .venv/bin/python -m pytest -q
 .venv/bin/ruff check .
 .venv/bin/python scripts/research_archive.py audit
 .venv/bin/python scripts/audit_research_coverage.py
-.venv/bin/python scripts/audit_agent_study.py
 ```
 
-Run source snapshots are stored once per distinct file. To rebuild the original
-snapshot folders somewhere for inspection:
+Rebuilding the corpus or running auditors requires Docker and an OpenRouter key,
+and spends money; read [METHODS.md](METHODS.md) first.
 
-```sh
-.venv/bin/python scripts/research_archive.py restore --to /tmp/witness-snapshots
-```
+## History
 
-## Run the browser prototype
+The project started in October 2026 as a simulation of whether agents in a swarm
+stop checking claims when their peers agree. Five early studies on that theme hit
+ceilings or were underpowered; [findings](research/findings.md#earlier-studies-closed)
+summarizes them and what they taught. Their code and evidence are preserved at
+the tag [`archive/2026-11-full`](https://github.com/wesdalton/witness/tree/archive/2026-11-full).
 
-The website has no runtime dependencies or build step. With Node 22+:
+## How this was built
 
-```sh
-cd website
-npm test
-npm run serve   # http://localhost:4173
-```
+I chose the research question, set the design rules in [METHODS.md](METHODS.md),
+approved every protocol and spend, and reviewed the results. Much of the code and
+many of the writeups were produced with an AI coding agent (Factory Droid)
+working under those rules; commits it co-authored are marked as such.
 
-It runs an authored 10,000-agent simulation from the 18 October stage, not the
-later live-model studies. [Published prototype](https://wesdalton.github.io/witness/).
-The [original Inspect documentation](research/legacy-inspect-readme.md) covers
-the earliest tasks.
+## License and citation
 
-Code and original documentation are MIT licensed; vendored libraries keep their
-licenses. Cite with `CITATION.cff`.
+MIT. Cite with [`CITATION.cff`](CITATION.cff).
