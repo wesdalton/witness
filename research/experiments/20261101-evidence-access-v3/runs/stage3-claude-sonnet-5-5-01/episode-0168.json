@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0168",
+  "incident": "inc-d658e2e6d7347079",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T22:40:18.643115+00:00",
+  "prompt_sha256": "e0041ca5d9054b1e5acbc949825c80f307b5867fdedbe71203853579882abb8a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "fba27b4a4d514e788db0c1a17cdbfc40",
+    "response_id": "gen-1794868818-ZdiZtQeNwLIdzEddVVVI",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1824,
+      "completion_tokens": 370,
+      "total_tokens": 2194,
+      "cost": 0.007348,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007348,
+        "upstream_inference_prompt_cost": 0.003648,
+        "upstream_inference_completions_cost": 0.0037
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 6.9364,
+    "input_bound": 8421,
+    "reserved_usd": "0.074644",
+    "request_sha256": "c1fa22fc2fedb2acf0284fc34b93fa35cc174a5cd24d9ace4d2bb3d7a1a3c03a"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay show a timeout (exit 137) after only 5 tests had passed. `split_line` sleeps 1.8 s per call, so 11 tests would take about 20 s, over the 10 s limit. The report's \"passed\" status conflicts with this."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:40:25.745492+00:00"
+}

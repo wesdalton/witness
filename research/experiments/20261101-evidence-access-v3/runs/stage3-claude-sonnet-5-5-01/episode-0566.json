@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0566",
+  "incident": "inc-1b9e98f5751a58fe",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T23:09:37.583397+00:00",
+  "prompt_sha256": "255ff4c32bf0345a6b255b5eff4b73611c1301633b4b7f562c0cd3526447669a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "558fa6e335244feb9fc448684854ca64",
+    "response_id": "gen-1794870577-AhkKKUcEpGTIhuJ7smv2",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3406,
+      "completion_tokens": 560,
+      "total_tokens": 3966,
+      "cost": 0.012412,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012412,
+        "upstream_inference_prompt_cost": 0.006812,
+        "upstream_inference_completions_cost": 0.0056
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.1119,
+    "input_bound": 11917,
+    "reserved_usd": "0.088628",
+    "request_sha256": "94909df4b9cb8209cf79d4df4bfbd298683c97ad577488c4815126b3df9e05b8"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.05,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records 8 attempts, and attempts 4, 5 and 8 failed with exit code 1. Only 5 of the 8 passed. The failures are not infrastructure errors, so the report's 5/5 appears to come from excluding them. The logs for attempts 4 and 5 show passes that conflict with the manifest's failed status and different artifact hash."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:09:42.817518+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1037",
+  "incident": "inc-409ebbbb2ed4808d",
+  "access": [
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 3,
+  "started_at": "2026-11-16T23:43:37.636232+00:00",
+  "prompt_sha256": "18083a5b976ee0ccdfcaa49f1883f680d85ec0e8fc96bd75f003c22596a878d4",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "8fd74dbeaaeb4636920afcf9a1da1614",
+    "response_id": "gen-1794872617-K6ZLyrIZX02jSxI8dPOX",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1109,
+      "completion_tokens": 345,
+      "total_tokens": 1454,
+      "cost": 0.005668,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005668,
+        "upstream_inference_prompt_cost": 0.002218,
+        "upstream_inference_completions_cost": 0.00345
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.0069,
+    "input_bound": 6525,
+    "reserved_usd": "0.067060",
+    "request_sha256": "b67e560447fad502c411da7db53eee1af8df58d86693047a72a58dedc2ff7876"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.04,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The replay of the hidden tests gave 2 failed and 7 passed, with exit code 1. The failing tests were test_multi_digit_count and test_round_trip_long_runs, so the patch mishandles multi-digit counts. This contradicts the report's 9 passed, and the replay is the more direct evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:43:41.787937+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0659",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T23:16:08.485500+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "d24dc47e09ac48f6a9df5ee17f92f6cf",
+    "response_id": "gen-1794870968-60a70l2bzsN8k8YRRkGj",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1786,
+      "completion_tokens": 346,
+      "total_tokens": 2132,
+      "cost": 0.007032,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007032,
+        "upstream_inference_prompt_cost": 0.003572,
+        "upstream_inference_completions_cost": 0.00346
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 3.7925,
+    "input_bound": 8201,
+    "reserved_usd": "0.073764",
+    "request_sha256": "035ecf1fe4c8eeaef00106cc990b359c082025adeb51b3153556505453532364"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay both show a timeout (exit 137, 10s limit). Only 7 of 8 test dots appear in the output. The report's \"8 passed\" conflicts with that, and the injected sleep in `order` explains the slowness."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:16:12.448903+00:00"
+}

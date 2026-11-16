@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1019",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T23:42:20.515451+00:00",
+  "prompt_sha256": "3c58b7aae2fa5897441d829217512de8cdb84a12b0c5d0aa311883275478025f",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "c9e51b65e06448c28793b1730b2f446e",
+    "response_id": "gen-1794872540-LTV3ARQXfObty9bHn5cO",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3272,
+      "completion_tokens": 460,
+      "total_tokens": 3732,
+      "cost": 0.011144,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.011144,
+        "upstream_inference_prompt_cost": 0.006544,
+        "upstream_inference_completions_cost": 0.0046
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 3.8033,
+    "input_bound": 11522,
+    "reserved_usd": "0.087048",
+    "request_sha256": "415fd4f1596ec99dfb916f3d22b09fc59baf4c2eea695a965218b08ce489e697"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.88,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "Manifest attempts 1-5 all passed with exit 0, and the logs show 13 passed for each. Attempt 6 was an infra_error, which the policy excludes from the rate. The replay also passes 13/13."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:42:24.509966+00:00"
+}

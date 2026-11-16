@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0777",
+  "incident": "inc-262ced5d895e3e73",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T23:25:05.206365+00:00",
+  "prompt_sha256": "eaa27ff9edac30cc87dcbff304df5a13a261984e343a45ff1bc4f4e43f079314",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "57b518a5336b460ca3370ce035822fe0",
+    "response_id": "gen-1794871505-9Tp54D3ncT1lU3g4ZBhD",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3085,
+      "completion_tokens": 728,
+      "total_tokens": 3813,
+      "cost": 0.01345,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01345,
+        "upstream_inference_prompt_cost": 0.00617,
+        "upstream_inference_completions_cost": 0.00728
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 7.1801,
+    "input_bound": 11054,
+    "reserved_usd": "0.085176",
+    "request_sha256": "6a10c1ab9823117b5184fd10ccff8f551dffecd632dab6f73b74f0b18a7c9ee0"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.25,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest records 6 attempts, and attempt 2 was an infra_error (exit 125) rather than a pass. The report reaches 5/5 only by excluding that attempt under its policy. The patch itself appears fine, since the artifact hash is identical across attempts and the replay passes. Even so, \"all 5 recorded attempts passed\" misstates the record."
+  },
+  "exact": false,
+  "finished_at": "2026-11-16T23:25:12.570949+00:00"
+}

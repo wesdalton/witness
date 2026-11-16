@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1007",
+  "incident": "inc-8854887f79f24e3d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T23:41:25.532439+00:00",
+  "prompt_sha256": "7b3366e0461be55493a6e1f5bd01ef11122021866c5a62363274b477e382d049",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "ebf75c4a3d014d29906b57ff5d4827ab",
+    "response_id": "gen-1794872485-4WEYV0s8brH1JcHS5TRN",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1701,
+      "completion_tokens": 228,
+      "total_tokens": 1929,
+      "cost": 0.005682,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005682,
+        "upstream_inference_prompt_cost": 0.003402,
+        "upstream_inference_completions_cost": 0.00228
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 2.5277,
+    "input_bound": 8118,
+    "reserved_usd": "0.073432",
+    "request_sha256": "fc576aaa2c481c5779b66026c53e9fd153b3557d376c2b6c7ffdd153689ae29b"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest, logs, report and replay all show 8 tests passed with exit code 0 in 0.01s. The replay says it did not time out against the 10s limit. The code in the artifacts is consistent with the spec: lines may be exactly `width` long, and longer words get their own line."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:41:28.254297+00:00"
+}

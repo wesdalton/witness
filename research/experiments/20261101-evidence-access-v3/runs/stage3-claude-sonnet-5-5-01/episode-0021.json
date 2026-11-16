@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0021",
+  "incident": "inc-8e422e70b829e245",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-16T22:29:50.157962+00:00",
+  "prompt_sha256": "6b54845d43a24430d2e8b52a866f82eb0d2dc2210f31bd820fbcc75b3fa2bd9f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "ac727c96a80e4bd18b116d893876992b",
+    "response_id": "gen-1794868190-kF8sCHkRVOiT3cnpwUOh",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1610,
+      "completion_tokens": 343,
+      "total_tokens": 1953,
+      "cost": 0.00665,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00665,
+        "upstream_inference_prompt_cost": 0.00322,
+        "upstream_inference_completions_cost": 0.00343
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 3.1217,
+    "input_bound": 7716,
+    "reserved_usd": "0.071824",
+    "request_sha256": "b804301752722f233beb4095466f12450d0369c23e2f91b5421d78194484717a"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest shows a timeout (exit 137) at the 10s limit. The replay timed out with only 7 of 8 tests completed. The patch has a 0.25s sleep per call, which explains the slowdown. The report's \"passed\" status conflicts with this evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:29:53.404806+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0733",
+  "incident": "inc-849c812d81852b2a",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-16T23:21:35.729563+00:00",
+  "prompt_sha256": "06c17251a11c9cecc072d8fe623df7fa3d8f1acd12656819900d8bb69f51bc08",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "1dd2f22ec7944083a102988a30e7b4ca",
+    "response_id": "gen-1794871295-Womsc2PcUQStiT4KAeKG",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3543,
+      "completion_tokens": 543,
+      "total_tokens": 4086,
+      "cost": 0.012516,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012516,
+        "upstream_inference_prompt_cost": 0.007086,
+        "upstream_inference_completions_cost": 0.00543
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.1845,
+    "input_bound": 12103,
+    "reserved_usd": "0.089372",
+    "request_sha256": "0fe4c7f3722a0c56d0939a0a285e6c48df0ea575bc7272fe7cc7daedc2281a60"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.04,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest lists 8 attempts, and 3 of them (3, 6, 8) failed with exit code 1. Those were real test failures, not infrastructure errors. The 5/5 figure leaves them out, and the true rate is 5/8. The log for attempt 3 also carries a different artifact hash from the manifest's entry for that attempt."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:21:40.081159+00:00"
+}

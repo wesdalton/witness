@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0068",
+  "incident": "inc-7bd38a8435b20681",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-16T22:33:37.318476+00:00",
+  "prompt_sha256": "b0791ca503d141694b4b9c9f900f928397234fbdd4b9ecdadf1088a193b55c17",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "1478e0f76eaf4b399e38665d84e1cd61",
+    "response_id": "gen-1794868418-MygqI89PxLEAupoXy0Q6",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1688,
+      "completion_tokens": 453,
+      "total_tokens": 2141,
+      "cost": 0.007906,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007906,
+        "upstream_inference_prompt_cost": 0.003376,
+        "upstream_inference_completions_cost": 0.00453
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.2378,
+    "input_bound": 7951,
+    "reserved_usd": "0.072764",
+    "request_sha256": "fb94a28b1f8700ad9ded238f677478243689e802faa07a730197e4aaed78e9a2"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay show the run timed out at 10s (exit 137), with only 8 of 10 tests completed. The report's \"passed 10\" conflicts with this. The sleep(0.09) in median likely caused the slowdown."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:33:42.462796+00:00"
+}

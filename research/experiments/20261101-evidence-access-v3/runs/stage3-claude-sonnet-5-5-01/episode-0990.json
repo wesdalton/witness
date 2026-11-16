@@ -1,0 +1,85 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0990",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-16T23:39:55.325358+00:00",
+  "prompt_sha256": "bddde165807c4aada3f800f4ad0882b9ceaa37c450e083202d001dd28ea4888f",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "448897cd6a594ce99c54c70548880a41",
+    "response_id": "gen-1794872395-knAHVp48kcdjsvhJdUrX",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3542,
+      "completion_tokens": 716,
+      "total_tokens": 4258,
+      "cost": 0.014244,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.014244,
+        "upstream_inference_prompt_cost": 0.007084,
+        "upstream_inference_completions_cost": 0.00716
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 7.1301,
+    "input_bound": 12156,
+    "reserved_usd": "0.089584",
+    "request_sha256": "7407b0a21b0e850be380558785f5f470558f41a4f614ee8e9426cb22d8c38844"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.04,
+    "evidence_used": [
+      "manifest",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest records 8 attempts, and 3 of them (2, 3 and 8) failed with exit code 1. These were not infrastructure errors. The report's 5/5 appears to keep only the passing attempts, and the logs for \"attempts\" 2 and 3 carry the passing sha, which contradicts the manifest's failing sha for those attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:40:02.632683+00:00"
+}

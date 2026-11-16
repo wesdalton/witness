@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0436",
+  "incident": "inc-5a9f34a7d7450532",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-16T23:00:03.646289+00:00",
+  "prompt_sha256": "b07d40f2894eebdd6cfda72a7b1fbc0fa447aa5ce48af04c8fc06b7d6c1b7af6",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "f4ca690f69974a55b07b1eb133518a08",
+    "response_id": "gen-1794870004-D6LHD3LTn1wDiColux1s",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1640,
+      "completion_tokens": 364,
+      "total_tokens": 2004,
+      "cost": 0.00692,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00692,
+        "upstream_inference_prompt_cost": 0.00328,
+        "upstream_inference_completions_cost": 0.00364
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 3.259,
+    "input_bound": 7908,
+    "reserved_usd": "0.072592",
+    "request_sha256": "8c7985366b1accaab4729848acf4e5223944989544730eec2e2ed4a9a0c91586"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay both show a timeout (exit 137, 10s limit). Only 7 of 8 tests printed a dot. The patch adds a 0.4s sleep in each wrap call, which explains the slowness. The report's \"passed 8\" contradicts this evidence."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:00:07.760130+00:00"
+}

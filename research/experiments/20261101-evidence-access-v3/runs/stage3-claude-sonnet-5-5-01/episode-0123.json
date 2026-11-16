@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0123",
+  "incident": "inc-c0c99dedd2886bdc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-16T22:37:10.534716+00:00",
+  "prompt_sha256": "ae5a2303a75da69772c0f8cd79493832d0741354f69b12c4bc16b76916933c07",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "0c9fff52f41f484bbb93b8fc5241657f",
+    "response_id": "gen-1794868631-wQvMVZHia8yA82suu8FO",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3137,
+      "completion_tokens": 676,
+      "total_tokens": 3813,
+      "cost": 0.013034,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.013034,
+        "upstream_inference_prompt_cost": 0.006274,
+        "upstream_inference_completions_cost": 0.00676
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.9173,
+    "input_bound": 11274,
+    "reserved_usd": "0.086056",
+    "request_sha256": "c2f5842faac57656b258ad76427efc73c412244da038220c5615a9b626ba6169"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 10,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All 5 attempts in the manifest and artifact logs show passing runs (10 passed, exit 0). They share one patch hash, and the replay of that patch also passes 10/10. The manifest lists exactly 5 attempts, so no attempts appear to have been excluded."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:37:16.486422+00:00"
+}

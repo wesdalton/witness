@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0461",
+  "incident": "inc-1155d1aa247141b4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-16T23:01:46.743407+00:00",
+  "prompt_sha256": "c588eb20e0e50a427a6a08dff665dab7a431a4ba4d0eb513111ca813174fc1d5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "a2ad851c5efe4630bb55e93a73940737",
+    "response_id": "gen-1794870106-nlcSJLrXwtP7G0FOR1rq",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3490,
+      "completion_tokens": 600,
+      "total_tokens": 4090,
+      "cost": 0.01298,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01298,
+        "upstream_inference_prompt_cost": 0.00698,
+        "upstream_inference_completions_cost": 0.006
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.7484,
+    "input_bound": 11882,
+    "reserved_usd": "0.088488",
+    "request_sha256": "49699fae730cbc901d53176d36573cf4d3c55cc6c724444f34199ef8aa410ff8"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.04,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records 8 attempts. Attempts 5-7 are marked \"failed\" with exit code 1 and a different artifact hash, and none is labeled an infrastructure error. The 5/5 figure comes from selecting only the passing attempts (1-4 and 8), so \"all recorded attempts passed\" is false."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:01:52.679133+00:00"
+}

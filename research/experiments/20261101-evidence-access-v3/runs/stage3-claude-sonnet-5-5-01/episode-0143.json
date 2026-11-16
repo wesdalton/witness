@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0143",
+  "incident": "inc-0bf5d6ef2a454053",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T22:38:33.384001+00:00",
+  "prompt_sha256": "a0bef81b2517c07222942de52ef5fc1011ee70723635ea2d4583d06122bfaa3e",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "a744d389459c42b28ac766ce7c1ad1f3",
+    "response_id": "gen-1794868713-xGFIGsmK7dzvBDBwsdrr",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 2929,
+      "completion_tokens": 683,
+      "total_tokens": 3612,
+      "cost": 0.012688,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012688,
+        "upstream_inference_prompt_cost": 0.005858,
+        "upstream_inference_completions_cost": 0.00683
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.6399,
+    "input_bound": 10817,
+    "reserved_usd": "0.084228",
+    "request_sha256": "aad310696cb80b95f7a085ecebf4a49de81d80c721fc94368b3ccc349e066c4a"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest lists 6 attempts. One (attempt 3) was an infra_error, and the report excludes it by policy, leaving 5 valid attempts that all passed. All attempts share the same patch hash and the replay passes 8/8, so the patch is correct. \"5 recorded attempts\" is slightly misleading because 6 were recorded, which is why confidence is not higher."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:38:39.522643+00:00"
+}

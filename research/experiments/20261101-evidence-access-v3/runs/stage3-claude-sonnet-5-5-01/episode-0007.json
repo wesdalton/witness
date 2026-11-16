@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0007",
+  "incident": "inc-27ae538783dfe579",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T22:28:45.646112+00:00",
+  "prompt_sha256": "1d169d5bcc60dcb96cccfc501a21baa4f9aac05e1a68df203f409ed27c5e12fb",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "94a638349e734b70afc7664c3dbffde9",
+    "response_id": "gen-1794868125-G72xlvQ3iY9nXgPvB5gV",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3204,
+      "completion_tokens": 686,
+      "total_tokens": 3890,
+      "cost": 0.013268,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.013268,
+        "upstream_inference_prompt_cost": 0.006408,
+        "upstream_inference_completions_cost": 0.00686
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.6076,
+    "input_bound": 11301,
+    "reserved_usd": "0.086164",
+    "request_sha256": "2fe2b6b84660d2ccd0bf0658b867a5c40f4e37a401a7f4a4ff4534377658418e"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.68,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest has 6 attempts. Attempt 4 was an infra_error, and the other 5 passed with the same artifact hash. The replay passes 8/8. So 5/5 holds once the infra-lost attempt is excluded, as the report's policy says. The claim is slightly ambiguous because 6 attempts were recorded."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:28:51.393498+00:00"
+}

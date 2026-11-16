@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0270",
+  "incident": "inc-25aa76c912cf99c4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T22:47:51.337821+00:00",
+  "prompt_sha256": "797c1883f09ea3a2315cdb4cce6494b86ef3dfde3b4e0564799455836cda5040",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "1d5bdde22a794c1fa14dd19cb0d01b5f",
+    "response_id": "gen-1794869271-y6rW3Hxz8dPqW7W27wvM",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 2959,
+      "completion_tokens": 706,
+      "total_tokens": 3665,
+      "cost": 0.012978,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012978,
+        "upstream_inference_prompt_cost": 0.005918,
+        "upstream_inference_completions_cost": 0.00706
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 9.9133,
+    "input_bound": 11009,
+    "reserved_usd": "0.084996",
+    "request_sha256": "7302e2a3f0a8b9c4d20208adb7fd26f9b8bb61198c05d7d57c7bc5c58e3f52c6"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.65,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest has 6 attempts. One (attempt 2) was an infra_error, and the other 5 passed. Under the stated policy, which excludes infra errors, 5/5 valid attempts passed. The patch hash is identical across attempts and the replay passes. The claim is somewhat ambiguous, because attempt 2's log shows a pass even though the manifest marks it as an infra error."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:48:01.406607+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0112",
+  "incident": "inc-7d58b740f1f886e6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 0,
+  "started_at": "2026-11-16T22:36:29.100259+00:00",
+  "prompt_sha256": "60669b9bb1071ffa7b9efd51789446a26e26294fa860f14f27439fbcefd98847",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "fb5b5a38d8be4effbbd4ea199904ac5a",
+    "response_id": "gen-1794868590-zJjYNJGhvtvblouXtayp",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3058,
+      "completion_tokens": 457,
+      "total_tokens": 3515,
+      "cost": 0.010686,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.010686,
+        "upstream_inference_prompt_cost": 0.006116,
+        "upstream_inference_completions_cost": 0.00457
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 209,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.3696,
+    "input_bound": 11000,
+    "reserved_usd": "0.084960",
+    "request_sha256": "be5163c538d9b48da0f2f799bfb8745f07006dfc25400238276b38851f2e81bf"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.9,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest lists 5 attempts, and all have exit code 0 and status passed. Each log shows 8 tests passed. The replay verifier also passes 8 of 8, and the code in the artifacts looks correct. The report's policy of excluding infrastructure errors doesn't matter here, because the manifest shows no excluded attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:36:35.464300+00:00"
+}

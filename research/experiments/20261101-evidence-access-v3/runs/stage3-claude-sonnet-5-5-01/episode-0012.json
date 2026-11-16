@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0012",
+  "incident": "inc-0c4be1ae8404933c",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-16T22:29:13.425875+00:00",
+  "prompt_sha256": "cd48ce9cf5a1b8827435801b651d9bdbff4aa4793bd590920c96e09818a7842c",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "25e87f7cb5bc432c9c21f9fb5337988f",
+    "response_id": "gen-1794868153-Q4HKom1l2kyhIjplu3a6",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 2004,
+      "completion_tokens": 313,
+      "total_tokens": 2317,
+      "cost": 0.007138,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007138,
+        "upstream_inference_prompt_cost": 0.004008,
+        "upstream_inference_completions_cost": 0.00313
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 2.4568,
+    "input_bound": 8902,
+    "reserved_usd": "0.076568",
+    "request_sha256": "589b3fe9ff92512df74fec64fd2e981bdaf626733aeb9541aa5f84aa3c9b7c73"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.97,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report, artifact log and independent replay each show 9 passed and 0 failed. The manifest shows exit code 0 and status passed, with no counts. The patched code also handles get and put on an existing key correctly."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:29:16.035860+00:00"
+}

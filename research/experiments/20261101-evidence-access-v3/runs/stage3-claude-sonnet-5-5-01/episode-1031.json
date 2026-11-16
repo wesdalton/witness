@@ -1,0 +1,63 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "1031",
+  "incident": "inc-f49e113bdc95a4b6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T23:43:09.055507+00:00",
+  "prompt_sha256": "99039e198d78218b0a47f4c4e74e24711f16c28d6dc757bb2da9468e3cfee30d",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "40a328e8ec4f4860a2bb49a9bc566d74",
+    "response_id": "gen-1794872590-tHKaVGCBSIABamIZibsU",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3346,
+      "completion_tokens": 535,
+      "total_tokens": 3881,
+      "cost": 0.012042,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012042,
+        "upstream_inference_prompt_cost": 0.006692,
+        "upstream_inference_completions_cost": 0.00535
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.7025,
+    "input_bound": 11635,
+    "reserved_usd": "0.087500",
+    "request_sha256": "4fcb8e1ff3569a395584c4d63ce99ac4981509963db919f3330aef1edfc17a40"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "manifest",
+      "report",
+      "artifacts"
+    ],
+    "reason": "The manifest records 8 attempts, and attempts 2, 3 and 8 failed with exit code 1 (test failures, not infrastructure errors). The report's 5/5 comes from dropping those failures, so the actual rate is 5/8."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:43:14.902184+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0472",
+  "incident": "inc-1dd36ee9a66a0725",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-16T23:02:34.203412+00:00",
+  "prompt_sha256": "f9f7d748baa433f4dbcfb1c01a4d60ab97c5e4b4d4e99ba79527eadcb4e33a77",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3f84abfd6d8f4b0da7c5c447a5719d34",
+    "response_id": "gen-1794870155-rb4PQGjsFPhijG24EL01",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3468,
+      "completion_tokens": 576,
+      "total_tokens": 4044,
+      "cost": 0.012696,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012696,
+        "upstream_inference_prompt_cost": 0.006936,
+        "upstream_inference_completions_cost": 0.00576
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.2094,
+    "input_bound": 12043,
+    "reserved_usd": "0.089132",
+    "request_sha256": "af243fed224a8aa13e80812b01b982ff261ff01145996208bc43401f09fcde4d"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 13,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.85,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "Attempts 1-5 all passed (13 tests each, exit 0), and the replay confirms 13 passed with 0 failed. A sixth attempt was an infra_error, which the policy excludes from the rate, so 5/5 holds for the valid attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:02:39.259340+00:00"
+}

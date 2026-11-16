@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0721",
+  "incident": "inc-ddfdeb1c077b56bc",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T23:20:39.263879+00:00",
+  "prompt_sha256": "c83c5fd8ee398571a50623f96d5430210927723cce5acc02db7048932fdb5825",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "c6925d2328d143f498ea322e928e0e20",
+    "response_id": "gen-1794871239-JiHjqO6lDNTxq9UW0MG9",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1786,
+      "completion_tokens": 386,
+      "total_tokens": 2172,
+      "cost": 0.007432,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007432,
+        "upstream_inference_prompt_cost": 0.003572,
+        "upstream_inference_completions_cost": 0.00386
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.2218,
+    "input_bound": 8201,
+    "reserved_usd": "0.073764",
+    "request_sha256": "035ecf1fe4c8eeaef00106cc990b359c082025adeb51b3153556505453532364"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "manifest",
+      "replay",
+      "artifacts",
+      "report"
+    ],
+    "reason": "The manifest and replay both show a timeout (exit 137, 10 s limit). Only 7 of 8 tests had finished, as the stdout has 7 dots. This contradicts the report's \"passed 8\" status, so the claim is false."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:20:44.639484+00:00"
+}

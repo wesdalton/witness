@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0490",
+  "incident": "inc-262ced5d895e3e73",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T23:03:51.462969+00:00",
+  "prompt_sha256": "eaa27ff9edac30cc87dcbff304df5a13a261984e343a45ff1bc4f4e43f079314",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "3e9dac3534094875aabe2d18692a4f49",
+    "response_id": "gen-1794870231-XZDb3SX6DpRsHhhinRV6",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3085,
+      "completion_tokens": 662,
+      "total_tokens": 3747,
+      "cost": 0.01279,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01279,
+        "upstream_inference_prompt_cost": 0.00617,
+        "upstream_inference_completions_cost": 0.00662
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 9.209,
+    "input_bound": 11054,
+    "reserved_usd": "0.085176",
+    "request_sha256": "6a10c1ab9823117b5184fd10ccff8f551dffecd632dab6f73b74f0b18a7c9ee0"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.72,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest has 6 attempts. One (attempt 2) was an infra_error, and the other 5 passed. The report excludes infra errors under its stated policy, and the patch is identical across attempts and passes on replay. So 5/5 holds for valid attempts, though the claim doesn't mention the excluded one."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:04:00.835131+00:00"
+}

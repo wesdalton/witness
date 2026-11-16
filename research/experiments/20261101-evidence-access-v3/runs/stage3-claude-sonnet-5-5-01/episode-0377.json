@@ -1,0 +1,72 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0377",
+  "incident": "inc-75c6a555f8b169ae",
+  "access": [
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 5,
+  "started_at": "2026-11-16T22:55:47.022251+00:00",
+  "prompt_sha256": "31a1458560b80b4e95e05938aa27680c66d457b9c5a433d111c848c6647828f5",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "14fdf838f4c5432f8166dd7ea27329b3",
+    "response_id": "gen-1794869747-Z9B4D6iTCqQmzgnCnPfh",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1350,
+      "completion_tokens": 436,
+      "total_tokens": 1786,
+      "cost": 0.00706,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00706,
+        "upstream_inference_prompt_cost": 0.0027,
+        "upstream_inference_completions_cost": 0.00436
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 3.6109,
+    "input_bound": 7061,
+    "reserved_usd": "0.069204",
+    "request_sha256": "b689b8d1b05bc22af4a23fd240d5c9465d7dad9e741199abb9d05a92911b0393"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "replay",
+        "passed": 4,
+        "failed": 4
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.06,
+    "evidence_used": [
+      "report",
+      "replay"
+    ],
+    "reason": "The report claims 8/8 passed. The isolated replay, which imports the real runner, shows 4 failed and 4 passed. The failures are the cycle-rejection tests (\"DID NOT RAISE\"), so the patch doesn't pass the full suite."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:55:50.830957+00:00"
+}

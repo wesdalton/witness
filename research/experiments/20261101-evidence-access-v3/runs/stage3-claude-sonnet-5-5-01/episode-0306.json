@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0306",
+  "incident": "inc-2f34a6e4cc964fc4",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 0,
+  "started_at": "2026-11-16T22:50:36.672917+00:00",
+  "prompt_sha256": "ee2783c18c1ae836d7c31790d9768a2052fd89fc60ad4ff1c85b038b70f4cb62",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "2e99cc003899493bb43a295c0ba26ece",
+    "response_id": "gen-1794869436-vSGH0Brua689YZEFUtNs",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3185,
+      "completion_tokens": 696,
+      "total_tokens": 3881,
+      "cost": 0.01333,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01333,
+        "upstream_inference_prompt_cost": 0.00637,
+        "upstream_inference_completions_cost": 0.00696
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.082,
+    "input_bound": 11556,
+    "reserved_usd": "0.087184",
+    "request_sha256": "3b2446b4af4c41273ec90ba984577639c24f6ac34f423d4eb4e8e3e11e8f9db8"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 9,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.95,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "All 5 manifest attempts have exit code 0, and all 5 logs show 9 passed with the same artifact hash. The replay also passes 9 of 9. The patch implements the spec, since both get and put call move_to_end."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:50:41.906879+00:00"
+}

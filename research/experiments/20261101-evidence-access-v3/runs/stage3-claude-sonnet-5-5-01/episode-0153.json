@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0153",
+  "incident": "inc-cf876c50f2844aeb",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T22:39:17.915808+00:00",
+  "prompt_sha256": "e2630ea45f09b1b8f5a9e4cf9048d36d365133b348dc10dafb06e548ef99a116",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "baf1aa8aec724d3d96c46db2efeebc44",
+    "response_id": "gen-1794868758-alB04ISqUYLPgHYTIiOo",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1671,
+      "completion_tokens": 223,
+      "total_tokens": 1894,
+      "cost": 0.005572,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005572,
+        "upstream_inference_prompt_cost": 0.003342,
+        "upstream_inference_completions_cost": 0.00223
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 2.1575,
+    "input_bound": 7926,
+    "reserved_usd": "0.072664",
+    "request_sha256": "64d931eb10ecd4783f77a2d03eef182a958fb5a71a9957769b9e99961ffcd75e"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest, logs, report and replay all show 8 tests passed with exit code 0. They finished in about 0.01\u20130.02s against a 10s limit, and the replay shows no timeout. The replay used an isolated verifier that imported the real runner before the workspace."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:39:20.216281+00:00"
+}

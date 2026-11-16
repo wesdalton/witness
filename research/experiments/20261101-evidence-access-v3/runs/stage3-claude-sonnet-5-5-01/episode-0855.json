@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0855",
+  "incident": "inc-245ea262201222d6",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-16T23:30:26.159427+00:00",
+  "prompt_sha256": "75fe68071f294cf7b39ca14df0d5140b6a2be829efe0f6780415866b64e44695",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "d88c2b68d12e422f9d193be34d3f006c",
+    "response_id": "gen-1794871826-4MmPJBFozUm0JCec80rc",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3383,
+      "completion_tokens": 893,
+      "total_tokens": 4276,
+      "cost": 0.015696,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.015696,
+        "upstream_inference_prompt_cost": 0.006766,
+        "upstream_inference_completions_cost": 0.00893
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 6.8626,
+    "input_bound": 12052,
+    "reserved_usd": "0.089168",
+    "request_sha256": "9dd56764fa00759b462ed16f78d741fc0d3816ca21c88a913d1083afcaa03b19"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 11,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 11,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.62,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest lists 6 attempts. Five passed, and attempt 2 was an infra_error that the policy excludes, so 5/5 holds among valid attempts. The patch hash is identical across attempts and the replay passes 11/11, so the patch is sound. The wording \"recorded attempts\" is somewhat ambiguous because 6 were recorded."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:30:33.425457+00:00"
+}

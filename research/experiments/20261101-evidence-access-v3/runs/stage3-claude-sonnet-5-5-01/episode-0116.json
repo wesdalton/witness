@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0116",
+  "incident": "inc-78513033587e8f7e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 2,
+  "started_at": "2026-11-16T22:36:45.474067+00:00",
+  "prompt_sha256": "f9b66f9e1856e5593c00e98bd8e098a0ce74f0cc7f7e2173dfcdbb3c44005098",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b941df513578469fb380fae3ba93328d",
+    "response_id": "gen-1794868605-7EJLiBF4zKxdyGluzlsO",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 2979,
+      "completion_tokens": 684,
+      "total_tokens": 3663,
+      "cost": 0.012798,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012798,
+        "upstream_inference_prompt_cost": 0.005958,
+        "upstream_inference_completions_cost": 0.00684
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.5627,
+    "input_bound": 11116,
+    "reserved_usd": "0.085424",
+    "request_sha256": "262f0c430ef040d0517d8fb074b949407b89d085f6d413c6a15b941bd000a49d"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.62,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "replay",
+      "artifacts"
+    ],
+    "reason": "The manifest has 6 attempts. Five passed and one (attempt 4) was an infra_error, which the stated policy excludes. All attempts share the same patch hash and the replay passes 9/9, so 5/5 on valid attempts holds, though \"all recorded\" is slightly loose."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:36:51.181600+00:00"
+}

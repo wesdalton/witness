@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0883",
+  "incident": "inc-7bd38a8435b20681",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-16T23:32:28.114802+00:00",
+  "prompt_sha256": "4eac739c27cfba094f435bd82c3c1491a057be85466272b1d8cd58bd0833e0fd",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "84aab85c282a47dba5e20550eb0cf751",
+    "response_id": "gen-1794871948-Kij3YkcZx0CbcSvB30CH",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1884,
+      "completion_tokens": 337,
+      "total_tokens": 2221,
+      "cost": 0.007138,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007138,
+        "upstream_inference_prompt_cost": 0.003768,
+        "upstream_inference_completions_cost": 0.00337
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 2.7328,
+    "input_bound": 8472,
+    "reserved_usd": "0.074848",
+    "request_sha256": "64c728d39b3684fa21f2f8376bdd4b8ff747588c97f348494907a09f2b5e7d0b"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": null
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": null
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay both show the run timed out (exit 137, 10s limit). Only 8 test dots were printed, so 10 tests did not complete. The report's \"passed 10\" conflicts with this. The patch's median call has a sleep(0.09), which fits the slowdown."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:32:30.976059+00:00"
+}

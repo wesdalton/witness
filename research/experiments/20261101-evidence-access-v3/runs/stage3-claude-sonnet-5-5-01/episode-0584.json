@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0584",
+  "incident": "inc-08e8765adb0bf2a2",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-16T23:10:50.823927+00:00",
+  "prompt_sha256": "14af8ae1d50e98ec338064983b430f25376516d687055fe0fed1c9e5a3c069cc",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "157f04b5a7b54ee1b33288c8d388907d",
+    "response_id": "gen-1794870650-GzL91zjEjWtfOQtRi04r",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1888,
+      "completion_tokens": 577,
+      "total_tokens": 2465,
+      "cost": 0.009546,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.009546,
+        "upstream_inference_prompt_cost": 0.003776,
+        "upstream_inference_completions_cost": 0.00577
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 5.0525,
+    "input_bound": 8539,
+    "reserved_usd": "0.075116",
+    "request_sha256": "13862c55dac18304f84fff94568f7ceed28c8dfdd78ba6e2d96e9c98e010cbe5"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 9,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.03,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest and replay show the run timed out at the 10 s limit (exit code 137). Only 8 of 9 tests had finished, which contradicts the report's \"9 passed\". The sleep in decode likely caused the slowdown."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:10:56.014834+00:00"
+}

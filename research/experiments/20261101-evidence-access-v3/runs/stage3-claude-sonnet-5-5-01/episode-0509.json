@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0509",
+  "incident": "inc-8854887f79f24e3d",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 2,
+  "started_at": "2026-11-16T23:05:20.474469+00:00",
+  "prompt_sha256": "cfaec1c44f7e0809213c43ada33e4b3c2f4a12a57cee89fabd61755ec69f1ca7",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "b24c1fa2a0d247a0bf1493973057b575",
+    "response_id": "gen-1794870321-ppHuLHKBdZl8UbV7dVlO",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 1897,
+      "completion_tokens": 335,
+      "total_tokens": 2232,
+      "cost": 0.007144,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.007144,
+        "upstream_inference_prompt_cost": 0.003794,
+        "upstream_inference_completions_cost": 0.00335
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 2.4337,
+    "input_bound": 8639,
+    "reserved_usd": "0.075516",
+    "request_sha256": "5fb52be24a5287c0faf9af25d508d642e26c99d459fae51167b83d36810572ff"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 8,
+        "failed": 0
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "verdict": "supported",
+    "p_claim_true": 0.96,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The report, the artifact log and the isolated replay each show 8 passed and 0 failed. The replay did not time out against the 10s limit, and the run took 0.01s. The manifest shows exit code 0 and status \"passed\" but gives no test counts. The code also matches the spec."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:05:24.125543+00:00"
+}

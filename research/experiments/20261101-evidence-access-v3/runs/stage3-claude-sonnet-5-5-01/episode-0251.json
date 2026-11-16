@@ -1,0 +1,86 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0251",
+  "incident": "inc-bdf543ef827e5fd5",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "counts",
+  "sample": 1,
+  "started_at": "2026-11-16T22:46:24.818541+00:00",
+  "prompt_sha256": "771a2b621c44c8baac90f53e478a29d93d941e8ba36b452952c85f3be9db8d8a",
+  "expected": "refuted",
+  "model_event": {
+    "request_id": "cc2d15b75d6f42208fd5e1b34a2bdc91",
+    "response_id": "gen-1794869185-fxWM41WZyN0jpOvJ4LQv",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 2115,
+      "completion_tokens": 596,
+      "total_tokens": 2711,
+      "cost": 0.01019,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01019,
+        "upstream_inference_prompt_cost": 0.00423,
+        "upstream_inference_completions_cost": 0.00596
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 6.733,
+    "input_bound": 8931,
+    "reserved_usd": "0.076684",
+    "request_sha256": "77ae2c0390cc213b16ba5f2aeea5d6f8e88c9a32c9aecbcd3dbd91d35ca39803"
+  },
+  "status": "completed",
+  "submission": {
+    "observed_counts": [
+      {
+        "channel": "report",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "channel": "artifacts",
+        "passed": 3,
+        "failed": null
+      },
+      {
+        "channel": "manifest",
+        "passed": null,
+        "failed": null
+      },
+      {
+        "channel": "replay",
+        "passed": null,
+        "failed": null
+      }
+    ],
+    "verdict": "refuted",
+    "p_claim_true": 0.02,
+    "evidence_used": [
+      "report",
+      "artifacts",
+      "manifest",
+      "replay"
+    ],
+    "reason": "The manifest shows a timeout (exit 137, 10s limit) and the replay shows timed_out true with no summary. The log shows only 3 dots, so the run was killed partway through. The report's 13 passed contradicts these, so the claim that the suite passes within the limit is refuted."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T22:46:32.243868+00:00"
+}

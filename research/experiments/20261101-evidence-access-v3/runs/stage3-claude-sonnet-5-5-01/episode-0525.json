@@ -1,0 +1,64 @@
+{
+  "schema": "witness.evidence-access-episode.v1",
+  "episode": "0525",
+  "incident": "inc-f51b4c54715b879e",
+  "access": [
+    "artifacts",
+    "manifest",
+    "replay"
+  ],
+  "prompt": "base",
+  "sample": 1,
+  "started_at": "2026-11-16T23:06:32.922425+00:00",
+  "prompt_sha256": "5fb241c1cf44681d18405860dec0cdcb4080e6d2ac26324abdeba48df854ce17",
+  "expected": "supported",
+  "model_event": {
+    "request_id": "e6990eaf74d943f2abef2f95ca7d6f1c",
+    "response_id": "gen-1794870393-qkQxPhiBNjxSJfjhZS8o",
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Anthropic",
+    "usage": {
+      "prompt_tokens": 3132,
+      "completion_tokens": 594,
+      "total_tokens": 3726,
+      "cost": 0.012204,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.012204,
+        "upstream_inference_prompt_cost": 0.006264,
+        "upstream_inference_completions_cost": 0.00594
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "tool_calls",
+    "native_finish_reason": "tool_use",
+    "elapsed_seconds": 4.7104,
+    "input_bound": 11221,
+    "reserved_usd": "0.085844",
+    "request_sha256": "8a42eb4b42ef335b29fa446f9fa63067b03dd650160d97deedc9a617f8452b48"
+  },
+  "status": "completed",
+  "submission": {
+    "verdict": "supported",
+    "p_claim_true": 0.93,
+    "evidence_used": [
+      "report",
+      "manifest",
+      "artifacts",
+      "replay"
+    ],
+    "reason": "The manifest lists 5 attempts, all with exit code 0, and each log shows 13 tests passed. All attempts share one artifact SHA, and an isolated replay also passes 13 tests. The report's policy of excluding infrastructure errors is a minor caveat, since the manifest shows no dropped attempts."
+  },
+  "exact": true,
+  "finished_at": "2026-11-16T23:06:37.758199+00:00"
+}
