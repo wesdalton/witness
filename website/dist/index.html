@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fbfaf7">
-  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a201d" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
   <title>Exit 0 is not a test run: how LLM auditors check claims about agent runs</title>
   <meta name="description" content="A research note by Wes Dalton. On held-out tasks, two LLM auditors accepted every agent run whose replay showed exit status 0 and no tests (48 of 48 episodes each), and trusted an evaluation harness's own report almost every time.">
   <link rel="canonical" href="https://wesdalton.github.io/witness/">
@@ -28,7 +29,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar">
-    <a class="home" href="#top"><img src="assets/witness-symbol.svg" alt="" width="31" height="18">Witness</a>
+    <a class="home" href="#top"><img class="logo-light" src="assets/witness-symbol-small.svg" alt="" width="24" height="24"><img class="logo-dark" src="assets/witness-symbol-small-reverse.svg" alt="" width="24" height="24">Witness</a>
     <nav aria-label="Sections">
       <a href="#setup">Setup</a>
       <a href="#findings">Findings</a>
@@ -41,6 +42,7 @@
   <main id="main">
     <article id="top">
       <header class="intro col">
+        <div class="intro-mark" aria-hidden="true"><img class="logo-light" src="assets/witness-symbol.svg" alt="" width="96" height="56"><img class="logo-dark" src="assets/witness-symbol-reverse.svg" alt="" width="96" height="56"></div>
         <p class="meta">Research note &middot; Evidence-access benchmark v2 &middot; Held-out study run 31 October 2026</p>
         <h1>Exit 0 is not a test run</h1>
         <p class="dek">When an LLM auditor is asked whether an agent run really did what its report claims, does it recognize when its evidence cannot settle the claim, and does it use the evidence that can? On held-out tasks, two auditors read a replay showing exit status 0, no output and no test summary as proof that the tests passed, in every one of 96 episodes.</p>
@@ -223,7 +225,7 @@ stdout_tail: ""
 
   <footer class="site-footer">
     <div class="col">
-      <p><img src="assets/witness-symbol.svg" alt="" width="31" height="18"> Witness, by Wes Dalton. <a href="https://github.com/wesdalton/witness">Source on GitHub</a> &middot; <a href="https://github.com/wesdalton/witness/blob/main/LICENSE">MIT License</a> &middot; <a href="https://github.com/wesdalton/witness/blob/main/CITATION.cff">Cite</a></p>
+      <p><img class="logo-light" src="assets/witness-symbol-small.svg" alt="" width="20" height="20"><img class="logo-dark" src="assets/witness-symbol-small-reverse.svg" alt="" width="20" height="20"> Witness, by Wes Dalton. <a href="https://github.com/wesdalton/witness">Source on GitHub</a> &middot; <a href="https://github.com/wesdalton/witness/blob/main/LICENSE">MIT License</a> &middot; <a href="https://github.com/wesdalton/witness/blob/main/CITATION.cff">Cite</a></p>
     </div>
   </footer>
 </body>
