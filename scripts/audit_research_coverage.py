@@ -1,104 +1,106 @@
-"""Check coverage of on-disk research evidence, including ignored historical logs."""
+"""Check that research evidence is fully registered and the budget ledger is append-only.
+
+Two checks, no network access:
+- every file under research/experiments/ belongs to a sealed bundle, and every sealed
+  bundle still matches its inventory (Archive.audit);
+- each committed edition of research/budget.jsonl, following its earlier path, is a
+  byte prefix of the current file, so rows can be appended but never edited or removed.
+"""
 
 from __future__ import annotations
 
-import argparse
-import hashlib
 import json
+import subprocess
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.core.archive import Archive, digest  # noqa: E402
+from witness.core.archive import Archive  # noqa: E402
 
-LEDGERS = {"research/agent-study/budget.jsonl", "research/swarm/pilot-budget.jsonl"}
-
-
-def candidates(root):
-    files = []
-    for base in (root / "research", root / "logs"):
-        for path in sorted(base.rglob("*")):
-            relative = path.relative_to(root)
-            if (not path.is_file() or "__pycache__" in relative.parts
-                    or relative.parts[:2] in (("research", "archive"), ("research", "registry"))):
-                continue
-            files.append(path)
-    return files
+EXPERIMENTS = "research/experiments"
+LEDGER = "research/budget.jsonl"
+# Before November 2026 the ledger lived here; its history is checked under either name.
+FORMER_LEDGER_PATHS = ("research/agent-study/budget.jsonl",)
 
 
-def coverage(root):
+def git(root: Path, *args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", "-C", str(root), *args], capture_output=True)
+
+
+def unregistered(root: Path, archive: Archive) -> list[str]:
+    sealed = {name for r in archive.records() for name in r["files"]}
+    base = root / EXPERIMENTS
+    files = sorted(base.rglob("*")) if base.is_dir() else []
+    return [name for path in files
+            if path.is_file() and "__pycache__" not in path.parts
+            and (name := path.relative_to(root).as_posix()) not in sealed]
+
+
+def committed_editions(root: Path) -> list[tuple[str, bytes]] | None:
+    """(commit:path, bytes) for each committed ledger edition; None outside a git work tree."""
+    inside = git(root, "rev-parse", "--is-inside-work-tree")
+    if inside.returncode != 0 or inside.stdout.strip() != b"true":
+        return None
+    seen, editions = set(), []
+    for path in (LEDGER, *FORMER_LEDGER_PATHS):
+        log = git(root, "log", "--follow", "--name-only", "--format=commit %H", "--", path)
+        if log.returncode != 0:
+            continue
+        commit = None
+        for line in log.stdout.decode().splitlines():
+            if line.startswith("commit "):
+                commit = line.split()[1]
+            elif line.strip() and commit and (commit, line.strip()) not in seen:
+                seen.add((commit, line.strip()))
+                shown = git(root, "show", f"{commit}:{line.strip()}")
+                if shown.returncode == 0:
+                    editions.append((f"{commit[:12]}:{line.strip()}", shown.stdout))
+    return editions
+
+
+def ledger_check(root: Path, editions: list[tuple[str, bytes]] | None = None) -> dict:
+    """Every earlier edition must be a byte prefix of the current ledger."""
+    if editions is None:
+        editions = committed_editions(root)
+    current = root / LEDGER
+    result = {"path": LEDGER, "present": current.is_file(), "git_history": editions is not None,
+              "editions_checked": 0, "rewritten_editions": []}
+    if not current.is_file() or editions is None:
+        return result
+    raw = current.read_bytes()
+    for label, earlier in editions:
+        result["editions_checked"] += 1
+        if not raw.startswith(earlier):
+            result["rewritten_editions"].append(label)
+    return result
+
+
+def coverage(root: Path) -> dict:
     archive = Archive(root)
-    records = archive.records()
-    sealed = {name for r in records for name in r["files"]}
-    originals = defaultdict(list)
-    for record in records:
-        if record.get("original_path"):
-            originals[record["original_path"]].append(record)
-    missing, changed, prefixes = [], [], []
-    paths = candidates(root)
-    for path in paths:
-        name = path.relative_to(root).as_posix()
-        if name in sealed:
-            continue
-        editions = originals[name]
-        if not editions:
-            missing.append(name)
-            continue
-        if name in LEDGERS:
-            raw = path.read_bytes()
-            if all(raw.startswith((root / r["path"]).read_bytes()) for r in editions):
-                prefixes.append(name)
-            else:
-                changed.append(name)
-        elif not any(digest(path) in r["files"].values() for r in editions):
-            changed.append(name)
-    return {"schema": "witness.archive-coverage.v1", "files_checked": len(paths),
-            "unregistered": missing, "changed_unarchived_editions": changed,
-            "append_only_ledgers_checked": prefixes, "integrity": archive.audit(),
-            "scope": "Files currently present under this repository's research/ and logs/. "
-            "Excludes archive/index duplicates and Python caches. Does not reconstruct lost "
-            "history, prove prior immutability, or establish an off-machine backup."}
+    ledger = ledger_check(root)
+    return {
+        "schema": "witness.archive-coverage.v2",
+        "unregistered": unregistered(root, archive),
+        "ledger": ledger,
+        "integrity": archive.audit(),
+        "scope": "Files under research/experiments/ and the budget ledger's committed "
+        "history. Does not prove immutability before registration or establish an "
+        "off-machine backup. Outside a git work tree the ledger history is not checked.",
+    }
 
 
-def capture_legacy(root):
-    archive = Archive(root)
-    records = archive.records()
-    originals = {(r.get("original_path"), h) for r in records for h in r["files"].values()}
-    selected = list((root / "research").glob("*.md"))
-    selected += [p for p in (root / "logs").rglob("*") if p.is_file()]
-    selected += [root / name for name in LEDGERS if (root / name).is_file()]
-    sealed = {name for r in records for name in r["files"]}
-    for path in sorted(selected):
-        name = path.relative_to(root).as_posix()
-        sha = digest(path)
-        if name in sealed or (name, sha) in originals:
-            continue
-        path_id = hashlib.sha256(name.encode()).hexdigest()[:12]
-        bundle_id = f"recovered-{path_id}-{sha[:12]}"
-        target = root / "research/archive/recovered" / (bundle_id + path.suffix)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        with target.open("xb") as stream:
-            stream.write(path.read_bytes())
-        kind = "ledger-snapshot" if name in LEDGERS else "inspect-log" if (
-            path.suffix == ".eval") else "legacy-artifact"
-        archive.seal(bundle_id, target, kind=kind, title=name,
-                     experiment="legacy-recovered", original_path=name, legacy=True)
-    archive.build_index()
+def failed(result: dict) -> bool:
+    ledger = result["ledger"]
+    return bool(result["unregistered"] or result["integrity"]["errors"]
+                or not ledger["present"] or ledger["rewritten_editions"])
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--capture-legacy", action="store_true")
-    args = parser.parse_args()
-    if args.capture_legacy:
-        capture_legacy(ROOT)
+def main() -> int:
     result = coverage(ROOT)
     print(json.dumps(result, indent=2))
-    return bool(result["unregistered"] or result["changed_unarchived_editions"]
-                or result["integrity"]["errors"])
+    return int(failed(result))
 
 
 if __name__ == "__main__":

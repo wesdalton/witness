@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from swarm_lab.core.archive import Archive, bootstrap_legacy, write_once
+from witness.core.archive import Archive, write_once
 
 
 def experiment(tmp_path):
@@ -75,23 +75,6 @@ def test_alias_paths_and_nested_seals_do_not_duplicate_evidence(tmp_path):
     with pytest.raises(FileExistsError, match="overlaps"):
         archive.seal("nested", folder / "design/protocol.md", kind="report",
                      title="Nested", experiment="test-study")
-
-
-def test_legacy_import_is_idempotent_and_preserves_living_report_editions(tmp_path):
-    for group in ("swarm", "agent-study", "portfolio"):
-        (tmp_path / "research" / group).mkdir(parents=True)
-    base = tmp_path / "research/portfolio"
-    write_once(base / "pilot/manifest.json", {"batch": "test"})
-    write_once(base / "report.md", "First edition\n")
-    write_once(base / "analysis.json", {"finding": 1})
-    first = bootstrap_legacy(tmp_path)
-    assert not first["errors"] and first["bundles"] == 3
-    assert bootstrap_legacy(tmp_path) == first
-    (base / "report.md").write_text("Second edition\n")
-    second = bootstrap_legacy(tmp_path)
-    assert not second["errors"] and second["bundles"] == 4
-    copies = list((tmp_path / "research/archive/legacy-writeups/portfolio").glob("*.md"))
-    assert {p.read_text() for p in copies} == {"First edition\n", "Second edition\n"}
 
 
 def sealed_snapshot(tmp_path):

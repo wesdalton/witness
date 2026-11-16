@@ -1,18 +1,14 @@
 [project]
 name = "witness"
-version = "0.2.0"
-description = "Witness: experiments on communication, verification, and evidence ancestry in agent networks, built on Inspect AI evaluation tasks."
+version = "0.3.0"
+description = "Witness: a controlled benchmark of whether LLM auditors recognize when evidence cannot settle a claim about an agent run."
 requires-python = ">=3.12"
-dependencies = [
-    "inspect-ai==0.3.263",
-]
+dependencies = []
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8",
     "ruff>=0.6",
-    "anthropic",
-    "openai",
 ]
 
 [build-system]
@@ -20,7 +16,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["inspect_tasks", "swarm_lab"]
+packages = ["witness"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -28,12 +24,8 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 extend-exclude = [
-    "sandbox/workspace", "sandbox/hidden_tests",
-    "swarm_lab/evidence_access/tasks",  # benchmark fixtures; their bytes are evidence
-    "research/agent-study/*/source",
-    "research/portfolio/vendor", "research/portfolio/*/source",
-    "research/portfolio/counterexamples",  # exact agent output, retained as evidence
-    "research/experiments",  # frozen third-party sources and exact agent artifacts
+    "witness/evidence_access/tasks",  # benchmark fixtures; their bytes are evidence
+    "research/experiments",  # frozen sources and exact agent artifacts
 ]
 
 [tool.ruff.lint]

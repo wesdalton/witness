@@ -5,7 +5,7 @@ from decimal import Decimal
 
 import pytest
 
-from swarm_lab.core.budget import BudgetError, PhaseBudget
+from witness.core.budget import BudgetError, PhaseBudget
 
 
 def test_phase_budget_settles_successful_requests_to_reported_cost(tmp_path):
@@ -43,6 +43,7 @@ def test_failed_request_keeps_full_reservation(tmp_path):
     assert rows[-1]["reservation_retained"] is True
     assert budget.summary()["exposure_usd"] == "0.4"
 
+
 def test_phase_budget_retains_uncertain_dispatch_and_blocks_retries(tmp_path):
     budget = PhaseBudget(tmp_path / "budget.jsonl")
     budget.reserve("one", "batch", Decimal("0.1"), Decimal("1"))
@@ -60,6 +61,36 @@ def test_batch_limit_and_billing_overrun_stop_spending(tmp_path):
         budget.complete("one", "ok", cost="0.2", usage={})
     with pytest.raises(BudgetError, match="failed request"):
         budget.reserve("two", "another-batch", Decimal("0.1"), Decimal("1"))
+
+
+def test_billing_overrun_counts_reported_cost_not_reservation(tmp_path):
+    budget = PhaseBudget(tmp_path / "budget.jsonl")
+    budget.reserve("one", "batch", Decimal("0.10"), Decimal("1"))
+    with pytest.raises(BudgetError, match="billing_overrun"):
+        budget.complete("one", "ok", cost="0.90", usage={})
+    assert Decimal(budget.summary()["exposure_usd"]) == Decimal("0.90")
+    budget.review("one", "Provider billed more than the reservation.")
+    with pytest.raises(BudgetError, match="ceiling"):
+        budget.reserve("two", "batch", Decimal("0.11"), Decimal("1"))
+    budget.reserve("two", "batch", Decimal("0.10"), Decimal("1"))
+
+
+def test_billing_overrun_counts_against_the_phase_ceiling(tmp_path):
+    budget = PhaseBudget(tmp_path / "budget.jsonl")
+    budget.reserve("one", "batch", Decimal("0.10"), Decimal("1"))
+    with pytest.raises(BudgetError, match="billing_overrun"):
+        budget.complete("one", "ok", cost="24.95", usage={})
+    budget.review("one", "Provider billed far more than the reservation.")
+    with pytest.raises(BudgetError, match="ceiling"):
+        budget.reserve("two", "another-batch", Decimal("0.10"), Decimal("1"))
+
+
+def test_failed_request_with_smaller_reported_cost_keeps_reservation(tmp_path):
+    budget = PhaseBudget(tmp_path / "budget.jsonl")
+    budget.reserve("one", "batch", Decimal("0.4"), Decimal("1"))
+    with pytest.raises(BudgetError, match="review"):
+        budget.complete("one", "unknown_or_excess_usage", cost="0.1", usage={})
+    assert budget.summary()["exposure_usd"] == "0.4"
 
 
 def test_partial_ledger_fails_closed(tmp_path):

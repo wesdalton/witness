@@ -5,9 +5,9 @@ import json
 
 import pytest
 
-from swarm_lab.evidence_access import baselines, corpus
-from swarm_lab.evidence_access import execution as ex
-from swarm_lab.evidence_access.tasks import VARIANTS, all_tasks
+from witness.evidence_access import baselines, corpus
+from witness.evidence_access import execution as ex
+from witness.evidence_access.tasks import VARIANTS, all_tasks
 
 
 @pytest.mark.parametrize("task", all_tasks(), ids=lambda t: t.name)
@@ -76,7 +76,7 @@ def test_identifiability_and_expected_verdicts_follow_differing_channels():
 
 
 def test_audit_episode_scores_against_identifiability_without_leaking_labels():
-    from swarm_lab.evidence_access import audit
+    from witness.evidence_access import audit
 
     bad = _incident("t:runner_substitution", "runner_substitution", False,
                     replay={"timed_out": False, "exit_code": 1, "summary": None})
@@ -107,7 +107,7 @@ def test_audit_episode_scores_against_identifiability_without_leaking_labels():
 
 
 def test_stage1_plan_sizes():
-    from swarm_lab.evidence_access import audit
+    from witness.evidence_access import audit
 
     incidents = [{"id": f"i{n}", "split": "dev" if n < 32 else "heldout"} for n in range(48)]
     assert len(audit.plan(incidents, "openai/gpt-6-luna")) == 256
@@ -115,7 +115,7 @@ def test_stage1_plan_sizes():
 
 
 def test_stage2_plan_covers_heldout_cells_in_fixed_order():
-    from swarm_lab.evidence_access import audit
+    from witness.evidence_access import audit
 
     families = ["runner_substitution"] * 3 + ["dropped_attempts"] * 3 + ["timeout_as_success"] * 2
     incidents = [{"id": f"h{t}{n}", "split": "heldout", "family": f}
@@ -132,7 +132,7 @@ def test_stage2_plan_covers_heldout_cells_in_fixed_order():
 
 
 def test_stage3_plan_and_counts_validation():
-    from swarm_lab.evidence_access import audit
+    from witness.evidence_access import audit
 
     families = ["runner_substitution"] * 3 + ["dropped_attempts"] * 3 + ["timeout_as_success"] * 2
     incidents = [{"id": f"h{t}{n}", "split": "heldout", "family": f}

@@ -23,18 +23,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.core.archive import write_once  # noqa: E402
-from swarm_lab.evidence_access import baselines, corpus  # noqa: E402
-from swarm_lab.evidence_access import execution as ex  # noqa: E402
-from swarm_lab.evidence_access.tasks import all_tasks  # noqa: E402
+from witness.core.archive import write_once  # noqa: E402
+from witness.evidence_access import baselines, corpus  # noqa: E402
+from witness.evidence_access import execution as ex  # noqa: E402
+from witness.evidence_access.tasks import all_tasks  # noqa: E402
 
 LEAK = re.compile(r"\b(valid|invalid|honest|shadow|forged|truth|label|buggy|early_exit|"
                   r"dropped|timed_out_variant|within_limit)\b", re.I)
 
 
 def sources() -> dict[str, str]:
-    paths = [Path(__file__), *sorted((ROOT / "swarm_lab/evidence_access").rglob("*")),
-             ROOT / "swarm_lab/core/sandbox.py"]
+    paths = [Path(__file__), *sorted((ROOT / "witness/evidence_access").rglob("*")),
+             ROOT / "witness/core/sandbox.py"]
     return {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in paths if p.is_file() and "__pycache__" not in p.parts}
 

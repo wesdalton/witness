@@ -8,13 +8,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.core.archive import Archive, bootstrap_legacy  # noqa: E402
+from witness.core.archive import Archive  # noqa: E402
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="action", required=True)
-    sub.add_parser("bootstrap", help="Register legacy runs and archive new writeup editions")
     sub.add_parser("audit", help="Verify every sealed bundle, including packed files")
     sub.add_parser("index", help="Regenerate the derived experiment index, then audit")
     pack = sub.add_parser("pack", help="Move sealed folders into the content-addressed store")
@@ -25,9 +24,7 @@ def main():
     restore.add_argument("--to", type=Path, help="Destination root (default: repository)")
     args = parser.parse_args()
     archive = Archive(ROOT)
-    if args.action == "bootstrap":
-        result = bootstrap_legacy(ROOT)
-    elif args.action == "pack":
+    if args.action == "pack":
         record = archive.pack(args.id, args.folders)
         result = {**archive.audit(), "packed_now": len(record["files"])}
     elif args.action == "restore":

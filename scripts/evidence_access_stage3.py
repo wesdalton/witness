@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.core.archive import write_once  # noqa: E402
+from witness.core.archive import write_once  # noqa: E402
 
 _spec = importlib.util.spec_from_file_location("stage2", ROOT / "scripts/evidence_access_stage2.py")
 s2 = importlib.util.module_from_spec(_spec)

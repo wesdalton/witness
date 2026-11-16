@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from swarm_lab.core.archive import write_once  # noqa: E402
+from witness.core.archive import write_once  # noqa: E402
 
 B = 10_000
 SEED = 20261031
