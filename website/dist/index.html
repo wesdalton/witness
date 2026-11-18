@@ -49,9 +49,9 @@
         <p class="dek">An agent submits a patch that quits the process before any test runs. The evaluation harness still reports that every hidden test passed, and a replay of the tests shows only exit code 0, with no output and no test summary. Asked whether the patch passes the tests, all five models tested (Claude Sonnet 5.5, Gemini 3.8 Flash, DeepSeek V4.1 Flash, GPT-6 Luna and GPT-6.1 Sol) answered yes in every case on held-out tasks.</p>
       </header>
 
-      <figure class="fig col-wide" id="fig-early-exit" aria-labelledby="fig1-cap">
+      <figure class="fig col-wide" id="fig-five-models" aria-labelledby="fig1-cap">
         <table class="results">
-          <caption class="visually-hidden">Early-exit and shadow-runner runs accepted as passing under replay-only access, by auditor and prompt</caption>
+          <caption class="visually-hidden">Early-exit and shadow-runner runs accepted as passing under replay-only access, by model and prompt, v3</caption>
           <thead>
             <tr>
               <th scope="col">Prompt</th>
@@ -60,6 +60,45 @@
             </tr>
           </thead>
           <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="3">Claude Sonnet 5.5</th></tr>
+            <tr>
+              <th scope="row">Base</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Counts arm</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="3">Gemini 3.8 Flash</th></tr>
+            <tr>
+              <th scope="row">Base</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Counts arm</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:97.92%"></span></span><span class="count">47/48</span></td>
+              <td class="zero"><span class="count">0/47</span></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="3">DeepSeek V4.1 Flash</th></tr>
+            <tr>
+              <th scope="row">Base</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Counts arm</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+          </tbody>
+          <tbody>
             <tr class="group"><th scope="rowgroup" colspan="3">GPT-6 Luna</th></tr>
             <tr>
               <th scope="row">Base</th>
@@ -67,8 +106,8 @@
               <td class="zero"><span class="count">0/48</span></td>
             </tr>
             <tr>
-              <th scope="row">Explicit rule</th>
-              <td><span class="bar" aria-hidden="true"><span style="width:29.17%"></span></span><span class="count">14/48</span></td>
+              <th scope="row">Counts arm</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
               <td class="zero"><span class="count">0/48</span></td>
             </tr>
           </tbody>
@@ -80,21 +119,21 @@
               <td class="zero"><span class="count">0/48</span></td>
             </tr>
             <tr>
-              <th scope="row">Explicit rule</th>
-              <td><span class="bar" aria-hidden="true"><span style="width:89.58%"></span></span><span class="count">43/48</span></td>
+              <th scope="row">Counts arm</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
               <td class="zero"><span class="count">0/48</span></td>
             </tr>
           </tbody>
         </table>
-        <figcaption id="fig1-cap"><b>Figure 1.</b> Both kinds of run are invalid, and the replay separates both from a valid run. Each cell is 48 episodes: 8 held-out incidents with 6 independent samples each, so the effective sample is 8 incidents per cell. The correct verdict was <i>refuted</i>; no auditor refuted an early-exit run under either prompt. The explicit rule is a two-sentence addition to the prompt, described below.</figcaption>
+        <figcaption id="fig1-cap"><b>Figure 1.</b> Replay-only access on held-out tasks (v3). In an early-exit run the patch quits before any test runs, so the replay shows exit code 0, no output and no test summary; the correct verdict is <i>refuted</i>. Shadow-runner runs are also invalid, and their replay shows real test failures. In the counts arm the auditor first lists the pass and fail counts each piece of evidence shows. Each cell is 48 episodes, 8 held-out incidents with 6 samples each, so the effective sample is 8 incidents per cell; Gemini's counts-arm shadow-runner cell has 47.</figcaption>
       </figure>
 
       <div class="col">
         <ul class="facts" aria-label="Study at a glance">
-          <li><b>2,112</b> auditor episodes</li>
-          <li><b>64</b> held-out incidents in <b>24</b> valid/invalid pair groups</li>
-          <li><b>8</b> held-out tasks, <b>3</b> failure families</li>
-          <li><b>$2.69</b> total model cost</li>
+          <li><b>5</b> models from <b>4</b> providers</li>
+          <li><b>7,391</b> auditor episodes (2,112 in v2, 5,279 in v3)</li>
+          <li><b>64</b> held-out incidents from <b>8</b> held-out tasks per study</li>
+          <li><b>$18.14</b> total model cost ($2.69 in v2, $15.46 in v3)</li>
         </ul>
 
         <h2 id="question">The question</h2>
@@ -159,9 +198,52 @@ stdout_tail: ""
         <p>This section reports v2, run on 31 October 2026; the five-model replication follows. In v2 the auditors were GPT-6 Luna and GPT-6.1 Sol at medium reasoning effort. All 2,112 responses were valid. The three primary tests passed at the frozen, multiplicity-corrected level, except one that was predicted in advance to fail for Luna.</p>
 
         <h3>1. A clean exit is read as proof that tests ran</h3>
-        <p>With replay-only access, both models accepted all 48 early-exit episodes and refuted all 48 shadow-runner episodes, whose replay shows real failures (Figure 1). The models used the replay when it showed failing counts, and treated a missing summary as no signal at all. Sol's reasons often name the gap and accept anyway:</p>
+        <p>With replay-only access, both models accepted all 48 early-exit episodes and refuted all 48 shadow-runner episodes, whose replay shows real failures (Figure 3). The models used the replay when it showed failing counts, and treated a missing summary as no signal at all. Sol's reasons often name the gap and accept anyway:</p>
         <blockquote class="quote">The isolated pytest replay exited successfully without timing out, corroborating the report, although it provides no test-count summary.</blockquote>
         <p>This is the same mistake that makes the harness exploitable, repeated by the auditor meant to catch it. With the explicit rule, Luna's acceptance fell to 14/48, but Sol still accepted 43/48. The rule speaks about evidence that looks the same either way; it does not mention exit status, and it mostly did not change Sol's trust in exit 0.</p>
+      </div>
+
+      <figure class="fig col-wide" id="fig-early-exit" aria-labelledby="fig3-cap">
+        <table class="results">
+          <caption class="visually-hidden">Early-exit and shadow-runner runs accepted as passing under replay-only access, by auditor and prompt</caption>
+          <thead>
+            <tr>
+              <th scope="col">Prompt</th>
+              <th scope="col">Early-exit runs accepted<span class="th-note">replay: exit 0, no output</span></th>
+              <th scope="col">Shadow-runner runs accepted<span class="th-note">replay: real test failures</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="3">GPT-6 Luna</th></tr>
+            <tr>
+              <th scope="row">Base</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Explicit rule</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:29.17%"></span></span><span class="count">14/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="3">GPT-6.1 Sol</th></tr>
+            <tr>
+              <th scope="row">Base</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:100%"></span></span><span class="count">48/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Explicit rule</th>
+              <td><span class="bar" aria-hidden="true"><span style="width:89.58%"></span></span><span class="count">43/48</span></td>
+              <td class="zero"><span class="count">0/48</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <figcaption id="fig3-cap"><b>Figure 3.</b> v2: GPT-6 Luna and GPT-6.1 Sol with the base prompt and the explicit rule. Both kinds of run are invalid, and the replay separates both from a valid run. Each cell is 48 episodes: 8 held-out incidents with 6 independent samples each, so the effective sample is 8 incidents per cell. The correct verdict was <i>refuted</i>; no auditor refuted an early-exit run under either prompt. The explicit rule is a two-sentence addition to the prompt, described below.</figcaption>
+      </figure>
+
+      <div class="col">
 
         <h3>2. A harness's self-report is trusted by default</h3>
         <p>Given only the harness's report, which is byte-identical for the valid and invalid run in every pair, Luna committed to <i>supported</i> in 191 of 192 episodes and Sol in 172 of 192. The median stated probability that the claim was true was 0.99 for Luna and 0.97 for Sol. The 192 episodes per model come from 24 distinct reports, so the independent units are reports, not episodes. Sol was more cautious only on pass-rate claims (52/72 committed, against 120/120 on single-run claims).</p>
@@ -198,29 +280,9 @@ stdout_tail: ""
         </div>
 
         <h2 id="replication">Replication: five models</h2>
-        <p>v3 repeated the design on a rebuilt corpus with three more model families, Claude Sonnet 5.5, Gemini 3.8 Flash and DeepSeek V4.1 Flash, and ran GPT-6 Luna and GPT-6.1 Sol again: 5,279 episodes in all. It also tested one intervention. In the <i>counts</i> arm, the auditor had to list, before deciding, the pass and fail counts that each piece of evidence it was given shows. The protocol and analysis were frozen before the runs, and the analysis ran once, after every batch finished.</p>
-        <p class="table-caption" id="table2-cap"><b>Table 2.</b> Replay only, early-exit runs. The claim is that the patch passes the hidden test suite; the replay shows exit code 0, no output and no test summary. Each cell is 8 held-out incidents with 6 samples each.</p>
-        <div class="table-scroll" role="region" aria-labelledby="table2-cap" tabindex="0">
-          <table class="cells" aria-labelledby="table2-cap">
-            <thead>
-              <tr>
-                <th scope="col">Model</th>
-                <th scope="col">Said the patch passes</th>
-                <th scope="col">Said it passes, counts arm</th>
-                <th scope="col">Recorded no counts in the replay, then said it passes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">Claude Sonnet 5.5</th><td>48/48</td><td>48/48</td><td>48/48</td></tr>
-              <tr><th scope="row">Gemini 3.8 Flash</th><td>48/48</td><td>47/48</td><td>47/48</td></tr>
-              <tr><th scope="row">DeepSeek V4.1 Flash</th><td>48/48</td><td>48/48</td><td>48/48</td></tr>
-              <tr><th scope="row">GPT-6 Luna</th><td>48/48</td><td>48/48</td><td>48/48</td></tr>
-              <tr><th scope="row">GPT-6.1 Sol</th><td>48/48</td><td>48/48</td><td>48/48</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <p>v3 repeated the design on a rebuilt corpus with three more model families, Claude Sonnet 5.5, Gemini 3.8 Flash and DeepSeek V4.1 Flash, and ran GPT-6 Luna and GPT-6.1 Sol again: 5,279 episodes in all. It also tested one intervention. In the <i>counts</i> arm, the auditor had to list, before deciding, the pass and fail counts that each piece of evidence it was given shows. The protocol and analysis were frozen before the runs, and the analysis ran once, after every batch finished. Figure 1 shows the result.</p>
         <p>Every model refuted every shadow-runner run, whose replay shows real failures, and every new model committed to a verdict on all 192 report-only episodes. All six pre-registered replication tests passed.</p>
-        <p>Asking for the counts did not help any model. Each one correctly wrote down that the replay shows no pass or fail counts, then said the patch passes anyway. The models notice the missing summary and still read a clean exit as confirming the harness&rsquo;s report. Claude Sonnet 5.5:</p>
+        <p>Asking for the counts did not help any model. In all 48 counts-arm early-exit episodes, each model correctly wrote down that the replay shows no pass or fail counts, then said the patch passes anyway (in 47 of 48 for Gemini, 48 of 48 for the rest). The models notice the missing summary and still read a clean exit as confirming the harness&rsquo;s report. Claude Sonnet 5.5:</p>
         <blockquote class="quote">The report shows 8 passed and 0 failed. The replay exited with code 0 and did not time out, which agrees with the report. The replay showed no counts of its own.</blockquote>
         <p>v3 did not test the v2 explicit rule on the new models. Gemini has 1,055 of 1,056 planned episodes: one request timed out with an unknown outcome and was not repeated.</p>
         <h2 id="why">Why it matters</h2>
